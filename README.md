@@ -31,9 +31,9 @@ Hands-on AI and data projects, built end to end: design decisions written down, 
 
 ### Filter, then click a row
 
-<img src="job-radar/docs/images/dashboard-tour.gif" alt="Filtering the dashboard by search, place, role and work mode, then opening a job's details and link in the side panel" width="100%">
+<img src="job-radar/docs/images/dashboard-tour.gif" alt="Filtering the dashboard by search, place, role and source, then opening a job's details and its LinkedIn link from the side panel" width="100%">
 
-*Filters stack: search, place, role and work mode take 420 jobs down to 6. A click on any row opens its details and the apply link on the right.*
+*Filters stack: search, place, role and source take 420 jobs down to 4. A click on any row opens its details and the apply link on the right, and the link opens the board's own search page (here LinkedIn). The jobs are invented; the demo links for LinkedIn and Naukri rows go to each board's public search for the job title.*
 
 *Try it: `python job-radar/demo/make_demo.py`, then open `job-radar/demo/output/Dashboard.html`. The repository ships no scraped data.*
 

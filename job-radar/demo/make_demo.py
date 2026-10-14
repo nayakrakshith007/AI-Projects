@@ -1,9 +1,10 @@
 """Build a demo dashboard from invented data, so the project can be seen without running a single scraper.
-Every company, title and link below is made up. Run from the project folder:  python demo/make_demo.py
+Every company and job below is made up. LinkedIn and Naukri rows link to that board's public search for the job title; all other links are placeholders. Run from the project folder:  python demo/make_demo.py
 It writes demo/output/snapshot.json and demo/output/Dashboard.html (open the second one in a browser)."""
 import json
 import random
 import sys
+from urllib.parse import quote
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -13,6 +14,17 @@ from radar3 import dashboard                                                # no
 
 random.seed(7)
 TODAY = date.today()
+
+
+def link_for(site: str, title: str, place: str, n: int) -> str:
+    """LinkedIn and Naukri rows point to that board's own public search for the job title, so a click shows a real page. Every other link is a placeholder."""
+    city = place.split(",")[0]
+    if site == "LinkedIn":
+        return f"https://www.linkedin.com/jobs/search/?keywords={quote(title)}&location={quote(city + ', India')}"
+    if site == "Naukri":
+        return f"https://www.naukri.com/{title.lower().replace(' ', '-')}-jobs-in-{city.lower()}"
+    return f"https://example.com/jobs/{n}"
+
 ROLES = {"AI Engineer": 0.26, "Data Engineer": 0.17, "Data Scientist": 0.14, "ML Engineer": 0.11, "Data Analyst / BI Analyst": 0.1, "AI Architect / Solutions Architect": 0.08,
          "GenAI / LLM Engineer": 0.07, "MLOps / ML Platform Engineer": 0.04, "Applied Scientist / Research Engineer": 0.02, "Prompt Engineer / AI Product": 0.01}
 TITLES = {r: [r.split(" / ")[0], "Senior " + r.split(" / ")[0], "Lead " + r.split(" / ")[0], r.split(" / ")[0] + " II"] for r in ROLES}
@@ -20,7 +32,7 @@ COMPANIES = ["Northwind Labs", "Acme Analytics", "Contoso AI", "Globex Data", "I
              "Soylent Data", "Pied Piper AI", "Massive Dynamic", "Cyberdyne Labs", "Tyrell Analytics", "Wonka Intelligence"]
 PLACES = [("Bengaluru, Karnataka", 2, True), ("Hyderabad, Telangana", 3, False), ("Chennai, Tamil Nadu", 3, False), ("Pune, Maharashtra", 4, False), ("Gurugram, Haryana", 4, False),
           ("Mumbai, Maharashtra", 4, False), ("Remote, India", 0, False)]
-SOURCES = [("Demo Job Board A", "Job board"), ("Demo Job Board B", "Job board"), ("Demo Platform (Greenhouse)", "Platform"), ("Demo Platform (Workday)", "Platform"),
+SOURCES = [("LinkedIn", "Job board"), ("Naukri", "Job board"), ("Demo Platform (Greenhouse)", "Platform"), ("Demo Platform (Workday)", "Platform"),
            ("Demo Custom Page", "Custom page"), ("Demo Remote Feed", "Feed")]
 SKILLS = ["python, sql, machine learning", "llm, rag, langchain, aws", "spark, airflow, dbt, sql", "pytorch, mlops, docker, kubernetes", "tableau, power bi, sql", "azure, mlflow, python"]
 
@@ -32,10 +44,11 @@ for n in range(420):
     posted = TODAY - timedelta(days=random.randint(0, 14))
     first = posted if random.random() < 0.7 else TODAY - timedelta(days=random.randint(0, 6))
     remote = tier == 0
-    jobs.append({"roles": [role], "title": random.choice(TITLES[role]), "company": random.choice(COMPANIES), "location": place, "more_locations": "", "tier": tier,
+    title = random.choice(TITLES[role])
+    jobs.append({"roles": [role], "title": title, "company": random.choice(COMPANIES), "location": place, "more_locations": "", "tier": tier,
                  "bengaluru": bengaluru, "remote": remote, "eligibility": "yes" if remote else "india", "work_mode": "Remote" if remote else random.choice(["", "Hybrid", "Onsite"]),
                  "salary": random.choice(["", "", "1,800,000 - 2,600,000 INR yearly", "3,000,000 - 4,200,000 INR yearly"]), "skills": random.choice(SKILLS),
-                 "posted": posted.isoformat(), "first_seen": first.isoformat(), "sites": [site], "source_types": [kind], "url": f"https://example.com/jobs/{n}", "other_links": [],
+                 "posted": posted.isoformat(), "first_seen": first.isoformat(), "sites": [site], "source_types": [kind], "url": link_for(site, title, place, n), "other_links": [],
                  "status": "New" if first == TODAY else "Seen"})
 
 tiers = {str(t): sum(1 for j in jobs if j["tier"] == t) for t in range(5)}

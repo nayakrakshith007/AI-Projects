@@ -12,7 +12,7 @@ A free, no-LLM data pipeline that reads about 200 job sources every morning, kee
 
 ![Filtering the dashboard, then opening a job's details and link in the side panel](docs/images/dashboard-tour.gif)
 
-*Filters stack (search, place, role, work mode); a click on any row opens its details and the apply link on the right.*
+*Filters stack (search, place, role, source); a click on any row opens its details and the apply link on the right, and the link opens the board's own search page (here LinkedIn). The jobs are invented; the demo links for LinkedIn and Naukri rows go to each board's public search for the job title.*
 
 *The analytics dashboard, built from invented demo data. Try it yourself: `python demo/make_demo.py`, then open `demo/output/Dashboard.html`.*
 
