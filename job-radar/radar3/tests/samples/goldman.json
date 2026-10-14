@@ -1,0 +1,57 @@
+{
+ "data": {
+  "roleSearch": {
+   "totalCount": 75,
+   "items": [
+    {
+     "roleId": "186491_GS_EARLY_CAREER",
+     "jobTitle": "Engineering-L2-Bengaluru-Vice President-UI/UX Design",
+     "locations": [
+      {
+       "city": "Bengaluru",
+       "country": "India",
+       "state": "Karnataka"
+      }
+     ],
+     "externalSource": {
+      "sourceId": "186491"
+     },
+     "division": "Engineering Division",
+     "corporateTitle": "Vice President"
+    },
+    {
+     "roleId": "183844_GS_MID_CAREER",
+     "jobTitle": "Tax-Project Management-Vice President-Bengaluru",
+     "locations": [
+      {
+       "city": "Bengaluru",
+       "country": "India",
+       "state": "Karnataka"
+      }
+     ],
+     "externalSource": {
+      "sourceId": "183844"
+     },
+     "division": "Tax",
+     "corporateTitle": "Vice President"
+    },
+    {
+     "roleId": "185534_GS_MID_CAREER",
+     "jobTitle": "The Core Engineering-L2-Bengaluru-Vice President-Software Engineering",
+     "locations": [
+      {
+       "city": "Bengaluru",
+       "country": "India",
+       "state": "Karnataka"
+      }
+     ],
+     "externalSource": {
+      "sourceId": "185534"
+     },
+     "division": "The Core Engineering",
+     "corporateTitle": "Vice President"
+    }
+   ]
+  }
+ }
+}

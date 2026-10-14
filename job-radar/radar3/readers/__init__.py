@@ -1,0 +1,36 @@
+"""Readers by name. A reader is reader(source_row, http) -> list of jobs in the common format (see common.make_job).
+The `reader` column of sources.csv holds the key. Add a platform here, then add a row per company."""
+from . import ats, custom, feeds, pages, platforms
+
+READERS = {
+    "amazon_json": custom.amazon,
+    "apple_json": custom.apple,
+    "google_html": custom.google,
+    "meta_graphql": custom.meta,
+    "ibm_api": custom.ibm,
+    "consider_api": custom.consider,
+    "getro_api": custom.getro,
+    "yc_jobs": custom.yc_jobs,
+    "affine_json": custom.affine,
+    "infosys_api": custom.infosys,
+    "capgemini_api": custom.capgemini,
+    "goldman_graphql": custom.goldman,
+    "deutsche_api": custom.deutsche,
+    "sf_csb": pages.sf_csb,
+    "sf_classic": pages.sf_classic,
+    "avature": pages.avature,
+    "phenom_widget": platforms.phenom_widget,
+    "eightfold_api": platforms.eightfold,
+    "oracle_hcm": platforms.oracle_hcm,
+    "remoteok": feeds.remoteok,
+    "remotive": feeds.remotive,
+    "workingnomads": feeds.workingnomads,
+    "weworkremotely": feeds.weworkremotely,
+    "jobspresso": feeds.jobspresso,
+    "greenhouse_api": ats.greenhouse,
+    "ashby_api": ats.ashby,
+    "lever_api": ats.lever,
+    "workable_api": ats.workable,
+    "workday_cxs": ats.workday,
+    "smartrecruiters": ats.smartrecruiters,
+}

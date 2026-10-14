@@ -1,0 +1,6 @@
+[
+ {"date": "2026-10-12", "site": "naukri", "label": "Naukri, 1 tab", "workers": 1, "searches": 2, "minutes": 13.5, "jobs": 506, "pages": 30, "note": "Data Scientist + Business Analyst, 35 h window"},
+ {"date": "2026-10-12", "site": "naukri", "label": "Naukri, 3 tabs (only 2 searches, so 2 tabs worked)", "workers": 3, "searches": 2, "minutes": 7.0, "jobs": 505, "pages": 30, "note": "same two searches: 1.9x faster, same jobs"},
+ {"date": "2026-10-12", "site": "linkedin", "label": "LinkedIn, 3 workers, 15 roles", "workers": 3, "searches": 44, "minutes": 114.8, "jobs": 3704, "pages": null, "note": "full run before the tech-only scope"},
+ {"date": "2026-10-12", "site": "linkedin", "label": "LinkedIn, 2 workers, 3 searches", "workers": 2, "searches": 3, "minutes": 38.2, "jobs": 1058, "pages": null, "note": "the last search ran alone for about 18 min (the long tail)"}
+]

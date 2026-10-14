@@ -1,0 +1,116 @@
+{
+ "jobSearchResult": [
+  {
+   "response": {
+    "jobLocationShort": [
+     "Gurugram, IND-06, IND, 122016<br/>"
+    ],
+    "supportedLocales": [
+     "en_US"
+    ],
+    "jobLocationCountry": [
+     "India"
+    ],
+    "sfstd_jobLocation_obj": [
+     "Gurugram"
+    ],
+    "jobLocationState": [
+     "Haryana"
+    ],
+    "custRMKMappingPicklist": [
+     "Business Process"
+    ],
+    "jobLocationShortWithCoordinates": [
+     {
+      "value": "Gurugram, IND-06, IND, 122016<br/>",
+      "key": "28.5079338,77.0751538"
+     }
+    ],
+    "unifiedStandardEnd": "10/24/26",
+    "unifiedUrlTitle": "Data-Analyst",
+    "unifiedStandardStart": "9/14/26",
+    "currency": [
+     "INR"
+    ],
+    "id": "200306",
+    "unifiedStandardTitle": "Data Analyst",
+    "urlTitle": "Data-Analyst"
+   }
+  },
+  {
+   "response": {
+    "jobLocationShort": [
+     "Bengaluru, IND-29, IND, 560035<br/>"
+    ],
+    "supportedLocales": [
+     "en_US"
+    ],
+    "jobLocationCountry": [
+     "India"
+    ],
+    "sfstd_jobLocation_obj": [
+     "Bengaluru"
+    ],
+    "jobLocationState": [
+     "Karnataka"
+    ],
+    "custRMKMappingPicklist": [
+     "Business Process"
+    ],
+    "jobLocationShortWithCoordinates": [
+     {
+      "value": "Bengaluru, IND-29, IND, 560035<br/>",
+      "key": "12.9048022,77.6821069"
+     }
+    ],
+    "unifiedStandardEnd": "10/30/26",
+    "unifiedUrlTitle": "DATA-ANALYST",
+    "unifiedStandardStart": "9/23/26",
+    "currency": [
+     "INR"
+    ],
+    "id": "197280",
+    "unifiedStandardTitle": "DATA ANALYST",
+    "urlTitle": "DATA-ANALYST"
+   }
+  },
+  {
+   "response": {
+    "jobLocationShort": [
+     "Hyderabad, IND-36, IND, 500032<br/>"
+    ],
+    "supportedLocales": [
+     "en_US"
+    ],
+    "jobLocationCountry": [
+     "India"
+    ],
+    "sfstd_jobLocation_obj": [
+     "Hyderabad"
+    ],
+    "jobLocationState": [
+     "Telangana"
+    ],
+    "custRMKMappingPicklist": [
+     "Cloud"
+    ],
+    "jobLocationShortWithCoordinates": [
+     {
+      "value": "Hyderabad, IND-36, IND, 500032<br/>",
+      "key": "17.4358411,78.3467857"
+     }
+    ],
+    "unifiedStandardEnd": "10/30/26",
+    "unifiedUrlTitle": "Data-Governance",
+    "unifiedStandardStart": "8/4/26",
+    "currency": [
+     "INR"
+    ],
+    "id": "179068",
+    "unifiedStandardTitle": "Data Governance",
+    "urlTitle": "Data-Governance"
+   }
+  }
+ ],
+ "totalJobs": 1624
+}

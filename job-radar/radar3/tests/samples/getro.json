@@ -1,0 +1,1068 @@
+{
+ "results": {
+  "count": 1200,
+  "jobs": [
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791809805,
+    "title": "Senior International Accountant",
+    "work_mode": "on_site",
+    "url": "https://boards.greenhouse.io/fivetran/jobs/8012156003",
+    "skills": [
+     "Accounting",
+     "US GAAP",
+     "International Financial Reporting Standards",
+     "Analytical Thinking",
+     "Interpersonal Communications",
+     "Process Improvements",
+     "Financial Accounting"
+    ],
+    "organization": {
+     "stage": "other",
+     "logo_url": "https://cdn.getro.com/companies/399d4e0f-c5cf-473a-8aba-3c8d1a1f1374-1761183679",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "Fivetran",
+     "head_count": 5,
+     "id": 5442,
+     "industry_tags": [
+      "Analytics",
+      "Big Data",
+      "Cloud Data Services",
+      "Data & Analytics",
+      "Data Governance",
+      "Data Integration",
+      "Data Management",
+      "Enterprise Software",
+      "Information Technology",
+      "SaaS",
+      "Software"
+     ],
+     "slug": "fivetran"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": "senior",
+    "id": 96704372
+   },
+   {
+    "searchable_locations": [
+     "India",
+     "Remote"
+    ],
+    "created_at": 1791805277,
+    "title": "Sr. AI Engineer, AI FDE",
+    "work_mode": "remote",
+    "url": "https://www.databricks.com/company/careers/professional-services-operations/sr-ai-engineer-ai-fde-8516112002",
+    "skills": [
+     "Machine Learning",
+     "Data Science",
+     "Pandas (Python Package)",
+     "Scikit-learn (Machine Learning Library)",
+     "PyTorch (Machine Learning Library)",
+     "Amazon Web Services",
+     "Microsoft Azure",
+     "Google Cloud Platform (GCP)",
+     "Apache Spark"
+    ],
+    "organization": {
+     "stage": "acquisition",
+     "logo_url": "https://cdn.getro.com/companies/24c8dfee-ec1a-4014-aa21-056ae87e8996-1760924473",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "Neon",
+     "head_count": 3,
+     "id": 73804,
+     "industry_tags": [
+      "Artificial Intelligence (AI)",
+      "Cloud",
+      "Cloud Computing",
+      "Cloud services(SaaS)",
+      "Data & Analytics",
+      "Database Software",
+      "Databases",
+      "Developer Tools",
+      "Information Technology",
+      "Internet Services",
+      "Open Source",
+      "Partnering",
+      "Platform",
+      "Postgres",
+      "PostgreSQL",
+      "Science and Engineering",
+      "Serverless",
+      "Software",
+      "Software Development",
+      "Software Development Applications",
+      "Technology"
+     ],
+     "slug": "neon-2-fafc7050-f6c0-4a38-9c9c-e8dc0b61e31c"
+    },
+    "locations": [
+     "India",
+     "Remote"
+    ],
+    "seniority": "senior",
+    "id": 96688683
+   },
+   {
+    "searchable_locations": [
+     "Hyderabad, Telangana, India",
+     "Ranga Reddy, Telangana, India",
+     "Telangana, India",
+     "India"
+    ],
+    "created_at": 1791803744,
+    "title": "FP&A Manager",
+    "work_mode": "on_site",
+    "url": "https://ats.rippling.com/ayr-careers/jobs/f7a2c1fb-d233-47a8-ac2b-a3e2f17d74b5",
+    "skills": [
+     "Financial Planning",
+     "Budgeting",
+     "Forecasting",
+     "Variance Analysis",
+     "Cash Flow Management",
+     "Excel Services",
+     "Cost Estimation",
+     "Interpersonal Communications"
+    ],
+    "organization": {
+     "stage": "series_a",
+     "logo_url": "https://cdn.getro.com/companies/d8389c82-aa7a-4833-8e3a-b4ab4e0a3f89-1767609894",
+     "topics": [],
+     "name": "Ayr Energy",
+     "head_count": 2,
+     "id": 3720487,
+     "industry_tags": [
+      "Commerce and Shopping",
+      "Design",
+      "Manufacturing",
+      "Product Design",
+      "Wholesale"
+     ],
+     "slug": "ayr-energy-2"
+    },
+    "locations": [
+     "Hyderabad, Telangana, India"
+    ],
+    "seniority": "mid_senior",
+    "id": 96684941
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791799012,
+    "title": "Sourcing Specialist",
+    "work_mode": "on_site",
+    "url": "https://in.linkedin.com/jobs/view/sourcing-specialist-at-meolaa-4477511857",
+    "skills": [
+     "Sourcing",
+     "Procurement",
+     "Negotiation",
+     "Excel Services",
+     "Supplier Performance Management",
+     "Quality Assurance",
+     "Market Research"
+    ],
+    "organization": {
+     "stage": "seed",
+     "logo_url": "https://cdn.getro.com/companies/ec41b9d6-9b88-4a77-8e15-5496beb2db45-1760012152",
+     "topics": [],
+     "name": "Meolaa",
+     "head_count": 2,
+     "id": 3844531,
+     "industry_tags": [
+      "Consumer Goods",
+      "Content and Publishing",
+      "Information Technology",
+      "Internet",
+      "Internet Retail",
+      "Internet Services",
+      "Marketplace",
+      "Media & Entertainment",
+      "Publishing",
+      "Retail",
+      "Specialty Retail"
+     ],
+     "slug": "meolaa"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": "mid_senior",
+    "id": 96678116
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791635225,
+    "title": "Benefits Analyst",
+    "work_mode": "on_site",
+    "url": "https://boards.greenhouse.io/gitlab/jobs/8864819002",
+    "skills": [
+     "Benefits Administration",
+     "Data Analysis",
+     "Human Resources Information System (HRIS)",
+     "Excel Services",
+     "Interpersonal Communications",
+     "Collaboration",
+     "Process Improvements"
+    ],
+    "organization": {
+     "stage": "ipo",
+     "logo_url": "https://cdn.getro.com/companies/a6c708c6-a39e-46b5-834b-97a03f5aa139-1768234672",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "GitLab",
+     "head_count": 5,
+     "id": 17675,
+     "industry_tags": [
+      "Artificial Intelligence",
+      "Automation",
+      "Business/Productivity Software",
+      "Cloud",
+      "Cloud Security",
+      "Compliance",
+      "Data Management",
+      "Developer Tools",
+      "DevOps",
+      "Enterprise Software",
+      "Information Technology",
+      "Information Technology and Services",
+      "IT Services and IT Consulting",
+      "Open Source",
+      "Platform",
+      "Privacy and Security",
+      "SaaS",
+      "Services-Prepackaged Software",
+      "Software",
+      "Software - Infrastructure",
+      "Software Development Applications",
+      "Technology",
+      "Technology And Computing"
+     ],
+     "slug": "gitlab-com"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": "associate",
+    "id": 96573732
+   },
+   {
+    "searchable_locations": [
+     "India",
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "Remote"
+    ],
+    "created_at": 1791635225,
+    "title": "People Systems Engineer",
+    "work_mode": "remote",
+    "url": "https://boards.greenhouse.io/gitlab/jobs/8861748002",
+    "skills": [
+     "Automation",
+     "Systems Integration",
+     "Ruby (Programming Language)",
+     "API Management",
+     "Workday (Software)",
+     "Google Cloud Platform (GCP)",
+     "Slack",
+     "Github",
+     "Artificial Intelligence"
+    ],
+    "organization": {
+     "stage": "ipo",
+     "logo_url": "https://cdn.getro.com/companies/a6c708c6-a39e-46b5-834b-97a03f5aa139-1768234672",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "GitLab",
+     "head_count": 5,
+     "id": 17675,
+     "industry_tags": [
+      "Artificial Intelligence",
+      "Automation",
+      "Business/Productivity Software",
+      "Cloud",
+      "Cloud Security",
+      "Compliance",
+      "Data Management",
+      "Developer Tools",
+      "DevOps",
+      "Enterprise Software",
+      "Information Technology",
+      "Information Technology and Services",
+      "IT Services and IT Consulting",
+      "Open Source",
+      "Platform",
+      "Privacy and Security",
+      "SaaS",
+      "Services-Prepackaged Software",
+      "Software",
+      "Software - Infrastructure",
+      "Software Development Applications",
+      "Technology",
+      "Technology And Computing"
+     ],
+     "slug": "gitlab-com"
+    },
+    "locations": [
+     "India",
+     "Bengaluru, Karnataka, India",
+     "Remote"
+    ],
+    "seniority": "associate",
+    "id": 96573736
+   },
+   {
+    "searchable_locations": [
+     "Gurugram, Haryana, India",
+     "Haryana, India",
+     "India"
+    ],
+    "created_at": 1791633777,
+    "title": "Manager, Revenue Accounting",
+    "work_mode": "on_site",
+    "url": "https://jobs.ashbyhq.com/Commure/8b894dfb-7786-4bfa-afb9-2c3d427aed62",
+    "skills": [
+     "Technical Accounting",
+     "US GAAP",
+     "Financial Accounting",
+     "Auditing",
+     "Process Improvements",
+     "Automation",
+     "Collaboration",
+     "Analytical Thinking"
+    ],
+    "organization": {
+     "stage": "series_unknown",
+     "logo_url": "https://cdn.getro.com/companies/3aefbaa0-50af-4abe-9d2c-00149c96f6a4-1759973986",
+     "topics": [
+      "Healthcare"
+     ],
+     "name": "Commure",
+     "head_count": 4,
+     "id": 22356,
+     "industry_tags": [
+      "Aerospace",
+      "Artificial Intelligence (AI)",
+      "Data & Analytics",
+      "Enterprise Software",
+      "Enterprise Systems (Healthcare)",
+      "Health Care",
+      "HealthTech",
+      "Information Technology and Services",
+      "Innovation Management",
+      "Mobile App",
+      "Other Healthcare Technology Systems",
+      "Professional Services",
+      "Science and Engineering",
+      "Software",
+      "Technology"
+     ],
+     "slug": "commure"
+    },
+    "locations": [
+     "Gurugram, Haryana, India"
+    ],
+    "seniority": "mid_senior",
+    "id": 96565727
+   },
+   {
+    "searchable_locations": [
+     "India",
+     "Remote"
+    ],
+    "created_at": 1791633758,
+    "title": "Revenue Operations Analyst",
+    "work_mode": "remote",
+    "url": "https://jobs.lever.co/h1/e81aa85e-048e-4abf-8943-1a5e2d4f3c43",
+    "skills": [
+     "Sales Planning",
+     "Revenue Management",
+     "Salesforce.Com",
+     "Excel Services",
+     "Google Spreadsheets"
+    ],
+    "organization": {
+     "stage": "acquisition",
+     "logo_url": "https://cdn.getro.com/companies/1d456518-09c3-4356-9c4e-25fe721bd81b-1760406128",
+     "topics": [
+      "Healthcare"
+     ],
+     "name": "Ribbon Health",
+     "head_count": 2,
+     "id": 23888,
+     "industry_tags": [
+      "Analytics",
+      "API",
+      "Artificial Intelligence",
+      "Artificial Intelligence (AI)",
+      "Data & Analytics",
+      "Database Software",
+      "Developer APIs",
+      "Digital Health",
+      "Enterprise Software",
+      "Enterprise Systems (Healthcare)",
+      "Finance",
+      "Health Care",
+      "Health Insurance",
+      "Healthcare",
+      "Machine Learning",
+      "Master Data Management",
+      "mHealth",
+      "Mobile",
+      "Other Healthcare Technology Systems",
+      "Platform",
+      "Predictive Analytics",
+      "Primary Care",
+      "Software",
+      "Software Development",
+      "Technology"
+     ],
+     "slug": "ribbon-health"
+    },
+    "locations": [
+     "India",
+     "Remote"
+    ],
+    "seniority": "associate",
+    "id": 96565639
+   },
+   {
+    "searchable_locations": [
+     "Gurugram, Haryana, India",
+     "Haryana, India",
+     "India"
+    ],
+    "created_at": 1791633102,
+    "title": "Manager, Revenue Accounting",
+    "work_mode": "on_site",
+    "url": "https://jobs.ashbyhq.com/Commure/8b894dfb-7786-4bfa-afb9-2c3d427aed62",
+    "skills": [
+     "Technical Accounting",
+     "US GAAP",
+     "Financial Accounting",
+     "Auditing",
+     "Process Improvements",
+     "Automation",
+     "Collaboration",
+     "Analytical Thinking"
+    ],
+    "organization": {
+     "stage": "acquisition",
+     "logo_url": "https://cdn.getro.com/companies/c4adca11-46fe-4601-a624-f2e0d2789e32-1761788720",
+     "topics": [
+      "Healthcare"
+     ],
+     "name": "Athelas",
+     "head_count": 4,
+     "id": 5341,
+     "industry_tags": [
+      "Artificial Intelligence (AI)",
+      "Biotechnology",
+      "Health Care",
+      "Information Technology",
+      "Life Science"
+     ],
+     "slug": "athelas"
+    },
+    "locations": [
+     "Gurugram, Haryana, India"
+    ],
+    "seniority": "mid_senior",
+    "id": 96560966
+   },
+   {
+    "searchable_locations": [
+     "India",
+     "Remote"
+    ],
+    "created_at": 1791630741,
+    "title": "Revenue Operations Analyst",
+    "work_mode": "remote",
+    "url": "https://jobs.lever.co/h1/e81aa85e-048e-4abf-8943-1a5e2d4f3c43",
+    "skills": [
+     "Sales Planning",
+     "Revenue Management",
+     "Salesforce.Com",
+     "Excel Services",
+     "Google Spreadsheets"
+    ],
+    "organization": {
+     "stage": "series_d",
+     "logo_url": "https://cdn.getro.com/companies/5306a78e-c964-43e0-9c1b-92f732c3b4d4-1761385360",
+     "topics": [],
+     "name": "H1",
+     "head_count": 4,
+     "id": 44938,
+     "industry_tags": [
+      "Biotechnology",
+      "Clinical Operations",
+      "Clinical Trials",
+      "Data Management",
+      "Data Science",
+      "Discovery Tools (Healthcare)",
+      "Enterprise Software",
+      "Enterprise Systems (Healthcare)",
+      "Health Care",
+      "Healthcare",
+      "HealthTech",
+      "Life Sciences",
+      "Media and Information Services (B2B)",
+      "Medical",
+      "Medical Affairs",
+      "Medical Device",
+      "Other Healthcare Technology Systems",
+      "Pharmaceutical",
+      "Platform",
+      "SaaS",
+      "Science and Engineering",
+      "Software",
+      "Software Development",
+      "Technology",
+      "Therapeutics"
+     ],
+     "slug": "h1"
+    },
+    "locations": [
+     "India",
+     "Remote"
+    ],
+    "seniority": "associate",
+    "id": 96544110
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791557708,
+    "title": "Intern-HR Operations",
+    "work_mode": "on_site",
+    "url": "https://in.linkedin.com/jobs/view/intern-hr-operations-at-thoughtspot-4468159049",
+    "skills": [],
+    "organization": {
+     "stage": "other",
+     "logo_url": "https://cdn.getro.com/companies/5c78aef6-e91a-462a-adfa-bb7dc917b551-1761012570",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "ThoughtSpot",
+     "head_count": 5,
+     "id": 12055,
+     "industry_tags": [
+      "Analytics",
+      "Artificial Intelligence (AI)",
+      "Big Data",
+      "Business Intelligence",
+      "Enterprise Software",
+      "Information Technology",
+      "Machine Learning",
+      "SaaS",
+      "Software"
+     ],
+     "slug": "thoughtspot"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": null,
+    "id": 96505699
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791557707,
+    "title": "Senior Director of Engineering \u2014 Agentic Platform",
+    "work_mode": "on_site",
+    "url": "https://in.linkedin.com/jobs/view/senior-director-of-engineering-%E2%80%94-agentic-platform-at-thoughtspot-4475901305",
+    "skills": [
+     "Engineering Management",
+     "Web Engineering",
+     "Distributed Computing",
+     "Foundation Engineering",
+     "Data Infrastructure",
+     "Technology Strategies",
+     "Problem Solving",
+     "Team Management",
+     "Architectural Design"
+    ],
+    "organization": {
+     "stage": "other",
+     "logo_url": "https://cdn.getro.com/companies/5c78aef6-e91a-462a-adfa-bb7dc917b551-1761012570",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "ThoughtSpot",
+     "head_count": 5,
+     "id": 12055,
+     "industry_tags": [
+      "Analytics",
+      "Artificial Intelligence (AI)",
+      "Big Data",
+      "Business Intelligence",
+      "Enterprise Software",
+      "Information Technology",
+      "Machine Learning",
+      "SaaS",
+      "Software"
+     ],
+     "slug": "thoughtspot"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": "director",
+    "id": 96505683
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791557706,
+    "title": "AI Outcomes Associate, Digital Programs",
+    "work_mode": "on_site",
+    "url": "https://in.linkedin.com/jobs/view/ai-outcomes-associate-digital-programs-at-thoughtspot-4469427167",
+    "skills": [
+     "Artificial Intelligence",
+     "Customer Success",
+     "Customer Lifecycle Management",
+     "Automation",
+     "Data Analysis",
+     "Systems Thinking",
+     "Market Segmentation",
+     "Content Development"
+    ],
+    "organization": {
+     "stage": "other",
+     "logo_url": "https://cdn.getro.com/companies/5c78aef6-e91a-462a-adfa-bb7dc917b551-1761012570",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "ThoughtSpot",
+     "head_count": 5,
+     "id": 12055,
+     "industry_tags": [
+      "Analytics",
+      "Artificial Intelligence (AI)",
+      "Big Data",
+      "Business Intelligence",
+      "Enterprise Software",
+      "Information Technology",
+      "Machine Learning",
+      "SaaS",
+      "Software"
+     ],
+     "slug": "thoughtspot"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": "associate",
+    "id": 96505673
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791557706,
+    "title": "Total Rewards Partner",
+    "work_mode": "on_site",
+    "url": "https://in.linkedin.com/jobs/view/total-rewards-partner-at-thoughtspot-4476291596",
+    "skills": [
+     "Remuneration",
+     "Employee Benefits",
+     "Data Analysis",
+     "Software Project Management",
+     "Market Analysis",
+     "Human Resources Information System (HRIS)",
+     "Workday (Software)",
+     "Google Spreadsheets",
+     "Excel Services"
+    ],
+    "organization": {
+     "stage": "other",
+     "logo_url": "https://cdn.getro.com/companies/5c78aef6-e91a-462a-adfa-bb7dc917b551-1761012570",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "ThoughtSpot",
+     "head_count": 5,
+     "id": 12055,
+     "industry_tags": [
+      "Analytics",
+      "Artificial Intelligence (AI)",
+      "Big Data",
+      "Business Intelligence",
+      "Enterprise Software",
+      "Information Technology",
+      "Machine Learning",
+      "SaaS",
+      "Software"
+     ],
+     "slug": "thoughtspot"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": "mid_senior",
+    "id": 96505670
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791557706,
+    "title": "Senior Member of Technical Staff",
+    "work_mode": "on_site",
+    "url": "https://in.linkedin.com/jobs/view/senior-member-of-technical-staff-at-thoughtspot-4475437027",
+    "skills": [
+     "Java (Programming Language)",
+     "Spring Boot",
+     "Go (Programming Language)",
+     "Distributed Computing",
+     "Apache Kafka",
+     "PostgreSQL",
+     "NoSQL",
+     "Redis",
+     "Docker Container",
+     "Kubernetes",
+     "Cloud Infrastructure"
+    ],
+    "organization": {
+     "stage": "other",
+     "logo_url": "https://cdn.getro.com/companies/5c78aef6-e91a-462a-adfa-bb7dc917b551-1761012570",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "ThoughtSpot",
+     "head_count": 5,
+     "id": 12055,
+     "industry_tags": [
+      "Analytics",
+      "Artificial Intelligence (AI)",
+      "Big Data",
+      "Business Intelligence",
+      "Enterprise Software",
+      "Information Technology",
+      "Machine Learning",
+      "SaaS",
+      "Software"
+     ],
+     "slug": "thoughtspot"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": null,
+    "id": 96505668
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791557705,
+    "title": "AI Outcomes Architect",
+    "work_mode": "on_site",
+    "url": "https://in.linkedin.com/jobs/view/ai-outcomes-architect-at-thoughtspot-4476262762",
+    "skills": [
+     "Solution Architecture",
+     "Technical Services",
+     "Data Modeling",
+     "SQL (Programming Language)",
+     "Business Intelligence Development",
+     "Data Warehousing",
+     "Mentorship",
+     "Collaboration",
+     "Consultative Selling"
+    ],
+    "organization": {
+     "stage": "other",
+     "logo_url": "https://cdn.getro.com/companies/5c78aef6-e91a-462a-adfa-bb7dc917b551-1761012570",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "ThoughtSpot",
+     "head_count": 5,
+     "id": 12055,
+     "industry_tags": [
+      "Analytics",
+      "Artificial Intelligence (AI)",
+      "Big Data",
+      "Business Intelligence",
+      "Enterprise Software",
+      "Information Technology",
+      "Machine Learning",
+      "SaaS",
+      "Software"
+     ],
+     "slug": "thoughtspot"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": "senior",
+    "id": 96505656
+   },
+   {
+    "searchable_locations": [
+     "Chennai, Tamil Nadu, India",
+     "Tamil Nadu, India",
+     "India"
+    ],
+    "created_at": 1791553098,
+    "title": "Principal Software Engineer I, Cloud",
+    "work_mode": "on_site",
+    "url": "https://boards.greenhouse.io/cambridgemobiletelematics/jobs/8262596",
+    "skills": [
+     "Python (Programming Language)",
+     "Go (Programming Language)",
+     "Java (Programming Language)",
+     "C++ (Programming Language)",
+     "Cloud Platform System",
+     "Amazon Web Services",
+     "Application Services",
+     "API Management",
+     "Distributed Computing",
+     "Relational Databases",
+     "Data Modeling",
+     "Database Schema",
+     "Performance Tuning",
+     "Automated Testing Framework",
+     "DevOps",
+     "Reliability",
+     "Docker Container",
+     "Kubernetes",
+     "Infrastructure as Code (IaC)",
+     "Terraform"
+    ],
+    "organization": {
+     "stage": "private_equity",
+     "logo_url": "https://cdn.getro.com/companies/6cd3c034-a85a-42d5-8ebc-ed07b64b10ef-1762134372",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "Cambridge Mobile Telematics",
+     "head_count": 4,
+     "id": 26340,
+     "industry_tags": [
+      "Analytics",
+      "Application Software",
+      "Artificial Intelligence",
+      "Auto Insurance",
+      "Automotive",
+      "Driver Assistance",
+      "Driver Safety",
+      "Financial Services",
+      "Government and Military",
+      "Insurance",
+      "Insuretech",
+      "Insurtech",
+      "IoT",
+      "Machine Learning",
+      "Marketing",
+      "Marketing Analytics",
+      "Mobile",
+      "Platform",
+      "Public Safety",
+      "Software",
+      "Software Development",
+      "Technology",
+      "Transportation",
+      "Vehicle Security"
+     ],
+     "slug": "cambridge-mobile-telematics"
+    },
+    "locations": [
+     "Chennai, Tamil Nadu, India"
+    ],
+    "seniority": "mid_senior",
+    "id": 96469762
+   },
+   {
+    "searchable_locations": [
+     "Gurugram, Haryana, India",
+     "Haryana, India",
+     "India"
+    ],
+    "created_at": 1791552506,
+    "title": "Accounting Manager",
+    "work_mode": "on_site",
+    "url": "https://jobs.ashbyhq.com/Hippocratic%20AI/0b979abf-dae3-4b9a-b50a-be947793328c",
+    "skills": [
+     "Accounting",
+     "Accounts Payable",
+     "Accounts Receivable",
+     "Payroll Processing",
+     "Financial Accounting",
+     "Process Optimization",
+     "Excel Services",
+     "Financial Software"
+    ],
+    "organization": {
+     "stage": "series_c",
+     "logo_url": "https://cdn.getro.com/companies/0381ed98-a371-52c0-9feb-d611c5ceb5ed",
+     "topics": [],
+     "name": "Hippocractic AI",
+     "head_count": 3,
+     "id": 117915,
+     "industry_tags": [
+      "Artificial Intelligence (AI)",
+      "Enterprise Software",
+      "Generative AI",
+      "Health Care",
+      "Information Technology",
+      "Software"
+     ],
+     "slug": "hippocractic-ai"
+    },
+    "locations": [
+     "Gurugram, Haryana, India"
+    ],
+    "seniority": "mid_senior",
+    "id": 96465921
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791547446,
+    "title": "Senior Financial Systems Analyst",
+    "work_mode": "on_site",
+    "url": "https://boards.greenhouse.io/fivetran/jobs/8008095003",
+    "skills": [
+     "Financial Systems",
+     "Financial Accounting",
+     "Python (Programming Language)",
+     "SQL (Programming Language)",
+     "BigQuery",
+     "Data Quality",
+     "Infrastructure as Code (IaC)"
+    ],
+    "organization": {
+     "stage": "other",
+     "logo_url": "https://cdn.getro.com/companies/399d4e0f-c5cf-473a-8aba-3c8d1a1f1374-1761183679",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "Fivetran",
+     "head_count": 5,
+     "id": 5442,
+     "industry_tags": [
+      "Analytics",
+      "Big Data",
+      "Cloud Data Services",
+      "Data & Analytics",
+      "Data Governance",
+      "Data Integration",
+      "Data Management",
+      "Enterprise Software",
+      "Information Technology",
+      "SaaS",
+      "Software"
+     ],
+     "slug": "fivetran"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": "senior",
+    "id": 96418469
+   },
+   {
+    "searchable_locations": [
+     "Bengaluru, Karnataka, India",
+     "Bangalore Urban, Karnataka, India",
+     "Karnataka, India",
+     "India"
+    ],
+    "created_at": 1791547446,
+    "title": "Senior Program Manager",
+    "work_mode": "on_site",
+    "url": "https://boards.greenhouse.io/fivetran/jobs/8008070003",
+    "skills": [
+     "Program Management",
+     "Software Project Management",
+     "Agile Software Development",
+     "Water Maze",
+     "JIRA",
+     "Data Architecture",
+     "Infrastructure Management",
+     "Quality Assurance",
+     "Interpersonal Communications",
+     "Leadership"
+    ],
+    "organization": {
+     "stage": "other",
+     "logo_url": "https://cdn.getro.com/companies/399d4e0f-c5cf-473a-8aba-3c8d1a1f1374-1761183679",
+     "topics": [
+      "Enterprise"
+     ],
+     "name": "Fivetran",
+     "head_count": 5,
+     "id": 5442,
+     "industry_tags": [
+      "Analytics",
+      "Big Data",
+      "Cloud Data Services",
+      "Data & Analytics",
+      "Data Governance",
+      "Data Integration",
+      "Data Management",
+      "Enterprise Software",
+      "Information Technology",
+      "SaaS",
+      "Software"
+     ],
+     "slug": "fivetran"
+    },
+    "locations": [
+     "Bengaluru, Karnataka, India"
+    ],
+    "seniority": "senior",
+    "id": 96418475
+   }
+  ]
+ }
+}

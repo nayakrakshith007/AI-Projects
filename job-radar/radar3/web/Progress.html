@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Job Radar Progress</title>
+<style>
+:root{--bg:#f6f6f2;--panel:#fff;--ink:#1c1c1a;--mute:#6a6964;--line:#e2e0d8;--acc:#2f5fd0;--acc2:#e8eefc;--ok:#1a7f4b;--warn:#a86400;--bad:#b3261e;--idle:#8a8a85;--r:12px}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141413;--panel:#1e1e1c;--ink:#ecebe6;--mute:#9a9892;--line:#33322f;--acc:#7da2ff;--acc2:#202b45;--ok:#5fcf8f;--warn:#e6a93b;--bad:#ff7b72;--idle:#8a8a85}}
+:root[data-theme=dark]{--bg:#141413;--panel:#1e1e1c;--ink:#ecebe6;--mute:#9a9892;--line:#33322f;--acc:#7da2ff;--acc2:#202b45;--ok:#5fcf8f;--warn:#e6a93b;--bad:#ff7b72;--idle:#8a8a85}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,Segoe UI,sans-serif}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+h1{font-size:19px;margin:0;display:flex;align-items:center;gap:8px}.sub{color:var(--mute);font-size:13px}
+.pill{display:inline-block;padding:2px 12px;border-radius:99px;font-size:13px;font-weight:600;border:1px solid var(--line)}
+.pill.reading,.pill.building{color:var(--acc);border-color:var(--acc)}.pill.done{color:var(--ok);border-color:var(--ok)}.pill.stopped,.pill.idle{color:var(--idle)}.pill.error{color:var(--bad);border-color:var(--bad)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button,select,input[type=search]{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 13px}button{cursor:pointer}button:hover:not(:disabled){border-color:var(--acc)}
+button.primary{background:var(--acc);border-color:var(--acc);color:#fff}button.danger{color:var(--bad);border-color:var(--bad)}button:disabled{opacity:.45;cursor:not-allowed}button.small{padding:2px 9px;font-size:13px}
+a.btnlink{border-radius:8px;border:1px solid var(--acc);color:var(--acc);padding:6px 13px;text-decoration:none}
+main{max-width:1240px;margin:auto;padding:14px 24px 80px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}.card+.card{margin-top:12px}
+.banner{border:1px solid var(--warn);color:var(--warn);background:var(--panel);border-radius:10px;padding:8px 14px;margin-bottom:10px;display:flex;gap:10px;justify-content:space-between;align-items:center}.banner.bad{border-color:var(--bad);color:var(--bad)}
+details.howto{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:0 18px;margin-bottom:14px}details.howto>summary{cursor:pointer;padding:13px 0;font-weight:650;display:flex;gap:12px;align-items:baseline;list-style:none}details.howto>summary::-webkit-details-marker{display:none}details.howto>summary::before{content:"▸";color:var(--mute);transition:transform .15s}details.howto[open]>summary::before{transform:rotate(90deg)}.hint{font-weight:400;color:var(--mute);font-size:13px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;padding:2px 0 14px}.step{display:flex;gap:12px;background:var(--bg);border-radius:10px;padding:12px 14px}.step p{margin:4px 0 0;color:var(--mute);font-size:13.5px;line-height:1.45}.num1{flex:none;width:24px;height:24px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center}
+details.more{border-top:1px solid var(--line)}details.more>summary{cursor:pointer;padding:10px 0;color:var(--mute);font-size:13.5px}details.more>div,details.more>ul{padding:0 0 12px}details.more li{font-size:13.5px;margin:4px 0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;padding-bottom:14px}.cols h4{margin:0 0 6px}.cols p,.cols li{font-size:14px;margin:4px 0}.cols ul{padding-left:18px;margin:4px 0}
+code,.cmd{font:12.5px ui-monospace,Consolas,monospace;background:var(--acc2);border-radius:6px;padding:1px 6px}.cmdrow{display:flex;gap:8px;align-items:flex-start;margin:6px 0;flex-wrap:wrap}.cmdrow .cmd{flex:1;min-width:200px;word-break:break-all;padding:5px 8px}
+.files td,.files th{padding:5px 8px;border-bottom:1px solid var(--line);font-size:13.5px;text-align:left;vertical-align:top}.files{width:100%;border-collapse:collapse}
+nav.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:6px 0 14px;flex-wrap:wrap}nav.tabs button{background:none;border:0;border-bottom:3px solid transparent;border-radius:0;color:var(--mute);padding:9px 16px}nav.tabs button.on{color:var(--ink);font-weight:600;border-color:var(--acc)}
+nav.tabs .badge{display:inline-block;min-width:20px;text-align:center;border-radius:99px;background:var(--bad);color:#fff;font-size:12px;padding:0 6px;margin-left:6px}
+section.pane{display:none}section.pane.on{display:block}
+.big{font-size:44px;font-weight:700;line-height:1}.bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--acc);transition:width .5s}.bar.thin{height:8px;margin:3px 0}.bar.ok i{background:var(--ok)}
+.runtop{display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:20px;align-items:center}.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px 16px}.facts b{display:block;font-size:17px}.facts span{color:var(--mute);font-size:12.5px}
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}.lanes small{color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.tile{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:11px 14px}.tile b{display:block;font-size:24px}.tile span{color:var(--mute);font-size:12.5px}.tile em{font-style:normal;font-size:12.5px;margin-left:6px}.up{color:var(--ok)}.dn{color:var(--bad)}
+h3{margin:20px 0 8px;font-size:15px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}.chip{border-radius:99px;padding:2px 12px;font-size:13px}.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.tablewrap{overflow:auto;max-height:64vh;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{position:sticky;top:0;background:var(--panel);color:var(--mute);font-weight:600;white-space:nowrap;z-index:1}th[data-k]{cursor:pointer}tr.click{cursor:pointer}tr.click:hover{background:var(--acc2)}
+.num{text-align:right;font-variant-numeric:tabular-nums}.mute{color:var(--mute)}.st{font-weight:600;white-space:nowrap}.st.reading{color:var(--acc)}.st.done,.st.ok{color:var(--ok)}.st.empty,.st.shrunk,.st.degraded,.st.stale,.st.needs,.st.waiting{color:var(--warn)}.st.broken,.st.failed,.st.stopped{color:var(--bad)}.st.parked,.st.skipped,.st.duplicate,.st.queued{color:var(--idle)}
+.prog{min-width:130px}.prog small{color:var(--mute);font-size:12px}.ind{height:8px;border-radius:99px;background:repeating-linear-gradient(45deg,var(--acc2),var(--acc2) 8px,var(--line) 8px,var(--line) 16px);animation:mv 1s linear infinite;background-size:22px 22px}@keyframes mv{to{background-position:22px 0}}
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}.charts .card+.card{margin-top:0}
+.bars .b{display:grid;grid-template-columns:150px 1fr 40px;gap:8px;align-items:center;font-size:13px;padding:2px 4px;border-radius:6px}.bars .b.cl{cursor:pointer}.bars .b.cl:hover{background:var(--acc2)}.bars .b span.n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bars .b i{display:block;height:12px;border-radius:3px;background:var(--acc)}.bars .b em{font-style:normal;text-align:right;color:var(--mute)}
+.cols2{display:flex;align-items:flex-end;gap:5px;height:110px}.cols2 .c{flex:1;display:flex;flex-direction:column-reverse;min-width:10px}.cols2 .c i{display:block;width:100%}.cols2 .c b{font-weight:400;font-size:11px;color:var(--mute);text-align:center;margin-top:3px;order:-1}
+.lg{display:flex;gap:14px;flex-wrap:wrap;color:var(--mute);font-size:12.5px;margin-top:8px}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+ul.ev{list-style:none;margin:0;padding:0;font-size:13px;color:var(--mute)}ul.ev li{padding:2px 0}
+.sev{display:inline-block;border-radius:6px;padding:0 7px;font-size:12px;font-weight:600;border:1px solid var(--line)}.sev.action{color:var(--warn);border-color:var(--warn)}.sev.fix{color:var(--bad);border-color:var(--bad)}.sev.retry{color:var(--acc);border-color:var(--acc)}.sev.info{color:var(--idle)}
+#drawer{position:fixed;top:0;right:0;width:min(520px,100vw);height:100vh;background:var(--panel);border-left:1px solid var(--line);box-shadow:-6px 0 20px rgba(0,0,0,.14);transform:translateX(105%);transition:transform .2s;overflow:auto;padding:18px 20px;z-index:8}#drawer.open{transform:none}#drawer h2{margin:0 0 6px;font-size:18px}#drawer h4{margin:14px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}#drawer a{color:var(--acc);word-break:break-all}
+pre.log{background:var(--acc2);border-radius:8px;padding:8px;font:12px ui-monospace,Consolas,monospace;max-height:260px;overflow:auto;white-space:pre-wrap}
+.spark{display:flex;align-items:flex-end;gap:2px;height:22px}.spark i{display:block;width:6px;background:var(--acc);border-radius:1px 1px 0 0}
+@media(max-width:760px){header,main{padding-left:14px;padding-right:14px}.runtop,.lanes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Job Radar V3 <span id="pill" class="pill idle">Idle</span></h1><div class="sub" id="sub">loading...</div></div>
+  <div class="btns">
+    <button id="bDaily" class="primary" title="The daily sources (fast ones, plus the job boards if ticked)">Run daily sources</button>
+    <button id="bAll" title="Every working source">Run everything</button>
+    <button id="bStop" class="danger" disabled>Stop</button>
+    <label class="mute" style="font-size:13px;display:flex;align-items:center;gap:5px" title="LinkedIn, Naukri, Indeed, Hirist, IIMJobs, Cutshort, Wellfound: visible Chrome windows, about 35 minutes, a human check may need you"><input type="checkbox" id="cBoards" checked> Include job boards (about 35 min)</label>
+    <a id="dashLink" class="btnlink" href="/dashboard" target="_blank" rel="noopener">Open dashboard</a>
+    <button id="bTheme" class="small" title="Light or dark">Theme</button>
+  </div>
+</header>
+<main>
+  <details class="howto" id="howto" open>
+    <summary><span>How to run</span><span class="hint">One click on the Desktop, or the buttons above</span></summary>
+    <div class="steps">
+      <div class="step"><span class="num1">1</span><div><b>Double-click <span id="deskName">Job Radar V3</span> on your Desktop</b><p>It opens this page and starts a full run (about 40 minutes). The black window closes by itself. Closing this page never stops a run.</p>
+        <div class="row" style="margin-top:8px"><button class="small" data-open="desktop_run">Show it in Explorer</button><span class="mute" id="deskMissing"></span></div></div></div>
+      <div class="step"><span class="num1">2</span><div><b>Or use the buttons at the top</b><p><b>Run daily sources</b> is quick (about 1 minute). <b>Run everything</b> reads all sources. Untick <b>Include job boards</b> for a 9-minute run with no Chrome windows. To retry one source, use <b>Re-run</b> on the Sources or Problems tab.</p></div></div>
+      <div class="step"><span class="num1">3</span><div><b>If a job board says "needs you"</b><p>Pass the human check in its Chrome window yourself, then re-run only that board. Nothing is ever solved for you.</p></div></div>
+    </div>
+    <div class="row" id="openers" style="padding:2px 0 12px"></div>
+    <details class="more"><summary>Terminal commands (optional)</summary><div id="cmds"></div></details>
+    <details class="more"><summary>Good to know</summary><ul><li>Each job board waits for 1 GB of free memory. Close extra Chrome tabs if it is low.</li><li>The 08:30 daily task reads the fast sources only while V2's own 09:00 task still exists.</li><li>The Desktop file only calls <code id="projName">start_job_radar_v3.bat</code> in the project folder.</li></ul></details>
+  </details>
+  <div id="banners"></div>
+  <nav class="tabs" id="tabs"><button data-t="live" class="on">Live run</button><button data-t="sources">Sources</button><button data-t="problems">Problems<span class="badge" id="pBadge" style="display:none"></span></button><button data-t="history">History</button></nav>
+
+  <section class="pane on" id="live">
+    <div class="card"><div class="runtop">
+      <div><div class="big" id="pct">-</div><div class="sub" id="pctSub">no run yet</div></div>
+      <div><div class="bar"><i id="bar" style="width:0"></i></div><div class="facts" id="facts"></div>
+        <div class="lanes"><div><small id="laneA"></small><div class="bar thin"><i id="barA" style="width:0"></i></div></div><div><small id="laneB"></small><div class="bar thin"><i id="barB" style="width:0"></i></div></div></div></div>
+    </div></div>
+    <div class="row" id="liveChips"></div>
+    <div class="tablewrap"><table><thead><tr><th>Source</th><th>Kind</th><th>Status</th><th>Progress</th><th class="num">Time</th><th class="num">Jobs</th><th>What it is doing / note</th><th></th></tr></thead><tbody id="liveRows"></tbody></table></div>
+    <h3>Run summary</h3><div id="summary"></div>
+    <h3>What happened</h3><div class="card"><ul class="ev" id="events"></ul></div>
+  </section>
+
+  <section class="pane" id="sources">
+    <div class="row"><input id="q" type="search" placeholder="Search sources" style="min-width:220px"><select id="listSel"><option value="">All lists</option><option value="remote">Remote and VC boards</option><option value="gcc">GCC companies</option><option value="india">Indian AI / data employers</option><option value="boards">Indian job boards (V2 workflows)</option></select>
+      <select id="stSel"><option value="">Any state</option><option value="healthy">Healthy only</option><option value="problem">With a problem</option></select><span class="mute" id="count"></span></div>
+    <div class="row"><span class="mute">Also show:</span><span id="vis"></span></div>
+    <div class="tablewrap"><table><thead><tr><th data-k="id">ID</th><th data-k="name">Source</th><th data-k="list">List</th><th data-k="reader">Reader</th><th data-k="state">State</th><th class="num" data-k="last_count">Jobs read</th><th class="num" data-k="matched">Role matches</th><th data-k="last_ok">Last good read</th><th>Trend</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+  </section>
+
+  <section class="pane" id="problems"><div id="probBody"></div></section>
+  <section class="pane" id="history"><div id="histBody"></div></section>
+</main>
+<aside id="drawer" aria-live="polite"></aside>
+<script>
+const $=s=>document.querySelector(s), esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S=null,SRC=[],MAP={},PROB=null,RUNS=[],INFO=null,TAB='live',LFILTER='all',SORT=['name',1],lastFetch={src:0,prob:0,runs:0},lastPhase='',PF='';
+let VIEW={waiting:true,parked:false,skipped:false,duplicate:false}; try{VIEW=Object.assign(VIEW,JSON.parse(localStorage.getItem('radar3.view')||'{}'))}catch(e){}
+const BOARD_WEIGHT=12;
+async function api(p,o){const r=await fetch(p,o);return r.json()}
+async function post(p,b){return api(p,{method:'POST',headers:{'X-Radar':'1','Content-Type':'application/json'},body:JSON.stringify(b||{})})}
+const fmt=sec=>{sec=Math.max(0,Math.round(sec));const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60);return h?h+' h '+m+' min':m?m+' min '+(sec%60)+' s':sec+' s'};
+const ago=iso=>{if(!iso)return 'never';const s=(Date.now()-new Date(iso))/1000;return s<90?'just now':s<5400?Math.round(s/60)+' min ago':s<172800?Math.round(s/3600)+' h ago':Math.round(s/86400)+' days ago'};
+const isBoard=id=>MAP[id]&&MAP[id].reader==='board_site';
+const cls=st=>String(st||'').split(' ')[0];
+function copy(t,btn){navigator.clipboard.writeText(t).then(()=>{if(btn){const o=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=o,1200)}})}
+function spark(a){a=a||[];const mx=Math.max(1,...a);return '<div class="spark">'+a.map(v=>'<i title="'+v+'" style="height:'+Math.max(2,Math.round(22*v/mx))+'px"></i>').join('')+'</div>'}
+function bars(rows,opt){opt=opt||{};const mx=Math.max(1,...rows.map(r=>r[1]));return '<div class="bars">'+(rows.map(r=>'<div class="b'+(opt.click?' cl':'')+'" data-k="'+esc(r[0])+'"><span class="n" title="'+esc(r[0])+'">'+esc(r[0])+'</span><span><i style="width:'+(100*r[1]/mx)+'%;'+(opt.color?'background:'+opt.color:'')+'"></i></span><em>'+r[1]+'</em></div>').join('')||'<div class="mute">nothing here</div>')+'</div>'}
+
+/* ---------- how to run ---------- */
+function renderHowto(){
+  if(!INFO)return;
+  const df=(INFO.files||[]).find(f=>f.key==='desktop_run');
+  if(df){$('#deskName').textContent=df.name.replace(/\.bat$/,'');$('#deskMissing').textContent=df.exists?'':'Missing. Run: python -m radar3 install-launcher'}
+  $('#cmds').innerHTML=INFO.commands.map(c=>'<div style="font-size:13px">'+esc(c.label)+'</div><div class="cmdrow"><span class="cmd">'+esc(c.cmd)+'</span><button class="small" data-copy="'+esc(c.cmd)+'">Copy</button></div>').join('');
+  $('#openers').innerHTML=[['dashboard','Dashboard'],['workbook','Workbook (Excel)'],['logs','Logs folder']].map(o=>'<button class="small" data-open="'+o[0]+'">'+o[1]+'</button>').join('');
+  document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copy(b.dataset.copy,b));
+  document.querySelectorAll('[data-open]').forEach(b=>b.onclick=async()=>{const r=await post('/api/open',{what:b.dataset.open});if(!r.ok)alert(r.error)});
+}
+if(localStorage.getItem('radar3.howto')==='closed')$('#howto').removeAttribute('open');
+$('#howto').addEventListener('toggle',()=>{try{localStorage.setItem('radar3.howto',$('#howto').open?'open':'closed')}catch(e){}});
+
+/* ---------- live run ---------- */
+function runInfo(){
+  const run=(S&&S.run)||{}, srcs=run.sources||{}, ids=Object.keys(srcs);
+  let wsum=0,wdone=0,fast={n:0,d:0},brd={n:0,d:0};
+  ids.forEach(id=>{const s=srcs[id],w=isBoard(id)?BOARD_WEIGHT:1,fin=!['waiting','reading'].includes(s.status);
+    let f=fin?1:0; if(!fin&&s.status==='reading'){const p=S.progress&&S.progress[id];f=p&&p.pct!=null?p.pct/100:(isBoard(id)?0.05:0.4)}
+    wsum+=w;wdone+=w*f;const g=isBoard(id)?brd:fast;g.n++;if(fin)g.d++});
+  const phase=S.running?(run.phase||'reading'):(run.phase||'idle'), started=run.started?new Date(run.started):null;
+  const end=(phase==='done'||phase==='stopped')&&run.finished?new Date(run.finished):new Date(S.now), el=started?(end-started)/1000:0;
+  let pct=wsum?Math.round(100*wdone/wsum):0; if(phase==='building'&&pct<97)pct=97; if(phase==='done')pct=100;
+  const eta=S.running&&pct>=4&&pct<100?el*(100-pct)/pct:null;
+  return {run,srcs,ids,fast,brd,phase,el,pct,eta,started};
+}
+function renderLive(){
+  const r=runInfo(), run=r.run;
+  const pill=$('#pill'); pill.className='pill '+(r.phase==='building'?'building':r.phase); pill.textContent={reading:'Reading sources',building:'Building workbook',done:'Last run done',stopped:'Stopped',idle:'Idle'}[r.phase]||r.phase;
+  $('#bDaily').disabled=S.running;$('#bAll').disabled=S.running;$('#bStop').disabled=!S.running;
+  $('#pct').textContent=r.ids.length?r.pct+'%':'-';
+  $('#pctSub').textContent=!r.ids.length?'no run yet':S.running?(r.eta!=null?'about '+fmt(r.eta)+' left (estimate)':'starting...'):r.phase==='done'?'finished in '+fmt(r.el):r.phase==='stopped'?'stopped after '+fmt(r.el):'';
+  $('#bar').style.width=(r.ids.length?r.pct:0)+'%';
+  $('#facts').innerHTML=[['Status',({reading:'Reading sources',building:'Building workbook',done:'Finished',stopped:'Stopped',idle:'Idle'})[r.phase]||r.phase],['Started by',run.started_by||'-'],['Mode',run.mode||'-'],['Started',run.started?run.started.slice(11,19):'-'],['Elapsed',r.started?fmt(r.el):'-'],['Sources',r.ids.length?(r.fast.d+r.brd.d)+' of '+r.ids.length+' done':'-']].map(f=>'<div><b>'+esc(f[1])+'</b><span>'+f[0]+'</span></div>').join('');
+  $('#laneA').textContent='Fast sources (plain requests): '+r.fast.d+' of '+r.fast.n;$('#barA').style.width=(r.fast.n?100*r.fast.d/r.fast.n:0)+'%';
+  $('#laneB').textContent=r.brd.n?'Job boards (Chrome, slow on purpose): '+r.brd.d+' of '+r.brd.n:'Job boards: not in this run';$('#barB').style.width=(r.brd.n?100*r.brd.d/r.brd.n:0)+'%';
+  const rows=r.ids.map(id=>({id,s:r.srcs[id],name:r.srcs[id].name,board:isBoard(id)}));
+  const groups={all:rows,run:rows.filter(x=>x.s.status==='reading'),wait:rows.filter(x=>x.s.status==='waiting'),done:rows.filter(x=>['done','ok'].includes(x.s.status)),bad:rows.filter(x=>!['waiting','reading','done','ok'].includes(x.s.status))};
+  $('#liveChips').innerHTML=[['all','All'],['run','Running'],['wait','Waiting'],['done','Done'],['bad','Problems']].map(c=>'<button class="chip'+(LFILTER===c[0]?' on':'')+'" data-f="'+c[0]+'">'+c[1]+' ('+groups[c[0]].length+')</button>').join('');
+  document.querySelectorAll('#liveChips .chip').forEach(b=>b.onclick=()=>{LFILTER=b.dataset.f;renderLive()});
+  const order={reading:0,waiting:1};
+  const list=groups[LFILTER].slice().sort((a,b)=>(order[a.s.status]!=null?order[a.s.status]:2)-(order[b.s.status]!=null?order[b.s.status]:2)||(b.board-a.board)||a.name.localeCompare(b.name));
+  $('#liveRows').innerHTML=list.map(x=>{const s=x.s,p=S.progress&&S.progress[x.id],fin=!['waiting','reading'].includes(s.status);
+    let prog='';if(fin)prog='<div class="bar thin ok"><i style="width:100%"></i></div><small>100%</small>';else if(s.status==='waiting')prog='<small>waiting</small>';else if(p&&p.pct!=null)prog='<div class="bar thin"><i style="width:'+p.pct+'%"></i></div><small>about '+p.pct+'% ('+p.done+' of '+p.planned+')</small>';else prog='<div class="ind"></div><small>reading</small>';
+    const el=s.status==='reading'&&s.started?(new Date(S.now)-new Date(s.started))/1000:s.seconds, note=s.status==='reading'&&p?(p.last+(p.silent_sec>90?'  [silent '+fmt(p.silent_sec)+']':'')):(s.note||'');
+    return '<tr class="click" data-id="'+esc(x.id)+'"><td>'+esc(x.name)+' <span class="mute">'+esc(x.id)+'</span></td><td class="mute">'+(x.board?'Job board':'Fast')+'</td><td class="st '+cls(s.status)+'">'+esc(s.status)+'</td><td class="prog">'+prog+'</td><td class="num">'+(el!=null?fmt(el):'')+'</td><td class="num">'+(s.jobs||'')+'</td><td class="mute">'+esc(note).slice(0,100)+'</td><td>'+(fin&&!S.running&&!['done','ok'].includes(s.status)?'<button class="small" data-rr="'+esc(x.id)+'">Re-run</button>':'')+'</td></tr>'}).join('')||'<tr><td colspan="8" class="mute">nothing here yet. Start a run with the buttons above.</td></tr>';
+  hook('#liveRows');
+  $('#events').innerHTML=(run.events||[]).slice(-14).reverse().map(e=>'<li>'+esc((e.t||'').slice(11))+' &nbsp; '+esc(e.text)+'</li>').join('')||'<li>nothing yet</li>';
+  $('#sub').textContent=(S.last_run&&S.last_run.finished?(S.last_run.mode==='selected'?'Last re-run ':'Last finished run ')+ago(S.last_run.finished)+' ('+fmt(S.last_run.seconds)+', '+S.last_run.ok+' of '+S.last_run.sources_run+' ok)':'No finished run yet')+' | Next scheduled: '+(S.schedule||'').replace(/^.*?next run /,'').split(';')[0];
+  renderSummary(r);
+}
+function delta(a,b){if(a==null||b==null)return '';const d=a-b;return d?'<em class="'+(d>0?'up':'dn')+'">'+(d>0?'+':'')+d+'</em>':''}
+function renderSummary(r){
+  const lr=S.last_run||{}, b=lr.build||{}, cur=RUNS[0], prev=RUNS[1];
+  if(!lr.finished){$('#summary').innerHTML='<div class="card mute">The summary appears when a run finishes.</div>';return}
+  const probs=(PROB&&PROB.rows)||[], top=SRC.filter(s=>s.matched).sort((a,b)=>b.matched-a.matched).slice(0,10).map(s=>[s.name+' ('+(s.reader==='board_site'?'board':'fast')+')',s.matched]);
+  const slow=Object.entries((S.run&&S.run.sources)||{}).filter(x=>x[1].seconds).sort((a,b)=>b[1].seconds-a[1].seconds).slice(0,6).map(x=>[x[1].name,Math.round(x[1].seconds)]);
+  const same=cur&&cur.finished===lr.finished;
+  const rr=lr.mode==='selected', head=(rr?'Re-run of '+lr.sources_run+' source'+(lr.sources_run>1?'s':'')+': ':'')+(lr.ok===lr.sources_run?(rr?'all fine.':'Clean run: all '+lr.sources_run+' sources read.'):(lr.sources_run-lr.ok)+' of '+lr.sources_run+(rr?' still need attention.':' sources need attention.'));
+  $('#summary').innerHTML='<div class="card"><b>'+head+'</b> <span class="mute">Finished '+esc((lr.finished||'').replace('T',' '))+' | '+fmt(lr.seconds)+' | '+esc(lr.mode)+'</span>'
+   +'<div class="grid" style="margin-top:10px">'+[['Jobs read',b.total_read],['Open to India',(b.total_read-b.not_open_to_india)],['Unique after de-dupe',b.unique],['Matched your roles',b.matched,same&&prev?delta(b.matched,prev.matched):''],['New today',b.new_today],['Remote, open to India',b.remote_open_to_india],['Remote, to check',b.remote_check_eligibility],['Bengaluru',b.bengaluru],['Hyderabad / Chennai',b.hyderabad_chennai],['Rest of India',b.rest_of_india]].map(t=>'<div class="tile"><b>'+(t[1]==null?'-':t[1].toLocaleString())+(t[2]||'')+'</b><span>'+t[0]+'</span></div>').join('')+'</div>'
+   +'<div class="row"><button class="small" data-open="workbook">Open workbook</button><button class="small" data-open="dashboard">Open dashboard file</button><a class="btnlink" style="font-size:13px;padding:2px 10px" href="/dashboard" target="_blank" rel="noopener">Dashboard in browser</a></div></div>'
+   +'<div class="charts" style="margin-top:12px"><div class="card"><b>Top sources by role matches</b>'+bars(top)+'</div><div class="card"><b>Slowest sources (seconds)</b>'+bars(slow,{color:'var(--warn)'})+'</div>'
+   +'<div class="card"><b>Needs attention ('+probs.length+')</b>'+(probs.length?'<ul style="margin:6px 0;padding-left:18px">'+probs.slice(0,6).map(p=>'<li>'+esc(p.name)+': '+esc(p.category)+'</li>').join('')+'</ul><button class="small" id="goProb">See all and re-run</button>':'<div class="mute">nothing. All working sources are healthy.</div>')+'</div></div>';
+  hook('#summary'); const g=$('#goProb'); if(g)g.onclick=()=>tab('problems');
+}
+
+/* ---------- sources ---------- */
+function renderVis(){
+  const c={waiting:0,parked:0,skipped:0,duplicate:0};SRC.forEach(r=>{if(c[r.state]!=null)c[r.state]++});
+  $('#vis').innerHTML=[['waiting','Waiting (not built)'],['parked','Parked'],['skipped','Skipped'],['duplicate','Duplicates']].map(o=>'<label style="margin-right:10px;font-size:13.5px"><input type="checkbox" data-v="'+o[0]+'"'+(VIEW[o[0]]?' checked':'')+'> '+o[1]+' ('+c[o[0]]+')</label>').join('');
+  document.querySelectorAll('#vis input').forEach(i=>i.onchange=()=>{VIEW[i.dataset.v]=i.checked;try{localStorage.setItem('radar3.view',JSON.stringify(VIEW))}catch(e){}renderSources()});
+}
+function renderSources(){
+  const q=$('#q').value.toLowerCase(), ls=$('#listSel').value, ss=$('#stSel').value, bad=new Set((PROB&&PROB.rows||[]).map(p=>p.id));
+  let rows=SRC.filter(r=>(r.state==='working'||VIEW[r.state])&&(!ls||r.list===ls)&&(!q||(r.id+' '+r.name+' '+r.reader+' '+r.note).toLowerCase().includes(q))&&(!ss||(ss==='healthy'?(r.state==='working'&&!bad.has(r.id)):bad.has(r.id))));
+  const k=SORT[0],d=SORT[1];rows.sort((a,b)=>{let x=a[k],y=b[k];if(x==null)x='';if(y==null)y='';return (typeof x==='number'&&typeof y==='number'?x-y:String(x).localeCompare(String(y)))*d});
+  $('#count').textContent=rows.length+' of '+SRC.length+' shown';
+  $('#rows').innerHTML=rows.map(r=>{const st=r.state==='working'?(bad.has(r.id)?'problem':'ok'):r.state;return '<tr class="click" data-id="'+esc(r.id)+'"><td>'+esc(r.id)+'</td><td>'+esc(r.name)+'</td><td class="mute">'+esc(r.list)+'</td><td class="mute">'+esc(r.reader)+'</td><td class="st '+(st==='problem'?'failed':cls(st))+'">'+esc(st)+'</td><td class="num">'+(r.last_count==null?'':r.last_count)+'</td><td class="num">'+(r.matched==null?'':r.matched)+'</td><td class="mute">'+esc(r.last_ok||'')+'</td><td>'+spark(r.counts)+'</td><td>'+(r.state==='working'&&!S.running?'<button class="small" data-rr="'+esc(r.id)+'">Re-run</button>':'')+'</td></tr>'}).join('');
+  hook('#rows'); renderVis();
+}
+document.querySelectorAll('th[data-k]').forEach(th=>th.onclick=()=>{SORT=SORT[0]===th.dataset.k?[SORT[0],-SORT[1]]:[th.dataset.k,1];renderSources()});
+$('#q').oninput=renderSources;$('#listSel').onchange=renderSources;$('#stSel').onchange=renderSources;
+
+/* ---------- problems ---------- */
+function renderProblems(){
+  if(!PROB){$('#probBody').innerHTML='<div class="card mute">loading...</div>';return}
+  const rows=PROB.rows, n=k=>rows.filter(r=>r.severity===k).length, pctOk=PROB.working?Math.round(100*PROB.healthy/PROB.working):100;
+  const badge=$('#pBadge');badge.style.display=rows.length?'inline-block':'none';badge.textContent=rows.length;
+  const days=PROB.by_day||[], mx=Math.max(1,...days.map(d=>d.ok+d.warn+d.fail+d.needs));
+  const chart=days.length?'<div class="cols2">'+days.map(d=>{const h=v=>Math.round(100*v/mx);return '<div class="c" title="'+d.date+': '+d.ok+' ok, '+d.warn+' flagged, '+d.fail+' failed, '+d.needs+' need you"><i style="height:'+h(d.ok)+'px;background:var(--ok)"></i><i style="height:'+h(d.warn)+'px;background:var(--warn)"></i><i style="height:'+h(d.needs)+'px;background:#c47a00"></i><i style="height:'+h(d.fail)+'px;background:var(--bad)"></i><b>'+d.date.slice(5)+'</b></div>'}).join('')+'</div><div class="lg"><span><i style="background:var(--ok)"></i>ok</span><span><i style="background:var(--warn)"></i>flagged (empty, shrunk, layout)</span><span><i style="background:#c47a00"></i>needs you</span><span><i style="background:var(--bad)"></i>failed</span></div>':'<div class="mute">No history yet. It fills as runs finish.</div>';
+  $('#probBody').innerHTML='<div class="grid"><div class="tile"><b>'+pctOk+'%</b><span>healthy ('+PROB.healthy+' of '+PROB.working+' working sources)</span></div><div class="tile"><b>'+rows.length+'</b><span>need attention now</span></div><div class="tile"><b>'+n('action')+'</b><span>need you (human check)</span></div><div class="tile"><b>'+n('retry')+'</b><span>a re-run may fix</span></div><div class="tile"><b>'+n('fix')+'</b><span>need a reader fix</span></div><div class="tile"><b>'+n('info')+'</b><span>blocked by the site</span></div></div>'
+   +'<div class="charts" style="margin-top:12px"><div class="card"><b>Why sources did not run properly</b>'+bars(PROB.categories,{click:true,color:'var(--bad)'})+'<div class="mute" style="font-size:12.5px;margin-top:6px">Click a reason to filter the list.</div></div><div class="card"><b>Reliability, last 14 days</b><div style="margin-top:8px">'+chart+'</div></div></div>'
+   +'<h3>Sources that need attention</h3><div class="row"><button class="primary small" id="rrSel" disabled>Re-run selected</button><button class="small" id="rrAll">Re-run all that a re-run may fix ('+n('retry')+')</button><button class="small" id="selAll">Select all</button><span class="mute" id="probFilter"></span></div>'
+   +'<div class="tablewrap"><table><thead><tr><th></th><th>Source</th><th>Why</th><th>Reason (from the run)</th><th>What to do</th><th class="num">Failed (14 d)</th><th>Last good read</th><th></th></tr></thead><tbody id="probRows"></tbody></table></div>'
+   +'<p class="mute" style="font-size:13px">Not listed here: '+PROB.parked+' parked and '+PROB.skipped+' skipped sources. Parked sources are blocked by login, payment or a human check by design; skipped ones are newsletters. Show them in the Sources tab with the Also show toggles.</p>';
+  drawProb();
+  document.querySelectorAll('#probBody .bars .b.cl').forEach(b=>b.onclick=()=>{PF=PF===b.dataset.k?'':b.dataset.k;drawProb()});
+  $('#rrAll').onclick=()=>rerun(rows.filter(r=>r.severity==='retry').map(r=>r.id));$('#rrSel').onclick=()=>rerun([...document.querySelectorAll('#probRows input:checked')].map(i=>i.dataset.id));
+  $('#selAll').onclick=()=>{document.querySelectorAll('#probRows input').forEach(i=>i.checked=true);selChange()};
+}
+function drawProb(){
+  const rows=PROB.rows.filter(r=>!PF||r.category===PF);$('#probFilter').textContent=PF?'Showing: '+PF+' (click the bar again to clear)':'';
+  $('#probRows').innerHTML=rows.map(r=>'<tr><td><input type="checkbox" data-id="'+esc(r.id)+'"></td><td><b>'+esc(r.name)+'</b><div class="mute" style="font-size:12px">'+esc(r.id)+' | '+esc(r.reader)+'</div></td><td><span class="sev '+r.severity+'">'+esc(r.category)+'</span></td><td class="mute" title="'+esc(r.reason)+'">'+esc(r.reason).slice(0,110)+'</td><td>'+esc(r.suggestion)+'</td><td class="num">'+r.bad_14d+' of '+r.runs_14d+(r.streak>1?'<div class="mute" style="font-size:12px">'+r.streak+' in a row</div>':'')+'</td><td class="mute">'+esc(r.last_ok||'never')+(r.age_days!=null?'<div style="font-size:12px">'+r.age_days+' days ago</div>':'')+'</td><td style="white-space:nowrap"><button class="small" data-rr="'+esc(r.id)+'"'+(S&&S.running?' disabled':'')+'>Re-run</button> <button class="small" data-log="'+esc(r.id)+'">Details</button></td></tr>').join('')||'<tr><td colspan="8" class="mute">Nothing needs attention.</td></tr>';
+  document.querySelectorAll('#probRows input').forEach(i=>i.onchange=selChange);hook('#probRows');selChange();
+}
+function selChange(){const n=document.querySelectorAll('#probRows input:checked').length,b=$('#rrSel');if(b){b.disabled=!n||(S&&S.running);b.textContent='Re-run selected ('+n+')'}}
+
+/* ---------- history ---------- */
+function renderHistory(){
+  const all=RUNS.slice(), runs=all.filter(r=>r.mode!=='selected'), asc=runs.slice().reverse(), clean=runs.filter(r=>!r.problems).length, avg=runs.length?runs.reduce((a,r)=>a+r.seconds,0)/runs.length:0, lastClean=runs.find(r=>!r.problems), reruns=all.length-runs.length;
+  const col=(arr,fn,colr)=>'<div class="cols2">'+arr.map(r=>{const v=fn(r),mx=Math.max(1,...arr.map(fn));return '<div class="c" title="'+esc(r.finished.slice(0,16).replace('T',' '))+': '+v+'"><i style="height:'+Math.max(2,Math.round(100*v/mx))+'px;background:'+colr+'"></i><b>'+r.finished.slice(5,10)+'</b></div>'}).join('')+'</div>';
+  $('#histBody').innerHTML=runs.length?'<div class="grid"><div class="tile"><b>'+runs.length+'</b><span>full runs logged'+(reruns?' (+ '+reruns+' re-runs of single sources)':'')+'</span></div><div class="tile"><b>'+Math.round(100*clean/runs.length)+'%</b><span>runs with no problems</span></div><div class="tile"><b>'+fmt(avg)+'</b><span>average duration</span></div><div class="tile"><b>'+(lastClean?ago(lastClean.finished):'none')+'</b><span>last clean run</span></div></div>'
+   +'<div class="charts" style="margin-top:12px"><div class="card"><b>Matched jobs per run</b>'+col(asc,r=>r.matched,'var(--acc)')+'</div><div class="card"><b>Duration per run (minutes)</b>'+col(asc,r=>Math.round(r.seconds/60),'var(--warn)')+'</div><div class="card"><b>Sources with problems per run</b>'+col(asc,r=>r.problems,'var(--bad)')+'</div></div>'
+   +'<h3>All runs and re-runs</h3><div class="tablewrap"><table><thead><tr><th>Finished</th><th>Started by</th><th>Mode</th><th class="num">Time</th><th class="num">Sources ok</th><th class="num">Problems</th><th class="num">Matched</th><th class="num">New</th><th class="num">Remote, open to India</th></tr></thead><tbody>'+all.map((r,i)=>'<tr><td>'+esc(r.finished.slice(0,16).replace('T',' '))+'</td><td class="mute">'+esc(r.started_by)+'</td><td class="mute">'+esc(r.mode)+'</td><td class="num">'+fmt(r.seconds)+'</td><td class="num">'+r.ok+' / '+r.sources_run+'</td><td class="num '+(r.problems?'st failed':'')+'">'+r.problems+'</td><td class="num">'+r.matched.toLocaleString()+(all[i+1]&&r.mode!=='selected'?delta(r.matched,all[i+1].matched):'')+'</td><td class="num">'+r.new_today+'</td><td class="num">'+r.remote_open_to_india+'</td></tr>').join('')+'</tbody></table></div>':'<div class="card mute">No finished run logged yet.</div>';
+}
+
+/* ---------- drawer, actions, tabs ---------- */
+async function openDrawer(id){
+  const r=SRC.find(x=>x.id===id);if(!r)return;const run=(S&&S.run&&S.run.sources&&S.run.sources[id])||{},p=(PROB&&PROB.rows||[]).find(x=>x.id===id);
+  $('#drawer').innerHTML='<button onclick="closeD()" style="float:right">Close</button><h2>'+esc(r.name)+' <small class="mute">'+esc(r.id)+'</small></h2><p class="st '+cls(r.state==='working'?(p?'failed':'ok'):r.state)+'">'+esc(r.state==='working'?(p?'needs attention':'healthy'):r.state)+'</p>'
+   +(p?'<h4>Why it did not run properly</h4><p><span class="sev '+p.severity+'">'+esc(p.category)+'</span></p><p>'+esc(p.reason)+'</p><h4>What to do</h4><p>'+esc(p.suggestion)+'</p>':'')
+   +'<h4>Why it is read this way</h4><p>'+esc(r.note)+'</p><h4>Reader</h4><p>'+esc(r.reader)+(r.schedule?' ('+esc(r.schedule)+')':'')+'</p><h4>Career page</h4><p><a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+esc(r.url)+'</a></p>'
+   +'<h4>Last good read</h4><p>'+esc(r.last_ok||'never')+(r.last_count!=null?', '+r.last_count+' jobs, '+(r.matched||0)+' matched your roles':'')+'</p>'+(r.counts&&r.counts.length?'<h4>Jobs per run</h4>'+spark(r.counts):'')
+   +(run.status?'<h4>This run</h4><p>'+esc(run.status)+', '+(run.jobs||0)+' jobs, '+Math.round(run.seconds||0)+' s '+esc(run.note||'')+'</p>':'')
+   +(r.state==='working'?'<p><button class="small" data-rr="'+esc(id)+'"'+(S.running?' disabled':'')+'>Re-run this source</button></p><h4>Log</h4><pre class="log" id="logBox">loading...</pre>':'');
+  $('#drawer').classList.add('open');hook('#drawer');
+  if(r.state==='working'){const l=await api('/api/log?id='+encodeURIComponent(id));$('#logBox').textContent=l.text||l.note||''}
+}
+function closeD(){$('#drawer').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeD()});
+function hook(sel){
+  document.querySelectorAll(sel+' [data-rr]').forEach(b=>b.onclick=e=>{e.stopPropagation();rerun([b.dataset.rr])});
+  document.querySelectorAll(sel+' [data-log]').forEach(b=>b.onclick=e=>{e.stopPropagation();openDrawer(b.dataset.log)});
+  document.querySelectorAll(sel+' [data-open]').forEach(b=>b.onclick=async e=>{e.stopPropagation();const r=await post('/api/open',{what:b.dataset.open});if(!r.ok)alert(r.error)});
+  document.querySelectorAll(sel+' tr.click').forEach(tr=>tr.onclick=()=>openDrawer(tr.dataset.id));
+}
+async function rerun(ids){
+  if(!ids.length)return;const boards=ids.some(isBoard);
+  if(!confirm('Re-run '+ids.length+' source'+(ids.length>1?'s':'')+(boards?' (includes a job board: it opens Chrome and may need a human check)':'')+'?'))return;
+  const r=await post('/api/rerun',{ids});if(!r.ok){alert(r.error);return}tab('live');tick();
+}
+async function start(mode){const r=await post('/api/start',{mode,boards:$('#cBoards').checked});if(!r.ok)alert(r.error);tab('live');tick()}
+$('#bDaily').onclick=()=>start('daily');
+$('#bAll').onclick=()=>{if(confirm($('#cBoards').checked?'Read every source now, including the job boards? About 45 minutes; Chrome windows open and a human check may need you.':'Read every API source now (no job boards)? About 9 minutes.'))start('all')};
+$('#bStop').onclick=async()=>{if(confirm('Stop the run? Sources already saved stay; the others keep their previous jobs.')){const r=await post('/api/stop');if(!r.ok)alert(r.error);tick()}};
+$('#bTheme').onclick=()=>{const r=document.documentElement,dark=getComputedStyle(r).getPropertyValue('--bg').trim()==='#141413';r.dataset.theme=dark?'light':'dark'};
+function tab(t){TAB=t;document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));document.querySelectorAll('section.pane').forEach(p=>p.classList.toggle('on',p.id===t));if(t==='sources')renderSources();if(t==='problems')renderProblems();if(t==='history')renderHistory();try{history.replaceState(null,'','#'+t)}catch(e){}}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>tab(b.dataset.t));
+
+/* ---------- banners and loop ---------- */
+function renderBanners(){
+  const b=[];const lr=S.last_run||{};
+  if(S.free_mb&&S.free_mb<1500)b.push(['Low memory: '+(S.free_mb/1024).toFixed(1)+' GB free. Job boards wait for 1 GB free before they start. Close extra Chrome tabs.',false]);
+  if(lr.finished&&!S.running&&(Date.now()-new Date(lr.finished))/36e5>26)b.push(['No finished run for '+ago(lr.finished)+'. The data on the dashboard is that old.',true]);
+  if(!S.launcher_present)b.push(['The Desktop launcher "'+esc(S.launcher_name)+'" is missing. Run: python -m radar3 install-launcher',false]);
+  if(PROB&&PROB.rows.length&&!S.running)b.push([PROB.rows.length+' source'+(PROB.rows.length>1?'s need':' needs')+' attention. <a href="#problems" id="bannerGo" style="color:inherit;font-weight:600">See why and re-run</a>',false]);
+  $('#banners').innerHTML=b.map(x=>'<div class="banner'+(x[1]?' bad':'')+'"><span>'+x[0]+'</span></div>').join('');const g=$('#bannerGo');if(g)g.onclick=e=>{e.preventDefault();tab('problems')};
+}
+async function tick(){
+  try{
+    S=await api('/api/state');const now=Date.now(),run=S.running;
+    if(!SRC.length||now-lastFetch.src>(run?4000:30000)){SRC=await api('/api/sources');MAP=Object.fromEntries(SRC.map(r=>[r.id,r]));lastFetch.src=now}
+    const ph=S.run?S.run.phase:'';
+    if(!PROB||ph!==lastPhase||now-lastFetch.prob>(run?20000:60000)){PROB=await api('/api/problems');lastFetch.prob=now}
+    if(!RUNS.length||ph!==lastPhase||now-lastFetch.runs>60000){RUNS=await api('/api/runs');lastFetch.runs=now}
+    lastPhase=ph;
+    if(!INFO){INFO=await api('/api/info');renderHowto()}
+    renderLive();renderBanners();const badge=$('#pBadge');if(PROB){badge.style.display=PROB.rows.length?'inline-block':'none';badge.textContent=PROB.rows.length}
+    if(TAB==='sources')renderSources();if(TAB==='problems')renderProblems();if(TAB==='history')renderHistory();
+  }catch(e){$('#pill').className='pill error';$('#pill').textContent='Server not reachable'}
+  setTimeout(tick,(S&&S.running)?2000:8000);
+}
+const h0=location.hash.slice(1);if(['live','sources','problems','history'].includes(h0))tab(h0);
+tick();
+</script>
+</body>
+</html>

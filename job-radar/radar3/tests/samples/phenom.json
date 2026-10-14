@@ -1,0 +1,253 @@
+{
+ "refineSearch": {
+  "totalHits": 28,
+  "data": {
+   "jobs": [
+    {
+     "type": "Full time",
+     "imApplyUrl": "https://warnerbros.wd5.myworkdayjobs.com/global/job/Hyderabad---Phoenix-Equinox-Tower-2/Staff-Analytics-Engineer_R000107289/apply",
+     "state": "Telang\u0101na",
+     "siteType": "external",
+     "multi_category": [
+      "Technology"
+     ],
+     "reqId": "R000107289",
+     "city": "Hyderabad",
+     "latitude": "17.38405",
+     "industry": "All Others",
+     "multi_location": [
+      "Hyderabad, Telang\u0101na, India"
+     ],
+     "address": "Equinox by Phoenix, Hitech City; Sy. No. 53 Paiki, Gachibowli, Serilingampally, Hyderabad- 500032, Telang\u0101na, India",
+     "applyUrl": "https://warnerbros.wd5.myworkdayjobs.com/global/job/Hyderabad---Phoenix-Equinox-Tower-2/Staff-Analytics-Engineer_R000107289/apply",
+     "ml_job_parser": {
+      "descriptionTeaser": "Seeking a Staff Analytics Engineer to drive data pipeline and analytics strategy for Warner Bros. Discovery's Commerce & Growth Analytics team. Lead data modelling, automation, and visualisation projects, collaborating with cross-functional partners. Ideal for experienced professionals with strong SQL, Python, and big data expertise.",
+      "descriptionTeaser_first200": "Welcome to Warner Bros. Discovery\u2026 the stuff dreams are made of. Who We Are\u2026 . When we say, \u201cthe stuff dreams are made of,\u201d we\u2019re not just referring to the world of wizards, dragons and superheroes...",
+      "descriptionTeaser_keyword": "Application and/or recruitment process, please visit our accessibility page for instructions to submit your request....",
+      "descriptionTeaser_ats": "Welcome to Warner Bros. Discovery\u2026 the stuff dreams are made of.Who We Are\u2026 When we say, \u201cthe stuff dreams are made of,\u201d we\u2019re not just referring to the world of wizards, dragons and superheroes, or e"
+     },
+     "externalApply": true,
+     "cityState": "Hyderabad, Telang\u0101na",
+     "country": "India",
+     "visibilityType": "External",
+     "longitude": "78.45636",
+     "jobId": "R000107289",
+     "imExternalApply": true,
+     "locale": "en_GLOBAL",
+     "title": "Staff Analytics Engineer - Data Analytics Team, Hyderabad",
+     "jobSeqNo": "WAMEGLOBALR000107289EXTERNALENGLOBAL",
+     "postedDate": "2026-10-13T00:00:00.000+0000",
+     "dateCreated": "2026-08-12T10:17:18.019+0000",
+     "cityStateCountry": "Hyderabad, Telang\u0101na, India",
+     "department": "DTC - Global Technology DEVTech Data & Analytics 451 (Teja Kotaprolu\u00a0)",
+     "jobVisibility": [
+      "external",
+      "internal"
+     ],
+     "location": "Hyderabad, Telang\u0101na, India",
+     "category": "Technology",
+     "isMultiLocation": true,
+     "multi_location_array": [
+      {
+       "latlong": {
+        "lon": 78.45636,
+        "lat": 17.38405
+       },
+       "location": "Hyderabad, Telang\u0101na, India"
+      }
+     ],
+     "isMultiCategory": false,
+     "multi_category_array": [
+      {
+       "category": "Technology"
+      }
+     ],
+     "badge": ""
+    },
+    {
+     "type": "Full time",
+     "imApplyUrl": "https://warnerbros.wd5.myworkdayjobs.com/global/job/Hyderabad-Office-Level-3--4-Block-A---East-Wing/Senior-Financial-Analyst_R000109160/apply",
+     "state": "Telang\u0101na",
+     "siteType": "external",
+     "multi_category": [
+      "Finance & Accounting"
+     ],
+     "reqId": "R000109160",
+     "city": "Hyderabad",
+     "latitude": "17.38405",
+     "industry": "All Others",
+     "multi_location": [
+      "Hyderabad, Telang\u0101na, India"
+     ],
+     "address": "Office Level 3 & 4, Block A - East Wing, Intl Tech Park Hyderabad, Plot No. 17, Survey No. 64/2, Software Units Layout, Madhapur, Ranga Reddy Dist, Hyderabad- 500081, Telang\u0101na, India",
+     "applyUrl": "https://warnerbros.wd5.myworkdayjobs.com/global/job/Hyderabad-Office-Level-3--4-Block-A---East-Wing/Senior-Financial-Analyst_R000109160/apply",
+     "ml_job_parser": {
+      "descriptionTeaser": "Seeking a Senior Financial Analyst to support FP&A reporting and analytics for Warner Bros. Discovery. Key responsibilities include developing cost-of-organisation reporting, maintaining data quality, and collaborating with finance teams. Ideal for candidates with significant FP&A experience and strong communication skills.",
+      "descriptionTeaser_ats": "Welcome to Warner Bros. Discovery\u2026 the stuff dreams are made of.Who We Are\u2026 When we say, the stuff dreams are made of, we\u2019re not just referring to the world of wizards, dragons and superheroes, or e",
+      "descriptionTeaser_keyword": "Application and/or recruitment process, please visit our accessibility page for instructions to submit your request....",
+      "descriptionTeaser_first200": "Welcome to Warner Bros. Discovery\u2026 the stuff dreams are made of. Who We Are\u2026 . When we say, \u201cthe stuff dreams are made of,\u201d we\u2019re not just referring to the world of wizards, dragons and superheroes..."
+     },
+     "externalApply": true,
+     "cityState": "Hyderabad, Telang\u0101na",
+     "country": "India",
+     "visibilityType": "External",
+     "longitude": "78.45636",
+     "jobId": "R000109160",
+     "imExternalApply": true,
+     "locale": "en_GLOBAL",
+     "title": "Senior Financial Analyst",
+     "jobSeqNo": "WAMEGLOBALR000109160EXTERNALENGLOBAL",
+     "postedDate": "2026-10-09T00:00:00.000+0000",
+     "dateCreated": "2026-10-01T05:12:54.629+0000",
+     "cityStateCountry": "Hyderabad, Telang\u0101na, India",
+     "department": "FI - FP&A Corporate-Mgt Transformation & Reprtg (Anjali Gullapalli)",
+     "jobVisibility": [
+      "external",
+      "internal"
+     ],
+     "location": "Hyderabad, Telang\u0101na, India",
+     "category": "Finance & Accounting",
+     "isMultiLocation": true,
+     "multi_location_array": [
+      {
+       "latlong": {
+        "lon": 78.45636,
+        "lat": 17.38405
+       },
+       "location": "Hyderabad, Telang\u0101na, India"
+      }
+     ],
+     "isMultiCategory": false,
+     "multi_category_array": [
+      {
+       "category": "Finance & Accounting"
+      }
+     ],
+     "badge": ""
+    },
+    {
+     "type": "Full time",
+     "imApplyUrl": "https://warnerbros.wd5.myworkdayjobs.com/global/job/Bangalore---Embassy-Tech-Village/Senior-Software-Engineer--IOS-Developer_R000107456/apply",
+     "state": "Karn\u0101taka",
+     "siteType": "external",
+     "multi_category": [
+      "Technology"
+     ],
+     "reqId": "R000107456",
+     "city": "Bangalore",
+     "latitude": "12.97194",
+     "industry": "All Others",
+     "multi_location": [
+      "Bangalore, Karn\u0101taka, India"
+     ],
+     "address": "Embassy Tech Village, Block 8C, 9th (partial) and 10th Floors, Bangalore- 560103, Karn\u0101taka, India",
+     "applyUrl": "https://warnerbros.wd5.myworkdayjobs.com/global/job/Bangalore---Embassy-Tech-Village/Senior-Software-Engineer--IOS-Developer_R000107456/apply",
+     "ml_job_parser": {
+      "descriptionTeaser": "We are expanding our team: As a Senior Software Engineer \u2013 iOS Developer, you will architect and develop high-performance Apple applications, focusing on seamless integration and operational excellence. Collaborate with cross-functional teams and mentor junior developers. Ideal for experienced professionals with expertise in Swift, Apple ecosystem, and video player architecture.",
+      "descriptionTeaser_ats": "Welcome to Warner Bros. Discovery\u2026 the stuff dreams are made of.Who We Are\u2026 When we say, the stuff dreams are made of, we\u2019re not just referring to the world of wizards, dragons and superheroes, or e",
+      "descriptionTeaser_keyword": "Application and/or recruitment process, please visit our accessibility page for instructions to submit your request....",
+      "descriptionTeaser_first200": "Welcome to Warner Bros. Discovery\u2026 the stuff dreams are made of. Who We Are\u2026 . When we say, \u201cthe stuff dreams are made of,\u201d we\u2019re not just referring to the world of wizards, dragons and superheroes..."
+     },
+     "externalApply": true,
+     "cityState": "Bangalore, Karn\u0101taka",
+     "country": "India",
+     "visibilityType": "External",
+     "longitude": "77.59369",
+     "jobId": "R000107456",
+     "imExternalApply": true,
+     "locale": "en_GLOBAL",
+     "title": "Senior Software Engineer- IOS Developer",
+     "jobSeqNo": "WAMEGLOBALR000107456EXTERNALENGLOBAL",
+     "postedDate": "2026-10-09T00:00:00.000+0000",
+     "dateCreated": "2026-10-09T16:14:40.232+0000",
+     "cityStateCountry": "Bangalore, Karn\u0101taka, India",
+     "department": "DTC - Global Technology IT DevelopmentAd Tech (Chengappa C D)",
+     "jobVisibility": [
+      "external",
+      "internal"
+     ],
+     "location": "Bangalore, Karn\u0101taka, India",
+     "category": "Technology",
+     "isMultiLocation": true,
+     "multi_location_array": [
+      {
+       "latlong": {
+        "lon": 77.59369,
+        "lat": 12.97194
+       },
+       "location": "Bangalore, Karn\u0101taka, India"
+      }
+     ],
+     "isMultiCategory": false,
+     "multi_category_array": [
+      {
+       "category": "Technology"
+      }
+     ],
+     "badge": ""
+    },
+    {
+     "type": "Full time",
+     "imApplyUrl": "https://warnerbros.wd5.myworkdayjobs.com/global/job/Hyderabad-Office-Level-3--4-Block-A---East-Wing/Manager--RTR_R000109010/apply",
+     "state": "Telang\u0101na",
+     "siteType": "external",
+     "multi_category": [
+      "Finance & Accounting"
+     ],
+     "reqId": "R000109010",
+     "city": "Hyderabad",
+     "latitude": "17.38405",
+     "industry": "All Others",
+     "multi_location": [
+      "Hyderabad, Telang\u0101na, India"
+     ],
+     "address": "Office Level 3 & 4, Block A - East Wing, Intl Tech Park Hyderabad, Plot No. 17, Survey No. 64/2, Software Units Layout, Madhapur, Ranga Reddy Dist, Hyderabad- 500081, Telang\u0101na, India",
+     "applyUrl": "https://warnerbros.wd5.myworkdayjobs.com/global/job/Hyderabad-Office-Level-3--4-Block-A---East-Wing/Manager--RTR_R000109010/apply",
+     "ml_job_parser": {
+      "descriptionTeaser": "We are currently hiring a Manager, RTR to lead end-to-end Record-to-Report accounting and controllership activities. Oversee financial reporting, balance sheet governance, and internal controls, while managing a team in Hyderabad. Ideal for experienced professionals with strong accounting expertise and leadership in a global, matrixed environment.",
+      "descriptionTeaser_first200": "Welcome to Warner Bros. Discovery\u2026 the stuff dreams are made of. Who We Are\u2026 . When we say, \u201cthe stuff dreams are made of,\u201d we\u2019re not just referring to the world of wizards, dragons and superheroes...",
+      "descriptionTeaser_keyword": "Application and/or recruitment process, please visit our accessibility page for instructions to submit your request....",
+      "descriptionTeaser_ats": "Welcome to Warner Bros. Discovery\u2026 the stuff dreams are made of.Who We Are\u2026 When we say, the stuff dreams are made of, we\u2019re not just referring to the world of wizards, dragons and superheroes, or e"
+     },
+     "externalApply": true,
+     "cityState": "Hyderabad, Telang\u0101na",
+     "country": "India",
+     "visibilityType": "External",
+     "longitude": "78.45636",
+     "jobId": "R000109010",
+     "imExternalApply": true,
+     "locale": "en_GLOBAL",
+     "title": "Manager, RTR",
+     "jobSeqNo": "WAMEGLOBALR000109010EXTERNALENGLOBAL",
+     "postedDate": "2026-10-09T00:00:00.000+0000",
+     "dateCreated": "2026-09-22T09:13:48.432+0000",
+     "cityStateCountry": "Hyderabad, Telang\u0101na, India",
+     "department": "RTR Operations (Deepali Goel)",
+     "jobVisibility": [
+      "external",
+      "internal"
+     ],
+     "location": "Hyderabad, Telang\u0101na, India",
+     "category": "Finance & Accounting",
+     "isMultiLocation": true,
+     "multi_location_array": [
+      {
+       "latlong": {
+        "lon": 78.45636,
+        "lat": 17.38405
+       },
+       "location": "Hyderabad, Telang\u0101na, India"
+      }
+     ],
+     "isMultiCategory": false,
+     "multi_category_array": [
+      {
+       "category": "Finance & Accounting"
+      }
+     ],
+     "badge": ""
+    }
+   ]
+  }
+ }
+}

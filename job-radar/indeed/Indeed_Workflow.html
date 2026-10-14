@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indeed Workflow</title>
+<style>
+:root{
+  --bg:#14151c; --panel:#1c1e28; --panel2:#232634; --line:#2f3345; --text:#e8eaf2; --muted:#9aa0b8;
+  --trigger:#ff6d5a; --browser:#4c8dff; --logic:#a06bff; --parse:#2fbf71; --store:#19b5c4; --safety:#ff4d6d; --warn:#f5a524;
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#eef0f6;--panel:#ffffff;--panel2:#f4f5fa;--line:#d5d9e6;--text:#1c2030;--muted:#5d6580}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",Calibri,system-ui,sans-serif}
+header{padding:20px 24px 8px}
+h1{margin:0 0 4px;font-size:24px}
+header p{margin:0;color:var(--muted);max-width:900px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+.toolbar{display:flex;gap:10px;align-items:center;padding:10px 24px;flex-wrap:wrap}
+button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer}
+button:hover{border-color:var(--browser)}
+button.primary{background:var(--trigger);border-color:var(--trigger);color:#fff;font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:16px;padding:0 24px 24px}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}}
+.canvas-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:auto;position:relative;max-height:720px}
+.canvas{position:relative;width:2130px;height:640px;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:20px 20px}
+svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.edge{fill:none;stroke-width:2}
+.edge.dash{stroke-dasharray:6 6}
+.elabel{position:absolute;transform:translate(-50%,-50%);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:11px;color:var(--muted);white-space:nowrap}
+.node{position:absolute;width:250px;height:96px;background:var(--panel2);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px 10px 16px;cursor:pointer;transition:.15s;overflow:hidden}
+.node:hover{transform:translateY(-2px);border-color:var(--c)}
+.node.sel{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
+.node::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.node .t{font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center}
+.node .g{display:inline-flex;width:22px;height:22px;border-radius:6px;background:var(--c);color:#fff;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.node .s{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.35}
+.node .badge{position:absolute;right:8px;bottom:6px;font-size:11px;font-weight:700;color:var(--c);opacity:0}
+.node.done{border-color:var(--parse)}
+.node.done .badge{opacity:1}
+.node.run{box-shadow:0 0 0 4px color-mix(in srgb,var(--warn) 45%,transparent);border-color:var(--warn)}
+.node.stopnode{border-style:dashed}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;max-height:720px;overflow:auto}
+.panel h2{margin:0 0 2px;font-size:19px}
+.panel .kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-radius:5px;padding:1px 8px;margin-bottom:8px}
+.panel h3{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.panel ul{margin:0;padding-left:18px}
+.panel li{margin:3px 0}
+.panel code,.panel pre{font-family:Consolas,"Cascadia Mono",monospace;font-size:12px}
+.panel code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.panel pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;margin:6px 0 0}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.io div{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px}
+.io b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fail{border-left:3px solid var(--safety);padding:2px 0 2px 10px;margin:6px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;padding:0 24px 32px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{margin:0 0 8px;font-size:15px}
+.card pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;font:12px/1.5 Consolas,monospace;margin:6px 0}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:3px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+th{color:var(--muted);font-weight:600}
+@media (prefers-reduced-motion:reduce){.node{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Indeed workflow</h1>
+  <p>Reads the newest Indeed India jobs for the roles in input.csv: several searches in parallel, each with its own random pauses, backing off if Indeed pushes back. Indeed also sends the full description, salary, job type and company details, so this workflow pulls out as much as it can: experience, qualification, skills, contacts, salary per month and more, and applies the role's minimum experience. Click any node for the technical detail.</p>
+  <div class="chips">
+    <span class="chip"><b>Python</b> 3.12</span>
+    <span class="chip"><b>python-jobspy</b> 1.3.0 (Indeed)</span>
+    <span class="chip"><b>ThreadPoolExecutor</b> 3 parallel searches</span>
+    <span class="chip"><b>openpyxl</b> Excel</span>
+    <span class="chip"><b>0</b> Claude tokens</span>
+    <span class="chip"><b>$0</b> no paid service, no login, no browser</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="primary" id="play">Run the workflow (animation)</button>
+  <button id="reset">Reset</button>
+  <div class="legend">
+    <span><i style="background:var(--trigger)"></i>Trigger / input</span>
+    <span><i style="background:var(--browser)"></i>Browser</span>
+    <span><i style="background:var(--logic)"></i>Logic</span>
+    <span><i style="background:var(--parse)"></i>Parse</span>
+    <span><i style="background:var(--store)"></i>Storage</span>
+    <span><i style="background:var(--safety)"></i>Safety</span>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="canvas-wrap"><div class="canvas" id="canvas"></div></div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<div class="cards">
+  <div class="card"><h3>1. The input you give it</h3>
+    <p style="margin:0 0 6px">The same shared file as every other site: <code>job-radar-V3/input.csv</code>.</p>
+<pre>Role,Keywords,Experience,Location
+AI Engineer,"AI Engineer;LLM Engineer",5,India
+Clinical Research,"Pharmacovigilance;Medical Writer",0,India</pre>
+    <ul>
+      <li><b>Role</b>: label for the group; becomes the Role column.</li>
+      <li><b>Keywords</b>: titles separated by semicolons; each is its own search.</li>
+      <li><b>Experience</b>: minimum years. Indeed's text is searched for the experience a job asks for; jobs whose range is below the minimum are dropped, jobs that state none are kept.</li>
+      <li><b>Location</b>: India, or a city (Bengaluru becomes "Bengaluru, India").</li>
+      <li>Command line: <code>--hours N</code> (default: automatic, see the time window note; <code>0</code> = no time filter, first backlog run only), <code>--role "AI Engineer"</code>, <code>--workers 3</code>.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>2. The output (all inside <code>indeed/output/</code>)</h3>
+<table>
+<tr><th>File</th><th>What</th></tr>
+<tr><td><code>Indeed.xlsx</code></td><td>The result. Tab "Indeed", one row per job, your Status and Notes kept.</td></tr>
+<tr><td><code>runs/indeed_*.jsonl</code></td><td>Raw backup of each run, written before Excel.</td></tr>
+<tr><td><code>last_run.log</code></td><td>Progress log of the last run.</td></tr>
+</table>
+    <p style="margin:8px 0 0;color:var(--muted)">33 columns: Title, Company, Role, Experience, Exp min, Exp max, Qualification, Location, Work mode, Job type, Salary, Salary min and max per month, Posted date, Skills, Walk-in, Openings, Emails, Phones, Rating, Reviews, Industry, Company size, Company info, Search term, First seen, Link, Status (dropdown), Notes, Apply link, Company website, Company page, and the full Description.</p>
+  </div>
+  <div class="card"><h3>3. Commands (from <code>job-radar-V3</code>)</h3>
+<pre>.venv\Scripts\python -m indeed search
+.venv\Scripts\python -m indeed search --role "AI Engineer" --hours 48
+.venv\Scripts\python -m pytest indeed/tests</pre>
+    <p style="margin:0;color:var(--muted)">Close <code>Indeed.xlsx</code> in Excel before a run. If it is open, a timestamped copy is written instead.</p>
+  </div>
+  <div class="card"><h3>4. Why it is gentler than LinkedIn</h3>
+    <ul>
+      <li>One request chain per search returns everything for the window, so there is no ten-at-a-time paging.</li>
+      <li>Asking for 50 or 150 jobs returned the same 13 for "Data Scientist" in 24 hours: it is a small, fresh feed.</li>
+      <li>Each search still draws its own pause profile (3 to 7 s low, plus 4 to 9 s) and the first workers start staggered.</li>
+      <li>If Indeed pushes back (HTTP 403 or 429): wait 60 to 120 s and retry; give up on that search after two; stop the run after three searches gave up. Partial results are always saved.</li>
+      <li>No login, no stealth, no proxy.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>5. What a real run gave (2026-10-11)</h3>
+    <ul>
+      <li>15 roles, 44 searches, jobs posted within 24 hours, 3 workers: <b>94 unique jobs in 2.2 minutes</b> (51 posted yesterday, 43 today). 196 jobs were fetched; the rest were repeats across keywords or dropped by the experience rule (15 jobs below the role's minimum). No pushback at all.</li>
+      <li>29 of the 44 searches found nothing: Indeed carries almost no Ayurveda, drug-inspector or pharma-regulatory jobs. Those need the official sites.</li>
+      <li>By role: ML Engineer 31, AI Engineer 14, Data Scientist 13, Architect 13, Data Analyst 10, Drug and Regulatory 5, Clinical Research 4, Business Analyst 3, Ayurveda Pharma 1.</li>
+      <li>60 of the 94 state an experience requirement, 36 show a salary, 11 are remote.</li>
+      <li><b>Details run:</b> cap for runs without a time filter raised to 1,000 per search (largest search found 734). Non-tech roles, no time filter: <b>2,993 unique jobs in 3.0 minutes</b>. Workbook now <b>3,105 jobs</b>. Fill rates: description 98%, company page 92%, skills 81%, qualification 71%, experience 69%, apply link 58%, rating 54%, company website 45%, company info 44%, company size 42%, salary 40%, emails 11%, industry 8%, phones 6%.</li>
+      <li><b>First run without a time filter</b> (<code>--hours 0</code>) for the 7 non-tech roles: <b>2,208 unique jobs in 1.9 minutes</b>, 1,850 of them older than 7 days. The 24-hour window had hidden them: "Ayurvedic Doctor" gives 83 jobs and "BAMS Doctor" 201 without it. Use <code>--hours 0</code> for a first backlog run only; the daily automation uses 24 hours.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>6. Not in this workflow (done later, in the combined pipeline)</h3>
+    <ul>
+      <li>Title filtering and role routing: Indeed's keyword match is loose.</li>
+      <li>India and Bengaluru ranking, work-mode flags from the description, and removing duplicates across Naukri, LinkedIn, Indeed and the others.</li>
+      <li>The full description is not stored here (a 300-character snippet is); the combined pipeline can keep it if needed.</li>
+      <li>The daily 9 AM schedule.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const W = 250, H = 96;
+const X = [30, 330, 630, 930, 1230, 1530, 1830];
+const R1 = 90, R2 = 380;
+
+const NODES = [
+ {id:'start', x:X[0], y:R1, kind:'trigger', g:'▶', title:'Start (command line)', sub:'python -m indeed search', items:'1 run',
+  what:'You start a run from a terminal. It reads the shared input.csv; you can pick roles, the time window and the number of parallel workers.',
+  tech:[
+   'Entry point is <code>indeed/__main__.py</code>, built with <code>argparse</code>. One sub-command: <code>search</code>.',
+   'Options: <code>--role</code> (repeatable), <code>--hours</code> (default: automatic from the latest posted date already read), <code>--input</code> (default <code>job-radar-V3/input.csv</code>), <code>--workers</code> (default 3).',
+   'Indeed is read through the JobSpy library. No login, no account, no browser.'],
+  io:['Command line + input.csv','Roles, hours, workers'], file:'indeed/__main__.py : main()',
+  settings:['Window: automatic from output/state.json (min 24 h, max 720 h); --hours N overrides','Default workers: 3'],
+  fails:['No role matches --role: stops with "No matching roles in the input file".'],
+  code:'python -m indeed search\npython -m indeed search --role "AI Engineer" --hours 48'},
+
+ {id:'input', x:X[1], y:R1, kind:'trigger', g:'{}', title:'Read input.csv', sub:'role, keywords, experience, location', items:'15 roles',
+  what:'Loads the shared input file used by every site workflow.',
+  tech:[
+   '<code>common/inputs.py : load_input()</code> reads the CSV (UTF-8) with <code>csv.DictReader</code>, checks the four columns exist, that every role has keywords and that Experience is a number. Errors name the file line.',
+   'Unlike LinkedIn, Experience is used here: the minimum years go to the experience filter node.'],
+  io:['input.csv','list of roles'], file:'common/inputs.py : load_input()',
+  settings:['INPUT_FILE = job-radar-V3/input.csv'],
+  fails:['Missing column, empty keywords or non-numeric Experience: the run stops before any request is made.'],
+  code:'RoleInput(role="AI Engineer", keywords=["AI Engineer","LLM Engineer"], min_experience=5, locations=["India"])'},
+
+ {id:'expand', x:X[2], y:R1, kind:'logic', g:'Q', title:'Expand into searches', sub:'one per role, keyword, location', items:'44 searches',
+  what:'Turns each role into separate searches, one for every keyword and location.',
+  tech:[
+   '<code>common/inputs.py : queries_from()</code> returns <code>Query(role, keyword, location, min_experience)</code> tuples. The same function feeds Naukri and LinkedIn.',
+   'With today\'s input.csv: 15 roles become 44 searches.',
+   'Indeed location text comes from <code>config.place()</code>: "India" stays India; Bengaluru becomes "Bengaluru, India". Searches use the India Indeed site (<code>country_indeed="India"</code>).'],
+  io:['list of roles','list of Query tuples'], file:'common/inputs.py : queries_from(); indeed/config.py : place()',
+  settings:['COUNTRY = India'],
+  fails:['None: pure function, unit-tested.'],
+  code:'Query(role="AI Engineer", keyword="LLM Engineer", location="India", min_experience=5)'},
+
+ {id:'pool', x:X[3], y:R1, kind:'logic', g:'3', title:'Worker pool: 3 searches at once', sub:'ThreadPoolExecutor, staggered start', items:'3 parallel',
+  what:'Runs up to three searches at the same time so the list finishes sooner.',
+  tech:[
+   '<code>concurrent.futures.ThreadPoolExecutor(max_workers=3)</code> takes the searches in order; a free worker takes the next one.',
+   'The first workers start staggered: worker i waits i x a random 3 to 8 seconds.',
+   'A shared run-state object (with a lock) counts searches that gave up, so all workers stop together if Indeed pushes back too much.',
+   'An error in one search is caught and reported; the other searches continue.'],
+  io:['list of Query','jobs from each search'], file:'indeed/engine.py : search()',
+  settings:['WORKERS = 3','START_STAGGER = (3, 8) s','--workers N on the command line'],
+  fails:['A crash inside one search does not stop the run.'],
+  code:'with ThreadPoolExecutor(max_workers=3) as pool:\n    for q, found in pool.map(task, enumerate(queries)):\n        ...'},
+
+ {id:'request', x:X[4], y:R1, kind:'browser', g:'R', title:'Search Indeed', sub:'JobSpy scrape_jobs, one search', items:'~5 jobs/search',
+  what:'Asks Indeed for all jobs of one search posted in the time window.',
+  tech:[
+   '<code>jobspy.scrape_jobs(site_name=["indeed"], search_term=keyword, location=..., results_wanted=100, hours_old=hours, country_indeed="India")</code>.',
+   'JobSpy pages through Indeed internally and returns a table. A test with 50 and then 150 requested returned the same 13 jobs for "Data Scientist": that is all Indeed had for 24 hours.',
+   'Indeed sends the description, salary, job type and remote flag as well, which LinkedIn does not.',
+   'When <code>hours_old</code> is used, Indeed allows no other filters in the same request, so the time window is the only filter.'],
+  io:['Query','table of jobs'], file:'indeed/engine.py : fetch_query()',
+  settings:['RESULTS = 100','hours_old = --hours'],
+  fails:['Network or library error: treated like a pushback (next node).'],
+  code:'df = scrape_jobs(site_name=["indeed"], search_term="Data Scientist",\n                 location="India", results_wanted=100,\n                 hours_old=24, country_indeed="India")'},
+
+ {id:'check', x:X[5], y:R1, kind:'safety', g:'?', title:'Pushed back? (403 / 429)', sub:'empty answer + block in the log', items:'0 in last run',
+  what:'Tells apart "no jobs for this search" from "Indeed says slow down".',
+  tech:[
+   'JobSpy writes blocks to its log instead of raising them, and from its own helper thread. A small logging handler keeps every warning with its time.',
+   'A search counts as pushed back when it returned no jobs AND a message containing 429, 403, "rate limit", "forbidden" or "blocked" was logged during that search\'s time window. An exception from the library also counts.',
+   'An empty answer without such a message is a normal "nothing found" (29 of the 44 searches in the last run).',
+   'Two outputs: yes goes to the back-off node, no continues to read the jobs.'],
+  io:['Search result + log lines','pushed back, or fine'], file:'indeed/engine.py : _Collector, fetch_query()',
+  settings:['PUSHBACK_MARKERS in config.py'],
+  fails:['Another worker was blocked at the same moment: this search may back off once needlessly. That costs a minute, not data.'],
+  code:'blocked = (not jobs) and collector.pushback_between(t0, time.time())'},
+
+ {id:'backoff', x:X[6], y:R1, kind:'safety', g:'!', title:'Back off, retry, or give up', sub:'wait 60-120 s, same search again', items:'only if needed', stopnode:true,
+  what:'Waits for Indeed to calm down and tries the same search again; gives up after repeated pushbacks.',
+  tech:[
+   'Wait a random 60 to 120 seconds, then repeat the same search.',
+   'More than 2 pushbacks in a row on one search: that search gives up and the reason is recorded.',
+   'When 3 searches have given up, the whole run stops, the jobs read so far are saved and a pop-up says so. Rerun later.',
+   'It never hides or works around the block: it only slows down.'],
+  io:['pushback','retry, or stop with partial results'], file:'indeed/engine.py : run_query(), _Run',
+  settings:['BACKOFF = (60, 120) s','MAX_BLOCKS_PER_QUERY = 2','STOP_AFTER_BLOCKED_QUERIES = 3'],
+  fails:['Message: "run stopped early: too many pushbacks; rerun later". Nothing read so far is lost.'],
+  code:'sleep(random.uniform(60, 120))\ncontinue   # same search again'},
+
+ {id:'parse', x:X[5], y:R2, kind:'parse', g:'P', title:'Read the fields', sub:'job dict + experience from the text', items:'~10 fields',
+  what:'Turns each row into a job record and works out the experience the job asks for.',
+  tech:[
+   'Straight from Indeed: title, company, location, posted date, work mode (Remote flag), job type, salary, company rating and review count, industry, size, revenue, address, company website and Indeed company page, the direct apply link and the <b>full description</b> (median about 2,000 characters).',
+   'Read from the text: experience (min and max), <b>qualification</b> (BAMS, MD/MS Ayurveda, B.Pharm, M.Sc, MBA, PhD and 15 more groups), <b>skills</b> (about 120 tech, clinical, pharma, regulatory and Ayurveda terms), <b>emails and phone numbers</b>, walk-in, number of openings, and <b>salary per month in INR</b> (yearly divided by 12; weekly, daily and hourly are rough conversions).',
+   'The link is kept whole (<code>viewjob?jk=...</code>): the jk value is the job\'s identity on Indeed, so it cannot be cut like LinkedIn\'s.',
+   '<code>experience_from_text(title, description)</code>: patterns for a range (6-8 years, "2 to 4 years"), a plus (5+ years), a minimum ("minimum 4 years"), a single number, "Experience: 3-5" without units, and freshers (0 years). A title match is trusted ("Data Scientist (Exp 6-8 yrs)"). In the description a match only counts when "experience" or "exp" appears within 60 characters, so "10 years in business" is not mistaken for a requirement.',
+   'Pure functions, unit-tested on examples.'],
+  io:['JobSpy table','list of job dicts'], file:'indeed/parse.py : to_jobs(), experience_from_text()',
+  settings:['DESCRIPTION_LIMIT = 32,000 characters (Excel cell limit)','Vocabularies in parse.py: SKILLS, degree patterns'],
+  fails:['A description worded unusually gives no experience text: the job is kept as "unstated".'],
+  code:'{"title": "ML Engineer (3-5 yrs)", "experience": "3-5 years",\n "salary": "600,000 - 900,000 INR yearly", "work_mode": "Remote",\n "url": "https://in.indeed.com/viewjob?jk=..."}'},
+
+ {id:'filter', x:X[4], y:R2, kind:'logic', g:'5+', title:'Experience filter', sub:'keep if range reaches the minimum or unstated', items:'15 dropped',
+  what:'Drops jobs that ask for less experience than the role\'s minimum.',
+  tech:[
+   '<code>common/inputs.py : experience_ok(text, min_experience)</code>: keep when no minimum is set (0), when the job states no experience, or when the top of its range reaches the minimum (3-6 years passes for 5; 1-2 years does not).',
+   'Recall over precision: unstated is always kept.',
+   'In the last run 15 of 196 fetched jobs were dropped this way. The count is printed at the end.'],
+  io:['job dicts','kept jobs'], file:'common/inputs.py : experience_ok(); indeed/engine.py : search()',
+  settings:['Minimum comes from the Experience column of input.csv'],
+  fails:['None.'],
+  code:'experience_ok("3-6 years", 5)  -> True\nexperience_ok("1-2 years", 5)  -> False\nexperience_ok("", 5)           -> True'},
+
+ {id:'pause', x:X[3], y:R2, kind:'logic', g:'⏱', title:'Random pause (own profile)', sub:'low 3-7 s, high +4-9 s', items:'~3-16 s',
+  what:'After each search the worker waits a random time before taking the next one. Each search draws its own range.',
+  tech:[
+   'When a search ends it draws <code>low = U(3, 7)</code> and waits <code>U(low, low + U(4, 9))</code>. Different searches therefore tick at different speeds.',
+   'Then the worker takes the next search from the pool (the loop arrow back to the worker pool).',
+   'Indeed tolerates much shorter pauses than LinkedIn, which is why this workflow finishes 44 searches in about two minutes.'],
+  io:['nothing','time passes'], file:'indeed/engine.py : search()',
+  settings:['DELAY_LOW = (3, 7)','DELAY_SPREAD = (4, 9)'],
+  fails:['None.'],
+  code:'low = random.uniform(3, 7)\nsleep(random.uniform(low, low + random.uniform(4, 9)))'},
+
+ {id:'dedupe', x:X[2], y:R2, kind:'parse', g:'D', title:'Merge, dedupe, stamp', sub:'by job link; role, keyword, location', items:'94 unique',
+  what:'Combines the results of all searches and labels each job with where it came from.',
+  tech:[
+   'A dictionary keyed by the job link removes repeats across searches. The first search that finds a job decides its Role and Search term.',
+   'Each job is stamped with <code>role</code>, <code>term</code> (keyword) and <code>searched_location</code>.',
+   'Last run: 196 jobs fetched, 15 dropped by the experience rule, the rest merged into 94 unique jobs.',
+   'Job titles are not filtered here; that happens in the combined pipeline.'],
+  io:['kept jobs from all searches','unique jobs'], file:'indeed/engine.py : search()',
+  settings:['Unit-tested: dedupe across workers; first search wins'],
+  fails:['None.'],
+  code:'{"title": ..., "role": "ML Engineer", "term": "Machine Learning Engineer",\n "searched_location": "India", "url": ...}'},
+
+ {id:'backup', x:X[1], y:R2, kind:'store', g:'B', title:'Raw backup (JSONL)', sub:'saved before Excel is touched', items:'1 file/run',
+  what:'Writes every job of the run to a plain text file first, so a failure while writing Excel can never lose the run.',
+  tech:[
+   'One JSON object per line, UTF-8, in <code>indeed/output/runs/indeed_YYYYMMDD_HHMMSS.jsonl</code>. Dates are written in ISO format.',
+   'The same safeguard as the Naukri and LinkedIn workflows.'],
+  io:['unique jobs','.jsonl file'], file:'indeed/__main__.py',
+  settings:['RUNS_DIR = indeed/output/runs'],
+  fails:['Disk full or folder locked: the error shows before Excel is attempted.'],
+  code:'{"title":"ML Engineer","company":"...","experience":"3-5 years","url":"https://in.indeed.com/viewjob?jk=..."}'},
+
+ {id:'excel', x:X[0], y:R2, kind:'store', g:'X', title:'Merge into Excel: Indeed.xlsx', sub:'openpyxl, keyed by job link', items:'94 new',
+  what:'Adds new jobs to the workbook and refreshes known ones, without touching what you typed. This is the output.',
+  tech:[
+   'Existing rows are read back with <code>openpyxl.load_workbook</code>, matched by column header and keyed by the hyperlink target of the Link cell. Excel returns dates as datetimes, so they are converted to dates.',
+   'New link: added with Status "New" and First seen = today. Known link: details are filled in or refreshed (so older rows gain the new columns when seen again); <b>Role, Status, Notes and First seen are kept</b>.',
+   'Tab "Indeed", 33 columns (listed in the output card). Newest first, clickable "Open" links for the job, the direct apply link, the company website and the Indeed company page, Status dropdown, frozen panes, auto-filter. Numbers (salary, rating, reviews) are real numbers so you can sort and filter them.',
+   'If Excel has the file open, a timestamped copy is written and the screen says so. Close the file in Excel before a run.'],
+  io:['unique jobs + existing workbook','indeed/output/Indeed.xlsx'], file:'indeed/excel.py : save(), merge(), _write()',
+  settings:['EXCEL_PATH = indeed/output/Indeed.xlsx','STATUSES = New, Interested, Applied, Not relevant'],
+  fails:['File open in Excel: timestamped copy; close Excel and rerun.'],
+  code:'rows, n_new, n_upd = merge(existing, jobs, today)\ntry:\n    _write(rows, path)\nexcept PermissionError:\n    _write(rows, timestamped_copy)'}
+];
+
+const EDGES = [
+ ['start','input','r','l','',false,'--trigger'],
+ ['input','expand','r','l','',false,'--trigger'],
+ ['expand','pool','r','l','',false,'--logic'],
+ ['pool','request','r','l','x3 in parallel',false,'--logic'],
+ ['request','check','r','l','',false,'--browser'],
+ ['check','backoff','r','l','yes: 403 / 429',true,'--safety'],
+ ['backoff','request','t','t','wait 60-120 s, same search',true,'--safety'],
+ ['check','parse','b','t','no: got jobs / nothing found',false,'--parse'],
+ ['parse','filter','l','r','',false,'--parse'],
+ ['filter','pause','l','r','',false,'--logic'],
+ ['pause','pool','t','b','next search',true,'--logic'],
+ ['pause','dedupe','l','r','all searches done',false,'--parse'],
+ ['dedupe','backup','l','r','',false,'--store'],
+ ['backup','excel','l','r','',false,'--store']
+];
+
+const ORDER = ['start','input','expand','pool','request','check','parse','filter','pause','dedupe','backup','excel'];
+
+const cv = document.getElementById('canvas');
+const byId = {};
+NODES.forEach(n => { byId[n.id] = n; });
+
+function css(v){ return `var(${v})`; }
+
+// nodes
+NODES.forEach(n => {
+  const d = document.createElement('div');
+  d.className = 'node' + (n.stopnode ? ' stopnode' : '');
+  d.id = 'n_' + n.id;
+  d.style.cssText = `left:${n.x}px;top:${n.y}px;--c:${css('--' + n.kind)}`;
+  d.innerHTML = `<div class="t"><span class="g">${n.g}</span>${n.title}</div><div class="s">${n.sub}</div><div class="badge">${n.items}</div>`;
+  d.addEventListener('click', () => select(n.id));
+  cv.appendChild(d);
+});
+
+// edges
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('class', 'edges');
+svg.innerHTML = '<defs></defs>';
+cv.insertBefore(svg, cv.firstChild);
+
+function port(n, p){
+  if (p === 'r') return [n.x + W, n.y + H/2, 1, 0];
+  if (p === 'l') return [n.x, n.y + H/2, -1, 0];
+  if (p === 't') return [n.x + W/2, n.y, 0, -1];
+  return [n.x + W/2, n.y + H, 0, 1];
+}
+EDGES.forEach((e, i) => {
+  const [a, b, pa, pb, label, dash, col] = e;
+  const [x1, y1, dx1, dy1] = port(byId[a], pa);
+  const [x2, y2, dx2, dy2] = port(byId[b], pb);
+  const k = (pa === pb) ? 90 : Math.max(60, Math.hypot(x2 - x1, y2 - y1) / 3);
+  const d = `M${x1},${y1} C${x1 + dx1*k},${y1 + dy1*k} ${x2 + dx2*k},${y2 + dy2*k} ${x2},${y2}`;
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', d); p.setAttribute('id', 'e' + i);
+  p.setAttribute('class', 'edge' + (dash ? ' dash' : ''));
+  p.setAttribute('stroke', css(col)); p.setAttribute('marker-end', `url(#ar${i})`);
+  const m = document.createElementNS(NS, 'marker');
+  m.setAttribute('id', 'ar' + i); m.setAttribute('viewBox', '0 0 10 10'); m.setAttribute('refX', '9'); m.setAttribute('refY', '5');
+  m.setAttribute('markerWidth', '7'); m.setAttribute('markerHeight', '7'); m.setAttribute('orient', 'auto-start-reverse');
+  m.innerHTML = `<path d="M0,0 L10,5 L0,10 z" fill="${css(col)}"/>`;
+  svg.firstChild.appendChild(m);
+  svg.appendChild(p);
+  const dot = document.createElementNS(NS, 'circle');
+  dot.setAttribute('r', '4'); dot.setAttribute('fill', css(col));
+  dot.innerHTML = `<animateMotion dur="${3 + (i % 3)}s" repeatCount="indefinite"><mpath href="#e${i}"/></animateMotion>`;
+  svg.appendChild(dot);
+  if (label) {
+    const mid = (t) => { // point on the cubic at t
+      const c = [[x1,y1],[x1+dx1*k,y1+dy1*k],[x2+dx2*k,y2+dy2*k],[x2,y2]], u = 1 - t;
+      return [0,1].map(j => u*u*u*c[0][j] + 3*u*u*t*c[1][j] + 3*u*t*t*c[2][j] + t*t*t*c[3][j]);
+    };
+    const [mx, my] = mid(0.5);
+    const l = document.createElement('div');
+    l.className = 'elabel'; l.style.left = mx + 'px'; l.style.top = my + 'px'; l.textContent = label;
+    cv.appendChild(l);
+  }
+});
+
+// panel
+const panel = document.getElementById('panel');
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function overview(){
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--browser)">Overview</span>
+   <h2>How it works, in one paragraph</h2>
+   <p>The workflow turns each role in input.csv into searches (one per keyword and place) and runs three at a time. Each search asks Indeed's India site, through JobSpy, for every job posted in the time window. Indeed also sends the description, salary and job type, so the workflow reads the experience out of the text and drops jobs below the role's minimum. If Indeed pushes back it waits a minute or two and retries; if that repeats it stops and saves what it has. The jobs are de-duplicated, backed up and added to an Excel file that keeps your Status and Notes.</p>
+   <h3>Why this design</h3>
+   <ul>
+    <li>Indeed returns a small fresh feed per search (13 for "Data Scientist" in 24 hours), so no paging is needed and the run takes about two minutes.</li>
+    <li>Indeed carries almost no Ayurveda, drug-inspector or pharma-regulatory jobs; the official sites are the source for those.</li>
+    <li>Experience comes from the job text, so the 5+ years rule works here, unlike on LinkedIn.</li>
+    <li>No login, no stealth, no proxy: slow down and stop if blocked.</li>
+   </ul>
+   <h3>Click a node</h3>
+   <p>Each node explains its job, the file and function behind it, its settings and what happens if it fails. Press "Run the workflow" to watch the order.</p>`;
+}
+
+function select(id){
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('sel'));
+  document.getElementById('n_' + id).classList.add('sel');
+  const n = byId[id];
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--${n.kind})">${{trigger:'Trigger / input',browser:'Browser',logic:'Logic',parse:'Parse',store:'Storage',safety:'Safety'}[n.kind]}</span>
+   <h2>${n.title}</h2>
+   <p style="margin:4px 0 0">${n.what}</p>
+   <h3>Input and output</h3>
+   <div class="io"><div><b>In</b>${n.io[0]}</div><div><b>Out</b>${n.io[1]}</div></div>
+   <h3>Technical detail</h3><ul>${n.tech.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>File and function</h3><p style="margin:0"><code>${n.file}</code></p>
+   <h3>Settings</h3><ul>${n.settings.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>If it fails</h3>${n.fails.map(t => `<div class="fail">${t}</div>`).join('')}
+   ${n.code ? `<h3>Code / sample</h3><pre>${esc(n.code)}</pre>` : ''}`;
+  panel.scrollTop = 0;
+}
+overview();
+
+// run animation
+let timers = [];
+function reset(){
+  timers.forEach(clearTimeout); timers = [];
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('done', 'run', 'sel'));
+  overview();
+}
+function play(){
+  reset();
+  ORDER.forEach((id, i) => {
+    timers.push(setTimeout(() => {
+      document.querySelectorAll('.node.run').forEach(x => x.classList.remove('run'));
+      const el = document.getElementById('n_' + id);
+      el.classList.add('run');
+      el.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'});
+      timers.push(setTimeout(() => { el.classList.remove('run'); el.classList.add('done'); }, 650));
+    }, i * 800));
+  });
+}
+document.getElementById('play').addEventListener('click', play);
+document.getElementById('reset').addEventListener('click', reset);
+</script>
+</body>
+</html>

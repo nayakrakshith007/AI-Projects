@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cutshort Workflow</title>
+<style>
+:root{
+  --bg:#14151c; --panel:#1c1e28; --panel2:#232634; --line:#2f3345; --text:#e8eaf2; --muted:#9aa0b8;
+  --trigger:#ff6d5a; --browser:#4c8dff; --logic:#a06bff; --parse:#2fbf71; --store:#19b5c4; --safety:#ff4d6d; --warn:#f5a524;
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#eef0f6;--panel:#ffffff;--panel2:#f4f5fa;--line:#d5d9e6;--text:#1c2030;--muted:#5d6580}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",Calibri,system-ui,sans-serif}
+header{padding:20px 24px 8px}
+h1{margin:0 0 4px;font-size:24px}
+header p{margin:0;color:var(--muted);max-width:900px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+.toolbar{display:flex;gap:10px;align-items:center;padding:10px 24px;flex-wrap:wrap}
+button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer}
+button:hover{border-color:var(--browser)}
+button.primary{background:var(--trigger);border-color:var(--trigger);color:#fff;font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:16px;padding:0 24px 24px}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}}
+.canvas-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:auto;position:relative;max-height:720px}
+.canvas{position:relative;width:2130px;height:640px;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:20px 20px}
+svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.edge{fill:none;stroke-width:2}
+.edge.dash{stroke-dasharray:6 6}
+.elabel{position:absolute;transform:translate(-50%,-50%);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:11px;color:var(--muted);white-space:nowrap}
+.node{position:absolute;width:250px;height:96px;background:var(--panel2);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px 10px 16px;cursor:pointer;transition:.15s;overflow:hidden}
+.node:hover{transform:translateY(-2px);border-color:var(--c)}
+.node.sel{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
+.node::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.node .t{font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center}
+.node .g{display:inline-flex;width:22px;height:22px;border-radius:6px;background:var(--c);color:#fff;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.node .s{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.35}
+.node .badge{position:absolute;right:8px;bottom:6px;font-size:11px;font-weight:700;color:var(--c);opacity:0}
+.node.done{border-color:var(--parse)}
+.node.done .badge{opacity:1}
+.node.run{box-shadow:0 0 0 4px color-mix(in srgb,var(--warn) 45%,transparent);border-color:var(--warn)}
+.node.stopnode{border-style:dashed}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;max-height:720px;overflow:auto}
+.panel h2{margin:0 0 2px;font-size:19px}
+.panel .kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-radius:5px;padding:1px 8px;margin-bottom:8px}
+.panel h3{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.panel ul{margin:0;padding-left:18px}
+.panel li{margin:3px 0}
+.panel code,.panel pre{font-family:Consolas,"Cascadia Mono",monospace;font-size:12px}
+.panel code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.panel pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;margin:6px 0 0}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.io div{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px}
+.io b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fail{border-left:3px solid var(--safety);padding:2px 0 2px 10px;margin:6px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;padding:0 24px 32px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{margin:0 0 8px;font-size:15px}
+.card pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;font:12px/1.5 Consolas,monospace;margin:6px 0}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:3px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+th{color:var(--muted);font-weight:600}
+@media (prefers-reduced-motion:reduce){.node{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Cutshort workflow (tech roles)</h1>
+  <p>Reads Cutshort's public data science job lists (India, Bengaluru, remote) in one real Chrome. Each list page ships its newest 50 jobs as JSON inside the page, so no scrolling and no screen scraping are needed. Click any node for the technical detail.</p>
+  <div class="chips">
+    <span class="chip"><b>Python</b> 3.12</span>
+    <span class="chip"><b>Playwright</b> + installed Chrome, one window</span>
+    <span class="chip"><b>3 public lists</b> newest first, 50 jobs each</span>
+    <span class="chip"><b>BeautifulSoup</b> + the page's JSON</span>
+    <span class="chip"><b>openpyxl</b> Excel</span>
+    <span class="chip"><b>0</b> Claude tokens</span>
+    <span class="chip"><b>$0</b> no login</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="primary" id="play">Run the workflow (animation)</button>
+  <button id="reset">Reset</button>
+  <div class="legend">
+    <span><i style="background:var(--trigger)"></i>Trigger / input</span>
+    <span><i style="background:var(--browser)"></i>Browser</span>
+    <span><i style="background:var(--logic)"></i>Logic</span>
+    <span><i style="background:var(--parse)"></i>Parse</span>
+    <span><i style="background:var(--store)"></i>Storage</span>
+    <span><i style="background:var(--safety)"></i>Safety</span>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="canvas-wrap"><div class="canvas" id="canvas"></div></div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<div class="cards">
+  <div class="card"><h3>1. The input you give it</h3>
+    <p style="margin:0 0 6px">Cutshort has broad categories, not one page per role, so the lists live in <code>cutshort/lists.csv</code>. <code>input.csv</code> only sets the experience rule (the lowest minimum of the tech roles, 5).</p>
+<pre>slug,label
+datascience-jobs,Data Science (India)
+datascience-jobs-in-bangalore-bengaluru,Data Science (Bengaluru)
+remote-datascience-jobs,Data Science (Remote)</pre>
+    <ul>
+      <li>Command line: <code>--hours N</code> (default automatic, at most 168 h = 7 days), <code>--input</code>.</li>
+      <li>Role routing (which job is an AI Engineer, a Data Analyst ...) is done later, in the combined pipeline; the Role column stays empty here.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>2. The output (all inside <code>cutshort/output/</code>)</h3>
+<table>
+<tr><th>File</th><th>What</th></tr>
+<tr><td><code>Cutshort.xlsx</code></td><td>The result. Tab "Cutshort", one row per job, your Status and Notes kept.</td></tr>
+<tr><td><code>runs/cutshort_*.jsonl</code></td><td>Raw backup of each run, written before Excel.</td></tr>
+<tr><td><code>state.json</code></td><td>Latest posted date read; sets the next window.</td></tr>
+</table>
+    <p style="margin:8px 0 0;color:var(--muted)">Columns: Title, Company, Hiring for client, Role, Experience, Exp min, Exp max, Location, Bengaluru, Work mode, Job type, Salary, Skills, Posted, Posted date, Posted at, Company type, size, stage, Founded, Company website, Company LinkedIn, Found in, full Description, First seen, Link, Status, Notes.</p>
+  </div>
+  <div class="card"><h3>3. Commands (from <code>job-radar-V3</code>)</h3>
+<pre>.venv\Scripts\python -m cutshort search
+.venv\Scripts\python -m cutshort search --hours 168
+.venv\Scripts\python -m cutshort check
+.venv\Scripts\python -m pytest cutshort/tests</pre>
+    <p style="margin:0;color:var(--muted)">Close <code>Cutshort.xlsx</code> in Excel before a run. If it is open, a timestamped copy is written instead.</p>
+  </div>
+  <div class="card"><h3>4. What Cutshort offers without a login</h3>
+    <ul>
+      <li>The personal link <code>/profile/all-jobs?matchesfor=...</code> needs a login (it redirects to the sign-up page), so it is not used.</li>
+      <li>Public category pages <code>/jobs/&lt;category&gt;-jobs</code> show the <b>newest 50</b> jobs of a list, newest first. "Page 2" returns the same 50.</li>
+      <li>Only broad categories exist (data science, backend, DevOps ...). There is no page for machine learning, AI, analyst or architect roles.</li>
+      <li>The keyword search (<code>/search-jobs</code>) is ranked by relevance, matches loosely (3,948 hits for "machine learning engineer") and each response is about 20 MB, so it is not used.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>5. What a real run gave (2026-10-11)</h3>
+    <ul>
+      <li>3 pages, 150 jobs read in about 45 seconds. No human check.</li>
+      <li><b>7-day window: 2 jobs. 30-day window: 9 jobs</b> (India 9, Bengaluru 2 of which are also in India, remote 0). Cutshort adds only a few data science jobs a week.</li>
+      <li>4 internships were dropped; the experience rule dropped none beyond that.</li>
+      <li>Each job has salary, experience range, skills, company size and stage, website and the full description (up to 7,600 characters here).</li>
+    </ul>
+  </div>
+  <div class="card"><h3>6. Not in this workflow (done later, in the combined pipeline)</h3>
+    <ul>
+      <li>Role routing and title filtering, and removing duplicates across all sites.</li>
+      <li>Roles outside data science (Business Analyst, Architect): Cutshort has no list for them.</li>
+      <li>The daily 9 AM schedule.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const W = 250, H = 96;
+const X = [30, 330, 630, 930, 1230, 1530, 1830];
+const R1 = 90, R2 = 380;
+
+const NODES = [
+ {id:'start', x:X[0], y:R1, kind:'trigger', g:'▶', title:'Start (command line)', sub:'python -m cutshort search', items:'1 run',
+  what:'You start a run from a terminal. It reads input.csv for the experience rule and works out the time window.',
+  tech:[
+   'Entry point is <code>cutshort/__main__.py</code> (<code>argparse</code>, sub-commands <code>search</code> and <code>check</code>).',
+   'The window is automatic: since midnight of the latest posted date already read (<code>common/window.py</code>), at least 24 h and at most 168 h = 7 days. <code>--hours</code> overrides.',
+   '<code>input.csv</code> gives the experience rule: the lowest minimum among the tech roles (5). Only public pages are read; no login.'],
+  io:['Command line + input.csv','window, minimum experience'], file:'cutshort/__main__.py : main(); common/window.py',
+  settings:['MAX_WINDOW_HOURS = 168'],
+  fails:['No tech role in input.csv: stops with a message.'],
+  code:'python -m cutshort search\npython -m cutshort search --hours 168'},
+
+ {id:'lists', x:X[1], y:R1, kind:'logic', g:'P', title:'The public lists', sub:'cutshort/lists.csv', items:'3 lists',
+  what:'Loads which Cutshort job lists to read.',
+  tech:[
+   'Cutshort has category pages, not a page per role: <code>/jobs/datascience-jobs</code> (330 jobs in India), <code>/jobs/datascience-jobs-in-bangalore-bengaluru</code> (138) and <code>/jobs/remote-datascience-jobs</code> (68).',
+   'Each list shows its newest 50 jobs and nothing older, which is plenty for a daily run (a list gains a few jobs a week). The command line warns if all 50 are inside the window.',
+   'Roles without a category (Business Analyst, Architect ...) are not covered by Cutshort. Other categories can be added as one line in <code>lists.csv</code>.'],
+  io:['lists.csv','3 list addresses'], file:'cutshort/config.py : load_lists(), list_url(); cutshort/lists.csv',
+  settings:['lists.csv: slug, label'],
+  fails:['A list is renamed: its page shows no jobs and the run reports it.'],
+  code:'JobList(slug="remote-datascience-jobs", label="Data Science (Remote)")'},
+
+ {id:'load', x:X[2], y:R1, kind:'browser', g:'C', title:'Open a list in Chrome', sub:'one visible Chrome, slow pauses', items:'3 pages',
+  what:'Opens each list in one real, visible Chrome, one after another, with human-like pauses.',
+  tech:[
+   '<code>chromium.launch(channel="chrome", headless=False)</code> with a fresh browser context. Nothing is saved between runs.',
+   'The page is Next.js: it ships its job list inside <code>&lt;script id="__NEXT_DATA__"&gt;</code>, so no scrolling or clicking is needed.',
+   'A random 3 to 6 s pause after the load and 6 to 12 s between lists. The whole run takes under a minute.'],
+  io:['list address','page HTML'], file:'cutshort/search.py : read_list(); cutshort/session.py',
+  settings:['PAUSE_AFTER_LOAD = (3, 6) s','PAUSE_BETWEEN_PAGES = (6, 12) s'],
+  fails:['Chrome window closed by hand: that list is reported as failed and the next list is tried in a new Chrome.'],
+  code:'pg.goto("https://cutshort.io/jobs/datascience-jobs")\nhtml = pg.content()'},
+
+ {id:'check', x:X[3], y:R1, kind:'safety', g:'?', title:'Human check showing?', sub:'no jobs + warning words', items:'0 so far',
+  what:'Decides whether an empty page means "no such list" or "Cutshort wants proof you are human".',
+  tech:[
+   'Only when the page gave no jobs: the page text is searched for "verify you are human", "captcha", "access denied", "checking your browser", "press & hold" or "unusual traffic".',
+   'Found: <code>HumanCheckPending</code> stops the run, keeps what was read, and shows a pop-up. Not found: the list is reported as empty.',
+   'The code never solves or hides a check. It did not appear in the real runs.'],
+  io:['page with no jobs','continue, or stop'], file:'cutshort/search.py : read_list(); cutshort/session.py',
+  settings:['CHECK_MARKERS in config.py'],
+  fails:['Cutshort rewords the check: it would look like an empty list, which is reported.'],
+  code:'if any(m in body for m in CHECK_MARKERS):\n    raise HumanCheckPending(...)'},
+
+ {id:'stop', x:X[4], y:R1, kind:'safety', g:'!', title:'Stop, keep results, notify you', sub:'pop-up + check_cutshort.bat', items:'only if needed', stopnode:true,
+  what:'Ends the run safely. Everything already read is kept and saved.',
+  tech:[
+   'The error is reported; jobs read so far are backed up and added to Excel. <code>notify.popup()</code> shows a Windows message box without blocking.',
+   '<code>check_cutshort.bat</code> opens a visible Chrome on a Cutshort list and waits up to 10 minutes while you pass the check by hand (do not sign in). Then rerun.',
+   'The latest-posted-date state is not moved after an error, so no day is skipped.'],
+  io:['HumanCheckPending','pop-up, partial results saved'], file:'cutshort/notify.py, cutshort/session.py : wait_for_human()',
+  settings:['check timeout: 600 s'],
+  fails:['You close the window without passing it: "No jobs seen. Run it again."'],
+  code:'check_cutshort.bat\n  -> .venv\\Scripts\\python -m cutshort check'},
+
+ {id:'read', x:X[3], y:R2, kind:'parse', g:'J', title:'Read the page JSON', sub:'50 jobs per list', items:'150 jobs',
+  what:'Turns the JSON in the page into job records.',
+  tech:[
+   '<code>parse_page()</code> finds the <code>jobListData</code> query inside <code>__NEXT_DATA__</code>: the jobs and the total count of the list.',
+   'Per job: title, company, location text, experience range, salary text, remote type (Onsite, Remote, Onsite or remote), job type, skills, the exact posting time (UTC, converted to Indian time), company type, size, stage, founded year, website and LinkedIn, the full description (HTML turned into text, up to 32,000 characters) and the job link.',
+   'Staffing agencies post as "Hiring for ..." (flag "Hiring for client"). <b>Personal data:</b> the recruiter who posted a job is named in the data; it is never read or stored, not even in the test fixtures.'],
+  io:['page HTML','job dicts'], file:'cutshort/parse.py : parse_page(), html_to_text(), posted_ist()',
+  settings:['DESCRIPTION_LIMIT = 32000','Tested on a saved real page'],
+  fails:['Cutshort changes its page data: the tests on the saved page show which field.'],
+  code:'{"title": "Data Scientist – Agentic AI", "experience": "5-8 years", "salary": "₹2L - ₹15L / yr",\n "posted_at": "2026-10-07T09:52", "work_mode": "Onsite", ...}'},
+
+ {id:'filter', x:X[2], y:R2, kind:'logic', g:'F', title:'Window and experience rules', sub:'exact time; exact years', items:'141 dropped',
+  what:'Keeps only jobs inside the window that pass the rules.',
+  tech:[
+   '<b>Window</b> (<code>in_window()</code>): the exact posting time is compared with now minus the window.',
+   '<b>Internships</b> that are only internships are dropped. <b>Experience</b> (<code>experience_ok()</code>): a job stays if the top of its range reaches the minimum (5), or it states none.',
+   '<b>Location:</b> the lists are India and remote lists; a Bengaluru column marks Bengaluru and Bangalore jobs. Work mode shows Onsite, Remote or Onsite or remote.'],
+  io:['all jobs read','kept jobs'], file:'cutshort/search.py : keep(), in_window(); common/inputs.py : experience_ok()',
+  settings:['Minimum experience comes from input.csv'],
+  fails:['None.'],
+  code:'experience_ok("3-10 years", 5)  -> True\nexperience_ok("2-4 years", 5)   -> False'},
+
+ {id:'merge', x:X[1], y:R2, kind:'parse', g:'M', title:'One record per job', sub:'by Cutshort job id; "Found in"', items:'9 unique (30 days)',
+  what:'A job on more than one list becomes one record that names every list.',
+  tech:[
+   'Records are keyed by Cutshort job id. A Bengaluru job usually also sits in the India list; "Found in" shows both, for example "Data Science (Bengaluru), Data Science (India)".',
+   'In Excel the "Found in" column only grows when a later run sees the job on another list.'],
+  io:['kept jobs from 3 lists','unique jobs'], file:'cutshort/search.py : search()',
+  settings:['None'],
+  fails:['None.'],
+  code:'old["lists"] = sorted(set(old["lists"]) | {lst.label})'},
+
+ {id:'excel', x:X[0], y:R2, kind:'store', g:'X', title:'Backup, then Excel: Cutshort.xlsx', sub:'openpyxl, keyed by job link', items:'9 rows',
+  what:'Writes a raw backup, then adds new jobs to the workbook and refreshes known ones, without touching what you typed. This is the output.',
+  tech:[
+   '<b>Backup first:</b> one JSON object per line in <code>cutshort/output/runs/cutshort_YYYYMMDD_HHMMSS.jsonl</code>, so a failure while writing Excel never loses a run.',
+   'Existing rows are read back by column header and keyed by the hyperlink target of the Link cell. New link: added with Status "New". Known link: details refreshed; <b>Role, Status, Notes and First seen are kept</b>.',
+   'Tab "Cutshort", 28 columns including the full Description. Clickable Open links for the job, the company website and LinkedIn; Status dropdown; frozen panes; auto-filter; newest first.',
+   'After a clean run the latest posted date is saved to <code>state.json</code> (the next window, capped at 7 days). A run that stopped with an error does not move it. If Excel has the file open, a timestamped copy is written.'],
+  io:['kept jobs + existing workbook','cutshort/output/Cutshort.xlsx'], file:'cutshort/excel.py : save(), merge(), _write(); common/window.py',
+  settings:['EXCEL_PATH = cutshort/output/Cutshort.xlsx','STATUSES = New, Interested, Applied, Not relevant'],
+  fails:['File open in Excel: timestamped copy; close Excel and rerun.'],
+  code:'rows, n_new, n_upd = merge(existing, jobs, today)\ntry:\n    _write(rows, path)\nexcept PermissionError:\n    _write(rows, timestamped_copy)'}
+];
+
+const EDGES = [
+ ['start','lists','r','l','',false,'--trigger'],
+ ['lists','load','r','l','',false,'--logic'],
+ ['load','check','r','l','',false,'--browser'],
+ ['check','stop','r','l','yes: stop',true,'--safety'],
+ ['check','read','b','t','no',false,'--parse'],
+ ['read','filter','l','r','',false,'--parse'],
+ ['filter','merge','l','r','',false,'--logic'],
+ ['merge','excel','l','r','',false,'--store']
+];
+
+const ORDER = ['start','lists','load','check','read','filter','merge','excel'];
+
+const cv = document.getElementById('canvas');
+const byId = {};
+NODES.forEach(n => { byId[n.id] = n; });
+
+function css(v){ return `var(${v})`; }
+
+// nodes
+NODES.forEach(n => {
+  const d = document.createElement('div');
+  d.className = 'node' + (n.stopnode ? ' stopnode' : '');
+  d.id = 'n_' + n.id;
+  d.style.cssText = `left:${n.x}px;top:${n.y}px;--c:${css('--' + n.kind)}`;
+  d.innerHTML = `<div class="t"><span class="g">${n.g}</span>${n.title}</div><div class="s">${n.sub}</div><div class="badge">${n.items}</div>`;
+  d.addEventListener('click', () => select(n.id));
+  cv.appendChild(d);
+});
+
+// edges
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('class', 'edges');
+svg.innerHTML = '<defs></defs>';
+cv.insertBefore(svg, cv.firstChild);
+
+function port(n, p){
+  if (p === 'r') return [n.x + W, n.y + H/2, 1, 0];
+  if (p === 'l') return [n.x, n.y + H/2, -1, 0];
+  if (p === 't') return [n.x + W/2, n.y, 0, -1];
+  return [n.x + W/2, n.y + H, 0, 1];
+}
+EDGES.forEach((e, i) => {
+  const [a, b, pa, pb, label, dash, col] = e;
+  const [x1, y1, dx1, dy1] = port(byId[a], pa);
+  const [x2, y2, dx2, dy2] = port(byId[b], pb);
+  const k = (pa === pb) ? 90 : Math.max(60, Math.hypot(x2 - x1, y2 - y1) / 3);
+  const d = `M${x1},${y1} C${x1 + dx1*k},${y1 + dy1*k} ${x2 + dx2*k},${y2 + dy2*k} ${x2},${y2}`;
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', d); p.setAttribute('id', 'e' + i);
+  p.setAttribute('class', 'edge' + (dash ? ' dash' : ''));
+  p.setAttribute('stroke', css(col)); p.setAttribute('marker-end', `url(#ar${i})`);
+  const m = document.createElementNS(NS, 'marker');
+  m.setAttribute('id', 'ar' + i); m.setAttribute('viewBox', '0 0 10 10'); m.setAttribute('refX', '9'); m.setAttribute('refY', '5');
+  m.setAttribute('markerWidth', '7'); m.setAttribute('markerHeight', '7'); m.setAttribute('orient', 'auto-start-reverse');
+  m.innerHTML = `<path d="M0,0 L10,5 L0,10 z" fill="${css(col)}"/>`;
+  svg.firstChild.appendChild(m);
+  svg.appendChild(p);
+  const dot = document.createElementNS(NS, 'circle');
+  dot.setAttribute('r', '4'); dot.setAttribute('fill', css(col));
+  dot.innerHTML = `<animateMotion dur="${3 + (i % 3)}s" repeatCount="indefinite"><mpath href="#e${i}"/></animateMotion>`;
+  svg.appendChild(dot);
+  if (label) {
+    const mid = (t) => { // point on the cubic at t
+      const c = [[x1,y1],[x1+dx1*k,y1+dy1*k],[x2+dx2*k,y2+dy2*k],[x2,y2]], u = 1 - t;
+      return [0,1].map(j => u*u*u*c[0][j] + 3*u*u*t*c[1][j] + 3*u*t*t*c[2][j] + t*t*t*c[3][j]);
+    };
+    const [mx, my] = mid(0.5);
+    const l = document.createElement('div');
+    l.className = 'elabel'; l.style.left = mx + 'px'; l.style.top = my + 'px'; l.textContent = label;
+    cv.appendChild(l);
+  }
+});
+
+// panel
+const panel = document.getElementById('panel');
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function overview(){
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--browser)">Overview</span>
+   <h2>How it works, in one paragraph</h2>
+   <p>The workflow opens three public Cutshort lists (data science jobs in India, in Bengaluru and remote) in one real Chrome. Each page ships its newest 50 jobs as JSON, which is read directly. Jobs are filtered by exact posting time, by the 5+ years rule and for internships, merged by job id, backed up and added to an Excel file that keeps your Status and Notes.</p>
+   <h3>Why this design</h3>
+   <ul>
+    <li>Cutshort's personal "matches for you" list needs a login, so only the public category pages are used.</li>
+    <li>The public pages show only the newest 50 jobs per list and have no page for ML, AI, analyst or architect roles, so this workflow covers data science only. That is enough for daily runs: the lists gain a few jobs a week.</li>
+    <li>The search page is relevance-ranked and about 20 MB per response, so it is not used.</li>
+    <li>No login, no stealth, no proxy, no recruiter personal data: if a check appears, everything stops and tells you.</li>
+   </ul>
+   <h3>Click a node</h3>
+   <p>Each node explains its job, the file and function behind it, its settings and what happens if it fails. Press "Run the workflow" to watch the order.</p>`;
+}
+
+function select(id){
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('sel'));
+  document.getElementById('n_' + id).classList.add('sel');
+  const n = byId[id];
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--${n.kind})">${{trigger:'Trigger / input',browser:'Browser',logic:'Logic',parse:'Parse',store:'Storage',safety:'Safety'}[n.kind]}</span>
+   <h2>${n.title}</h2>
+   <p style="margin:4px 0 0">${n.what}</p>
+   <h3>Input and output</h3>
+   <div class="io"><div><b>In</b>${n.io[0]}</div><div><b>Out</b>${n.io[1]}</div></div>
+   <h3>Technical detail</h3><ul>${n.tech.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>File and function</h3><p style="margin:0"><code>${n.file}</code></p>
+   <h3>Settings</h3><ul>${n.settings.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>If it fails</h3>${n.fails.map(t => `<div class="fail">${t}</div>`).join('')}
+   ${n.code ? `<h3>Code / sample</h3><pre>${esc(n.code)}</pre>` : ''}`;
+  panel.scrollTop = 0;
+}
+overview();
+
+// run animation
+let timers = [];
+function reset(){
+  timers.forEach(clearTimeout); timers = [];
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('done', 'run', 'sel'));
+  overview();
+}
+function play(){
+  reset();
+  ORDER.forEach((id, i) => {
+    timers.push(setTimeout(() => {
+      document.querySelectorAll('.node.run').forEach(x => x.classList.remove('run'));
+      const el = document.getElementById('n_' + id);
+      el.classList.add('run');
+      el.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'});
+      timers.push(setTimeout(() => { el.classList.remove('run'); el.classList.add('done'); }, 650));
+    }, i * 800));
+  });
+}
+document.getElementById('play').addEventListener('click', play);
+document.getElementById('reset').addEventListener('click', reset);
+</script>
+</body>
+</html>

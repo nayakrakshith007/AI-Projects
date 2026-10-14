@@ -1,0 +1,337 @@
+{
+ "data": [
+  {
+   "id": 1676619,
+   "title": "Pattem Digital - Forward Deployed Engineer - Full Stack Development",
+   "min": 5,
+   "max": 7,
+   "createdBy": 267443,
+   "creatorDomainName": "pattemdigital.com",
+   "categoryId": 16,
+   "jobdesignation": "Forward Deployed Engineer",
+   "status": 1,
+   "jobDetailUrl": "https://www.hirist.tech/j/pattem-digital-forward-deployed-engineer-full-stack-development-1676619",
+   "femaleCandidate": 0,
+   "differentlyAbled": 0,
+   "exDefence": 0,
+   "workFromHome": 0,
+   "femaleBackWorkForce": 0,
+   "confidential": 0,
+   "premium": 0,
+   "brandedJd": 0,
+   "star": 0,
+   "applyStatus": 1,
+   "applyCount": 228,
+   "createdTimeMs": 1791187109592,
+   "createdTime": 1791138600000,
+   "tagIdString": "1612 2043 434 26 135480 9 5 288443",
+   "tags": [
+    {
+     "id": 1612,
+     "name": "Full Stack",
+     "isMandatory": true
+    },
+    {
+     "id": 2043,
+     "name": "React.js",
+     "isMandatory": true
+    },
+    {
+     "id": 434,
+     "name": "Node.js",
+     "isMandatory": true
+    },
+    {
+     "id": 26,
+     "name": "Javascript",
+     "isMandatory": true
+    },
+    {
+     "id": 135480,
+     "name": "Generative AI",
+     "isMandatory": true
+    },
+    {
+     "id": 9,
+     "name": "Python",
+     "isMandatory": true
+    },
+    {
+     "id": 5,
+     "name": "Java",
+     "isMandatory": false
+    },
+    {
+     "id": 288443,
+     "name": "Forward Deployment Engineering",
+     "isMandatory": true
+    }
+   ],
+   "locations": [
+    {
+     "id": 3,
+     "name": "Bangalore"
+    }
+   ],
+   "companyStatus": 1,
+   "createdByAlias": "Bangalore",
+   "applyUrl": "",
+   "videoUrl": "",
+   "assessmentFlags": 1,
+   "mediaResume": 0,
+   "industry": "",
+   "functionalArea": 18,
+   "minSal": 0,
+   "maxSal": 0,
+   "hideSal": 1,
+   "hits": 598,
+   "otherLocation": "",
+   "brandJobFlag": 5,
+   "companyData": {
+    "companyId": 2722,
+    "companyName": "Pattem Digital Technologies",
+    "companyNameNotAnalyzed": "Pattem Digital Technologies",
+    "companyStatus": 1,
+    "logo": "https://recruiter-static-content.s3.ap-south-1.amazonaws.com/CompanyLogos/centralised-4182.webp",
+    "logoPath": "https://recruiter-static-content.s3.ap-south-1.amazonaws.com/CompanyLogos/centralised-4182.webp",
+    "companyLogoFilePath": "https://recruiter-static-content.s3.ap-south-1.amazonaws.com/CompanyLogos/centralised-4182.webp",
+    "ambitionBoxInfo": {
+     "ambitionBoxCompanyId": 787607,
+     "companyName": "Pattem Digital Technologies",
+     "reviewsCount": 20,
+     "companyLogo": "https://static.ambitionbox.com/assets/v2/images/rs:fit:200:200:false:false/aHR0cHM6Ly9tZWRpYS5uYXVrcmkuY29tL21lZGlhL2FiY29tcGxvZ28vcGF0dGVtLWRpZ2l0YWwtdGVjaG5vbG9naWVzLmpwZw.webp",
+     "aboutCompany": "Pattem Digital, We have a new-age digital studio at your beck and call. Bank on a new-age Outsourced Product Development (OPD) firm that is also your go-to Data Science, AI and Machine Learning development solutions provider. The tools of our craftsmanship include expertise of in-depth user research across various domains and experience of defining user interfaces for versatile products and services. We help Fortune 500 companies and promising startups design and build robust products like apps, software, games, and complex applications using technologies like Big Data, Artificial Intelligence, and Machine Learning. With a team of full-stack data scientists, data engineers, and app developers on our roaster, we are your perfect folly to tackle challenges. Our choicest offerings include Strategy (consulting), UX research, Experience Design, UI Development, Mobile Apps, NodeJS, PHP Development, Java Development, .Net Development, SAP Solutions, AI &amp; ML, Game Development, IOT, etc. We are AGILE! We follow the best practices of Scrum and Extreme Programming to deliver solutions par excellence. Explore our website to know more about us: www.pattemdigital.com&nbsp;",
+     "foundedYear": "2017",
+     "totalEmployeesIndia": "51-200",
+     "companyType": "Indian MNC",
+     "primaryIndustry": "Software Product",
+     "natureOfBusiness": [
+      "Product",
+      "Service",
+      "R&D/Development Center",
+      "B2C",
+      "B2B"
+     ],
+     "hq": "Columbus, Ohio",
+     "officeLocations": [
+      {
+       "cityName": "Bengaluru"
+      }
+     ],
+     "otherTags": [
+      "Software Product",
+      "Design",
+      "Gaming",
+      "Internet",
+      "Emerging Technologies",
+      "IT Services & Consulting"
+     ],
+     "title": "Pattem Digital Technologies Reviews by Employees",
+     "url": "https://www.ambitionbox.com/reviews/pattem-digital-technologies-reviews",
+     "aggregateRating": 3.3,
+     "aggregateRatingOneDecimal": 3.3,
+     "benefits": [
+      {
+       "name": "Health & Wellness Support",
+       "iconUrl": "https://static.ambitionbox.com/static/benefits/mentalHealth.svg",
+       "count": 1,
+       "totalCount": 1
+      },
+      {
+       "name": "Health Insurance",
+       "iconUrl": "https://static.ambitionbox.com/static/benefits/healthInsurance.svg",
+       "count": 1,
+       "totalCount": 1
+      },
+      {
+       "name": "Transport / Travel Support",
+       "iconUrl": "https://static.ambitionbox.com/static/benefits/cab.svg",
+       "count": 1,
+       "totalCount": 1
+      },
+      {
+       "name": "Learning & Development Support",
+       "iconUrl": "https://static.ambitionbox.com/static/benefits/degree.svg",
+       "count": 1,
+       "totalCount": 1
+      }
+     ],
+     "benefitsUrl": "https://www.ambitionbox.com/benefits/pattem-digital-technologies-benefits",
+     "totalBenefits": 4,
+     "usersReportedBenefits": 1,
+     "seo": {
+      "metaKeywords": [
+       "pattem digital technologies careers",
+       "pattem digital technologies Jobs",
+       "pattem digital technologies career"
+      ],
+      "hiristMetaDescription": "Apply to %%jobsCount%% Pattem Digital Technologies jobs on Hirist.tech, India's No.1 IT job portal. Explore IT job in Pattem Digital Technologies Now!",
+      "hiristPageTitle": "Pattem Digital Technologies Careers, %%jobsCount%% Pattem Digital Technologies Job Vacancies, IT Jobs in Pattem Digital Technologies|Hirist",
+      "iimjobsMetaDescription": "Apply to %%jobsCount%% Pattem Digital Technologies jobs on iimjobs.com, India's No.1 Management job portal. Explore Management job in Pattem Digital Technologies Now!",
+      "iimjobsPageTitle": "Pattem Digital Technologies Careers, %%jobsCount%% Pattem Digital Technologies Job Vacancies, Management Jobs in Pattem Digital Technologies|iimjobs",
+      "refCode": "clp_k",
+      "slug": "pattem-digital-technologies",
+      "source": "Pattem Digital Technologies Jobs"
+     }
+    },
+    "cluster": [
+     "9"
+    ],
+    "subCluster": [
+     "56"
+    ],
+    "clustersDetail": [
+     "IT Service Companies"
+    ],
+    "subClustersDetail": [
+     "Others"
+    ]
+   },
+   "refCode": "sp_br",
+   "preferedIndustry": [],
+   "industryArray": [],
+   "showCompanyLogoFlag": 0,
+   "latitude": null,
+   "longitude": null,
+   "refJobId": 1676619,
+   "location": [
+    {
+     "id": 3,
+     "name": "Bangalore"
+    }
+   ],
+   "minRatingAb": 3.8
+  },
+  {
+   "id": 1676792,
+   "title": "Forward Deployment Engineer - Generative AI",
+   "min": 3,
+   "max": 7,
+   "createdBy": 256837,
+   "creatorDomainName": "hiringblaze.com",
+   "categoryId": 14,
+   "jobdesignation": "Forward Deployment Engineer",
+   "status": 1,
+   "jobDetailUrl": "https://www.hirist.tech/j/forward-deployment-engineer-generative-ai-3-7-yrs-1676792",
+   "femaleCandidate": 0,
+   "differentlyAbled": 0,
+   "exDefence": 0,
+   "workFromHome": 0,
+   "femaleBackWorkForce": 0,
+   "confidential": 0,
+   "premium": 0,
+   "brandedJd": 0,
+   "star": 0,
+   "applyStatus": 1,
+   "applyCount": 759,
+   "createdTimeMs": 1791263763141,
+   "createdTime": 1791225000000,
+   "tagIdString": "9 164971 135480 177876 838 2918 203 288443",
+   "tags": [
+    {
+     "id": 9,
+     "name": "Python",
+     "isMandatory": true
+    },
+    {
+     "id": 164971,
+     "name": "FastAPI",
+     "isMandatory": true
+    },
+    {
+     "id": 135480,
+     "name": "Generative AI",
+     "isMandatory": true
+    },
+    {
+     "id": 177876,
+     "isMandatory": false
+    },
+    {
+     "id": 838,
+     "name": "PostgreSQL",
+     "isMandatory": true
+    },
+    {
+     "id": 2918,
+     "name": "Git",
+     "isMandatory": false
+    },
+    {
+     "id": 203,
+     "name": "Machine Learning",
+     "isMandatory": true
+    },
+    {
+     "id": 288443,
+     "name": "Forward Deployment Engineering",
+     "isMandatory": true
+    }
+   ],
+   "locations": [
+    {
+     "id": 3,
+     "name": "Bangalore"
+    },
+    {
+     "id": 6,
+     "name": "Chennai"
+    },
+    {
+     "id": 4,
+     "name": "Hyderabad"
+    }
+   ],
+   "companyStatus": 2,
+   "createdByAlias": "Bangalore/Chennai/Hyderabad",
+   "applyUrl": "",
+   "videoUrl": "",
+   "assessmentFlags": 0,
+   "mediaResume": 0,
+   "industry": "",
+   "functionalArea": 30,
+   "minSal": 20,
+   "maxSal": 28,
+   "hideSal": 0,
+   "hits": 1678,
+   "otherLocation": "",
+   "brandJobFlag": 0,
+   "companyData": {
+    "companyId": 0,
+    "companyName": "HiringBlaze",
+    "companyNameNotAnalyzed": "HiringBlaze",
+    "companyStatus": 2,
+    "logo": "https://recruiter-static-content.s3.ap-south-1.amazonaws.com/CompanyLogos/centralised-0.webp"
+   },
+   "refCode": "sp",
+   "preferedIndustry": [],
+   "industryArray": [],
+   "showCompanyLogoFlag": 0,
+   "latitude": null,
+   "longitude": null,
+   "refJobId": 1676792,
+   "location": [
+    {
+     "id": 3,
+     "name": "Bangalore"
+    },
+    {
+     "id": 6,
+     "name": "Chennai"
+    },
+    {
+     "id": 4,
+     "name": "Hyderabad"
+    }
+   ],
+   "minRatingAb": 3.8
+  }
+ ],
+ "page": "0",
+ "limit": 20,
+ "count": 20,
+ "totalJobs": 147,
+ "count1Year": 26677,
+ "totalPages": 7,
+ "hasMore": true
+}

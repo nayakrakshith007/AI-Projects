@@ -1,0 +1,49 @@
+{
+ "data": {
+  "job_search_with_featured_jobs_v2": {
+   "all_jobs": [
+    {
+     "id": "4374182922893050",
+     "title": "Data Scientist, Product",
+     "locations": [
+      "Bangalore, India"
+     ],
+     "teams": [
+      "Data & Analytics"
+     ],
+     "sub_teams": [
+      "Data Science"
+     ]
+    },
+    {
+     "id": "1935669890725553",
+     "title": "Director, Software Engineer - WhatsApp",
+     "locations": [
+      "Bangalore, India"
+     ],
+     "teams": [
+      "Software Engineering"
+     ],
+     "sub_teams": [
+      "Engineering"
+     ]
+    },
+    {
+     "id": "1690022942358388",
+     "title": "Critical Facility Engineer",
+     "locations": [
+      "Henrico, VA",
+      "Mesa, AZ"
+     ],
+     "teams": [
+      "Data Center"
+     ],
+     "sub_teams": [
+      "Data Center Operations"
+     ]
+    }
+   ],
+   "featured_jobs": []
+  }
+ }
+}

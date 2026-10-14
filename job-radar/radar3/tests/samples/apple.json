@@ -1,0 +1,165 @@
+{
+ "loaderData": {
+  "search": {
+   "totalRecords": 85,
+   "searchResults": [
+    {
+     "id": "200676908-0321",
+     "locations": [
+      {
+       "postLocationId": "postLocation-BGS",
+       "city": "",
+       "stateProvince": "",
+       "countryName": "India",
+       "metro": "",
+       "region": "",
+       "name": "Bengaluru",
+       "countryID": "iso-country-IND",
+       "level": 5
+      }
+     ],
+     "positionId": "200676908",
+     "postingDate": "17 Sept 2026",
+     "postingTitle": "PhD Intern, Machine Learning: MSI, Product Operations Team",
+     "localeInfo": {
+      "languageCode": "en_UK",
+      "dateFormat": "MMM D, YYYY",
+      "defaultLocaleCode": "en-in"
+     },
+     "postDateInGMT": "2026-09-17T18:06:42.940Z",
+     "transformedPostingTitle": "phd-intern-machine-learning-msi-product-operations-team",
+     "reqId": "200676908-0321",
+     "managedPipelineRole": false,
+     "standardWeeklyHours": 40,
+     "team": {
+      "teamName": "Operations and Supply Chain",
+      "teamID": "teamsAndSubTeams-OPMFG",
+      "teamCode": "OPMFG"
+     },
+     "type": "PIPE",
+     "homeOffice": false,
+     "jobPositionId": "PIPE-200676908",
+     "isMultiLocation": false,
+     "postExternal": true
+    },
+    {
+     "id": "200684389-1052",
+     "locations": [
+      {
+       "postLocationId": "postLocation-HY1",
+       "city": "",
+       "stateProvince": "",
+       "countryName": "India",
+       "metro": "",
+       "region": "",
+       "name": "Hyderabad",
+       "countryID": "iso-country-IND",
+       "level": 5
+      }
+     ],
+     "positionId": "200684389",
+     "postingDate": "17 Sept 2026",
+     "postingTitle": "Technical Recruiter (Contract)",
+     "localeInfo": {
+      "languageCode": "en_UK",
+      "dateFormat": "MMM D, YYYY",
+      "defaultLocaleCode": "en-in"
+     },
+     "postDateInGMT": "2026-09-17T07:57:47.586Z",
+     "transformedPostingTitle": "technical-recruiter-contract",
+     "reqId": "200684389-1052",
+     "managedPipelineRole": false,
+     "standardWeeklyHours": 40,
+     "team": {
+      "teamName": "Corporate Functions",
+      "teamID": "teamsAndSubTeams-CORSV",
+      "teamCode": "CORSV"
+     },
+     "type": "PIPE",
+     "homeOffice": false,
+     "jobPositionId": "PIPE-200684389",
+     "isMultiLocation": false,
+     "postExternal": true
+    },
+    {
+     "id": "200683195-1052",
+     "locations": [
+      {
+       "postLocationId": "postLocation-HY1",
+       "city": "",
+       "stateProvince": "",
+       "countryName": "India",
+       "metro": "",
+       "region": "",
+       "name": "Hyderabad",
+       "countryID": "iso-country-IND",
+       "level": 5
+      }
+     ],
+     "positionId": "200683195",
+     "postingDate": "16 Sept 2026",
+     "postingTitle": "Tableau Developer Analyst,  Retail Customer Care",
+     "localeInfo": {
+      "languageCode": "en_UK",
+      "dateFormat": "MMM D, YYYY",
+      "defaultLocaleCode": "en-in"
+     },
+     "postDateInGMT": "2026-09-16T15:57:06.488Z",
+     "transformedPostingTitle": "tableau-developer-analyst-retail-customer-care",
+     "reqId": "200683195-1052",
+     "managedPipelineRole": false,
+     "standardWeeklyHours": 40,
+     "team": {
+      "teamName": "Corporate Functions",
+      "teamID": "teamsAndSubTeams-CORSV",
+      "teamCode": "CORSV"
+     },
+     "type": "REQ",
+     "homeOffice": false,
+     "jobPositionId": "REQ-200683195",
+     "isMultiLocation": false,
+     "postExternal": true
+    },
+    {
+     "id": "200682312-0321",
+     "locations": [
+      {
+       "postLocationId": "postLocation-BGS",
+       "city": "",
+       "stateProvince": "",
+       "countryName": "India",
+       "metro": "",
+       "region": "",
+       "name": "Bengaluru",
+       "countryID": "iso-country-IND",
+       "level": 5
+      }
+     ],
+     "positionId": "200682312",
+     "postingDate": "11 Sept 2026",
+     "postingTitle": "Junior Software Development Engineer in Test, Retail Engineering - IS&T",
+     "localeInfo": {
+      "languageCode": "en_UK",
+      "dateFormat": "MMM D, YYYY",
+      "defaultLocaleCode": "en-in"
+     },
+     "postDateInGMT": "2026-09-11T08:40:37.759Z",
+     "transformedPostingTitle": "junior-software-development-engineer-in-test-retail-engineering-is-t",
+     "reqId": "200682312-0321",
+     "managedPipelineRole": false,
+     "standardWeeklyHours": 40,
+     "team": {
+      "teamName": "Software and Services",
+      "teamID": "teamsAndSubTeams-SFTWR",
+      "teamCode": "SFTWR"
+     },
+     "type": "REQ",
+     "homeOffice": false,
+     "jobPositionId": "REQ-200682312",
+     "isMultiLocation": false,
+     "postExternal": true
+    }
+   ]
+  }
+ }
+}

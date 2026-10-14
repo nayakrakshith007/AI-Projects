@@ -1,0 +1,1745 @@
+{
+ "total": 533,
+ "jobPostings": [
+  {
+   "title": "Data Engineer(Data Scientist )",
+   "externalPath": "/job/Chennai-Tamil-Nadu/Data-Engineer-Data-Scientist--_R0000398499",
+   "locationsText": "Chennai, Tamil Nadu",
+   "postedOn": "Posted 5 Days Ago",
+   "bulletFields": [
+    "R0000398499"
+   ]
+  },
+  {
+   "title": "Data Scientist",
+   "externalPath": "/job/Kosice-Slovakia/Data-Scientist_R0000364643",
+   "locationsText": "Kosice, Slovakia",
+   "postedOn": "Posted 11 Days Ago",
+   "bulletFields": [
+    "R0000364643"
+   ]
+  },
+  {
+   "title": "Data Scientist",
+   "externalPath": "/job/Morton-Illinois/Data-Scientist_R0000398239",
+   "locationsText": "Morton, Illinois",
+   "postedOn": "Posted 7 Days Ago",
+   "bulletFields": [
+    "R0000398239"
+   ]
+  },
+  {
+   "title": "Lead Data Scientist",
+   "externalPath": "/job/Bangalore-Karnataka/Lead-Data-Scientist_R0000360212",
+   "locationsText": "Bangalore, Karnataka",
+   "postedOn": "Posted 7 Days Ago",
+   "bulletFields": [
+    "R0000360212"
+   ]
+  },
+  {
+   "title": "Senior Data Specialist",
+   "externalPath": "/job/Chicago-Illinois/Senior-Data-Specialist_R0000385140",
+   "locationsText": "Chicago, Illinois",
+   "postedOn": "Posted 30+ Days Ago",
+   "bulletFields": [
+    "R0000385140"
+   ]
+  }
+ ],
+ "facets": [
+  {
+   "facetParameter": "jobFamily",
+   "descriptor": "Job Category",
+   "values": [
+    {
+     "descriptor": "Technology, Digital and Data",
+     "id": "e1ea3238dd28100047a9d21828480000",
+     "count": 192
+    },
+    {
+     "descriptor": "Engineering",
+     "id": "6599c4a5b161100047ac2c6ca2df0000",
+     "count": 81
+    },
+    {
+     "descriptor": "Operations",
+     "id": "afce159a77f5100047ac76c00df50000",
+     "count": 47
+    },
+    {
+     "descriptor": "Students and Graduates",
+     "id": "c391356733b71001f5a0883b87fb0000",
+     "count": 35
+    },
+    {
+     "descriptor": "Manufacturing",
+     "id": "0640172b7eb1100047a9ddb54c500000",
+     "count": 34
+    },
+    {
+     "descriptor": "Product Support",
+     "id": "afce159a77f5100047ac819868ba0000",
+     "count": 32
+    },
+    {
+     "descriptor": "Supply Chain and Logistics",
+     "id": "0640172b7eb1100047aa032eac6e0000",
+     "count": 26
+    },
+    {
+     "descriptor": "Finance",
+     "id": "0640172b7eb1100047a9c58e812d0000",
+     "count": 23
+    },
+    {
+     "descriptor": "Sales",
+     "id": "42205bcf787201df49b72c74fb016033",
+     "count": 19
+    },
+    {
+     "descriptor": "Procurement",
+     "id": "13bc0c04f028100047b3f42d72690000",
+     "count": 10
+    },
+    {
+     "descriptor": "Human Resources",
+     "id": "13bc0c04f028100047b3d43ac3ec0000",
+     "count": 9
+    },
+    {
+     "descriptor": "Strategy",
+     "id": "1c206e01897f100047aa006c70550000",
+     "count": 8
+    },
+    {
+     "descriptor": "Marketing",
+     "id": "0e9ca2967a26100047ab9d1357b90000",
+     "count": 8
+    },
+    {
+     "descriptor": "Environmental Health and Safety",
+     "id": "e1ea3238dd28100047a9ecc9df3a0000",
+     "count": 6
+    },
+    {
+     "descriptor": "Business Services",
+     "id": "31cab6e386400167ead6f55efb01961d",
+     "count": 2
+    },
+    {
+     "descriptor": "Enterprise Cross Functional",
+     "id": "6599c4a5b161100047ac330db6dd0000",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "facetParameter": "workerSubType",
+   "descriptor": "Job Type",
+   "values": [
+    {
+     "descriptor": "Regular",
+     "id": "3ff971b74e640100b182033b6e160142",
+     "count": 462
+    },
+    {
+     "descriptor": "Fixed Term - Temporary (Fixed Term)",
+     "id": "3ff971b74e64013e2b5d033b6e160042",
+     "count": 29
+    },
+    {
+     "descriptor": "Intern - Temporary",
+     "id": "3ff971b74e64011c93bf033b6e160342",
+     "count": 21
+    },
+    {
+     "descriptor": "Student Worker/Grant Worker",
+     "id": "3ff971b74e6401249eea21076716572f",
+     "count": 11
+    },
+    {
+     "descriptor": "Temporary",
+     "id": "3ff971b74e640129dcde033b6e160442",
+     "count": 8
+    },
+    {
+     "descriptor": "Apprentice - Regular",
+     "id": "3ff971b74e6401d99e6c043b6e160842",
+     "count": 1
+    },
+    {
+     "descriptor": "Apprentice - Temporary",
+     "id": "3ff971b74e64011d12a0033b6e160242",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "facetParameter": "timeType",
+   "descriptor": "Time Type",
+   "values": [
+    {
+     "descriptor": "Full time",
+     "id": "5367d85d9d52017a289c2294d7135900",
+     "count": 508
+    },
+    {
+     "descriptor": "Part time",
+     "id": "5367d85d9d5201c48d742294d7135800",
+     "count": 7
+    }
+   ]
+  },
+  {
+   "facetParameter": "locationMainGroup",
+   "values": [
+    {
+     "facetParameter": "locationCountry",
+     "descriptor": "Location Country",
+     "values": [
+      {
+       "descriptor": "Australia",
+       "id": "d903bb3fedad45039383f6de334ad4db",
+       "count": 11
+      },
+      {
+       "descriptor": "Belgium",
+       "id": "a04ea128f43a42e59b1e6a19e8f0b374",
+       "count": 1
+      },
+      {
+       "descriptor": "Brazil",
+       "id": "1a29bb1357b240ab99a2fa755cc87c0e",
+       "count": 5
+      },
+      {
+       "descriptor": "Canada",
+       "id": "a30a87ed25634629aa6c3958aa2b91ea",
+       "count": 5
+      },
+      {
+       "descriptor": "Chile",
+       "id": "53fe09ef12b9408682a1d2439823f2e0",
+       "count": 1
+      },
+      {
+       "descriptor": "China",
+       "id": "6cb77610a8a543aea2d6bc10457e35d4",
+       "count": 45
+      },
+      {
+       "descriptor": "C\u00f4te d'Ivoire",
+       "id": "4bc79a4526e4459d93db166b02d214db",
+       "count": 2
+      },
+      {
+       "descriptor": "Germany",
+       "id": "dcc5b7608d8644b3a93716604e78e995",
+       "count": 3
+      },
+      {
+       "descriptor": "India",
+       "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+       "count": 89
+      },
+      {
+       "descriptor": "Indonesia",
+       "id": "b31234dbcdda4da9ba8fa073c5944e36",
+       "count": 2
+      },
+      {
+       "descriptor": "Japan",
+       "id": "8b705da2becf43cfaccc091da0988ab2",
+       "count": 1
+      },
+      {
+       "descriptor": "Kazakhstan",
+       "id": "db69ebac446c11de98360015c5e6daf6",
+       "count": 2
+      },
+      {
+       "descriptor": "Malaysia",
+       "id": "972dc4ba8d454bc0b893ff84b1529077",
+       "count": 2
+      },
+      {
+       "descriptor": "Mexico",
+       "id": "e2adff9272454660ac4fdb56fc70bb51",
+       "count": 4
+      },
+      {
+       "descriptor": "Netherlands",
+       "id": "9696868b09c64d52a62ee13b052383cc",
+       "count": 2
+      },
+      {
+       "descriptor": "New Zealand",
+       "id": "55273a1b49934d97ae15342ef51f6b95",
+       "count": 1
+      },
+      {
+       "descriptor": "Poland",
+       "id": "131d5ac7e3ee4d7b962bdc96e498e412",
+       "count": 1
+      },
+      {
+       "descriptor": "Saudi Arabia",
+       "id": "50423b5190ad49bb89e94cd58dfaad69",
+       "count": 1
+      },
+      {
+       "descriptor": "Singapore",
+       "id": "80938777cac5440fab50d729f9634969",
+       "count": 2
+      },
+      {
+       "descriptor": "Slovakia",
+       "id": "d2f29df0c90f4cea9e7d17f2ed8a86ad",
+       "count": 17
+      },
+      {
+       "descriptor": "South Africa",
+       "id": "4db3c26940b944919b83612cc1193eed",
+       "count": 1
+      },
+      {
+       "descriptor": "Spain",
+       "id": "bd34c524a6a04ae6915f5d96fa086199",
+       "count": 3
+      },
+      {
+       "descriptor": "Switzerland",
+       "id": "187134fccb084a0ea9b4b95f23890dbe",
+       "count": 2
+      },
+      {
+       "descriptor": "Thailand",
+       "id": "873d0f604e3b458c990cb4d83a5c0f14",
+       "count": 9
+      },
+      {
+       "descriptor": "United Arab Emirates",
+       "id": "7b4fa1f369bd4604ba3692682fcbe345",
+       "count": 1
+      },
+      {
+       "descriptor": "United Kingdom",
+       "id": "29247e57dbaf46fb855b224e03170bc7",
+       "count": 15
+      },
+      {
+       "descriptor": "United States of America",
+       "id": "bc33aa3152ec42d4995f4791a106ed09",
+       "count": 259
+      }
+     ]
+    },
+    {
+     "facetParameter": "locationRegionStateProvince",
+     "descriptor": "Location Region/State/Province",
+     "values": [
+      {
+       "descriptor": "Alberta",
+       "id": "588eb24f950e4c5b93d5ad3f37aebad2",
+       "count": 1
+      },
+      {
+       "descriptor": "Almaty (City)",
+       "id": "e934178c22284b85af99d2b397678e96",
+       "count": 1
+      },
+      {
+       "descriptor": "Almaty (Province)",
+       "id": "bfb0c7c0a6b44451b7611f0274d5b158",
+       "count": 1
+      },
+      {
+       "descriptor": "Arizona",
+       "id": "c7b20b0d4bc04711a00900569e9afabd",
+       "count": 13
+      },
+      {
+       "descriptor": "Arkansas",
+       "id": "cea6c5355e1b4983b5fd0640310385b5",
+       "count": 3
+      },
+      {
+       "descriptor": "Baden-Wurttemberg",
+       "id": "fc63a555e1d541379dde6e260bfad7d2",
+       "count": 1
+      },
+      {
+       "descriptor": "Bavaria",
+       "id": "bd89fff5ffa6440a9abeaf2c5c1dc37c",
+       "count": 1
+      },
+      {
+       "descriptor": "Beijing",
+       "id": "4b194fc4ae3b4cbe95a1b379454e1775",
+       "count": 3
+      },
+      {
+       "descriptor": "California",
+       "id": "ec3d210e4240442e99a28fa70419aec5",
+       "count": 3
+      },
+      {
+       "descriptor": "Cambridgeshire",
+       "id": "3d4e997abf4a4c3eb677c519353c31a4",
+       "count": 7
+      },
+      {
+       "descriptor": "Canterbury",
+       "id": "0ad1e51c6fef421ab00edace6d263273",
+       "count": 1
+      },
+      {
+       "descriptor": "Coahuila",
+       "id": "dc448b82dcaf493c80715385cebf2e6e",
+       "count": 2
+      },
+      {
+       "descriptor": "Colorado",
+       "id": "a83d6eabae3b49718c4ce09eeb66fd0b",
+       "count": 6
+      },
+      {
+       "descriptor": "County Antrim",
+       "id": "b1750ffad18149b0a085630835ef675a",
+       "count": 1
+      },
+      {
+       "descriptor": "Dorset",
+       "id": "921dd8664712478fad076dc645ea662d",
+       "count": 1
+      },
+      {
+       "descriptor": "Dubai",
+       "id": "1db225a7cdc64df8b1dda64a09ec71f0",
+       "count": 1
+      },
+      {
+       "descriptor": "Durham",
+       "id": "047d296ade124c9a8dd0e4f313c1d3f3",
+       "count": 1
+      },
+      {
+       "descriptor": "East Flanders",
+       "id": "3eceaf162dca401287dffa5178a63506",
+       "count": 1
+      },
+      {
+       "descriptor": "Florida",
+       "id": "9c1a239b35bd4598856e5393b249b8a1",
+       "count": 2
+      },
+      {
+       "descriptor": "Gauteng",
+       "id": "8dd48c26171d4a2082c000b8a986defc",
+       "count": 1
+      },
+      {
+       "descriptor": "Geneva",
+       "id": "af61acabb7a34786a29273c9da51fa0f",
+       "count": 2
+      },
+      {
+       "descriptor": "Georgia",
+       "id": "dec8eabbb13d45bdb159b8e25d896110",
+       "count": 6
+      },
+      {
+       "descriptor": "Hamburg",
+       "id": "8752d71cfdcb46cc91bf90d40cebd42d",
+       "count": 1
+      },
+      {
+       "descriptor": "Hyogo",
+       "id": "55bec148b49643aab30807a40333e377",
+       "count": 1
+      },
+      {
+       "descriptor": "Idaho",
+       "id": "b1c017b8f6294b0e82773aaca1dce33e",
+       "count": 1
+      },
+      {
+       "descriptor": "Illinois",
+       "id": "d8bb292ed9fe44a2899a990ad569538c",
+       "count": 106
+      },
+      {
+       "descriptor": "Indiana",
+       "id": "28489665bcac44028a70d0642c932be4",
+       "count": 24
+      },
+      {
+       "descriptor": "Iowa",
+       "id": "a9be12393ccd460ea46d08c249ce6c8b",
+       "count": 1
+      },
+      {
+       "descriptor": "Jakarta Raya",
+       "id": "5512c8934b014e68be4fcd8db5015fca",
+       "count": 1
+      },
+      {
+       "descriptor": "Jiangsu",
+       "id": "8ad3cfa8b4f04b74aff60dbef3b1f9e2",
+       "count": 36
+      },
+      {
+       "descriptor": "Kanagawa",
+       "id": "a44690fae5834b4b895b859b8301b02f",
+       "count": 1
+      },
+      {
+       "descriptor": "Karn\u0101taka",
+       "id": "701eb5584934425d930bc84b9e8b04eb",
+       "count": 64
+      },
+      {
+       "descriptor": "Kentucky",
+       "id": "66d386e70a2946b695835e59cebcd7b2",
+       "count": 3
+      },
+      {
+       "descriptor": "Kepulauan Riau",
+       "id": "5683ef717dbf412f8c04b129a3e97283",
+       "count": 1
+      },
+      {
+       "descriptor": "Leicestershire",
+       "id": "fbe2b04b04004137bea0c8e590e18ab0",
+       "count": 3
+      },
+      {
+       "descriptor": "Madrid",
+       "id": "0321ceabe7ca4740bd2d5f2e2e6e5d68",
+       "count": 3
+      },
+      {
+       "descriptor": "Mah\u0101r\u0101shtra",
+       "id": "a3c37012f51642f4a7b3dafc8ac37801",
+       "count": 3
+      },
+      {
+       "descriptor": "Michigan",
+       "id": "b8372eef6b5341a39cdc95ac32790cba",
+       "count": 5
+      },
+      {
+       "descriptor": "Minas Gerais",
+       "id": "91a7d1a582224337b1b9a96456250622",
+       "count": 1
+      },
+      {
+       "descriptor": "Minnesota",
+       "id": "02f3984b69ba450080e456fe733f6741",
+       "count": 5
+      },
+      {
+       "descriptor": "Mississippi",
+       "id": "7c552cab901d4a1aa359a9cfc62850a7",
+       "count": 9
+      },
+      {
+       "descriptor": "Missouri",
+       "id": "790e3c3ddfaa4123905237a05f1df9e9",
+       "count": 1
+      },
+      {
+       "descriptor": "Montana",
+       "id": "d649a916a12e4680887c98d5836d0647",
+       "count": 1
+      },
+      {
+       "descriptor": "Nebraska",
+       "id": "3a652942d5f84071a48bc94a2b17d331",
+       "count": 1
+      },
+      {
+       "descriptor": "Nevada",
+       "id": "33e7c3874e0e4d28a8047926aa4a1d21",
+       "count": 1
+      },
+      {
+       "descriptor": "New Mexico",
+       "id": "32c182efea294964a9000772bc740672",
+       "count": 1
+      },
+      {
+       "descriptor": "New York",
+       "id": "9819bf0148e54f89adb255aa7bead635",
+       "count": 1
+      },
+      {
+       "descriptor": "North Carolina",
+       "id": "1486a0a4a8464c3b9ec482d4038deb99",
+       "count": 21
+      },
+      {
+       "descriptor": "North Dakota",
+       "id": "0567a9c4e90340e192aa655d387323c6",
+       "count": 4
+      },
+      {
+       "descriptor": "North Yorkshire",
+       "id": "23dbb1fc9afe41d5ac723a32a406e1c9",
+       "count": 1
+      },
+      {
+       "descriptor": "Nuevo Le\u00f3n",
+       "id": "e24ca71036f84293989b87e79a5ab4a2",
+       "count": 1
+      },
+      {
+       "descriptor": "Ohio",
+       "id": "41493c81d9214eb190fd14067c7d974d",
+       "count": 5
+      },
+      {
+       "descriptor": "Oklahoma",
+       "id": "205ef21c556342268847466c48ec5a8c",
+       "count": 2
+      },
+      {
+       "descriptor": "Ontario",
+       "id": "218a720b28a74c67b5c6d42c00bdadfa",
+       "count": 2
+      },
+      {
+       "descriptor": "Oregon",
+       "id": "6fcc4198762c4a7c807486c849fe94dd",
+       "count": 1
+      },
+      {
+       "descriptor": "Pennsylvania",
+       "id": "f620a79f2dc44473828b42881312de2b",
+       "count": 2
+      },
+      {
+       "descriptor": "Quebec",
+       "id": "ef8a53af14534128b795fd55d75ec08b",
+       "count": 3
+      },
+      {
+       "descriptor": "Queensland",
+       "id": "fe22ac414d814113b975e4944a564b13",
+       "count": 4
+      },
+      {
+       "descriptor": "Rayong",
+       "id": "454e1d7bd64e4c12a11980aba4c6b0b0",
+       "count": 9
+      },
+      {
+       "descriptor": "Region Metropolitana de Santiago",
+       "id": "ea75ae953e9d45ce87314070d8c528b0",
+       "count": 1
+      },
+      {
+       "descriptor": "Riyadh",
+       "id": "a9b4429766264ac88ba45046ce44b654",
+       "count": 1
+      },
+      {
+       "descriptor": "S\u00e3o Paulo",
+       "id": "6177762425c54ca8aa31aac74fb08fad",
+       "count": 4
+      },
+      {
+       "descriptor": "Selangor",
+       "id": "1cd0701fc5b0456399ccf4865051a8e5",
+       "count": 2
+      },
+      {
+       "descriptor": "Shandong",
+       "id": "396ab842754f4087af43c5e9c1d2a993",
+       "count": 1
+      },
+      {
+       "descriptor": "Shanghai",
+       "id": "12022932d53e4131959783deec185438",
+       "count": 8
+      },
+      {
+       "descriptor": "Silesian",
+       "id": "6204f0ee48994e51a48cfacf8eecfb88",
+       "count": 1
+      },
+      {
+       "descriptor": "South Australia",
+       "id": "72de81fc3e6c414ebfbc8bb8f7a2c2c8",
+       "count": 1
+      },
+      {
+       "descriptor": "South Dakota",
+       "id": "745d76f06d2b41738aecee630c5888a0",
+       "count": 2
+      },
+      {
+       "descriptor": "Tamaulipas",
+       "id": "b761a89dcba94b35aa733334b09b5e68",
+       "count": 1
+      },
+      {
+       "descriptor": "Tamil N\u0101du",
+       "id": "058a7c64f4a043ad9dc148854028f375",
+       "count": 43
+      },
+      {
+       "descriptor": "Tasmania",
+       "id": "e532928533d343429da67e9c7399cdcc",
+       "count": 1
+      },
+      {
+       "descriptor": "Tennessee",
+       "id": "00044a0287144032bca6973ac0eedb3e",
+       "count": 6
+      },
+      {
+       "descriptor": "Texas",
+       "id": "fc77e3a1ab36487f9646d14f7242dd77",
+       "count": 124
+      },
+      {
+       "descriptor": "Tianjin",
+       "id": "c52bffa06ef94a53ac0e90a7708acaad",
+       "count": 6
+      },
+      {
+       "descriptor": "Utah",
+       "id": "9bf006cfb5a44c51b84138e1a0e7d805",
+       "count": 1
+      },
+      {
+       "descriptor": "Victoria",
+       "id": "ab28d9dc175e444fa11c7c0f28f52e2c",
+       "count": 2
+      },
+      {
+       "descriptor": "Washington",
+       "id": "de9b48948ef8421db97ddf4ea206e931",
+       "count": 2
+      },
+      {
+       "descriptor": "Western Australia",
+       "id": "176b48f059cc4808b4d5ca033dfa986b",
+       "count": 6
+      },
+      {
+       "descriptor": "Wisconsin",
+       "id": "96f29b3353ac4653b1a860751618e36b",
+       "count": 5
+      },
+      {
+       "descriptor": "Wyoming",
+       "id": "0022bee925f740b0a078f707a1868642",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "facetParameter": "locations",
+     "descriptor": "Locations",
+     "values": [
+      {
+       "descriptor": "Abidjan, C\u00f4te d'Ivoire",
+       "id": "3ff971b74e6401b55eba0b5a7316cd7a",
+       "count": 2
+      },
+      {
+       "descriptor": "Akashi, Hyogo",
+       "id": "3ff971b74e6401d41499c56073161f83",
+       "count": 1
+      },
+      {
+       "descriptor": "Almaty, Almaty (Province)",
+       "id": "3ff971b74e6401f7c469d16073162e83",
+       "count": 1
+      },
+      {
+       "descriptor": "Alpharetta, Georgia",
+       "id": "3ff971b74e6401bc62fe165a7316e67a",
+       "count": 3
+      },
+      {
+       "descriptor": "Archerfield, Queensland",
+       "id": "3ff971b74e6401910ebb245a73160e7b",
+       "count": 1
+      },
+      {
+       "descriptor": "Arizona",
+       "id": "3ff971b74e64014e10cab55c7316ba7e",
+       "count": 1
+      },
+      {
+       "descriptor": "Arkansas",
+       "id": "3ff971b74e6401781677af5c7316b57e",
+       "count": 1
+      },
+      {
+       "descriptor": "Athens, Georgia",
+       "id": "3ff971b74e64014973252e5a73161d7b",
+       "count": 1
+      },
+      {
+       "descriptor": "Bangalore, Karnataka",
+       "id": "3ff971b74e6401ea62c56e5a73169a7b",
+       "count": 25
+      },
+      {
+       "descriptor": "Bangalore, Karnataka",
+       "id": "3ff971b74e6401dc2f4e6d5a7316957b",
+       "count": 22
+      },
+      {
+       "descriptor": "Bangalore, Karnataka",
+       "id": "3ff971b74e6401916139655a73167c7b",
+       "count": 13
+      },
+      {
+       "descriptor": "Bangalore, Karnataka",
+       "id": "3ff971b74e64015fe64a6a5a73168b7b",
+       "count": 2
+      },
+      {
+       "descriptor": "Bangalore, Karnataka",
+       "id": "3ff971b74e6401c3e073605a73166d7b",
+       "count": 2
+      },
+      {
+       "descriptor": "Batam, Kepulauan Riau",
+       "id": "3ff971b74e6401c850fe4f6173169c83",
+       "count": 1
+      },
+      {
+       "descriptor": "Beijing, Beijing",
+       "id": "3ff971b74e6401c1d7d068617316d883",
+       "count": 3
+      },
+      {
+       "descriptor": "Belfast",
+       "id": "9c2a287ae7d9100103b46227c48f0000",
+       "count": 1
+      },
+      {
+       "descriptor": "Belo Horizonte, Minas Gerais",
+       "id": "3ff971b74e6401bcaf0c72617316f783",
+       "count": 1
+      },
+      {
+       "descriptor": "Booneville, Mississippi",
+       "id": "3ff971b74e640185bd77316173168383",
+       "count": 3
+      },
+      {
+       "descriptor": "Booneville, Mississippi",
+       "id": "3ff971b74e64013d5a8b276173167e83",
+       "count": 1
+      },
+      {
+       "descriptor": "Branch of MWM Austria GmbH",
+       "id": "44a0612e46c910001161c31280760000",
+       "count": 1
+      },
+      {
+       "descriptor": "Brisbane, Queensland",
+       "id": "3ff971b74e64019893bcd06173166a84",
+       "count": 3
+      },
+      {
+       "descriptor": "Brooklyn Park, Minnesota",
+       "id": "3ff971b74e64019f34651d647316c286",
+       "count": 4
+      },
+      {
+       "descriptor": "Burlington, Ontario",
+       "id": "37b4e1c3590a01d63eaaccea0e3c10ed",
+       "count": 1
+      },
+      {
+       "descriptor": "Burnie, Tasmania",
+       "id": "3ff971b74e6401a14a2cb95e7316c280",
+       "count": 1
+      },
+      {
+       "descriptor": "Calgary, Alberta",
+       "id": "3ff971b74e6401412262e85e7316ef80",
+       "count": 1
+      },
+      {
+       "descriptor": "California",
+       "id": "3ff971b74e6401a5c597bd5c7316c47e",
+       "count": 1
+      },
+      {
+       "descriptor": "Cary, North Carolina",
+       "id": "3ff971b74e640144851d305f73163081",
+       "count": 2
+      },
+      {
+       "descriptor": "Champaign, Illinois",
+       "id": "3ff971b74e640197442a865a7316cc7b",
+       "count": 2
+      },
+      {
+       "descriptor": "Chennai, Tamil Nadu",
+       "id": "eedeba1b783701e6fef15319c4016383",
+       "count": 35
+      },
+      {
+       "descriptor": "Chennai, Tamil Nadu",
+       "id": "3ff971b74e64019e9c24985a7316f47b",
+       "count": 1
+      },
+      {
+       "descriptor": "Chennai, Tamil Nadu",
+       "id": "3ff971b74e64013f7d3e955a7316ea7b",
+       "count": 1
+      },
+      {
+       "descriptor": "Chhatrapati Sambhaji Nagar,  Maharashtra",
+       "id": "3ff971b74e6401e2a984345a73162c7b",
+       "count": 3
+      },
+      {
+       "descriptor": "Chicago, Illinois",
+       "id": "3ff971b74e6401a705e5ab5a7316177c",
+       "count": 16
+      },
+      {
+       "descriptor": "China_Changshu_Perkins",
+       "id": "e44596b2c36b10014f8f1d05aa520000",
+       "count": 1
+      },
+      {
+       "descriptor": "Christchurch , New Zealand",
+       "id": "3ff971b74e6401a09d37b95a7316217c",
+       "count": 1
+      },
+      {
+       "descriptor": "Clairmont, Alberta",
+       "id": "96cce8fd8de801a8ca4d9a9c11025550",
+       "count": 1
+      },
+      {
+       "descriptor": "Clayton, North Carolina",
+       "id": "3ff971b74e6401b10eb3c75a73163f7c",
+       "count": 5
+      },
+      {
+       "descriptor": "Clayton, North Carolina",
+       "id": "3ff971b74e64018be650c35a73163a7c",
+       "count": 1
+      },
+      {
+       "descriptor": "Clayton, Ohio",
+       "id": "3ff971b74e64014abe0dce5a7316497c",
+       "count": 1
+      },
+      {
+       "descriptor": "Colorado",
+       "id": "3ff971b74e6401d9a70cc75c7316d37e",
+       "count": 1
+      },
+      {
+       "descriptor": "Corinth, Mississippi",
+       "id": "3ff971b74e6401258586e55a7316677c",
+       "count": 6
+      },
+      {
+       "descriptor": "Corinth, Mississippi",
+       "id": "3ff971b74e64016c200de15a7316627c",
+       "count": 1
+      },
+      {
+       "descriptor": "Dayton, Ohio",
+       "id": "3ff971b74e640178a422145b73169e7c",
+       "count": 1
+      },
+      {
+       "descriptor": "Decatur, Illinois",
+       "id": "3ff971b74e640177a5021e5b7316a87c",
+       "count": 4
+      },
+      {
+       "descriptor": "Decatur, Illinois",
+       "id": "3ff971b74e6401da5f5f195b7316a37c",
+       "count": 3
+      },
+      {
+       "descriptor": "Decatur, Illinois",
+       "id": "3ff971b74e64018827fc235b7316ad7c",
+       "count": 2
+      },
+      {
+       "descriptor": "Denison, Texas",
+       "id": "3ff971b74e6401825861655b7316ee7c",
+       "count": 1
+      },
+      {
+       "descriptor": "Desford, United Kingdom",
+       "id": "3ff971b74e64014e9c48705b7316fd7c",
+       "count": 3
+      },
+      {
+       "descriptor": "Dubai, United Arab Emirates",
+       "id": "3ff971b74e6401021c277f5b7316257d",
+       "count": 1
+      },
+      {
+       "descriptor": "East Peoria, Illinois",
+       "id": "3ff971b74e6401cdb6e9aa5b7316707d",
+       "count": 7
+      },
+      {
+       "descriptor": "East Peoria, Illinois",
+       "id": "3ff971b74e6401f61cb7ca597316647a",
+       "count": 5
+      },
+      {
+       "descriptor": "East Peoria, Illinois",
+       "id": "3ff971b74e6401eb2bdd9a5b7316617d",
+       "count": 3
+      },
+      {
+       "descriptor": "East Peoria, Illinois",
+       "id": "3ff971b74e640110ebb4cd597316697a",
+       "count": 3
+      },
+      {
+       "descriptor": "East Peoria, Illinois",
+       "id": "3ff971b74e64011468a3cb5b7316897d",
+       "count": 1
+      },
+      {
+       "descriptor": "Edmonton, Alberta",
+       "id": "a36b82ffcf0201a746528dfb10022437",
+       "count": 1
+      },
+      {
+       "descriptor": "Edmonton, Alberta",
+       "id": "3ff971b74e6401ab19e18b5b7316527d",
+       "count": 1
+      },
+      {
+       "descriptor": "Edmonton, Alberta",
+       "id": "3ff971b74e640166839b8a5b73164d7d",
+       "count": 1
+      },
+      {
+       "descriptor": "El Reno, Oklahoma",
+       "id": "452313d0f463013f2e1b3fcf10027654",
+       "count": 1
+      },
+      {
+       "descriptor": "Florida",
+       "id": "3ff971b74e6401940e22d95c7316e27e",
+       "count": 2
+      },
+      {
+       "descriptor": "Fort Worth, Texas",
+       "id": "11d5b8e320480185041612bb1002ef2f",
+       "count": 5
+      },
+      {
+       "descriptor": "Fort Worth, Texas",
+       "id": "11d5b8e3204801e7d19a92bb1002fe2f",
+       "count": 1
+      },
+      {
+       "descriptor": "Fort Worth, Texas",
+       "id": "11d5b8e32048012c2a3259bb1002f42f",
+       "count": 1
+      },
+      {
+       "descriptor": "Franklin, Indiana",
+       "id": "3ff971b74e640153f08a175c7316de7d",
+       "count": 1
+      },
+      {
+       "descriptor": "Gauteng, Gauteng",
+       "id": "3ff971b74e64018ce14335627316e284",
+       "count": 1
+      },
+      {
+       "descriptor": "Geneva 6, Geneva",
+       "id": "3ff971b74e6401e498732a5c7316f77d",
+       "count": 2
+      },
+      {
+       "descriptor": "Green Valley, Arizona",
+       "id": "3ff971b74e6401cd332bbf6473166787",
+       "count": 4
+      },
+      {
+       "descriptor": "Green Valley, Arizona",
+       "id": "3ff971b74e640112825aca6473166c87",
+       "count": 1
+      },
+      {
+       "descriptor": "Griffin, Georgia",
+       "id": "3ff971b74e6401340345485c7316337e",
+       "count": 3
+      },
+      {
+       "descriptor": "Griffin, Georgia",
+       "id": "3ff971b74e6401a3171a4e5c7316387e",
+       "count": 1
+      },
+      {
+       "descriptor": "Hamburg, Hamburg",
+       "id": "3ff971b74e6401812e9e715c7316747e",
+       "count": 1
+      },
+      {
+       "descriptor": "Hosur, Tamil Nadu",
+       "id": "3ff971b74e6401ee410b1a5e7316ff7f",
+       "count": 3
+      },
+      {
+       "descriptor": "Houston, Texas",
+       "id": "3ff971b74e64015322be2d5e73160e80",
+       "count": 2
+      },
+      {
+       "descriptor": "Houston, Texas",
+       "id": "3ff971b74e64017091a0265e73160980",
+       "count": 2
+      },
+      {
+       "descriptor": "Houston, Texas",
+       "id": "3ff971b74e6401edf6e6345e73161380",
+       "count": 1
+      },
+      {
+       "descriptor": "Idaho",
+       "id": "3ff971b74e6401996673f35c7316fb7e",
+       "count": 1
+      },
+      {
+       "descriptor": "Illinois",
+       "id": "3ff971b74e6401764b1bfa5c7316007f",
+       "count": 4
+      },
+      {
+       "descriptor": "Indiana",
+       "id": "3ff971b74e6401f9bc26075d7316057f",
+       "count": 3
+      },
+      {
+       "descriptor": "Iowa",
+       "id": "3ff971b74e64016f8468ed5c7316f67e",
+       "count": 1
+      },
+      {
+       "descriptor": "Irving, Texas",
+       "id": "dc369129cea50105461a4e9b1401335c",
+       "count": 110
+      },
+      {
+       "descriptor": "Ismaning (Munich), Bavaria",
+       "id": "3ff971b74e6401ef7bb6595973166079",
+       "count": 1
+      },
+      {
+       "descriptor": "Jakarta, Jakarta Raya",
+       "id": "3ff971b74e6401c8292f9f5e73168b80",
+       "count": 1
+      },
+      {
+       "descriptor": "Kentucky",
+       "id": "3ff971b74e6401216e21155d73160f7f",
+       "count": 3
+      },
+      {
+       "descriptor": "Kosice, Slovakia",
+       "id": "1c53ca3b5f821001ea4a56766cf10000",
+       "count": 17
+      },
+      {
+       "descriptor": "Kuala Lumpur, Selangor",
+       "id": "3ff971b74e640164a7c4d15873161678",
+       "count": 2
+      },
+      {
+       "descriptor": "Lafayette, Indiana",
+       "id": "3ff971b74e6401177bcfd45873162078",
+       "count": 11
+      },
+      {
+       "descriptor": "Lafayette, Indiana",
+       "id": "3ff971b74e6401e3b362d65873162578",
+       "count": 9
+      },
+      {
+       "descriptor": "Lafayette, Indiana",
+       "id": "3ff971b74e6401c94f18de5873163978",
+       "count": 1
+      },
+      {
+       "descriptor": "Larne, County Antrim",
+       "id": "3ff971b74e6401d92d60e95873165c78",
+       "count": 1
+      },
+      {
+       "descriptor": "Laval, Quebec",
+       "id": "3ff971b74e64015011b3ec5873166678",
+       "count": 3
+      },
+      {
+       "descriptor": "Mannheim, Baden-Wurttemberg",
+       "id": "3ff971b74e64019c7788e4627316d885",
+       "count": 1
+      },
+      {
+       "descriptor": "Mapleton, Illinois",
+       "id": "3ff971b74e64013950510c6373160086",
+       "count": 3
+      },
+      {
+       "descriptor": "Mawson Lake, South Australia",
+       "id": "b2dfab126b570171b3c03f88d2002d50",
+       "count": 1
+      },
+      {
+       "descriptor": "Menominee, Michigan",
+       "id": "3ff971b74e6401c1d9544c6373161986",
+       "count": 2
+      },
+      {
+       "descriptor": "Mesa, Arizona",
+       "id": "3ff971b74e6401e56d44586373162386",
+       "count": 1
+      },
+      {
+       "descriptor": "Michigan",
+       "id": "3ff971b74e640148b3f9345d7316287f",
+       "count": 3
+      },
+      {
+       "descriptor": "Midland, Texas",
+       "id": "96cce8fd8de801ceb198219e11026a50",
+       "count": 1
+      },
+      {
+       "descriptor": "Minnesota",
+       "id": "3ff971b74e6401ef48163b5d73162d7f",
+       "count": 1
+      },
+      {
+       "descriptor": "Missouri",
+       "id": "3ff971b74e64016aff58415d7316327f",
+       "count": 1
+      },
+      {
+       "descriptor": "Montana",
+       "id": "3ff971b74e6401ae65284e5d73163c7f",
+       "count": 1
+      },
+      {
+       "descriptor": "Montreal, Quebec",
+       "id": "3ff971b74e64011adc337c6473160d87",
+       "count": 1
+      },
+      {
+       "descriptor": "Morton, Illinois",
+       "id": "3ff971b74e6401cd85e71c597316de78",
+       "count": 5
+      },
+      {
+       "descriptor": "Morton, Illinois",
+       "id": "3ff971b74e6401b01b15936473161787",
+       "count": 3
+      },
+      {
+       "descriptor": "Morton, Illinois",
+       "id": "3ff971b74e64011af8b51a597316d978",
+       "count": 1
+      },
+      {
+       "descriptor": "Morton, Illinois",
+       "id": "3ff971b74e64016fae7814597316ca78",
+       "count": 1
+      },
+      {
+       "descriptor": "Mossville, Illinois",
+       "id": "3ff971b74e64018d3945375973161f79",
+       "count": 25
+      },
+      {
+       "descriptor": "Mossville, Illinois",
+       "id": "3ff971b74e64016ef1242e5973160b79",
+       "count": 6
+      },
+      {
+       "descriptor": "Mossville, Illinois",
+       "id": "3ff971b74e6401b8e16827597316fc78",
+       "count": 4
+      },
+      {
+       "descriptor": "Mossville, Illinois",
+       "id": "3ff971b74e6401b30d5f305973161079",
+       "count": 3
+      },
+      {
+       "descriptor": "Mossville, Illinois",
+       "id": "3ff971b74e64013623a1295973160179",
+       "count": 2
+      },
+      {
+       "descriptor": "Mossville, Illinois",
+       "id": "3ff971b74e64014cd1ac395973162479",
+       "count": 1
+      },
+      {
+       "descriptor": "Mossville, Illinois",
+       "id": "3ff971b74e6401bf2fe12b5973160679",
+       "count": 1
+      },
+      {
+       "descriptor": "Nashville, Tennessee",
+       "id": "3ff971b74e64016489b6625973167479",
+       "count": 6
+      },
+      {
+       "descriptor": "Nebraska",
+       "id": "3ff971b74e6401fbce65625d73164b7f",
+       "count": 1
+      },
+      {
+       "descriptor": "Nevada",
+       "id": "3ff971b74e64016e11bc825d73166e7f",
+       "count": 1
+      },
+      {
+       "descriptor": "New Mexico",
+       "id": "3ff971b74e64012f0282775d73165a7f",
+       "count": 1
+      },
+      {
+       "descriptor": "New York",
+       "id": "3ff971b74e6401d0933e895d7316737f",
+       "count": 1
+      },
+      {
+       "descriptor": "Nishi-ku Yokohama-shi, Kanagawa",
+       "id": "3ff971b74e6401eab38c226073162f82",
+       "count": 1
+      },
+      {
+       "descriptor": "North Little Rock, Arkansas",
+       "id": "3ff971b74e640153021606597316b678",
+       "count": 2
+      },
+      {
+       "descriptor": "Nuevo Laredo, Tamaulipas",
+       "id": "3ff971b74e6401a164b483597316c479",
+       "count": 1
+      },
+      {
+       "descriptor": "Ohio",
+       "id": "3ff971b74e6401a81cab975d7316787f",
+       "count": 3
+      },
+      {
+       "descriptor": "Oklahoma",
+       "id": "3ff971b74e6401379a149e5d73167d7f",
+       "count": 1
+      },
+      {
+       "descriptor": "Oregon",
+       "id": "3ff971b74e64018f1195a55d7316877f",
+       "count": 1
+      },
+      {
+       "descriptor": "PA-Kennett Square-Tangent Energy Solutions",
+       "id": "eddebeded325012155a3ee8378e70000",
+       "count": 1
+      },
+      {
+       "descriptor": "Peoria, Illinois",
+       "id": "3ff971b74e64017658c7c1597316557a",
+       "count": 21
+      },
+      {
+       "descriptor": "Peoria, Illinois",
+       "id": "3ff971b74e64015c33f2b4597316417a",
+       "count": 12
+      },
+      {
+       "descriptor": "Peoria, Illinois",
+       "id": "3ff971b74e64013b6f05b8597316467a",
+       "count": 2
+      },
+      {
+       "descriptor": "Peoria, Illinois",
+       "id": "3ff971b74e640161ddbac45973165a7a",
+       "count": 1
+      },
+      {
+       "descriptor": "Peterborough, United Kingdom",
+       "id": "3ff971b74e64011c68aaad597316327a",
+       "count": 7
+      },
+      {
+       "descriptor": "Peterlee, United Kingdom",
+       "id": "3ff971b74e64012bc567075a7316be7a",
+       "count": 1
+      },
+      {
+       "descriptor": "Piracicaba, S\u00e3o Paulo",
+       "id": "3ff971b74e6401b5e12fdf6073164283",
+       "count": 3
+      },
+      {
+       "descriptor": "Piracicaba, S\u00e3o Paulo",
+       "id": "3ff971b74e6401033fa5a56073160683",
+       "count": 1
+      },
+      {
+       "descriptor": "Pittsburgh, Pennsylvania",
+       "id": "3ff971b74e6401a1474ee96073164c83",
+       "count": 2
+      },
+      {
+       "descriptor": "Pontiac, Illinois",
+       "id": "3ff971b74e64017d86500f6173166083",
+       "count": 4
+      },
+      {
+       "descriptor": "Pontiac, Illinois",
+       "id": "3ff971b74e6401041c73066173165b83",
+       "count": 4
+      },
+      {
+       "descriptor": "Pozuelo de Alarc\u00f3n (Madrid), Madrid",
+       "id": "3ff971b74e6401bf0009c1627316a185",
+       "count": 2
+      },
+      {
+       "descriptor": "Qingdao, Shandong",
+       "id": "3ff971b74e64010255c552617316a683",
+       "count": 1
+      },
+      {
+       "descriptor": "Rapid City, South Dakota",
+       "id": "3ff971b74e64013af05e67617316d383",
+       "count": 2
+      },
+      {
+       "descriptor": "Rayong, Thailand",
+       "id": "3ff971b74e6401725f9173617316fc83",
+       "count": 9
+      },
+      {
+       "descriptor": "Rayong, Thailand",
+       "id": "3ff971b74e6401221dac70617316f283",
+       "count": 1
+      },
+      {
+       "descriptor": "Redcliff, Western Australia",
+       "id": "3ff971b74e640142b121766173160684",
+       "count": 6
+      },
+      {
+       "descriptor": "Riyadh, Saudi Arabia",
+       "id": "9d8f63ac9b2b1001e9abb4d8ca310000",
+       "count": 1
+      },
+      {
+       "descriptor": "San Antonio, Texas",
+       "id": "3ff971b74e640193ca2ae45e7316e080",
+       "count": 1
+      },
+      {
+       "descriptor": "San Diego, California",
+       "id": "3ff971b74e64016f41fe035f73160d81",
+       "count": 1
+      },
+      {
+       "descriptor": "Sanford, North Carolina",
+       "id": "3ff971b74e640113c25f5d5f73165881",
+       "count": 11
+      },
+      {
+       "descriptor": "Sanford, North Carolina",
+       "id": "3ff971b74e6401185360795f73166781",
+       "count": 3
+      },
+      {
+       "descriptor": "San Francisco, California",
+       "id": "3ff971b74e64013ea48577607316b682",
+       "count": 1
+      },
+      {
+       "descriptor": "Santa Catarina, Nuevo Le\u00f3n",
+       "id": "3ff971b74e64015fcede72647316f986",
+       "count": 1
+      },
+      {
+       "descriptor": "Santiago, Region Metropolitana de Santiago",
+       "id": "3ff971b74e6401cce491865f73168081",
+       "count": 1
+      },
+      {
+       "descriptor": "Schertz, Texas",
+       "id": "3ff971b74e6401f2f8ef696273161f85",
+       "count": 2
+      },
+      {
+       "descriptor": "Seguin, Texas",
+       "id": "3ff971b74e64018e218d806273163385",
+       "count": 5
+      },
+      {
+       "descriptor": "Shanghai, Shanghai",
+       "id": "3ff971b74e64011830d7986273165b85",
+       "count": 7
+      },
+      {
+       "descriptor": "Shanghai, Shanghai",
+       "id": "3ff971b74e64013c3b809e6273166f85",
+       "count": 1
+      },
+      {
+       "descriptor": "s-Hertogenbosch, Netherlands",
+       "id": "3ff971b74e640179ec96605b7316e97c",
+       "count": 2
+      },
+      {
+       "descriptor": "Singapore, Singapore",
+       "id": "3ff971b74e64012e6b38d4627316bf85",
+       "count": 2
+      },
+      {
+       "descriptor": "Skinningrove, United Kingdom",
+       "id": "3ff971b74e64018994d0926273165185",
+       "count": 1
+      },
+      {
+       "descriptor": "Sosnowiec, Silesian",
+       "id": "3ff971b74e640185c79e596373162886",
+       "count": 1
+      },
+      {
+       "descriptor": "South Milwaukee, Wisconsin",
+       "id": "3ff971b74e640168a212376373160f86",
+       "count": 1
+      },
+      {
+       "descriptor": "Stafford, United Kingdom",
+       "id": "3ff971b74e6401f43828b56373167586",
+       "count": 1
+      },
+      {
+       "descriptor": "Suzhou, Jiangsu",
+       "id": "3ff971b74e6401d6f61d776473160887",
+       "count": 2
+      },
+      {
+       "descriptor": "Suzhou, Jiangsu",
+       "id": "3ff971b74e6401fd994c74647316fe86",
+       "count": 1
+      },
+      {
+       "descriptor": "Texas",
+       "id": "3ff971b74e64014e2101da5d7316be7f",
+       "count": 1
+      },
+      {
+       "descriptor": "Thiruvallur, Tamil Nadu",
+       "id": "3ff971b74e6401976519a56473163087",
+       "count": 2
+      },
+      {
+       "descriptor": "Thiruvallur, Tamil Nadu",
+       "id": "3ff971b74e64014e0094a36473162b87",
+       "count": 1
+      },
+      {
+       "descriptor": "Tianjin, Tianjin",
+       "id": "3ff971b74e64012316e9aa6473164487",
+       "count": 3
+      },
+      {
+       "descriptor": "Tianjin, Tianjin",
+       "id": "3ff971b74e64011fcc75a96473163f87",
+       "count": 1
+      },
+      {
+       "descriptor": "Tianjin, Tianjin",
+       "id": "3ff971b74e6401061204a86473163a87",
+       "count": 1
+      },
+      {
+       "descriptor": "Tianjin, Tianjin",
+       "id": "3ff971b74e6401e2ba8ea66473163587",
+       "count": 1
+      },
+      {
+       "descriptor": "Torreon, Coahuila",
+       "id": "3ff971b74e640197696ab26473165d87",
+       "count": 2
+      },
+      {
+       "descriptor": "Tres Cantos, Madrid",
+       "id": "3ff971b74e640145569e4f6073167f82",
+       "count": 1
+      },
+      {
+       "descriptor": "Tucson, Arizona",
+       "id": "3ff971b74e6401cfa159e26473167687",
+       "count": 8
+      },
+      {
+       "descriptor": "Tullamarine, Victoria",
+       "id": "3ff971b74e6401c669b1e36473167b87",
+       "count": 2
+      },
+      {
+       "descriptor": "USA - IN - Lebanon - Caterpillar Logistics - Lebanon",
+       "id": "e80649f5c91b1000d6224513df120000",
+       "count": 1
+      },
+      {
+       "descriptor": "USA - TX - Irving - Walnut Hill",
+       "id": "79fc6668df861001589a4185c4320000",
+       "count": 2
+      },
+      {
+       "descriptor": "USA - TX - Seguin - Engine Assembly Plant Bldg 2",
+       "id": "57104eb629cb10020106aef73b870000",
+       "count": 2
+      },
+      {
+       "descriptor": "US - AZ - Camelback Office",
+       "id": "d5f7a9c8d3301001edbe8c8122630000",
+       "count": 2
+      },
+      {
+       "descriptor": "US - IN - Noblesville",
+       "id": "39b513d663871001f634c603143e0000",
+       "count": 1
+      },
+      {
+       "descriptor": "Utah",
+       "id": "3ff971b74e6401cc4a0ee45d7316c87f",
+       "count": 1
+      },
+      {
+       "descriptor": "Victoria, Texas",
+       "id": "3ff971b74e640185cd07a45f73169981",
+       "count": 1
+      },
+      {
+       "descriptor": "Washington",
+       "id": "3ff971b74e64016fb1dbfd5d7316e17f",
+       "count": 2
+      },
+      {
+       "descriptor": "West Fargo, North Dakota",
+       "id": "3ff971b74e6401ad1c90f35f7316da81",
+       "count": 4
+      },
+      {
+       "descriptor": "Westminster, Colorado",
+       "id": "3ff971b74e64017281a4eb5f7316d581",
+       "count": 5
+      },
+      {
+       "descriptor": "Wimborne, United Kingdom",
+       "id": "3ff971b74e64015e6677f95f7316e481",
+       "count": 1
+      },
+      {
+       "descriptor": "Wisconsin",
+       "id": "3ff971b74e6401fc030d065e7316eb7f",
+       "count": 4
+      },
+      {
+       "descriptor": "Woodbridge, Ontario",
+       "id": "3ff971b74e6401a420eaf2617316a684",
+       "count": 1
+      },
+      {
+       "descriptor": "Wujiang, Jiangsu",
+       "id": "3ff971b74e64019a63e710607316f381",
+       "count": 3
+      },
+      {
+       "descriptor": "Wuxi, Jiangsu",
+       "id": "3ff971b74e6401192c02156073160282",
+       "count": 21
+      },
+      {
+       "descriptor": "Wuxi, Jiangsu",
+       "id": "3ff971b74e6401e15566196073161182",
+       "count": 3
+      },
+      {
+       "descriptor": "Wuxi, Jiangsu",
+       "id": "3ff971b74e64013a39e8176073160c82",
+       "count": 3
+      },
+      {
+       "descriptor": "Wuxi, Jiangsu",
+       "id": "3ff971b74e640101e3cc1a6073161682",
+       "count": 1
+      },
+      {
+       "descriptor": "Wyoming",
+       "id": "3ff971b74e6401a598e5135e7316f57f",
+       "count": 1
+      },
+      {
+       "descriptor": "Xuzhou, Jiangsu",
+       "id": "3ff971b74e640154b8c61d6073162082",
+       "count": 1
+      },
+      {
+       "descriptor": "Zeebrugge, East Flanders",
+       "id": "3ff971b74e6401f48316406073164d82",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "facetParameter": "distance",
+   "descriptor": "Distance",
+   "values": [
+    {
+     "descriptor": "10 miles",
+     "id": "a538cdb60a631000078a2c60ed1700f3",
+     "count": 1
+    },
+    {
+     "descriptor": "25 miles",
+     "id": "a538cdb60a631000078a2c6a410300f4",
+     "count": 1
+    },
+    {
+     "descriptor": "50 miles",
+     "id": "a538cdb60a631000078a2c6eadd300f5",
+     "count": 1
+    },
+    {
+     "descriptor": "100 miles",
+     "id": "a538cdb60a631000078a2c71efcc00f6",
+     "count": 1
+    },
+    {
+     "descriptor": "Any Distance",
+     "id": "a538cdb60a631000078a2c74f73b00f7",
+     "count": 1
+    }
+   ]
+  }
+ ],
+ "userAuthenticated": false
+}

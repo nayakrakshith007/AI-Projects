@@ -1,0 +1,16 @@
+role,title_pattern,tech
+Data Scientist,data[\s-]*scien,yes
+Data Analyst,data[\s-]*analy,yes
+Business Analyst,business[\s-]*analy,yes
+ML Engineer,"\b(ml|machine[\s-]*learning)\b.{0,25}(engineer|developer|scientist|architect)|\bmlops\b",yes
+AI Engineer,"\b(ai|gen[\s-]*ai|generative ai|llm|nlp|agentic)\b.{0,25}(engineer|developer|scientist|architect|specialist)|ai/ml|ai\s*&\s*ml|prompt engineer|applied scientist|research engineer",yes
+AI Scientist,\b(ai|gen[\s-]*ai|generative ai|applied|research|ml|nlp)\s+scientist|ai research,yes
+Forward Deployed Engineer,forward[\s-]*deployed|\bfde\b|deployment strategist,yes
+Architect,"\b(data|ai|ml|genai|gen\s*ai|machine learning|solutions?|analytics|cloud)\b.{0,20}\barchitect\b|\barchitect\b.{0,15}\b(data|ai|ml)\b",yes
+Ayurveda Faculty,"(professor|lecturer|reader|tutor|faculty|teacher|\bhod\b).{0,60}(ayurved|ayush|rasa\s*shastra|rasashastra|bhaishajya|dravyaguna|kayachikitsa|panchakarma|shalya|shalakya|prasuti|stri\s*roga|kaumarabhritya|agada|swasthavritta|samhita|rachana|kriya\s*sharir|vikriti)|(ayurved|ayush|rasa\s*shastra|rasashastra|bhaishajya|dravyaguna|kayachikitsa|panchakarma|shalya|shalakya|prasuti|stri\s*roga|kaumarabhritya|agada|swasthavritta|samhita|rachana|kriya\s*sharir|vikriti).{0,50}(professor|lecturer|reader|tutor|faculty)",no
+Ayurveda Consultant,"ayurved\w*.{0,30}(consultant|physician|doctor|medical officer|vaidya|practitioner|therapist|specialist)|(consultant|physician|medical officer|vaidya|doctor).{0,30}ayurved|\bbams\b|\bvaidya\b|panchakarma",no
+Ayurveda Pharma,"(ayurved|ayush|herbal|siddha|unani|nutraceutical|botanical).{0,40}(pharma|manufactur|formulation|quality|\bqa\b|\bqc\b|production|r\s*&\s*d|research and development|chemist|executive|manager|regulatory)|(pharma|formulation|quality|production|r\s*&\s*d|chemist).{0,30}(ayurved|ayush|herbal)|rasa\s*shala|rasashala",no
+Ayurveda Research,"(\bjrf\b|\bsrf\b|junior research fellow|senior research fellow|research (associate|fellow|officer|scientist)|project (scientist|associate|assistant)|fellowship|post[- ]?doc|scientist).{0,60}(ayurved|ayush|ccras|siddha|unani|herbal|phytochem|pharmacognos|rasa)|(ayurved|ayush|ccras).{0,50}(research|fellow|scientist|\bjrf\b|\bsrf\b|project)",no
+Clinical Research,clinical (research|trial|data|operations|project|study|monitor|development|safety)|\bcra\b|\bcrc\b|pharmacovigilance|drug safety|medical writ|regulatory affairs|biostatistic|\bcro\b|safety physician|medical monitor|clinical sas,no
+Drug Inspector,"drugs?\s+(inspector|control officer|controller)|inspector.{0,15}\bdrugs?\b|assistant drugs?\s+control|drugs?\s+(licen[cs]ing|regulatory) (authority|officer)",no
+Drug and Regulatory,drugs?\s+(regulat|analyst|safety|discovery|development|testing|licen[cs]ing|control|information)|regulatory (officer|affairs|executive)|food safety (officer|analyst)|\bcdsco\b|government analyst|pharmacologist|pharmacist,no

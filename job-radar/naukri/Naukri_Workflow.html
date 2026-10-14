@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Naukri Workflow</title>
+<style>
+:root{
+  --bg:#14151c; --panel:#1c1e28; --panel2:#232634; --line:#2f3345; --text:#e8eaf2; --muted:#9aa0b8;
+  --trigger:#ff6d5a; --browser:#4c8dff; --logic:#a06bff; --parse:#2fbf71; --store:#19b5c4; --safety:#ff4d6d; --warn:#f5a524;
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#eef0f6;--panel:#ffffff;--panel2:#f4f5fa;--line:#d5d9e6;--text:#1c2030;--muted:#5d6580}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",Calibri,system-ui,sans-serif}
+header{padding:20px 24px 8px}
+h1{margin:0 0 4px;font-size:24px}
+header p{margin:0;color:var(--muted);max-width:900px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+.toolbar{display:flex;gap:10px;align-items:center;padding:10px 24px;flex-wrap:wrap}
+button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer}
+button:hover{border-color:var(--browser)}
+button.primary{background:var(--trigger);border-color:var(--trigger);color:#fff;font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:16px;padding:0 24px 24px}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}}
+.canvas-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:auto;position:relative;max-height:720px}
+.canvas{position:relative;width:2130px;height:640px;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:20px 20px}
+svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.edge{fill:none;stroke-width:2}
+.edge.dash{stroke-dasharray:6 6}
+.elabel{position:absolute;transform:translate(-50%,-50%);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:11px;color:var(--muted);white-space:nowrap}
+.node{position:absolute;width:250px;height:96px;background:var(--panel2);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px 10px 16px;cursor:pointer;transition:.15s;overflow:hidden}
+.node:hover{transform:translateY(-2px);border-color:var(--c)}
+.node.sel{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
+.node::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.node .t{font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center}
+.node .g{display:inline-flex;width:22px;height:22px;border-radius:6px;background:var(--c);color:#fff;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.node .s{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.35}
+.node .badge{position:absolute;right:8px;bottom:6px;font-size:11px;font-weight:700;color:var(--c);opacity:0}
+.node.done{border-color:var(--parse)}
+.node.done .badge{opacity:1}
+.node.run{box-shadow:0 0 0 4px color-mix(in srgb,var(--warn) 45%,transparent);border-color:var(--warn)}
+.node.stopnode{border-style:dashed}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;max-height:720px;overflow:auto}
+.panel h2{margin:0 0 2px;font-size:19px}
+.panel .kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-radius:5px;padding:1px 8px;margin-bottom:8px}
+.panel h3{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.panel ul{margin:0;padding-left:18px}
+.panel li{margin:3px 0}
+.panel code,.panel pre{font-family:Consolas,"Cascadia Mono",monospace;font-size:12px}
+.panel code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.panel pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;margin:6px 0 0}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.io div{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px}
+.io b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fail{border-left:3px solid var(--safety);padding:2px 0 2px 10px;margin:6px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;padding:0 24px 32px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{margin:0 0 8px;font-size:15px}
+.card pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;font:12px/1.5 Consolas,monospace;margin:6px 0}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:3px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+th{color:var(--muted);font-weight:600}
+@media (prefers-reduced-motion:reduce){.node{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Naukri workflow</h1>
+  <p>Reads the newest Naukri jobs for the roles in input.csv with a real Chrome, then adds them to an Excel file. Click any node for the technical detail: what it does, which file and function, the settings, and what happens when it fails.</p>
+  <div class="chips">
+    <span class="chip"><b>Python</b> 3.12</span>
+    <span class="chip"><b>Playwright</b> (sync API)</span>
+    <span class="chip"><b>Installed Google Chrome</b>, visible, saved profile</span>
+    <span class="chip"><b>BeautifulSoup</b> html.parser</span>
+    <span class="chip"><b>openpyxl</b> Excel</span>
+    <span class="chip"><b>0</b> Claude tokens</span>
+    <span class="chip"><b>$0</b> no paid service, no login</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="primary" id="play">Run the workflow (animation)</button>
+  <button id="reset">Reset</button>
+  <div class="legend">
+    <span><i style="background:var(--trigger)"></i>Trigger / input</span>
+    <span><i style="background:var(--browser)"></i>Browser</span>
+    <span><i style="background:var(--logic)"></i>Logic</span>
+    <span><i style="background:var(--parse)"></i>Parse</span>
+    <span><i style="background:var(--store)"></i>Storage</span>
+    <span><i style="background:var(--safety)"></i>Safety</span>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="canvas-wrap"><div class="canvas" id="canvas"></div></div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<div class="cards">
+  <div class="card"><h3>1. The input you give it</h3>
+    <p style="margin:0 0 6px">Edit <code>job-radar-V3/input.csv</code> (one file shared by every site), then run one command.</p>
+<pre>Role,Keywords,Experience,Location
+AI Engineer,"AI Engineer;LLM Engineer",5,India
+Clinical Research,"Pharmacovigilance;Medical Writer",0,India</pre>
+    <ul>
+      <li><b>Role</b>: a label for the group; becomes the Role column in Excel.</li>
+      <li><b>Keywords</b>: job titles separated by semicolons. Each is searched on its own.</li>
+      <li><b>Experience</b>: minimum years, a number. A job stays if its range reaches it (3-6 years passes for 5) or states none. 0 or blank means no filter.</li>
+      <li><b>Location</b>: one or more places separated by semicolons (India, Bengaluru ...).</li>
+      <li>How recent: by default automatic, from midnight of the latest posted date already read (at least 24 h, at most 30 days; a missed day is caught up). Override with <code>--hours N</code> (Naukri rounds up to its 1, 3, 7, 15, 30 day filter). Pick roles with <code>--role "AI Engineer"</code>.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>2. The output (all inside <code>naukri/output/</code>)</h3>
+<table>
+<tr><th>File</th><th>What</th></tr>
+<tr><td><code>Naukri.xlsx</code></td><td>The result. Tab "Naukri", one row per job, your Status and Notes kept.</td></tr>
+<tr><td><code>runs/naukri_*.jsonl</code></td><td>Raw backup of each run, written before Excel.</td></tr>
+<tr><td><code>last_run.log</code></td><td>Progress log of the last run.</td></tr>
+</table>
+    <p style="margin:8px 0 0;color:var(--muted)">Columns: Title, Company, Role, Experience, Location, Skills, Snippet, Posted, Posted date, Search term, First seen, Link, Status (dropdown), Notes.</p>
+  </div>
+  <div class="card"><h3>3. Commands (from <code>job-radar-V3</code>)</h3>
+<pre>.venv\Scripts\python -m naukri search
+.venv\Scripts\python -m naukri search --role "AI Engineer" --hours 48
+.venv\Scripts\python -m naukri check      (or double-click check.bat)
+.venv\Scripts\python -m pytest naukri/tests</pre>
+    <p style="margin:0;color:var(--muted)">Close <code>Naukri.xlsx</code> in Excel before a run. If it is open, a timestamped copy is written instead.</p>
+  </div>
+  <div class="card"><h3>4. Safety rules built in</h3>
+    <ul>
+      <li>No login, no account, no credentials anywhere in the code.</li>
+      <li>The human check is never solved or hidden: the run stops, keeps what it has, and shows a pop-up.</li>
+      <li>No stealth patches, no spoofed fingerprint, no proxies. It is a normal Chrome with normal pauses.</li>
+      <li>Slow on purpose: 9 to 20 s between pages, 25 to 55 s between terms.</li>
+      <li>Everything personal (<code>output/</code>, the Chrome profile) is git-ignored.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>5. What a real run gave (2026-10-11)</h3>
+    <ul>
+      <li>9 search terms (before the CSV input existed), jobs posted within 24 hours. Later CSV smoke test: Forward Deployed Engineer gave 4 jobs, 3 after the 5+ years rule.</li>
+      <li><b>597 unique jobs</b>: 293 posted today, 302 yesterday, 2 unknown.</li>
+      <li>First term to find a job gets it: AI Engineer 260, ML Engineer 227, Data Scientist 60, Generative AI Engineer 21, LLM Engineer 21, Machine Learning Engineer 8.</li>
+      <li>No human check appeared. 5 automated tests pass.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>6. Not in this workflow (done later, in the combined pipeline)</h3>
+    <ul>
+      <li>Full job descriptions (each would need one more page load per job).</li>
+      <li>Routing jobs to role tabs, the 5+ years filter, the India and Bengaluru ranking.</li>
+      <li>Removing duplicates across Naukri, LinkedIn, Indeed and the others.</li>
+      <li>The daily 9 AM schedule.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const W = 250, H = 96;
+const X = [30, 330, 630, 930, 1230, 1530, 1830];
+const R1 = 90, R2 = 380;
+
+const NODES = [
+ {id:'start', x:X[0], y:R1, kind:'trigger', g:'▶', title:'Start (command line)', sub:'python -m naukri search', items:'1 run',
+  what:'You start a run from a terminal. It reads the shared input.csv; you can pick roles and the time window on the command line.',
+  tech:[
+   'Entry point is <code>naukri/__main__.py</code>. It uses <code>argparse</code> with two sub-commands: <code>search</code> and <code>check</code>.',
+   '<code>search</code> takes optional <code>--role</code> (repeatable), <code>--hours</code> (default: automatic from the latest posted date already read) and <code>--input</code> (default <code>job-radar-V3/input.csv</code>).',
+   'The run is synchronous and single-threaded: one browser, one page at a time. That is deliberate, because parallel page loads would look like a bot and raise the chance of a human check.',
+   'Nothing is sent anywhere except page requests to naukri.com from your own Chrome.'],
+  io:['Command line + input.csv','Roles to search and hours'], file:'naukri/__main__.py : main()',
+  settings:['Window: automatic from output/state.json (min 24 h, max 720 h); --hours N overrides'],
+  fails:['No role matches --role: stops with "No matching roles in the input file".'],
+  code:'python -m naukri search\npython -m naukri search --role "AI Engineer" --hours 48'},
+
+ {id:'input', x:X[1], y:R1, kind:'trigger', g:'{}', title:'Read input', sub:'input.csv: role, keywords, experience, location', items:'15 roles',
+  what:'Loads the shared input file and expands it into one search per role, keyword and location.',
+  tech:[
+   '<code>common/inputs.py : load_input()</code> reads <code>input.csv</code> with <code>csv.DictReader</code> (UTF-8). It checks the four columns exist, that every role has keywords, and that Experience is a number, with clear error messages.',
+   'Keywords and locations are split on semicolons. <code>queries_from()</code> then creates one <code>Query(role, keyword, location, min_experience)</code> per keyword and location. The file sits outside the Naukri folder because every site workflow will read the same one.',
+   'Experience rule (<code>experience_ok()</code>): a job is kept when no minimum is set, when it states no experience, or when its range reaches the minimum (3-6 years passes for 5). Recall over precision.',
+   'The hours value is turned into Naukri\'s own "posted within N days" filter by <code>config.job_age_days(hours)</code>: it picks the smallest of 1, 3, 7, 15, 30 days that covers the window.',
+   'Examples: 12 h or 24 h gives 1 day. 48 h or 72 h gives 3 days. 100 h gives 7 days. 400 h gives 30 days.',
+   'Naukri has no filter finer than a day, so "posted today" is read later from each card\'s own label ("Few hours ago", "1 day ago").'],
+  io:['input.csv + --hours','list of queries, jobAge (days)'], file:'common/inputs.py : load_input(), experience_ok(); naukri/search.py : queries_from(); naukri/config.py : job_age_days()',
+  settings:['JOB_AGE_STEPS = (1, 3, 7, 15, 30)'],
+  fails:['Missing column, empty keywords or a non-numeric Experience: the run stops before opening Chrome and names the file line.'],
+  code:'def job_age_days(hours):\n    return next((d for d in JOB_AGE_STEPS if hours <= d * 24), 30)'},
+
+ {id:'chrome', x:X[2], y:R1, kind:'browser', g:'C', title:'Open Chrome session', sub:'Playwright, installed Chrome, saved profile', items:'1 browser',
+  what:'Starts your real Google Chrome, visible but minimized, using a profile folder that remembers the session.',
+  tech:[
+   '<code>playwright.sync_api.sync_playwright()</code> then <code>chromium.launch_persistent_context(user_data_dir, channel="chrome", headless=False, args=["--start-minimized"])</code>.',
+   '<code>channel="chrome"</code> means your installed Google Chrome, not Playwright\'s bundled Chromium. No browser download.',
+   '<code>headless=False</code>: a normal window. Naukri showed its human check to a fresh headless-style profile, but accepts a profile where a person passed the check once.',
+   'The profile lives in <code>data/naukri_profile</code> (cookies, local storage). That saved session is what carries the "I am a person" result from one run to the next. It is not a login: no Naukri account is involved.',
+   'Closed in a <code>finally</code> block and via <code>atexit</code>, so a crash never leaves Chrome running.'],
+  io:['Profile folder','A Chrome page object'], file:'naukri/session.py : Session.page()',
+  settings:['PROFILE_DIR = data/naukri_profile','minimized = True for runs, False for check.bat'],
+  fails:['Chrome window closed by hand during a run: the next page action raises an error; the run stops with the jobs read so far and the error shown.',
+         'Two runs at once: the second cannot open the same profile. Run one at a time.'],
+  code:'ctx = pw.chromium.launch_persistent_context(\n    str(PROFILE_DIR), channel="chrome",\n    headless=False, args=["--start-minimized"])'},
+
+ {id:'url', x:X[3], y:R1, kind:'logic', g:'U', title:'Build page URL', sub:'/<keyword>-jobs-in-<location>-<n>?jobAge=<d>', items:'1 URL per page',
+  what:'Turns a search term and page number into the Naukri search-results address.',
+  tech:[
+   'Keyword and location are lower-cased and every run of non-letters/digits becomes one dash: <code>"Forward Deployed Engineer"</code> becomes <code>forward-deployed-engineer</code>.',
+   'Page 1: <code>https://www.naukri.com/forward-deployed-engineer-jobs-in-india?jobAge=1</code>. With Location Bengaluru: <code>...-jobs-in-bengaluru?jobAge=1</code>. Page n adds <code>-n</code>.',
+   'These are the same public pages anyone can open in a browser. No private API and no token is used.',
+   'Unit-tested: <code>test_urls_and_age</code>.'],
+  io:['keyword, location, page number, days','URL string'], file:'naukri/config.py : slug(), page_url()',
+  settings:['BASE = https://www.naukri.com'],
+  fails:['A term Naukri has no page for returns a normal page with no cards, which is treated as "no results".'],
+  code:'def page_url(term, page, age_days, location="India"):\n    return f"{BASE}/{slug(term)}-jobs-in-{slug(location)}" + (f"-{page}" if page > 1 else "") + f"?jobAge={age_days}"'},
+
+ {id:'load', x:X[4], y:R1, kind:'browser', g:'L', title:'Load page and wait for cards', sub:'goto + random pause + wait for selector', items:'~20 cards/page',
+  what:'Opens the URL, pauses like a person, and waits until the job cards are on screen.',
+  tech:[
+   '<code>page.goto(url, wait_until="domcontentloaded")</code>, then a random pause of 3 to 6 seconds (<code>PAUSE_AFTER_LOAD</code>).',
+   '<code>page.wait_for_selector("div.srp-jobtuple-wrapper", timeout=15000)</code>: Naukri draws results with JavaScript, so we wait for the real cards, not just the HTML.',
+   'A normal results page holds about 20 cards.',
+   'If the selector never shows up within 15 s, the next node decides why.'],
+  io:['URL','Loaded page'], file:'naukri/search.py : search_term(), _page_html()',
+  settings:['PAUSE_AFTER_LOAD = (3, 6) s','CARDS_TIMEOUT_MS = 15000','CARD_SELECTOR = div.srp-jobtuple-wrapper'],
+  fails:['Slow network: the 15 s wait ends, no cards are found, and the page is treated as the end of results. A repeat run picks up what was missed.'],
+  code:'pg.goto(page_url(term, n, age), wait_until="domcontentloaded")\n_pause(PAUSE_AFTER_LOAD)\npg.wait_for_selector(CARD_SELECTOR, timeout=15000)'},
+
+ {id:'check', x:X[5], y:R1, kind:'safety', g:'?', title:'Human check showing?', sub:'no cards + warning words on page', items:'0 in last run',
+  what:'Decides whether an empty page means "no more jobs" or "Naukri wants proof you are human".',
+  tech:[
+   'Runs only when no cards appeared. It reads the page text (<code>inner_text("body")</code>, lower-cased) and looks for the warning phrases in <code>CHECK_MARKERS</code>: "check the box", "verify you are human", "captcha", "access denied", "unusual traffic".',
+   'Found: raises <code>HumanCheckPending</code>. Not found: the page simply had no results, so paging for this term ends.',
+   'The code never clicks, solves, bypasses or works around the check. A person has to do it.',
+   'Two outputs: the YES branch goes to the Stop node, the NO branch continues to Scroll.'],
+  io:['Page with or without cards','continue, or stop'], file:'naukri/search.py : _page_html(), session.HumanCheckPending',
+  settings:['CHECK_MARKERS in config.py'],
+  fails:['Naukri changes the wording of the check: the run would treat it as "no results". The Coverage output would then show far fewer jobs than usual, which is the cue to update CHECK_MARKERS.'],
+  code:'except Exception:\n    body = pg.inner_text("body").lower()\n    if any(m in body for m in CHECK_MARKERS):\n        raise HumanCheckPending(...)\n    return None   # genuinely no results'},
+
+ {id:'stop', x:X[6], y:R1, kind:'safety', g:'!', title:'Stop, keep results, notify you', sub:'pop-up + check.bat', items:'only if needed', stopnode:true,
+  what:'Ends the run safely and tells you what to do. Nothing already read is lost.',
+  tech:[
+   'The error is caught in <code>search()</code>; the jobs collected so far are still saved to the backup file and Excel.',
+   '<code>notify.popup()</code> shows a Windows message box from a daemon thread (<code>ctypes.windll.user32.MessageBoxW</code>, info icon, always on top) so it never blocks the run.',
+   'You double-click <code>check.bat</code>. It runs <code>python -m naukri check</code>: opens a visible Chrome on Naukri, polls every 2 seconds for up to 10 minutes, and closes as soon as job cards appear. The session is then saved in the profile.',
+   'Then rerun the search. Jobs already in Excel are not duplicated.'],
+  io:['HumanCheckPending','pop-up, partial results saved'], file:'naukri/notify.py, naukri/session.py : wait_for_human(), check.bat',
+  settings:['check.bat timeout: 600 s'],
+  fails:['You close the check window without passing it: it says "No results seen. Run it again."'],
+  code:'check.bat\n  -> .venv\\Scripts\\python -m naukri check'},
+
+ {id:'scroll', x:X[5], y:R2, kind:'browser', g:'S', title:'Scroll like a reader', sub:'3 to 5 wheel steps with pauses', items:'~8 s/page',
+  what:'Scrolls down the page in small, uneven steps so the whole list is rendered, the way a person reads.',
+  tech:[
+   '<code>page.mouse.wheel(0, 500..900)</code> repeated 3 to 5 times, with a random 0.8 to 2.2 s pause after each step.',
+   'Then <code>page.content()</code> returns the full rendered HTML of the page for parsing.',
+   'Cost: a few seconds per page. The point is a calm, human-paced visit, not speed.'],
+  io:['Loaded page','Full page HTML'], file:'naukri/search.py : _scroll_like_a_reader()',
+  settings:['SCROLL_STEPS = (3, 5)','SCROLL_PIXELS = (500, 900)','pause 0.8 to 2.2 s'],
+  fails:['Page closes mid-scroll: error is caught in search() and the run ends with partial results.'],
+  code:'for _ in range(random.randint(3, 5)):\n    pg.mouse.wheel(0, random.randint(500, 900))\n    time.sleep(random.uniform(0.8, 2.2))\nhtml = pg.content()'},
+
+ {id:'parse', x:X[4], y:R2, kind:'parse', g:'P', title:'Parse job cards', sub:'BeautifulSoup, one dict per card', items:'~20 jobs/page',
+  what:'Reads each job card in the HTML and pulls out its fields.',
+  tech:[
+   '<code>BeautifulSoup(html, "html.parser")</code>, then one pass over every <code>div.srp-jobtuple-wrapper</code>.',
+   'Selectors: title and link <code>a.title</code> (title attribute and href), company <code>a.comp-name</code>, experience <code>.expwdth</code>, location <code>.locWdth</code> (title attribute holds the full text), snippet <code>.job-desc</code>, skills <code>li.tag-li</code>, posted label <code>.job-post-day</code>.',
+   'The link has its query string cut off, so the same job always has the same address. That address is the unique key.',
+   '<code>posted_to_date()</code> turns the label into a date: "Few hours ago" and "Just now" are today; "N days/weeks ago" is today minus N days. Exact times are not available on the page, so this is an estimate to the day.',
+   'Each job is stamped with its Role, the keyword that found it and the searched location, and dropped if its experience range is below the role\'s minimum.',
+   'Parsing is a pure function on text, so it is tested against a saved real card (<code>tests/fixtures/card.html</code>) without opening a browser.'],
+  io:['Page HTML','list of job dicts'], file:'naukri/parse.py : parse_page(), parse_card(), posted_to_date()',
+  settings:['Fields: title, company, experience, location, snippet, skills, posted_text, posted_date, url'],
+  fails:['Naukri renames its CSS classes: cards would stop parsing and runs would return 0 jobs. The tests and the saved card make the fix a small selector change in one file.'],
+  code:'{"title": ..., "company": ..., "experience": "3-6 Yrs",\n "location": "Hyderabad", "skills": "LLM, Python, ...",\n "posted_text": "1 day ago", "posted_date": date(...),\n "url": "https://www.naukri.com/job-listings-..."}'},
+
+ {id:'decide', x:X[3], y:R2, kind:'logic', g:'?', title:'More jobs? Next page or next term', sub:'dedupe by link, stop when nothing new', items:'597 unique',
+  what:'Adds the new jobs to the pool, then decides whether to go to the next page, the next term, or finish.',
+  tech:[
+   'A dictionary keyed by job link removes repeats within and across terms (<code>dict.setdefault</code>). The first query that finds a job decides its Role and Search term. Jobs dropped by the experience rule still count as seen, so paging ends correctly.',
+   'If the page added at least one new job: wait a random 9 to 20 s, then go to the next page (the loop arrow back to Load page).',
+   'If the page added nothing new, or had no cards: this term is finished. Wait a random 25 to 55 s and start the next term.',
+   'There is no page limit in normal use. A safety ceiling of 60 pages per term only prevents an endless loop.',
+   'When all terms are done, the flow continues to the backup.'],
+  io:['Parsed jobs','pool of unique jobs; loop or finish'], file:'naukri/search.py : search_term(), search()',
+  settings:['PAUSE_BETWEEN_PAGES = (9, 20) s','PAUSE_BETWEEN_TERMS = (25, 55) s','MAX_PAGES = 60 (safety only)'],
+  fails:['Naukri returns the same last page again: nothing new is added, so the term ends instead of looping.'],
+  code:'before = len(jobs)\nfor j in parse_page(html): jobs.setdefault(j["url"], j)\nif len(jobs) == before: break      # results ran out\n_pause(PAUSE_BETWEEN_PAGES)'},
+
+ {id:'backup', x:X[2], y:R2, kind:'store', g:'B', title:'Raw backup (JSONL)', sub:'saved before Excel is touched', items:'1 file/run',
+  what:'Writes every job of the run to a plain text file first, so a failure while writing Excel can never lose the run.',
+  tech:[
+   'One JSON object per line (JSON Lines), UTF-8, in <code>naukri/output/runs/naukri_YYYYMMDD_HHMMSS.jsonl</code>.',
+   'Dates are written in ISO format (<code>default=</code> hook on <code>json.dumps</code>).',
+   'This step was added after a real bug: the first full run read all jobs but crashed while saving to Excel and nothing was kept.'],
+  io:['Unique jobs','.jsonl file'], file:'naukri/__main__.py',
+  settings:['RUNS_DIR = naukri/output/runs'],
+  fails:['Disk full or folder locked: the run reports the error before Excel is attempted.'],
+  code:'{"title":"AI Engineer","company":"...","posted_date":"2026-10-11","url":"https://www.naukri.com/job-listings-..."}'},
+
+ {id:'excel', x:X[1], y:R2, kind:'store', g:'X', title:'Merge into Excel', sub:'openpyxl, keyed by job link', items:'597 new',
+  what:'Adds new jobs to the workbook and refreshes known ones, without touching what you typed.',
+  tech:[
+   'Existing rows are read back with <code>openpyxl.load_workbook</code> matched by column header (so older files without a Role column still load) and keyed by the hyperlink target of the Link cell. Excel returns date cells as datetimes, so they are converted to dates before comparing (a bug fixed after the first run).',
+   'New link: added with Status "New" and First seen = today. Known link: Title, Company, Experience, Location, Skills, Snippet, Posted and Posted date are refreshed; <b>Status, Notes and First seen are kept</b>.',
+   'Rows are sorted newest posted date first, then newest first-seen.',
+   'The sheet is rebuilt on each save with the style: dark-blue bold header, thin borders, clickable "Open" links, Status dropdown (New, Interested, Applied, Not relevant), frozen panes at C2, auto-filter, set column widths.',
+   'If Excel has the file open, saving raises <code>PermissionError</code>; the workbook is then written to a timestamped copy and the screen says so. Nothing is lost.'],
+  io:['Unique jobs + existing workbook','Naukri.xlsx'], file:'naukri/excel.py : save(), merge(), _write()',
+  settings:['EXCEL_PATH = naukri/output/Naukri.xlsx','STATUSES = New, Interested, Applied, Not relevant'],
+  fails:['File open in Excel: timestamped copy is written; close Excel and rerun to update the main file.'],
+  code:'rows, n_new, n_upd = merge(existing, jobs, today)\ntry:\n    _write(rows, path)\nexcept PermissionError:\n    _write(rows, timestamped_copy)'},
+
+ {id:'out', x:X[0], y:R2, kind:'store', g:'✓', title:'Output: Naukri.xlsx', sub:'naukri/output/Naukri.xlsx', items:'597 rows',
+  what:'The finished result you open and work from.',
+  tech:[
+   'Tab "Naukri", 14 columns: Title, Company, Role, Experience, Location, Skills, Snippet, Posted, Posted date, Search term, First seen, Link, Status, Notes.',
+   'Printed summary at the end: how many jobs were read, how many were new, how many already known, and the total in the file.',
+   'Run on 2026-10-11: 597 unique jobs, 293 posted today and 302 yesterday, from 9 search terms, with no human check.',
+   'Next stage (not in this workflow): the combined pipeline will filter by experience and location, route jobs to role tabs, and merge with the other sites.'],
+  io:['Merged rows','Excel file you open'], file:'naukri/output/Naukri.xlsx',
+  settings:['Close the file in Excel before a run'],
+  fails:['Jobs older than the window stay in the file; they are never deleted automatically.'],
+  code:''}
+];
+
+const EDGES = [
+ ['start','input','r','l','',false,'--trigger'],
+ ['input','chrome','r','l','',false,'--trigger'],
+ ['chrome','url','r','l','',false,'--browser'],
+ ['url','load','r','l','',false,'--logic'],
+ ['load','check','r','l','',false,'--browser'],
+ ['check','stop','r','l','yes: wall shown',true,'--safety'],
+ ['check','scroll','b','t','no: cards or just empty',false,'--parse'],
+ ['scroll','parse','l','r','',false,'--browser'],
+ ['parse','decide','l','r','',false,'--parse'],
+ ['decide','load','t','b','more: next page / next term',true,'--logic'],
+ ['decide','backup','l','r','all terms done',false,'--store'],
+ ['backup','excel','l','r','',false,'--store'],
+ ['excel','out','l','r','',false,'--store']
+];
+
+const ORDER = ['start','input','chrome','url','load','check','scroll','parse','decide','backup','excel','out'];
+
+const cv = document.getElementById('canvas');
+const byId = {};
+NODES.forEach(n => { byId[n.id] = n; });
+
+function css(v){ return `var(${v})`; }
+
+// nodes
+NODES.forEach(n => {
+  const d = document.createElement('div');
+  d.className = 'node' + (n.stopnode ? ' stopnode' : '');
+  d.id = 'n_' + n.id;
+  d.style.cssText = `left:${n.x}px;top:${n.y}px;--c:${css('--' + n.kind)}`;
+  d.innerHTML = `<div class="t"><span class="g">${n.g}</span>${n.title}</div><div class="s">${n.sub}</div><div class="badge">${n.items}</div>`;
+  d.addEventListener('click', () => select(n.id));
+  cv.appendChild(d);
+});
+
+// edges
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('class', 'edges');
+svg.innerHTML = '<defs></defs>';
+cv.insertBefore(svg, cv.firstChild);
+
+function port(n, p){
+  if (p === 'r') return [n.x + W, n.y + H/2, 1, 0];
+  if (p === 'l') return [n.x, n.y + H/2, -1, 0];
+  if (p === 't') return [n.x + W/2, n.y, 0, -1];
+  return [n.x + W/2, n.y + H, 0, 1];
+}
+EDGES.forEach((e, i) => {
+  const [a, b, pa, pb, label, dash, col] = e;
+  const [x1, y1, dx1, dy1] = port(byId[a], pa);
+  const [x2, y2, dx2, dy2] = port(byId[b], pb);
+  const k = Math.max(60, Math.hypot(x2 - x1, y2 - y1) / 3);
+  const d = `M${x1},${y1} C${x1 + dx1*k},${y1 + dy1*k} ${x2 + dx2*k},${y2 + dy2*k} ${x2},${y2}`;
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', d); p.setAttribute('id', 'e' + i);
+  p.setAttribute('class', 'edge' + (dash ? ' dash' : ''));
+  p.setAttribute('stroke', css(col)); p.setAttribute('marker-end', `url(#ar${i})`);
+  const m = document.createElementNS(NS, 'marker');
+  m.setAttribute('id', 'ar' + i); m.setAttribute('viewBox', '0 0 10 10'); m.setAttribute('refX', '9'); m.setAttribute('refY', '5');
+  m.setAttribute('markerWidth', '7'); m.setAttribute('markerHeight', '7'); m.setAttribute('orient', 'auto-start-reverse');
+  m.innerHTML = `<path d="M0,0 L10,5 L0,10 z" fill="${css(col)}"/>`;
+  svg.firstChild.appendChild(m);
+  svg.appendChild(p);
+  const dot = document.createElementNS(NS, 'circle');
+  dot.setAttribute('r', '4'); dot.setAttribute('fill', css(col));
+  dot.innerHTML = `<animateMotion dur="${3 + (i % 3)}s" repeatCount="indefinite"><mpath href="#e${i}"/></animateMotion>`;
+  svg.appendChild(dot);
+  if (label) {
+    const mid = (t) => { // point on the cubic at t
+      const c = [[x1,y1],[x1+dx1*k,y1+dy1*k],[x2+dx2*k,y2+dy2*k],[x2,y2]], u = 1 - t;
+      return [0,1].map(j => u*u*u*c[0][j] + 3*u*u*t*c[1][j] + 3*u*t*t*c[2][j] + t*t*t*c[3][j]);
+    };
+    const [mx, my] = mid(0.5);
+    const l = document.createElement('div');
+    l.className = 'elabel'; l.style.left = mx + 'px'; l.style.top = my + 'px'; l.textContent = label;
+    cv.appendChild(l);
+  }
+});
+
+// panel
+const panel = document.getElementById('panel');
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function overview(){
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--browser)">Overview</span>
+   <h2>How it works, in one paragraph</h2>
+   <p>The workflow opens your own Chrome and visits the public Naukri search pages for each of your search terms, with the "posted within N days" filter. It scrolls and pauses at a human pace, reads every job card, and keeps going page by page until a page brings nothing new. It writes a raw backup, then adds the new jobs to an Excel file, keeping your own Status and Notes. If Naukri shows its human check, it stops, keeps what it has and tells you; you tick the box yourself and rerun.</p>
+   <h3>Why a real Chrome and not an API</h3>
+   <ul>
+    <li>Naukri's search API demands a reCAPTCHA token. Direct requests (and the JobSpy library) get HTTP 406 "recaptcha required".</li>
+    <li>A fresh automated browser profile gets the human-check page. A profile where a person passed it once is accepted.</li>
+    <li>The paid Apify alternative cost about $0.85 a day for these keywords. This costs nothing.</li>
+   </ul>
+   <h3>Click a node</h3>
+   <p>Each node explains its job, the file and function behind it, its settings, and what happens if it fails. Press "Run the workflow" to watch the order of the steps.</p>`;
+}
+function select(id){
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('sel'));
+  document.getElementById('n_' + id).classList.add('sel');
+  const n = byId[id];
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--${n.kind})">${{trigger:'Trigger / input',browser:'Browser',logic:'Logic',parse:'Parse',store:'Storage',safety:'Safety'}[n.kind]}</span>
+   <h2>${n.title}</h2>
+   <p style="margin:4px 0 0">${n.what}</p>
+   <h3>Input and output</h3>
+   <div class="io"><div><b>In</b>${n.io[0]}</div><div><b>Out</b>${n.io[1]}</div></div>
+   <h3>Technical detail</h3><ul>${n.tech.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>File and function</h3><p style="margin:0"><code>${n.file}</code></p>
+   <h3>Settings</h3><ul>${n.settings.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>If it fails</h3>${n.fails.map(t => `<div class="fail">${t}</div>`).join('')}
+   ${n.code ? `<h3>Code / sample</h3><pre>${esc(n.code)}</pre>` : ''}`;
+  panel.scrollTop = 0;
+}
+overview();
+
+// run animation
+let timers = [];
+function reset(){
+  timers.forEach(clearTimeout); timers = [];
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('done', 'run', 'sel'));
+  overview();
+}
+function play(){
+  reset();
+  ORDER.forEach((id, i) => {
+    timers.push(setTimeout(() => {
+      document.querySelectorAll('.node.run').forEach(x => x.classList.remove('run'));
+      const el = document.getElementById('n_' + id);
+      el.classList.add('run');
+      el.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'});
+      timers.push(setTimeout(() => { el.classList.remove('run'); el.classList.add('done'); }, 650));
+    }, i * 800));
+  });
+}
+document.getElementById('play').addEventListener('click', play);
+document.getElementById('reset').addEventListener('click', reset);
+</script>
+</body>
+</html>

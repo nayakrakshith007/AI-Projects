@@ -1,0 +1,592 @@
+{
+ "total": 314,
+ "jobs": [
+  {
+   "applicationWindow": {
+    "status": "accepting"
+   },
+   "applyUrl": "https://job-boards.greenhouse.io/ethoslife/jobs/8878194002",
+   "companyDomain": "ethoslife.com",
+   "companyLogos": {
+    "manual": {
+     "height": 160,
+     "src": "https://dzh2zima160vx.cloudfront.net/logo/11d02e8554b1f82695585fa042f51b82_224_160?Expires=1861920000&Signature=ovslhwWm84YTDjliCBH1o1WK0BUIDLqMlJpMVNphKqHR~iLq8ajfC1DLSufFkGkNfphFBJ~Dfa7D75vXjryltohGlyDvdukomUfhLuBXIlFRMqTvufEHvsdptLeWzqJ-xOaae-K7vRRBzQmiwiX7m3Mak5-fKTxkT-waV-OWHQ5-rljDu8gVjzIS-iide4-Ht~h3f8J9w-IxaR7pwsa8Kzl5J6Cc17d87NF5hS-oAnzH17ujcrTVpnhwxTIh6caGWH0QSMlvfMWv5-R-N1zC5h0lZJVIWWSbZzJz1vIJoXGVm4nEQlai0WgqvhgYtak880Jt~iRSesNle2MGBDEwew__&Key-Pair-Id=APKAII5OVX4LZ3WT422Q",
+     "width": 224
+    },
+    "linkedin": {
+     "height": 100,
+     "src": "https://dzh2zima160vx.cloudfront.net/profile/e20b4a31996a9ffe3fcced88bb1bec56_100_100?Expires=1893456000&Signature=XzgSQXdhkDWxk2xvO8zCRQw7s5grtiIvg-OW08k7JK3COrTAOfsnsPVzn8-ZVYNrpatQkpiNebeVDnXeUOobBrlpy6XKnzx5sNOV2y8nrYSTzK3taNjflLMqe1faqFbwi9RlYTAFQ1L1nZm6mhh8z--nuoRkHb-9CYrReH10XhMfbXNYqHQgWnisjyzIs-Vex6KXz3w-D0cCssMWceTPVzqBwznpjmXgkLfNSJosMFF-6fWtwe3HC4RiE39nPu-mp4QrXZIIdLyUsncusVg-r8eZ7u9RJMPdfadiDx4e7caZXVT8fnCi3HCij~myqKeD~5Sy-Gd1hOSPMUu4f4n47w__&Key-Pair-Id=APKAII5OVX4LZ3WT422Q",
+     "width": 100
+    }
+   },
+   "companyId": "Ethos Life",
+   "companySlug": "ethos-life",
+   "companyName": "Ethos Life",
+   "companyStaffCount": 1046,
+   "considerHosted": false,
+   "departments": [
+    "Revenue"
+   ],
+   "jobTypes": [
+    {
+     "id": "policy-professional",
+     "label": "Policy and Public Affairs",
+     "value": "policy-professional"
+    },
+    {
+     "id": "people-manager",
+     "label": "People Manager",
+     "value": "people-manager"
+    }
+   ],
+   "jobFunctions": [],
+   "locations": [
+    "Bangalore, India"
+   ],
+   "normalizedLocations": [
+    {
+     "id": "Bengaluru Area, India",
+     "label": "Bangalore",
+     "value": "Bengaluru Area, India"
+    }
+   ],
+   "skills": [
+    {
+     "id": "resume:Customer Satisfaction",
+     "label": "Customer Satisfaction",
+     "value": "resume:Customer Satisfaction"
+    },
+    {
+     "id": "resume:Attention to Detail",
+     "label": "Attention to Detail",
+     "value": "resume:Attention to Detail"
+    },
+    {
+     "id": "resume:Prioritization Skills",
+     "label": "Prioritization Skills",
+     "value": "resume:Prioritization Skills"
+    },
+    {
+     "id": "resume:Decision-Making",
+     "label": "Decision-Making",
+     "value": "resume:Decision-Making"
+    },
+    {
+     "id": "resume:Written Communication Skills",
+     "label": "Written Communication Skills",
+     "value": "resume:Written Communication Skills"
+    },
+    {
+     "id": "resume:Salesforce",
+     "label": "Salesforce",
+     "value": "resume:Salesforce"
+    }
+   ],
+   "requiredSkills": [
+    {
+     "id": "resume:Customer Satisfaction",
+     "label": "Customer Satisfaction",
+     "value": "resume:Customer Satisfaction"
+    },
+    {
+     "id": "resume:Attention to Detail",
+     "label": "Attention to Detail",
+     "value": "resume:Attention to Detail"
+    },
+    {
+     "id": "resume:Prioritization Skills",
+     "label": "Prioritization Skills",
+     "value": "resume:Prioritization Skills"
+    }
+   ],
+   "preferredSkills": [
+    {
+     "id": "resume:Decision-Making",
+     "label": "Decision-Making",
+     "value": "resume:Decision-Making"
+    },
+    {
+     "id": "resume:Written Communication Skills",
+     "label": "Written Communication Skills",
+     "value": "resume:Written Communication Skills"
+    },
+    {
+     "id": "resume:Salesforce",
+     "label": "Salesforce",
+     "value": "resume:Salesforce"
+    }
+   ],
+   "manager": true,
+   "consultant": false,
+   "contractor": false,
+   "considerLevels": [
+    [
+     3,
+     4
+    ],
+    [
+     5,
+     6
+    ]
+   ],
+   "minYearsExp": 5,
+   "regions": [
+    {
+     "id": "Asia Pacific",
+     "label": "Asia Pacific",
+     "value": "Asia Pacific"
+    }
+   ],
+   "stages": [
+    {
+     "id": "1000+ employees",
+     "label": "1000+ employees",
+     "value": "1000+ employees"
+    }
+   ],
+   "markets": [
+    {
+     "id": "Insurance",
+     "label": "Insurance",
+     "value": "Insurance"
+    }
+   ],
+   "timeStamp": "2026-10-13T00:18:21Z",
+   "title": "Policy Admin Manager",
+   "url": "https://job-boards.greenhouse.io/ethoslife/jobs/8878194002",
+   "jobId": "8878194002",
+   "remote": false,
+   "hybrid": false,
+   "scores": {
+    "score": 1001.0885471816829,
+    "matchScore": 0,
+    "ageScore": 0.9885471816828704,
+    "richnessScore": 1
+   },
+   "atsJobs": [],
+   "matchingTalent": {
+    "count": 0,
+    "matches": []
+   },
+   "jobSeniorities": [
+    {
+     "id": "manager",
+     "label": "Manager/Senior Manager",
+     "value": "manager"
+    }
+   ],
+   "jobSeniorityIds": [
+    "manager"
+   ],
+   "isFeatured": false
+  },
+  {
+   "applicationWindow": {
+    "status": "accepting"
+   },
+   "applyUrl": "https://ats.rippling.com/rippling/jobs/40c72c6b-7575-4356-a215-6ff77a03d1e9",
+   "companyDomain": "rippling.com",
+   "companyLogos": {
+    "manual": {
+     "height": 160,
+     "src": "https://dzh2zima160vx.cloudfront.net/logo/0594503b1295c096ab07a515987adc68_280_160?Expires=1861920000&Signature=GktK66skj4HF16E-YmVZCzkr46u2GQo38FJa~TZR4Ct47MRsJK6tHspSN3YSLn-rg-Urn36j7iSbCnHvCADXImXuPF2ejz75jn2hTDmlulU3CrfV6SUvKJrOC-EijPfasha~LreVCUB7vrpzGPnzSXsqI6-zNEfFS-D~Gwbt8u5CtoSZd134lTb3MwykO4C3GpbRH8levxdyymILQjpDMvOrRC1ZsitKii5HnwEGthtgBzNGbRFSNARUe~UAiQT8pHnANG0Pdnvel~QWKGxEXP2S1cpFFs6p537CaJpY89RVjq7tS~yIzIldPoC6Z50SyV-5ThCbEA7qwE21365edg__&Key-Pair-Id=APKAII5OVX4LZ3WT422Q",
+     "width": 280
+    },
+    "linkedin": {
+     "height": 100,
+     "src": "https://dzh2zima160vx.cloudfront.net/profile/abbc2d2f8817c1f77a69ce88aac9c3aa_100_100?Expires=1893456000&Signature=GouXaPVLpObyeIL5wH2nTl-7fCqVSs8j4GCbr7z2FvN1WQAK7IUgLtdEv9hqNfAL6OSc61u2Gwq8iuSUJ0k5HA40tnqm6pOfMifn1B1qHSlgwpiU02F7W-1Sv18wMe2GlxiVM6voapIW8kLM-frMtCN36lj19OwNCyhjuzrZ-Blqo06Yju-CYU~kIc5cVvIKce1crzTwcHVyu~naGKp78bLWtFqW1JdoAUXUqf7~rtAJ3fyd5xNWFB5JL9EdX8ml52j2-o6wv9QnXfjcIxHNEfrcz0cylh0biNw0d0tKAyw076EvHeDv3uH-mJXKUhxInp28gT7UCCvbgTB25w5iIA__&Key-Pair-Id=APKAII5OVX4LZ3WT422Q",
+     "width": 100
+    }
+   },
+   "companyId": "Rippling",
+   "companySlug": "rippling",
+   "companyName": "Rippling",
+   "companyStaffCount": 7796,
+   "considerHosted": false,
+   "departments": [],
+   "jobTypes": [
+    {
+     "id": "lead",
+     "label": "Lead",
+     "value": "lead"
+    },
+    {
+     "id": "taxes-professional",
+     "label": "Taxes Professional",
+     "value": "taxes-professional"
+    },
+    {
+     "id": "sales-enablement",
+     "label": "Sales Enablement",
+     "value": "sales-enablement"
+    }
+   ],
+   "jobFunctions": [
+    {
+     "id": "Accounting",
+     "label": "Accounting",
+     "value": "Accounting"
+    },
+    {
+     "id": "Marketing",
+     "label": "Marketing",
+     "value": "Marketing"
+    },
+    {
+     "id": "Sales",
+     "label": "Sales",
+     "value": "Sales"
+    }
+   ],
+   "locations": [
+    "India"
+   ],
+   "normalizedLocations": [
+    {
+     "id": "India",
+     "label": "India",
+     "value": "India"
+    }
+   ],
+   "salary": {
+    "period": {
+     "label": "Year",
+     "value": "year"
+    },
+    "minValue": 0,
+    "maxValue": 15000,
+    "currency": {
+     "label": "USD",
+     "value": "USD"
+    },
+    "isOriginal": false
+   },
+   "skills": [
+    {
+     "id": "resume:Customer Satisfaction",
+     "label": "Customer Satisfaction",
+     "value": "resume:Customer Satisfaction"
+    },
+    {
+     "id": "resume:Organization Skills",
+     "label": "Organization Skills",
+     "value": "resume:Organization Skills"
+    },
+    {
+     "id": "resume:Taxes",
+     "label": "Taxes",
+     "value": "resume:Taxes"
+    },
+    {
+     "id": "resume:Enablement",
+     "label": "Enablement",
+     "value": "resume:Enablement"
+    },
+    {
+     "id": "resume:Quality Assurance",
+     "label": "Quality Assurance",
+     "value": "resume:Quality Assurance"
+    }
+   ],
+   "requiredSkills": [
+    {
+     "id": "resume:Customer Satisfaction",
+     "label": "Customer Satisfaction",
+     "value": "resume:Customer Satisfaction"
+    },
+    {
+     "id": "resume:Organization Skills",
+     "label": "Organization Skills",
+     "value": "resume:Organization Skills"
+    },
+    {
+     "id": "resume:Taxes",
+     "label": "Taxes",
+     "value": "resume:Taxes"
+    }
+   ],
+   "preferredSkills": [
+    {
+     "id": "resume:Enablement",
+     "label": "Enablement",
+     "value": "resume:Enablement"
+    },
+    {
+     "id": "resume:Quality Assurance",
+     "label": "Quality Assurance",
+     "value": "resume:Quality Assurance"
+    }
+   ],
+   "manager": false,
+   "consultant": false,
+   "contractor": false,
+   "considerLevels": [
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "minYearsExp": 3,
+   "maxYearsExp": 6,
+   "regions": [
+    {
+     "id": "Asia Pacific",
+     "label": "Asia Pacific",
+     "value": "Asia Pacific"
+    }
+   ],
+   "stages": [
+    {
+     "id": "1000+ employees",
+     "label": "1000+ employees",
+     "value": "1000+ employees"
+    },
+    {
+     "id": "Growth",
+     "label": "Growth",
+     "value": "Growth"
+    }
+   ],
+   "fundingLV": {
+    "id": "Growth",
+    "label": "Growth",
+    "value": "Growth"
+   },
+   "markets": [
+    {
+     "id": "HR and Recruiting",
+     "label": "HR and Recruiting",
+     "value": "HR and Recruiting"
+    }
+   ],
+   "timeStamp": "2026-10-12T08:00:46.288000Z",
+   "title": "Quality & Enablement Lead, US Tax Operations ",
+   "url": "https://ats.rippling.com/rippling/jobs/40c72c6b-7575-4356-a215-6ff77a03d1e9",
+   "jobId": "40c72c6b-7575-4356-a215-6ff77a03d1e9",
+   "remote": false,
+   "hybrid": false,
+   "scores": {
+    "score": 1001.0660948969332,
+    "matchScore": 0,
+    "ageScore": 0.9660948969332561,
+    "richnessScore": 1
+   },
+   "atsJobs": [],
+   "matchingTalent": {
+    "count": 0,
+    "matches": []
+   },
+   "jobSeniorities": [
+    {
+     "id": "mid",
+     "label": "Mid",
+     "value": "mid"
+    },
+    {
+     "id": "senior",
+     "label": "Senior",
+     "value": "senior"
+    }
+   ],
+   "jobSeniorityIds": [
+    "mid",
+    "senior"
+   ],
+   "isFeatured": false
+  },
+  {
+   "applicationWindow": {
+    "status": "accepting"
+   },
+   "applyUrl": "https://in.linkedin.com/jobs/view/senior-customer-service-advisor-at-24-7-ai-4475401650",
+   "companyDomain": "247.ai",
+   "companyLogos": {
+    "manual": {
+     "height": 160,
+     "src": "https://dzh2zima160vx.cloudfront.net/logo/b42f34e4bef5b70efee32e252edde65b_176_160?Expires=1861920000&Signature=QaPkKfujQcKJVfeAI9KH2ujcqte1h1kB82VMUnXVcUFFyKdCRmfporNNOHKCsHf~FZNz--IjWS235m858G0O5Es~UuCZKIplDkC5uuJ3OId69LFPyfJ4eeRT6HRnNE8iPsoTMuUkEt4noxc4kuhHEFn4CmfdRIkPosU9ZdMUP3xmN1NA5dRMQ3i5ljObyGhdQBQr3HFcFavnINHBQZeun5lvYcwsoPaVV4Vi5vXD2fvxneevIwVrQ0KehJ4PHlIp21WyhQHFB5JdpXqYC7xFgR0COuR8wXysU8ezw6-qRKvO~EmwY71k9Hqf6xCbW3HdCmzqu~LNw553p4gUrAFoFg__&Key-Pair-Id=APKAII5OVX4LZ3WT422Q",
+     "width": 176
+    },
+    "linkedin": {
+     "height": 100,
+     "src": "https://dzh2zima160vx.cloudfront.net/profile/3d92ed1e2b1bf7f60c7e30dabaac403f_100_100?Expires=1893456000&Signature=bUcf7niuj99UDaD8GA0xOzDKbGs4Ytkt1PLliKyErrKZJv7EafLgrSLhL3eZgG4tAZT4nprPJolT0TNZK02yvwj4e79kLzIg2vQmbCPaoilFkeH5QU~CJgPRK8AnvKVRcaYzappgQDzlwZ3FpFg905RO3epDqmhuHMmQXjw-QtOwZarmhUZ7BdQ43WkZL5dmz6vIctd9-ShQQSeEgIVBAfWC0dCXNsZBWYLbhsFNuAZFvAfPXRJ5JE8JnLosF0Q0EHSgb23reXXWHsVhNxcftBtjvtP8SYYS1I5uE67JFcNlqUAaqG58yvk5trt2Kq6BWeFYFZ-HezMYnY5o8uPWQA__&Key-Pair-Id=APKAII5OVX4LZ3WT422Q",
+     "width": 100
+    }
+   },
+   "companyId": "247ai",
+   "companySlug": "247ai",
+   "companyName": "[24]7.ai",
+   "companyStaffCount": 11284,
+   "considerHosted": false,
+   "departments": [],
+   "jobTypes": [
+    {
+     "id": "advisor",
+     "label": "Advisor",
+     "value": "advisor"
+    },
+    {
+     "id": "customer-support",
+     "label": "Customer Support",
+     "value": "customer-support"
+    }
+   ],
+   "jobFunctions": [
+    {
+     "id": "Consulting",
+     "label": "Consulting",
+     "value": "Consulting"
+    },
+    {
+     "id": "Customer Service",
+     "label": "Customer Service",
+     "value": "Customer Service"
+    }
+   ],
+   "locations": [
+    "Bengaluru, IN"
+   ],
+   "normalizedLocations": [
+    {
+     "id": "Bengaluru Area, India",
+     "label": "Bangalore",
+     "value": "Bengaluru Area, India"
+    }
+   ],
+   "salary": {
+    "period": {
+     "label": "Year",
+     "value": "year"
+    },
+    "minValue": 200000,
+    "maxValue": 560000,
+    "currency": {
+     "label": "INR",
+     "value": "INR"
+    },
+    "isOriginal": true
+   },
+   "skills": [
+    {
+     "id": "resume:Advisor",
+     "label": "Advisor",
+     "value": "resume:Advisor"
+    },
+    {
+     "id": "resume:Information Security",
+     "label": "Information Security",
+     "value": "resume:Information Security"
+    },
+    {
+     "id": "resume:Customer Satisfaction",
+     "label": "Customer Satisfaction",
+     "value": "resume:Customer Satisfaction"
+    },
+    {
+     "id": "resume:Service",
+     "label": "Service",
+     "value": "resume:Service"
+    }
+   ],
+   "requiredSkills": [
+    {
+     "id": "resume:Advisor",
+     "label": "Advisor",
+     "value": "resume:Advisor"
+    },
+    {
+     "id": "resume:Information Security",
+     "label": "Information Security",
+     "value": "resume:Information Security"
+    },
+    {
+     "id": "resume:Customer Satisfaction",
+     "label": "Customer Satisfaction",
+     "value": "resume:Customer Satisfaction"
+    }
+   ],
+   "preferredSkills": [
+    {
+     "id": "resume:Service",
+     "label": "Service",
+     "value": "resume:Service"
+    }
+   ],
+   "manager": false,
+   "consultant": false,
+   "contractor": false,
+   "considerLevels": [
+    [
+     3,
+     4
+    ],
+    [
+     5,
+     6
+    ]
+   ],
+   "regions": [
+    {
+     "id": "Asia Pacific",
+     "label": "Asia Pacific",
+     "value": "Asia Pacific"
+    }
+   ],
+   "stages": [
+    {
+     "id": "1000+ employees",
+     "label": "1000+ employees",
+     "value": "1000+ employees"
+    },
+    {
+     "id": "Seed funded",
+     "label": "Seed",
+     "value": "Seed funded"
+    }
+   ],
+   "fundingLV": {
+    "id": "Seed funded",
+    "label": "Seed",
+    "value": "Seed funded"
+   },
+   "markets": [
+    {
+     "id": "AI-Powered Applications",
+     "label": "AI-Powered Applications",
+     "value": "AI-Powered Applications"
+    }
+   ],
+   "timeStamp": "2026-10-07T09:36:33Z",
+   "title": "Senior Customer Service Advisor",
+   "url": "https://in.linkedin.com/jobs/view/senior-customer-service-advisor-at-24-7-ai-4475401650",
+   "jobId": "4475401650",
+   "remote": false,
+   "hybrid": false,
+   "scores": {
+    "score": 1000.9812592114229,
+    "matchScore": 0,
+    "ageScore": 0.8012592114228395,
+    "richnessScore": 1.8
+   },
+   "atsJobs": [],
+   "matchingTalent": {
+    "count": 0,
+    "matches": []
+   },
+   "jobSeniorities": [
+    {
+     "id": "senior",
+     "label": "Senior",
+     "value": "senior"
+    }
+   ],
+   "jobSeniorityIds": [
+    "senior"
+   ],
+   "isFeatured": false
+  }
+ ]
+}

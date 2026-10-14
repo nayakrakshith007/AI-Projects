@@ -1,0 +1,93 @@
+{
+ "data": {
+  "count": 407,
+  "positions": [
+   {
+    "id": 859037874902,
+    "displayJobId": "26992061",
+    "name": "Process and Data Analyst",
+    "locations": [
+     "GURUGRAM, Hary\u0101na, India"
+    ],
+    "standardizedLocations": [
+     "Gurugram, HR, IN"
+    ],
+    "postedTs": 1788912000,
+    "solrScore": null,
+    "stars": 0,
+    "department": "Business Strategy, Management & Administration",
+    "creationTs": 1788307200,
+    "isHot": 0,
+    "workLocationOption": "hybrid",
+    "locationFlexibility": null,
+    "atsJobId": "26992061",
+    "positionUrl": "/careers/job/859037874902"
+   },
+   {
+    "id": 859037877658,
+    "displayJobId": "26992902",
+    "name": "Reference Data Management Representative",
+    "locations": [
+     "GURUGRAM, Hary\u0101na, India"
+    ],
+    "standardizedLocations": [
+     "Gurugram, HR, IN"
+    ],
+    "postedTs": 1790294400,
+    "solrScore": null,
+    "stars": 0,
+    "department": "Operations - Services",
+    "creationTs": 1788739200,
+    "isHot": 0,
+    "workLocationOption": "hybrid",
+    "locationFlexibility": null,
+    "atsJobId": "26992902",
+    "positionUrl": "/careers/job/859037877658"
+   },
+   {
+    "id": 859038232905,
+    "displayJobId": "26993435",
+    "name": "Senior Data Scientist, People Analytics & Insights",
+    "locations": [
+     "CHENNAI, Tamil N\u0101du, India",
+     "MUMBAI, Mah\u0101r\u0101shtra, India"
+    ],
+    "standardizedLocations": [
+     "Chennai, TN, IN",
+     "Mumbai, MH, IN"
+    ],
+    "postedTs": 1791244800,
+    "solrScore": null,
+    "stars": 0,
+    "department": "Decision Management",
+    "creationTs": 1788825600,
+    "isHot": 0,
+    "workLocationOption": "hybrid",
+    "locationFlexibility": null,
+    "atsJobId": "26993435",
+    "positionUrl": "/careers/job/859038232905"
+   },
+   {
+    "id": 859037967104,
+    "displayJobId": "26994927",
+    "name": "Data-ETL Engineering Lead-Vice President",
+    "locations": [
+     "PUNE, Mah\u0101r\u0101shtra, India"
+    ],
+    "standardizedLocations": [
+     "Pune, MH, IN"
+    ],
+    "postedTs": 1790553600,
+    "solrScore": null,
+    "stars": 0,
+    "department": "Technology",
+    "creationTs": 1789344000,
+    "isHot": 0,
+    "workLocationOption": "hybrid",
+    "locationFlexibility": null,
+    "atsJobId": "26994927",
+    "positionUrl": "/careers/job/859037967104"
+   }
+  ]
+ }
+}

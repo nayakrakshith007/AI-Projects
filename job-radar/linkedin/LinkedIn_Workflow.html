@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LinkedIn Workflow</title>
+<style>
+:root{
+  --bg:#14151c; --panel:#1c1e28; --panel2:#232634; --line:#2f3345; --text:#e8eaf2; --muted:#9aa0b8;
+  --trigger:#ff6d5a; --browser:#4c8dff; --logic:#a06bff; --parse:#2fbf71; --store:#19b5c4; --safety:#ff4d6d; --warn:#f5a524;
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#eef0f6;--panel:#ffffff;--panel2:#f4f5fa;--line:#d5d9e6;--text:#1c2030;--muted:#5d6580}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",Calibri,system-ui,sans-serif}
+header{padding:20px 24px 8px}
+h1{margin:0 0 4px;font-size:24px}
+header p{margin:0;color:var(--muted);max-width:900px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+.toolbar{display:flex;gap:10px;align-items:center;padding:10px 24px;flex-wrap:wrap}
+button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer}
+button:hover{border-color:var(--browser)}
+button.primary{background:var(--trigger);border-color:var(--trigger);color:#fff;font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:16px;padding:0 24px 24px}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}}
+.canvas-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:auto;position:relative;max-height:720px}
+.canvas{position:relative;width:2130px;height:640px;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:20px 20px}
+svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.edge{fill:none;stroke-width:2}
+.edge.dash{stroke-dasharray:6 6}
+.elabel{position:absolute;transform:translate(-50%,-50%);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:11px;color:var(--muted);white-space:nowrap}
+.node{position:absolute;width:250px;height:96px;background:var(--panel2);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px 10px 16px;cursor:pointer;transition:.15s;overflow:hidden}
+.node:hover{transform:translateY(-2px);border-color:var(--c)}
+.node.sel{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
+.node::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.node .t{font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center}
+.node .g{display:inline-flex;width:22px;height:22px;border-radius:6px;background:var(--c);color:#fff;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.node .s{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.35}
+.node .badge{position:absolute;right:8px;bottom:6px;font-size:11px;font-weight:700;color:var(--c);opacity:0}
+.node.done{border-color:var(--parse)}
+.node.done .badge{opacity:1}
+.node.run{box-shadow:0 0 0 4px color-mix(in srgb,var(--warn) 45%,transparent);border-color:var(--warn)}
+.node.stopnode{border-style:dashed}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;max-height:720px;overflow:auto}
+.panel h2{margin:0 0 2px;font-size:19px}
+.panel .kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-radius:5px;padding:1px 8px;margin-bottom:8px}
+.panel h3{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.panel ul{margin:0;padding-left:18px}
+.panel li{margin:3px 0}
+.panel code,.panel pre{font-family:Consolas,"Cascadia Mono",monospace;font-size:12px}
+.panel code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.panel pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;margin:6px 0 0}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.io div{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px}
+.io b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fail{border-left:3px solid var(--safety);padding:2px 0 2px 10px;margin:6px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;padding:0 24px 32px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{margin:0 0 8px;font-size:15px}
+.card pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;font:12px/1.5 Consolas,monospace;margin:6px 0}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:3px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+th{color:var(--muted);font-weight:600}
+@media (prefers-reduced-motion:reduce){.node{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>LinkedIn workflow</h1>
+  <p>Reads the newest public LinkedIn jobs for the roles in input.csv: ten jobs per request, several searches in parallel, each with its own random pauses, backing off when LinkedIn pushes back. Then it adds the jobs to an Excel file. Click any node for the technical detail: what it does, the file and function, the settings, and what happens when it fails.</p>
+  <div class="chips">
+    <span class="chip"><b>Python</b> 3.12</span>
+    <span class="chip"><b>python-jobspy</b> 1.3.0 (LinkedIn guest API)</span>
+    <span class="chip"><b>ThreadPoolExecutor</b> 3 parallel searches</span>
+    <span class="chip"><b>Playwright</b> + real Chrome (fallback engine)</span>
+    <span class="chip"><b>openpyxl</b> Excel</span>
+    <span class="chip"><b>0</b> Claude tokens</span>
+    <span class="chip"><b>$0</b> no paid service, no login</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="primary" id="play">Run the workflow (animation)</button>
+  <button id="reset">Reset</button>
+  <div class="legend">
+    <span><i style="background:var(--trigger)"></i>Trigger / input</span>
+    <span><i style="background:var(--browser)"></i>Browser</span>
+    <span><i style="background:var(--logic)"></i>Logic</span>
+    <span><i style="background:var(--parse)"></i>Parse</span>
+    <span><i style="background:var(--store)"></i>Storage</span>
+    <span><i style="background:var(--safety)"></i>Safety</span>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="canvas-wrap"><div class="canvas" id="canvas"></div></div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<div class="cards">
+  <div class="card"><h3>1. The input you give it</h3>
+    <p style="margin:0 0 6px">The same file as every other site: <code>job-radar-V3/input.csv</code>.</p>
+<pre>Role,Keywords,Experience,Location
+AI Engineer,"AI Engineer;LLM Engineer",5,India
+Clinical Research,"Pharmacovigilance;Medical Writer",0,India</pre>
+    <ul>
+      <li><b>Role</b>: label for the group; becomes the Role column.</li>
+      <li><b>Keywords</b>: titles separated by semicolons; each is its own search.</li>
+      <li><b>Experience</b>: not applied on LinkedIn, because its job cards carry no experience text. Unstated jobs are always kept; the combined pipeline will infer experience later.</li>
+      <li><b>Location</b>: India, or a city (Bengaluru becomes "Bengaluru, India").</li>
+      <li>Command line: <code>--hours N</code> (default: automatic, from the latest posted date already read), <code>--role "AI Engineer"</code>, <code>--workers 3</code>, <code>--engine jobspy|browser</code>.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>2. The output (all inside <code>linkedin/output/</code>)</h3>
+<table>
+<tr><th>File</th><th>What</th></tr>
+<tr><td><code>LinkedIn.xlsx</code></td><td>The result. Tab "LinkedIn", one row per job, your Status and Notes kept.</td></tr>
+<tr><td><code>runs/linkedin_*.jsonl</code></td><td>Raw backup of each run, written before Excel.</td></tr>
+<tr><td><code>last_run.log</code></td><td>Progress log of the last run.</td></tr>
+</table>
+    <p style="margin:8px 0 0;color:var(--muted)">Columns: Title, Company, Role, Location, Posted, Posted date, Search term, First seen, Link, Status (dropdown), Notes.</p>
+  </div>
+  <div class="card"><h3>3. Commands (from <code>job-radar-V3</code>)</h3>
+<pre>.venv\Scripts\python -m linkedin search
+.venv\Scripts\python -m linkedin search --role "AI Engineer" --hours 48
+.venv\Scripts\python -m linkedin search --engine browser
+.venv\Scripts\python -m pytest linkedin/tests</pre>
+    <p style="margin:0;color:var(--muted)">Close <code>LinkedIn.xlsx</code> in Excel before a run. If it is open, a timestamped copy is written instead.</p>
+  </div>
+  <div class="card"><h3>4. Why parallel, and why it is still polite</h3>
+    <ul>
+      <li>One search asking for 100 jobs at once got HTTP 429 after the first ten. Ten per request with a random pause did not.</li>
+      <li>Three searches at once cut the time by about a third. More workers raise the chance of a 429, so 3 is the default.</li>
+      <li>Every search draws its own pause range (low 8 to 15 s, plus 10 to 20 s of spread), so the workers do not tick in step. Starts are staggered.</li>
+      <li>On a 429: wait 60 to 120 s and retry the same page; give up on that search after two; stop the run after three searches gave up. Partial results are always saved.</li>
+      <li>No login, no stealth, no proxy, no check solving.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>5. What a real run gave</h3>
+    <ul>
+      <li>Full run on 2026-10-11: 15 roles, 44 searches, jobs posted within 24 hours, 3 parallel workers. <b>1,096 unique jobs in 30.9 minutes</b> (555 posted today, 541 yesterday), about 250 requests, 33 rate-limit hits (HTTP 429) that were backed off and retried, no search gave up.</li><li>Jobs per role (first search to find a job keeps it): ML Engineer 167, Architect 125, Business Analyst 115, Forward Deployed Engineer 107, Ayurveda Pharma 106, Ayurveda Consultant 87, Clinical Research 87, Data Analyst 79, Data Scientist 68, Drug Inspector 67, Ayurveda Faculty 22, Drug and Regulatory 22, Ayurveda Research 21, AI Engineer 18, AI Scientist 5. Many AI jobs sit under ML Engineer because that search ran first; the combined pipeline re-routes by title.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>6. Not in this workflow (done later, in the combined pipeline)</h3>
+    <ul>
+      <li>Job descriptions and experience (LinkedIn needs one request per job; descriptions would also let the pipeline infer experience).</li>
+      <li>Title filtering and role routing: LinkedIn's keyword match is loose, so many results are not the role.</li>
+      <li>India and Bengaluru ranking, work-mode flags, and removing duplicates across Naukri, LinkedIn, Indeed and the others.</li>
+      <li>The daily 9 AM schedule.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const W = 250, H = 96;
+const X = [30, 330, 630, 930, 1230, 1530, 1830];
+const R1 = 90, R2 = 380;
+
+const NODES = [
+ {id:'start', x:X[0], y:R1, kind:'trigger', g:'▶', title:'Start (command line)', sub:'python -m linkedin search', items:'1 run',
+  what:'You start a run from a terminal. It reads the shared input.csv; you can pick roles, the time window, the engine and the number of parallel workers.',
+  tech:[
+   'Entry point is <code>linkedin/__main__.py</code>, built with <code>argparse</code> and two sub-commands: <code>search</code> and <code>check</code> (check is for the browser engine only).',
+   '<code>search</code> options: <code>--role</code> (repeatable), <code>--hours</code> (default: automatic from the latest posted date already read), <code>--input</code> (default <code>job-radar-V3/input.csv</code>), <code>--engine jobspy|browser</code> (default jobspy), <code>--workers</code> (default 3).',
+   'The default engine talks to LinkedIn\'s public guest job-search API through the JobSpy library. No login, no account, no cookies of yours.'],
+  io:['Command line + input.csv','Roles, hours, engine'], file:'linkedin/__main__.py : main()',
+  settings:['Window: automatic from output/state.json (min 24 h, max 720 h); --hours N overrides','Default engine: jobspy','Default workers: 3'],
+  fails:['No role matches --role: stops with "No matching roles in the input file".'],
+  code:'python -m linkedin search\npython -m linkedin search --role "AI Engineer" --hours 48 --workers 2'},
+
+ {id:'input', x:X[1], y:R1, kind:'trigger', g:'{}', title:'Read input.csv', sub:'role, keywords, experience, location', items:'15 roles',
+  what:'Loads the shared input file used by every site workflow.',
+  tech:[
+   '<code>common/inputs.py : load_input()</code> reads the CSV (UTF-8) with <code>csv.DictReader</code>, checks the four columns exist, that every role has keywords and that Experience is a number. Errors name the file line.',
+   'Keywords and locations are split on semicolons.',
+   'Experience is read but not used here: LinkedIn cards carry no experience text, so every job without it is kept (recall over precision).'],
+  io:['input.csv','list of roles'], file:'common/inputs.py : load_input()',
+  settings:['INPUT_FILE = job-radar-V3/input.csv'],
+  fails:['Missing column, empty keywords or non-numeric Experience: the run stops before any request is made.'],
+  code:'RoleInput(role="AI Engineer", keywords=["AI Engineer","LLM Engineer"], min_experience=5, locations=["India"])'},
+
+ {id:'expand', x:X[2], y:R1, kind:'logic', g:'Q', title:'Expand into searches', sub:'one per role, keyword, location', items:'44 searches',
+  what:'Turns each role into separate searches, one for every keyword and location.',
+  tech:[
+   '<code>common/inputs.py : queries_from()</code> returns <code>Query(role, keyword, location, min_experience)</code> tuples. The same function feeds Naukri.',
+   'With today\'s input.csv: 15 roles become 44 searches.',
+   'LinkedIn location text comes from <code>config.place()</code>: "India" stays India, a bare city such as Bengaluru becomes "Bengaluru, India".'],
+  io:['list of roles','list of Query tuples'], file:'common/inputs.py : queries_from(); linkedin/config.py : place()',
+  settings:['One request chain per Query'],
+  fails:['None: pure function, unit-tested.'],
+  code:'Query(role="AI Engineer", keyword="LLM Engineer", location="India", min_experience=5)'},
+
+ {id:'pool', x:X[3], y:R1, kind:'logic', g:'3', title:'Worker pool: 3 searches at once', sub:'ThreadPoolExecutor, staggered start', items:'3 parallel',
+  what:'Runs up to three searches at the same time, so a long list finishes sooner, while each search stays slow and polite.',
+  tech:[
+   '<code>concurrent.futures.ThreadPoolExecutor(max_workers=3)</code> takes the searches in order; as soon as a worker finishes one it takes the next.',
+   'The first workers do not start together: worker i waits i x a random 5 to 15 seconds first.',
+   'Why 3: three workers cut a 44-search run by roughly a third. More workers send more requests per minute and raise the chance of an HTTP 429, which costs more time than it saves.',
+   'A shared run-state object (with a lock) counts how many searches gave up, so all workers can stop together if LinkedIn pushes back too much.',
+   'Threads, not processes: the work is waiting on the network, and results are small.'],
+  io:['list of Query','jobs from each search'], file:'linkedin/engine_jobspy.py : search()',
+  settings:['WORKERS = 3','START_STAGGER = (5, 15) s','--workers N on the command line'],
+  fails:['An error inside one search does not crash the others: it is caught, reported, and the other searches continue.'],
+  code:'with ThreadPoolExecutor(max_workers=3) as pool:\n    for found in pool.map(task, enumerate(queries)):\n        ...'},
+
+ {id:'request', x:X[4], y:R1, kind:'browser', g:'R', title:'Request 10 jobs', sub:'JobSpy scrape_jobs with offset', items:'10 jobs/request',
+  what:'Asks LinkedIn for the next ten jobs of one search.',
+  tech:[
+   '<code>jobspy.scrape_jobs(site_name=["linkedin"], search_term=keyword, location=..., results_wanted=10, hours_old=hours, offset=0, 10, 20, ...)</code>.',
+   'LinkedIn\'s guest API returns ten jobs per request, so the search is read as offsets 0, 10, 20 and so on.',
+   '<code>hours_old</code> becomes LinkedIn\'s "posted within" filter, newest first.',
+   'JobSpy returns a table; each row is converted to our job dict: title, company, location, posted date, and the job link with its tracking query string cut off (the unique key).',
+   'Descriptions are not requested: that would be one extra request per job and is left to the combined pipeline.'],
+  io:['Query + offset','up to 10 jobs'], file:'linkedin/engine_jobspy.py : fetch_batch(), _to_jobs()',
+  settings:['BATCH = 10','hours_old = --hours'],
+  fails:['Network or library error: treated like a pushback (next node), the run goes on.'],
+  code:'{"title": "Machine Learning Engineer", "company": "...",\n "location": "Bengaluru, Karnataka, India",\n "posted_date": date(2026, 10, 10),\n "url": "https://in.linkedin.com/jobs/view/..."}'},
+
+ {id:'check', x:X[5], y:R1, kind:'safety', g:'?', title:'Pushed back? (HTTP 429)', sub:'empty answer + 429 in the log', items:'0 to few',
+  what:'Tells apart "LinkedIn has no more jobs" from "LinkedIn says slow down".',
+  tech:[
+   'JobSpy does not raise on HTTP 429: it writes a log line and returns what it has. And it logs from its own helper thread.',
+   'So a small logging handler on the "JobSpy" logger keeps every warning with its time. A request counts as pushed back when it returned no jobs AND a 429 or "rate limit" message was logged during that request\'s time window.',
+   'An empty answer with no 429 is a normal end of results. An exception from the library also counts as a pushback.',
+   'Two outputs: yes goes to the back-off node, no continues to the pause.'],
+  io:['Batch result + log lines','pushed back, or fine'], file:'linkedin/engine_jobspy.py : _Collector, fetch_batch()',
+  settings:['Markers: "429", "rate limit"'],
+  fails:['Another worker was rate limited at the same moment: this search may back off once without needing to. That costs a minute, not data.'],
+  code:'blocked = (not jobs) and collector.pushback_between(t0, time.time())'},
+
+ {id:'backoff', x:X[6], y:R1, kind:'safety', g:'!', title:'Back off, retry, or give up', sub:'wait 60-120 s, same offset again', items:'only if needed', stopnode:true,
+  what:'Waits for LinkedIn to calm down and tries the same page again; gives up after repeated pushbacks.',
+  tech:[
+   'Wait a random 60 to 120 seconds, then ask for the same offset again.',
+   'More than 2 pushbacks in a row on one search: that search gives up and the reason is recorded.',
+   'When 3 searches have given up, the whole run stops, the jobs read so far are saved, and a pop-up says so. Rerun later.',
+   'If it keeps happening, use the fallback engine (<code>--engine browser</code>).',
+   'It never tries to hide or work around the limit: it just slows down.'],
+  io:['pushback','retry, or stop with partial results'], file:'linkedin/engine_jobspy.py : run_query(), _Run',
+  settings:['BACKOFF = (60, 120) s','MAX_BLOCKS_PER_QUERY = 2','STOP_AFTER_BLOCKED_QUERIES = 3'],
+  fails:['Run stopped early: the message says "run stopped early: too many rate limits; rerun later". Nothing read so far is lost.'],
+  code:'sleep(random.uniform(60, 120))\ncontinue   # same offset again'},
+
+ {id:'pause', x:X[5], y:R2, kind:'logic', g:'⏱', title:'Random pause (own profile)', sub:'low 8-15 s, high +10-20 s', items:'~8-35 s',
+  what:'Waits a random time before the next request. Each search has its own pause range.',
+  tech:[
+   'When a search starts it draws a profile: <code>low = U(8, 15)</code>, <code>high = low + U(10, 20)</code>. Every pause in that search is then <code>U(low, high)</code>.',
+   'Different searches therefore tick at different speeds, so three workers do not hit LinkedIn in step.',
+   'Typical pauses are about 8 to 35 seconds. In a test, 15 requests over three parallel searches took 162 seconds with no rate limiting.'],
+  io:['nothing','time passes'], file:'linkedin/engine_jobspy.py : run_query()',
+  settings:['DELAY_LOW = (8, 15)','DELAY_SPREAD = (10, 20)'],
+  fails:['None.'],
+  code:'low = random.uniform(8, 15)\nhigh = low + random.uniform(10, 20)\nsleep(random.uniform(low, high))'},
+
+ {id:'more', x:X[4], y:R2, kind:'logic', g:'?', title:'More jobs? Next 10 or finish', sub:'empty or nothing new ends the search', items:'~50 jobs/search',
+  what:'Decides whether to ask for the next ten jobs or to finish this search.',
+  tech:[
+   'New jobs are kept in a dictionary keyed by link, so a job can only be counted once per search.',
+   'Next offset (+10) if the batch added something new. The search ends on a clean empty batch, on a batch with nothing new, or at the safety ceiling of 60 batches (600 jobs).',
+   'The loop arrow goes back to the request node.'],
+  io:['batch','next offset, or done'], file:'linkedin/engine_jobspy.py : run_query()',
+  settings:['MAX_BATCHES = 60'],
+  fails:['LinkedIn repeats the last page: nothing new, so the search ends instead of looping.'],
+  code:'if not batch: break          # results ran out\nif new == 0: break           # nothing new\noffset += 10'},
+
+ {id:'dedupe', x:X[3], y:R2, kind:'parse', g:'D', title:'Merge, dedupe, stamp', sub:'by job link; role, keyword, location', items:'unique jobs',
+  what:'Combines the results of all searches and labels each job with where it came from.',
+  tech:[
+   'A dictionary keyed by the job link (<code>dict.setdefault</code>) removes repeats across searches. The first search that finds a job decides its Role and Search term.',
+   'Each job is stamped with <code>role</code>, <code>term</code> (keyword) and <code>searched_location</code>.',
+   'Job titles are not filtered here: LinkedIn\'s keyword match is loose. Title filtering and role routing happen in the combined pipeline.'],
+  io:['jobs from all searches','unique jobs'], file:'linkedin/engine_jobspy.py : search()',
+  settings:['Unit-tested: dedupe across three parallel searches'],
+  fails:['None.'],
+  code:'{"title": ..., "role": "Data Scientist", "term": "Data Scientist",\n "searched_location": "India", "url": ...}'},
+
+ {id:'backup', x:X[2], y:R2, kind:'store', g:'B', title:'Raw backup (JSONL)', sub:'saved before Excel is touched', items:'1 file/run',
+  what:'Writes every job of the run to a plain text file first, so a failure while writing Excel can never lose the run.',
+  tech:[
+   'One JSON object per line, UTF-8, in <code>linkedin/output/runs/linkedin_YYYYMMDD_HHMMSS.jsonl</code>. Dates are written in ISO format.',
+   'The same safeguard as the Naukri workflow, added after a real save bug there.'],
+  io:['unique jobs','.jsonl file'], file:'linkedin/__main__.py',
+  settings:['RUNS_DIR = linkedin/output/runs'],
+  fails:['Disk full or folder locked: the error shows before Excel is attempted.'],
+  code:'{"title":"AI Engineer","company":"...","posted_date":"2026-10-11","url":"https://in.linkedin.com/jobs/view/..."}'},
+
+ {id:'excel', x:X[1], y:R2, kind:'store', g:'X', title:'Merge into Excel', sub:'openpyxl, keyed by job link', items:'new + known',
+  what:'Adds new jobs to the workbook and refreshes known ones, without touching what you typed.',
+  tech:[
+   'Existing rows are read back with <code>openpyxl.load_workbook</code>, matched by column header and keyed by the hyperlink target of the Link cell. Excel returns dates as datetimes, so they are converted to dates before comparing.',
+   'New link: added with Status "New" and First seen = today. Known link: Title, Company, Location, Posted and Posted date are refreshed; <b>Role, Status, Notes and First seen are kept</b>.',
+   'Rows sorted newest first. Sheet rebuilt each save: dark-blue bold header, thin borders, clickable "Open" links, Status dropdown (New, Interested, Applied, Not relevant), frozen panes, auto-filter.',
+   'If Excel has the file open, saving raises <code>PermissionError</code>; a timestamped copy is written and the screen says so.'],
+  io:['unique jobs + existing workbook','LinkedIn.xlsx'], file:'linkedin/excel.py : save(), merge(), _write()',
+  settings:['EXCEL_PATH = linkedin/output/LinkedIn.xlsx','STATUSES = New, Interested, Applied, Not relevant'],
+  fails:['File open in Excel: timestamped copy; close Excel and rerun.'],
+  code:'rows, n_new, n_upd = merge(existing, jobs, today)\ntry:\n    _write(rows, path)\nexcept PermissionError:\n    _write(rows, timestamped_copy)'},
+
+ {id:'out', x:X[0], y:R2, kind:'store', g:'✓', title:'Output: LinkedIn.xlsx', sub:'linkedin/output/LinkedIn.xlsx', items:'rows',
+  what:'The finished result you open and work from.',
+  tech:[
+   'Tab "LinkedIn", 11 columns: Title, Company, Role, Location, Posted, Posted date, Search term, First seen, Link, Status, Notes.',
+   'Printed summary at the end: jobs read, minutes taken, how many were new, how many already known, and the total in the file.',
+   'Next stage (not in this workflow): the combined pipeline filters by title, experience and location, routes jobs to role tabs and merges with the other sites.'],
+  io:['Merged rows','Excel file you open'], file:'linkedin/output/LinkedIn.xlsx',
+  settings:['Close the file in Excel before a run'],
+  fails:['Jobs older than the window stay in the file; they are never deleted automatically.'],
+  code:''},
+
+ {id:'fallback', x:X[6], y:R2, kind:'browser', g:'C', title:'Fallback engine: real Chrome', sub:'--engine browser, public pages', items:'if needed', stopnode:true,
+  what:'A second way to read the same public pages, used when the JobSpy engine keeps being rate limited.',
+  tech:[
+   '<code>linkedin/search.py</code>: Playwright opens your installed Chrome (visible, minimized, saved profile in <code>data/linkedin_profile</code>), loads the public search URL, scrolls and presses "See more jobs" with random pauses until three scrolls bring nothing new (LinkedIn shows about 1000 results at most).',
+   'Cards are parsed with BeautifulSoup (<code>linkedin/parse.py</code>) and flow into the same dedupe, backup and Excel steps.',
+   'One search at a time, never logged in. If LinkedIn shows a sign-in wall or security check, the run stops, keeps what it has and shows a pop-up; <code>check_linkedin.bat</code> opens the window so you can handle it by hand (do not sign in).',
+   'Never solves or hides a check.'],
+  io:['Query list','jobs from public pages'], file:'linkedin/search.py, linkedin/parse.py, linkedin/session.py',
+  settings:['PAUSE_BETWEEN_SCROLLS = (2.5, 5.5) s','PAUSE_BETWEEN_TERMS = (30, 60) s','MAX_CARDS = 1000'],
+  fails:['Selector change on LinkedIn: cards stop parsing; the saved test card and tests make it a small fix.'],
+  code:'python -m linkedin search --engine browser'}
+];
+
+const EDGES = [
+ ['start','input','r','l','',false,'--trigger'],
+ ['input','expand','r','l','',false,'--trigger'],
+ ['expand','pool','r','l','',false,'--logic'],
+ ['pool','request','r','l','x3 in parallel',false,'--logic'],
+ ['request','check','r','l','',false,'--browser'],
+ ['check','backoff','r','l','yes: HTTP 429',true,'--safety'],
+ ['check','pause','b','t','no: got jobs / clean end',false,'--logic'],
+ ['backoff','request','t','t','wait 60-120 s, same page',true,'--safety'],
+ ['pause','more','l','r','',false,'--logic'],
+ ['more','request','t','b','next 10 jobs',true,'--logic'],
+ ['more','dedupe','l','r','results ran out',false,'--parse'],
+ ['dedupe','backup','l','r','',false,'--store'],
+ ['backup','excel','l','r','',false,'--store'],
+ ['excel','out','l','r','',false,'--store'],
+ ['backoff','fallback','b','t','still blocked: try browser engine',true,'--browser']
+];
+
+const ORDER = ['start','input','expand','pool','request','check','pause','more','dedupe','backup','excel','out'];
+
+const cv = document.getElementById('canvas');
+const byId = {};
+NODES.forEach(n => { byId[n.id] = n; });
+
+function css(v){ return `var(${v})`; }
+
+// nodes
+NODES.forEach(n => {
+  const d = document.createElement('div');
+  d.className = 'node' + (n.stopnode ? ' stopnode' : '');
+  d.id = 'n_' + n.id;
+  d.style.cssText = `left:${n.x}px;top:${n.y}px;--c:${css('--' + n.kind)}`;
+  d.innerHTML = `<div class="t"><span class="g">${n.g}</span>${n.title}</div><div class="s">${n.sub}</div><div class="badge">${n.items}</div>`;
+  d.addEventListener('click', () => select(n.id));
+  cv.appendChild(d);
+});
+
+// edges
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('class', 'edges');
+svg.innerHTML = '<defs></defs>';
+cv.insertBefore(svg, cv.firstChild);
+
+function port(n, p){
+  if (p === 'r') return [n.x + W, n.y + H/2, 1, 0];
+  if (p === 'l') return [n.x, n.y + H/2, -1, 0];
+  if (p === 't') return [n.x + W/2, n.y, 0, -1];
+  return [n.x + W/2, n.y + H, 0, 1];
+}
+EDGES.forEach((e, i) => {
+  const [a, b, pa, pb, label, dash, col] = e;
+  const [x1, y1, dx1, dy1] = port(byId[a], pa);
+  const [x2, y2, dx2, dy2] = port(byId[b], pb);
+  const k = (pa === pb) ? 90 : Math.max(60, Math.hypot(x2 - x1, y2 - y1) / 3);
+  const d = `M${x1},${y1} C${x1 + dx1*k},${y1 + dy1*k} ${x2 + dx2*k},${y2 + dy2*k} ${x2},${y2}`;
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', d); p.setAttribute('id', 'e' + i);
+  p.setAttribute('class', 'edge' + (dash ? ' dash' : ''));
+  p.setAttribute('stroke', css(col)); p.setAttribute('marker-end', `url(#ar${i})`);
+  const m = document.createElementNS(NS, 'marker');
+  m.setAttribute('id', 'ar' + i); m.setAttribute('viewBox', '0 0 10 10'); m.setAttribute('refX', '9'); m.setAttribute('refY', '5');
+  m.setAttribute('markerWidth', '7'); m.setAttribute('markerHeight', '7'); m.setAttribute('orient', 'auto-start-reverse');
+  m.innerHTML = `<path d="M0,0 L10,5 L0,10 z" fill="${css(col)}"/>`;
+  svg.firstChild.appendChild(m);
+  svg.appendChild(p);
+  const dot = document.createElementNS(NS, 'circle');
+  dot.setAttribute('r', '4'); dot.setAttribute('fill', css(col));
+  dot.innerHTML = `<animateMotion dur="${3 + (i % 3)}s" repeatCount="indefinite"><mpath href="#e${i}"/></animateMotion>`;
+  svg.appendChild(dot);
+  if (label) {
+    const mid = (t) => { // point on the cubic at t
+      const c = [[x1,y1],[x1+dx1*k,y1+dy1*k],[x2+dx2*k,y2+dy2*k],[x2,y2]], u = 1 - t;
+      return [0,1].map(j => u*u*u*c[0][j] + 3*u*u*t*c[1][j] + 3*u*t*t*c[2][j] + t*t*t*c[3][j]);
+    };
+    const [mx, my] = mid(0.5);
+    const l = document.createElement('div');
+    l.className = 'elabel'; l.style.left = mx + 'px'; l.style.top = my + 'px'; l.textContent = label;
+    cv.appendChild(l);
+  }
+});
+
+// panel
+const panel = document.getElementById('panel');
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function overview(){
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--browser)">Overview</span>
+   <h2>How it works, in one paragraph</h2>
+   <p>The workflow turns each role in input.csv into searches (one per keyword and place), and runs three searches at a time. Each search asks LinkedIn's public job API for ten jobs, waits a random time of its own, and asks for the next ten, until there are no more or nothing new. If LinkedIn answers "too many requests" it backs off for a minute or two and retries; if that keeps happening it stops and saves what it has. The jobs are de-duplicated, backed up, and added to an Excel file that keeps your Status and Notes.</p>
+   <h3>Why this design</h3>
+   <ul>
+    <li>Asking for 100 jobs in one call returned only ten and then HTTP 429. Ten at a time with random pauses did not.</li>
+    <li>Parallel searches with different pause profiles finish sooner without ticking in step.</li>
+    <li>If the guest API stays blocked, a real Chrome on the public pages is the fallback engine.</li>
+    <li>No login: automated use of a LinkedIn account breaks its terms and risks the account.</li>
+   </ul>
+   <h3>Click a node</h3>
+   <p>Each node explains its job, the file and function behind it, its settings and what happens if it fails. Press "Run the workflow" to watch the order.</p>`;
+}
+
+function select(id){
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('sel'));
+  document.getElementById('n_' + id).classList.add('sel');
+  const n = byId[id];
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--${n.kind})">${{trigger:'Trigger / input',browser:'Browser',logic:'Logic',parse:'Parse',store:'Storage',safety:'Safety'}[n.kind]}</span>
+   <h2>${n.title}</h2>
+   <p style="margin:4px 0 0">${n.what}</p>
+   <h3>Input and output</h3>
+   <div class="io"><div><b>In</b>${n.io[0]}</div><div><b>Out</b>${n.io[1]}</div></div>
+   <h3>Technical detail</h3><ul>${n.tech.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>File and function</h3><p style="margin:0"><code>${n.file}</code></p>
+   <h3>Settings</h3><ul>${n.settings.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>If it fails</h3>${n.fails.map(t => `<div class="fail">${t}</div>`).join('')}
+   ${n.code ? `<h3>Code / sample</h3><pre>${esc(n.code)}</pre>` : ''}`;
+  panel.scrollTop = 0;
+}
+overview();
+
+// run animation
+let timers = [];
+function reset(){
+  timers.forEach(clearTimeout); timers = [];
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('done', 'run', 'sel'));
+  overview();
+}
+function play(){
+  reset();
+  ORDER.forEach((id, i) => {
+    timers.push(setTimeout(() => {
+      document.querySelectorAll('.node.run').forEach(x => x.classList.remove('run'));
+      const el = document.getElementById('n_' + id);
+      el.classList.add('run');
+      el.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'});
+      timers.push(setTimeout(() => { el.classList.remove('run'); el.classList.add('done'); }, 650));
+    }, i * 800));
+  });
+}
+document.getElementById('play').addEventListener('click', play);
+document.getElementById('reset').addEventListener('click', reset);
+</script>
+</body>
+</html>

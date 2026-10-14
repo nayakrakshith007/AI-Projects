@@ -1,0 +1,108 @@
+{
+ "count": 136,
+ "positions": [
+  {
+   "id": 790316420875,
+   "name": "Data Scientist, \u65b0\u5352/New Graduate 2028, BCG X, Japan",
+   "posting_name": "Data Scientist, \u65b0\u5352/New Graduate 2028, BCG X, Japan",
+   "location": "Tokyo, Japan",
+   "locations": [
+    "Tokyo, Japan"
+   ],
+   "hot": 0,
+   "department": "BCG X",
+   "business_unit": "Unknown",
+   "t_update": 1790573587,
+   "t_create": 1781526960,
+   "ats_job_id": "58408",
+   "display_job_id": "2026-58408",
+   "type": "ATS",
+   "id_locale": "2026-58408-en",
+   "stars": 0.0,
+   "medallionProgram": null,
+   "location_flexibility": null,
+   "work_location_option": "onsite",
+   "canonicalPositionUrl": "https://studenttalent.bcg.com/careers/job/790316420875",
+   "isPrivate": false
+  },
+  {
+   "id": 790313568355,
+   "name": "Delivery AI Data Engineer\u200bing Intern",
+   "posting_name": "Delivery AI Data Engineer\u200bing Intern",
+   "location": "Casablanca, Morocco",
+   "locations": [
+    "Casablanca, Morocco"
+   ],
+   "hot": 0,
+   "department": "BCG X",
+   "business_unit": "Unknown",
+   "t_update": 1782743100,
+   "t_create": 1768208880,
+   "ats_job_id": "56429",
+   "display_job_id": "2026-56429",
+   "type": "ATS",
+   "id_locale": "2026-56429-en",
+   "stars": 0.0,
+   "medallionProgram": null,
+   "location_flexibility": null,
+   "work_location_option": "onsite",
+   "canonicalPositionUrl": "https://studenttalent.bcg.com/careers/job/790313568355",
+   "isPrivate": false
+  },
+  {
+   "id": 790303481509,
+   "name": "Data Scientist, \u65b0\u5352, \u6d77\u5916\u5927, 2027 / New Graduate 2027, BCG X, Japan",
+   "posting_name": "Data Scientist, \u65b0\u5352, \u6d77\u5916\u5927, 2027 / New Graduate 2027, BCG X, Japan",
+   "location": "Tokyo, Japan",
+   "locations": [
+    "Tokyo, Japan"
+   ],
+   "hot": 0,
+   "department": "BCG X",
+   "business_unit": "Unknown",
+   "t_update": 1790578973,
+   "t_create": 1749028740,
+   "ats_job_id": "54077",
+   "display_job_id": "2025-54077",
+   "type": "ATS",
+   "id_locale": "2025-54077-en",
+   "stars": 0.0,
+   "medallionProgram": null,
+   "location_flexibility": null,
+   "work_location_option": "onsite",
+   "canonicalPositionUrl": "https://studenttalent.bcg.com/careers/job/790303481509",
+   "isPrivate": false
+  },
+  {
+   "id": 790313030880,
+   "name": "Forward Deployed AI Scientist, Germany & Austria - BCG X",
+   "posting_name": "Forward Deployed AI Scientist, Germany & Austria - BCG X",
+   "location": "M\u00fcnchen, Germany",
+   "locations": [
+    "M\u00fcnchen, Germany",
+    "Berlin, Germany",
+    "Frankfurt, Hessen, Germany",
+    "Hamburg, Germany",
+    "K\u00f6ln, Nordrhein-Westfalen, Germany",
+    "D\u00fcsseldorf, Nordrhein-Westfalen, Germany",
+    "Stuttgart, Germany",
+    "Vienna, Austria"
+   ],
+   "hot": 0,
+   "department": "BCG X",
+   "business_unit": "Unknown",
+   "t_update": 1791097795,
+   "t_create": 1764005460,
+   "ats_job_id": "55990",
+   "display_job_id": "2025-55990",
+   "type": "ATS",
+   "id_locale": "2025-55990-en",
+   "stars": 0.0,
+   "medallionProgram": null,
+   "location_flexibility": null,
+   "work_location_option": "onsite",
+   "canonicalPositionUrl": "https://studenttalent.bcg.com/careers/job/790313030880",
+   "isPrivate": false
+  }
+ ]
+}

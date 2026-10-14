@@ -1,0 +1,211 @@
+{
+ "jobs": [
+  {
+   "id": "7133d205-5421-4336-a8e2-6037b5f55073",
+   "title": "Senior Full-Stack Engineer, Internal Applications ",
+   "department": "Engineering & Infra",
+   "team": "Internal Applications",
+   "employmentType": "FullTime",
+   "location": "Toronto",
+   "secondaryLocations": [
+    {
+     "location": "Canada",
+     "address": {
+      "postalAddress": {
+       "addressCountry": "Canada"
+      }
+     }
+    }
+   ],
+   "publishedAt": "2026-09-15T18:21:37.401+00:00",
+   "isListed": true,
+   "isRemote": true,
+   "workplaceType": "Remote",
+   "address": {
+    "postalAddress": {
+     "addressRegion": "Ontario",
+     "addressCountry": "Canada",
+     "addressLocality": "Toronto"
+    }
+   },
+   "jobUrl": "https://jobs.ashbyhq.com/cohere/7133d205-5421-4336-a8e2-6037b5f55073",
+   "applyUrl": "https://jobs.ashbyhq.com/cohere/7133d205-5421-4336-a8e2-6037b5f55073/application"
+  },
+  {
+   "id": "3136a5a5-06fd-4c82-8b72-a43467e6b128",
+   "title": "Member of Technical Staff, Modeling",
+   "department": "Modeling",
+   "team": "Modeling",
+   "employmentType": "FullTime",
+   "location": "London",
+   "secondaryLocations": [
+    {
+     "location": "San Francisco",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "California",
+       "addressCountry": "United States",
+       "addressLocality": "San Francisco"
+      }
+     }
+    },
+    {
+     "location": "New York",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "New York",
+       "addressCountry": "United States",
+       "addressLocality": "New York"
+      }
+     }
+    },
+    {
+     "location": "Paris",
+     "address": {
+      "postalAddress": {
+       "addressCountry": "France",
+       "addressLocality": "Paris"
+      }
+     }
+    },
+    {
+     "location": "Toronto",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Ontario",
+       "addressCountry": "Canada",
+       "addressLocality": "Toronto"
+      }
+     }
+    },
+    {
+     "location": "Montreal",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Quebec ",
+       "addressCountry": "Canada",
+       "addressLocality": "Montreal"
+      }
+     }
+    }
+   ],
+   "publishedAt": "2024-11-01T16:06:43.318+00:00",
+   "isListed": true,
+   "isRemote": true,
+   "workplaceType": "Remote",
+   "address": {
+    "postalAddress": {
+     "addressRegion": "London",
+     "addressCountry": "United Kingdom",
+     "addressLocality": "London"
+    }
+   },
+   "jobUrl": "https://jobs.ashbyhq.com/cohere/3136a5a5-06fd-4c82-8b72-a43467e6b128",
+   "applyUrl": "https://jobs.ashbyhq.com/cohere/3136a5a5-06fd-4c82-8b72-a43467e6b128/application"
+  },
+  {
+   "id": "595a2d50-46a5-4ff9-af1c-d58cea9d8e68",
+   "title": "Revenue Enablement Program Manager - EMEA",
+   "department": "Revenue",
+   "team": "Revenue",
+   "employmentType": "FullTime",
+   "location": "Europe",
+   "secondaryLocations": [
+    {
+     "location": "London",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "London",
+       "addressCountry": "United Kingdom",
+       "addressLocality": "London"
+      }
+     }
+    }
+   ],
+   "publishedAt": "2026-09-20T16:46:49.814+00:00",
+   "isListed": true,
+   "isRemote": true,
+   "workplaceType": "Remote",
+   "address": {
+    "postalAddress": {
+     "addressCountry": "European Union"
+    }
+   },
+   "jobUrl": "https://jobs.ashbyhq.com/cohere/595a2d50-46a5-4ff9-af1c-d58cea9d8e68",
+   "applyUrl": "https://jobs.ashbyhq.com/cohere/595a2d50-46a5-4ff9-af1c-d58cea9d8e68/application"
+  },
+  {
+   "id": "443368a3-6276-4b90-9671-27fed40fd6d2",
+   "title": "Senior Member of Technical Staff, Multimodal AI",
+   "department": "Modeling",
+   "team": "Modeling",
+   "employmentType": "FullTime",
+   "location": "San Francisco",
+   "secondaryLocations": [
+    {
+     "location": "New York",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "New York",
+       "addressCountry": "United States",
+       "addressLocality": "New York"
+      }
+     }
+    },
+    {
+     "location": "San Francisco",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "California",
+       "addressCountry": "United States",
+       "addressLocality": "San Francisco"
+      }
+     }
+    },
+    {
+     "location": "Paris",
+     "address": {
+      "postalAddress": {
+       "addressCountry": "France",
+       "addressLocality": "Paris"
+      }
+     }
+    },
+    {
+     "location": "Toronto",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Ontario",
+       "addressCountry": "Canada",
+       "addressLocality": "Toronto"
+      }
+     }
+    },
+    {
+     "location": "Montreal",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Quebec ",
+       "addressCountry": "Canada",
+       "addressLocality": "Montreal"
+      }
+     }
+    }
+   ],
+   "publishedAt": "2024-12-03T14:25:43.571+00:00",
+   "isListed": true,
+   "isRemote": true,
+   "workplaceType": "Remote",
+   "address": {
+    "postalAddress": {
+     "addressRegion": "California",
+     "addressCountry": "United States",
+     "addressLocality": "San Francisco"
+    }
+   },
+   "jobUrl": "https://jobs.ashbyhq.com/cohere/443368a3-6276-4b90-9671-27fed40fd6d2",
+   "applyUrl": "https://jobs.ashbyhq.com/cohere/443368a3-6276-4b90-9671-27fed40fd6d2/application"
+  }
+ ],
+ "apiVersion": "1"
+}

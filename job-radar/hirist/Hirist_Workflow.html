@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hirist Workflow</title>
+<style>
+:root{
+  --bg:#14151c; --panel:#1c1e28; --panel2:#232634; --line:#2f3345; --text:#e8eaf2; --muted:#9aa0b8;
+  --trigger:#ff6d5a; --browser:#4c8dff; --logic:#a06bff; --parse:#2fbf71; --store:#19b5c4; --safety:#ff4d6d; --warn:#f5a524;
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#eef0f6;--panel:#ffffff;--panel2:#f4f5fa;--line:#d5d9e6;--text:#1c2030;--muted:#5d6580}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",Calibri,system-ui,sans-serif}
+header{padding:20px 24px 8px}
+h1{margin:0 0 4px;font-size:24px}
+header p{margin:0;color:var(--muted);max-width:900px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+.toolbar{display:flex;gap:10px;align-items:center;padding:10px 24px;flex-wrap:wrap}
+button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer}
+button:hover{border-color:var(--browser)}
+button.primary{background:var(--trigger);border-color:var(--trigger);color:#fff;font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:16px;padding:0 24px 24px}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}}
+.canvas-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:auto;position:relative;max-height:720px}
+.canvas{position:relative;width:2130px;height:640px;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:20px 20px}
+svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.edge{fill:none;stroke-width:2}
+.edge.dash{stroke-dasharray:6 6}
+.elabel{position:absolute;transform:translate(-50%,-50%);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:11px;color:var(--muted);white-space:nowrap}
+.node{position:absolute;width:250px;height:96px;background:var(--panel2);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px 10px 16px;cursor:pointer;transition:.15s;overflow:hidden}
+.node:hover{transform:translateY(-2px);border-color:var(--c)}
+.node.sel{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
+.node::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.node .t{font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center}
+.node .g{display:inline-flex;width:22px;height:22px;border-radius:6px;background:var(--c);color:#fff;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.node .s{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.35}
+.node .badge{position:absolute;right:8px;bottom:6px;font-size:11px;font-weight:700;color:var(--c);opacity:0}
+.node.done{border-color:var(--parse)}
+.node.done .badge{opacity:1}
+.node.run{box-shadow:0 0 0 4px color-mix(in srgb,var(--warn) 45%,transparent);border-color:var(--warn)}
+.node.stopnode{border-style:dashed}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;max-height:720px;overflow:auto}
+.panel h2{margin:0 0 2px;font-size:19px}
+.panel .kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-radius:5px;padding:1px 8px;margin-bottom:8px}
+.panel h3{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.panel ul{margin:0;padding-left:18px}
+.panel li{margin:3px 0}
+.panel code,.panel pre{font-family:Consolas,"Cascadia Mono",monospace;font-size:12px}
+.panel code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.panel pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;margin:6px 0 0}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.io div{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px}
+.io b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fail{border-left:3px solid var(--safety);padding:2px 0 2px 10px;margin:6px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;padding:0 24px 32px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{margin:0 0 8px;font-size:15px}
+.card pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;font:12px/1.5 Consolas,monospace;margin:6px 0}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:3px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+th{color:var(--muted);font-weight:600}
+@media (prefers-reduced-motion:reduce){.node{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Hirist workflow (tech roles)</h1>
+  <p>Reads Hirist with two methods at once and compares them: its free-text search (the page loads its jobs as JSON, which is read) and its own tag pages (HTML cards). Hirist filters by date on its own server, so only a few pages per keyword are read. A pool of Chromes with a fresh browser state shares one queue of pages. Click any node for the technical detail.</p>
+  <div class="chips">
+    <span class="chip"><b>Python</b> 3.12</span>
+    <span class="chip"><b>Playwright</b> + installed Chrome, 4 sharing a page queue</span>
+    <span class="chip"><b>Hirist's own date filter</b> posting=1|3|7|15|30</span>
+    <span class="chip"><b>BeautifulSoup</b> + the page's JSON</span>
+    <span class="chip"><b>openpyxl</b> Excel</span>
+    <span class="chip"><b>0</b> Claude tokens</span>
+    <span class="chip"><b>$0</b> no login, no Docker, no Firecrawl</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="primary" id="play">Run the workflow (animation)</button>
+  <button id="reset">Reset</button>
+  <div class="legend">
+    <span><i style="background:var(--trigger)"></i>Trigger / input</span>
+    <span><i style="background:var(--browser)"></i>Browser</span>
+    <span><i style="background:var(--logic)"></i>Logic</span>
+    <span><i style="background:var(--parse)"></i>Parse</span>
+    <span><i style="background:var(--store)"></i>Storage</span>
+    <span><i style="background:var(--safety)"></i>Safety</span>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="canvas-wrap"><div class="canvas" id="canvas"></div></div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<div class="cards">
+  <div class="card"><h3>1. The input you give it</h3>
+    <p style="margin:0 0 6px">The shared file <code>job-radar-V3/input.csv</code>. Only <b>tech roles</b> run (Experience above 0).</p>
+<pre>Role,Keywords,Experience,Location
+AI Engineer,"AI Engineer;LLM Engineer",5,India</pre>
+    <ul>
+      <li><b>Keywords</b> are searched with the search method as they are. For the tag method they are mapped to Hirist tags in <code>hirist/tags.csv</code> (<code>-</code> = no tag page).</li>
+      <li><b>Experience</b>: Hirist gives a numeric range, so the rule is exact: a job stays if its maximum reaches the minimum or it states none.</li>
+      <li>Command line: <code>--role</code>, <code>--hours N</code> (default automatic, at most 168 h = 7 days), <code>--method both|search|tag</code>, <code>--workers N</code>.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>2. The output (all inside <code>hirist/output/</code>)</h3>
+<table>
+<tr><th>File</th><th>What</th></tr>
+<tr><td><code>Hirist.xlsx</code></td><td>The result. Tab "Hirist", one row per job, your Status and Notes kept.</td></tr>
+<tr><td><code>compare_methods.csv</code></td><td>Per role: what each method found, and the overlap.</td></tr>
+<tr><td><code>runs/hirist_*.jsonl</code></td><td>Raw backup of each run, written before Excel.</td></tr>
+<tr><td><code>last_run.log</code></td><td>Progress log of the last run.</td></tr>
+</table>
+    <p style="margin:8px 0 0;color:var(--muted)">Columns: Title, Company, Role, Experience, Exp min, Exp max, Location, Bengaluru, Work mode, Salary, Skills, Posted, Posted date, Posted at, Applicants, Views, Company rating, Reviews, Found by, Title matches, Search term, First seen, Link, Status, Notes.</p>
+  </div>
+  <div class="card"><h3>3. Commands (from <code>job-radar-V3</code>)</h3>
+<pre>.venv\Scripts\python -m hirist search
+.venv\Scripts\python -m hirist search --hours 168 --method both
+.venv\Scripts\python -m hirist search --role "AI Engineer" --method search
+.venv\Scripts\python -m hirist check
+.venv\Scripts\python -m pytest hirist/tests</pre>
+    <p style="margin:0;color:var(--muted)">Close <code>Hirist.xlsx</code> in Excel before a run. If it is open, a timestamped copy is written instead.</p>
+  </div>
+  <div class="card"><h3>4. The two methods, compared on the first run</h3>
+    <ul>
+      <li>Scored against the old project's validated role title patterns: <b>search</b> found 243 role-matching jobs (90% recall, 54% precision), <b>tag</b> found 248 (92% recall, 68% precision), 223 by both.</li>
+      <li>Each also finds jobs the other misses: 23 relevant jobs only the tag method found (for example "Vice President - Data Science", "Research Scientist"), 18 only the search method found (13 of them Architect jobs, because Hirist has no Solutions Architect tag).</li>
+      <li>Tag pages cover the roles that have a tag; search covers every keyword but is looser (it also returns many unrelated jobs).</li>
+      <li><b>Recommendation: run both and keep the union.</b> It costs about 6 minutes, and the "Found by" column keeps track of which method found each job.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>5. What a real run gave (2026-10-11, 7-day window)</h3>
+    <ul>
+      <li>8 tech roles, 14 keywords, 22 lists. <b>4 Chromes read 103 pages and 1,875 jobs in 6.3 minutes</b> (25 to 27 pages each). No human check.</li>
+      <li><b>417 unique jobs kept</b>: 178 found by both methods, 150 only by search, 89 only by tag. Dropped: 35 by the experience rule.</li>
+      <li>200 are in Bengaluru, 62 show a salary, 328 have the exact posting time, 33 are work-from-home. Posted dates run from 2026-10-05 to 2026-10-11.</li>
+      <li>About half (202 of 417) match a role title pattern; the rest are loose matches that the combined pipeline will filter by title.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>6. Not in this workflow (done later, in the combined pipeline)</h3>
+    <ul>
+      <li>Title filtering and role routing (many search results are only loosely related), and removing duplicates across all sites.</li>
+      <li>Full job descriptions (Hirist job pages).</li>
+      <li>The daily 9 AM schedule.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const W = 250, H = 96;
+const X = [30, 330, 630, 930, 1230, 1530, 1830];
+const R1 = 90, R2 = 380;
+
+const NODES = [
+ {id:'start', x:X[0], y:R1, kind:'trigger', g:'▶', title:'Start (command line)', sub:'python -m hirist search', items:'1 run',
+  what:'You start a run from a terminal. It reads the shared input.csv; you can pick roles, the window, the method and the number of Chromes.',
+  tech:[
+   'Entry point is <code>hirist/__main__.py</code> (<code>argparse</code>, sub-commands <code>search</code> and <code>check</code>).',
+   'Options: <code>--role</code> (repeatable), <code>--hours</code>, <code>--input</code>, <code>--method both|search|tag</code>, <code>--workers</code>, <code>--include-non-tech</code>.',
+   'Only public pages are read. No login, no account.'],
+  io:['Command line + input.csv','Roles, window, method'], file:'hirist/__main__.py : main()',
+  settings:['Window: automatic, at most 168 h; --hours overrides','Default method: both'],
+  fails:['No tech role matches: stops with "No matching roles ...".'],
+  code:'python -m hirist search\npython -m hirist search --hours 168 --method both'},
+
+ {id:'input', x:X[1], y:R1, kind:'trigger', g:'{}', title:'Read input.csv, tech roles only', sub:'experience above 0', items:'8 roles',
+  what:'Loads the shared input file and keeps the tech roles.',
+  tech:[
+   '<code>common/inputs.py : load_input()</code>; roles with Experience of at least 1 are kept, because Hirist is a tech job site.',
+   'The automatic window comes from <code>common/window.py</code> (since the latest posted date already read), capped at 168 h = 7 days.'],
+  io:['input.csv','tech roles, window'], file:'common/inputs.py; common/window.py; hirist/__main__.py',
+  settings:['MAX_WINDOW_HOURS = 168'],
+  fails:['Bad file: the run stops before opening Chrome and names the line.'],
+  code:'hours, why = resolve_hours(args.hours, STATE_PATH, EXCEL_PATH, "Hirist", maximum=168)'},
+
+ {id:'plan', x:X[2], y:R1, kind:'logic', g:'P', title:'Plan the lists: search + tag', sub:'tags.csv maps keywords to Hirist tags', items:'22 lists',
+  what:'Decides which Hirist lists to read for each keyword, with both methods.',
+  tech:[
+   '<b>Search list</b> for every keyword: <code>/search/&lt;keyword&gt;-jobs?...&amp;posting=7&amp;page=N</code>. Works for any keyword.',
+   '<b>Tag list</b> for every mapped tag: <code>/k/&lt;tag&gt;-jobs?posting=7&amp;page=N</code>. Hirist tags are its own curated skills and roles: data-scientist, data-analyst, business-analyst, machine-learning, artificial-intelligence, generative-ai, llm, data-architect, nlp, deep-learning. There is no tag for ML Engineer, AI Engineer, AI Scientist, Solutions Architect, AI Architect or Forward Deployed Engineer, so <code>tags.csv</code> maps them to nearby tags or <code>-</code> (skipped and reported).',
+   '<b>Hirist\'s date filter</b> is in the URL: <code>posting=1|3|7|15|30</code> days, applied on its server (Data Scientist: 887 jobs in all, 44 in the last week). <code>config.posting_days(hours)</code> picks the smallest step that covers the window.',
+   'Duplicate lists (a shared tag) are read once.'],
+  io:['Query list','Targets (method, slug)'], file:'hirist/search.py : plan(); hirist/tags.csv; hirist/config.py',
+  settings:['POSTING_STEPS = (1, 3, 7, 15, 30)','tags.csv: keyword to tags'],
+  fails:['A tag is retired by Hirist: its list shows "No result found" and is reported as empty.'],
+  code:'Target(role="AI Engineer", keyword="LLM Engineer", slug="llm", method="tag")'},
+
+ {id:'pool', x:X[3], y:R1, kind:'browser', g:'C', title:'Chrome pool, shared page queue', sub:'4 Chromes, fresh state each', items:'4 Chromes',
+  what:'Starts up to four real, visible Chromes that pull pages from one shared queue.',
+  tech:[
+   'Page 1 of every list is queued first; reading it tells how many pages the list has (JSON <code>totalPages</code>, or the count in the page title), and pages 2..N join the queue. Any free Chrome takes the next page. Real run: 25 to 27 pages per Chrome.',
+   'Each Chrome is a thread with its own Playwright: <code>chromium.launch(channel="chrome", headless=False)</code> and a <b>fresh browser context</b>. Hirist remembers filters (experience, location, date) between visits in the same browser; a test showed an old experience filter leaking into a later page, so nothing is kept.',
+   'Chromes start 3 to 8 s apart and pause 5 to 11 s before each page. A shared stop flag stops them all on a human check; if every Chrome fails, the run ends instead of hanging.'],
+  io:['Page lists','page queue read by Chromes'], file:'hirist/search.py : search(), _worker(), _Pool; hirist/session.py',
+  settings:['WORKERS = 4 (max 6)','START_STAGGER = (3, 8) s','PAUSE_BETWEEN_PAGES = (5, 11) s'],
+  fails:['A Chrome window closed by hand: that page is reported as failed; three failures in a row take the Chrome out, the others carry on.'],
+  code:'ctx = browser.new_context()    # empty state: no remembered filters\npage = ctx.new_page()'},
+
+ {id:'load', x:X[4], y:R1, kind:'browser', g:'L', title:'Load the page', sub:'URL carries the date filter', items:'20 jobs/page',
+  what:'Opens one page of a list. The date filter is in the URL, so Hirist only returns jobs inside the window.',
+  tech:[
+   'Tag page: <code>https://www.hirist.tech/k/data-scientist-jobs?posting=7&amp;page=2</code>. Search page: <code>https://www.hirist.tech/search/forward-deployed-engineer-jobs?loc=&amp;minexp=0&amp;maxexp=0&amp;posting=7&amp;ref=homepage&amp;query=forward-deployed-engineer&amp;sort=&amp;page=0&amp;industry=</code> (first page is <code>page=0</code>, the second <code>page=2</code>).',
+   '20 jobs per page. A short random pause follows the load (2 to 4 s).',
+   'The experience and location filters are deliberately left open (<code>minexp=0</code>): the experience rule is applied afterwards on exact numbers.'],
+  io:['Target + page','loaded page'], file:'hirist/search.py : read_page(); hirist/config.py : tag_url(), search_url()',
+  settings:['PAGE_SIZE = 20','PAUSE_AFTER_LOAD = (2, 4) s'],
+  fails:['Hirist changes its URL scheme: the pages show no jobs; the tests and fixtures make it a small fix in config.py.'],
+  code:'config.search_url("forward-deployed-engineer", 7, 1)'},
+
+ {id:'check', x:X[5], y:R1, kind:'safety', g:'?', title:'Human check showing?', sub:'no jobs + warning words', items:'0 in 103 pages',
+  what:'Decides whether an empty page means "no more jobs" or "Hirist wants proof you are human".',
+  tech:[
+   'Only when a page gave neither JSON nor job cards: the page text is searched for "verify you are human", "captcha", "access denied", "checking your browser", "press & hold" or "unusual traffic".',
+   'Found: <code>HumanCheckPending</code>, the shared stop flag is set and every Chrome stops after its page. Not found: the list was simply empty ("Sorry, No result found").',
+   'The code never solves or hides a check. It did not appear on any of the 103 pages of the real run.'],
+  io:['page with no jobs','continue, or stop'], file:'hirist/search.py : _check_or_empty(); hirist/session.py',
+  settings:['CHECK_MARKERS in config.py'],
+  fails:['Hirist rewords the check: it would look like an empty list.'],
+  code:'if any(m in body for m in CHECK_MARKERS):\n    raise HumanCheckPending(...)'},
+
+ {id:'stop', x:X[6], y:R1, kind:'safety', g:'!', title:'Stop, keep results, notify you', sub:'pop-up + check_hirist.bat', items:'only if needed', stopnode:true,
+  what:'Ends the run safely. Everything already read is kept and saved.',
+  tech:[
+   'The error is reported; jobs read so far are backed up and added to Excel. <code>notify.popup()</code> shows a Windows message box without blocking.',
+   '<code>check_hirist.bat</code> opens a visible Chrome on a Hirist page and waits up to 10 minutes while you pass the check by hand (do not sign in). Then rerun.',
+   'The latest-posted-date state is not moved after an error, so no day is skipped.'],
+  io:['HumanCheckPending','pop-up, partial results saved'], file:'hirist/notify.py, hirist/session.py : wait_for_human()',
+  settings:['check timeout: 600 s'],
+  fails:['You close the window without passing it: "No jobs seen. Run it again."'],
+  code:'check_hirist.bat\n  -> .venv\\Scripts\\python -m hirist check'},
+
+ {id:'read', x:X[5], y:R2, kind:'parse', g:'J', title:'Read the page data', sub:'search: JSON; tag: HTML cards', items:'20 jobs/page',
+  what:'Turns each page into job records. The two methods get their data differently.',
+  tech:[
+   '<b>Search method:</b> the page loads its jobs from <code>gladiator.hirist.tech/job/search?...</code>. Playwright waits for that response (<code>page.expect_response</code>), reads its JSON and takes <code>totalPages</code> from it. The JSON has the exact posting time (<code>createdTimeMs</code>, IST), numeric experience (<code>min</code>, <code>max</code>), every location, skill tags, applicant count, views, company rating (AmbitionBox), salary in lakhs (when not hidden), a work-from-home flag and the job link (<code>jobDetailUrl</code>). If no JSON arrives, the cards on the page are read instead.',
+   '<b>Tag method:</b> a fresh browser gets server-rendered HTML cards, read with BeautifulSoup by their field names (<code>job_title</code>, <code>job_experience</code>, <code>job_salary</code>, <code>job_location</code>, <code>job_tag_N</code>, <code>date_posted</code>). Dates are relative labels ("Posted 3 days ago"), so they are estimates; the page count comes from the "887 Job Vacancies" title.',
+   'Hirist titles read "Company - Role - Detail"; the company is split off.',
+   '<b>Personal data:</b> the JSON also names the recruiter. That is never read or stored, not even in the test fixtures.'],
+  io:['loaded page','job dicts'], file:'hirist/parse.py : parse_search_json(), parse_tag_page(), split_title()',
+  settings:['Tested on a saved real tag page and a saved real search JSON'],
+  fails:['Hirist changes a field name: the tests on the saved fixtures show which one.'],
+  code:'{"title": "Forward Deployed Engineer - Full Stack", "company": "Pattem Digital Technologies",\n "experience": "5-7 years", "posted_at": "2026-10-05T13:28+05:30",\n "applicants": 228, "location": "Bangalore", ...}'},
+
+ {id:'more', x:X[4], y:R2, kind:'logic', g:'?', title:'Queue empty? Next page or done', sub:'pages 2..N come from page 1', items:'103 pages',
+  what:'Adds the page\'s jobs to the pool and takes the next page from the queue until it is empty.',
+  tech:[
+   'Jobs are keyed by Hirist job id, so a job is counted once per list. A list with no page count (rare) is read page by page until a page adds nothing.',
+   'Because the date filter is applied by Hirist, the lists are short: 1 to 12 pages in the real run, not the 45 of an unfiltered Data Scientist list.',
+   'When all lists are done the flow continues to the filter.'],
+  io:['page jobs','next queued page, or done'], file:'hirist/search.py : _worker(), search()',
+  settings:['MAX_PAGES = 100 (safety only)'],
+  fails:['A page that fails to load is reported; three failures in a row take that Chrome out.'],
+  code:'for n in range(2, total + 1): tasks.put((target, n))'},
+
+ {id:'filter', x:X[3], y:R2, kind:'logic', g:'F', title:'Window and experience rules', sub:'exact time; exact years', items:'35 dropped',
+  what:'Keeps only jobs inside the window that pass the experience rule.',
+  tech:[
+   '<b>Window</b> (<code>in_window()</code>): the search JSON has the exact posting time, so it is compared with now minus the window. Tag cards only have a label, so their estimated date is compared by whole days. Hirist\'s own filter has already cut the lists to 7 days.',
+   '<b>Experience</b> (<code>experience_ok()</code>): Hirist gives numbers. A job stays if its maximum years reaches the role\'s minimum, or if it states none (0 to 0). The real run dropped 35 jobs.',
+   '<b>Location:</b> Hirist is an India site, so there is no country filter; a Bengaluru column marks Bengaluru and Bangalore jobs (200 of 417).',
+   'Each kept job is stamped with role, keyword, list and which method found it. A rough "Title matches" flag (every word of the keyword in the title) is kept for information; real title filtering happens in the combined pipeline.'],
+  io:['all jobs read','kept, stamped jobs'], file:'hirist/search.py : search(), in_window(); common/inputs.py : experience_ok()',
+  settings:['Minimum experience comes from input.csv'],
+  fails:['None.'],
+  code:'experience_ok("3-6 years", 5)  -> True\nexperience_ok("0-2 years", 5)  -> False\nexperience_ok("", 5)           -> True'},
+
+ {id:'merge', x:X[2], y:R2, kind:'parse', g:'M', title:'Merge both methods, compare', sub:'by job id; "Found by"', items:'417 unique',
+  what:'A job found by both methods becomes one record; the comparison table is built.',
+  tech:[
+   'Records are keyed by Hirist job id. When both methods found a job, the richer record wins (the search JSON, with the exact time and counts) and gaps are filled from the other. "Found by" says search, tag or search + tag.',
+   '<code>compare()</code> counts per role what each method found, the overlap and the jobs unique to each, and writes <code>compare_methods.csv</code>.',
+   'First run: 178 found by both, 150 only by search, 89 only by tag. Scored against the validated role patterns the two methods are complementary: search 90% recall and 54% precision, tag 92% and 68%, so the union is the best choice.'],
+  io:['kept jobs from every list','unique jobs + comparison'], file:'hirist/search.py : _merge(), compare()',
+  settings:['--method search|tag runs only one'],
+  fails:['None.'],
+  code:'methods = sorted(set(old["methods"]) | set(new["methods"]))'},
+
+ {id:'backup', x:X[1], y:R2, kind:'store', g:'B', title:'Raw backup (JSONL)', sub:'saved before Excel is touched', items:'1 file/run',
+  what:'Writes every kept job to a plain text file first, so a failure while writing Excel can never lose the run.',
+  tech:[
+   'One JSON object per line, UTF-8, in <code>hirist/output/runs/hirist_YYYYMMDD_HHMMSS.jsonl</code>.',
+   'The same safeguard as the other site workflows.'],
+  io:['kept jobs','.jsonl file'], file:'hirist/__main__.py',
+  settings:['RUNS_DIR = hirist/output/runs'],
+  fails:['Disk full or folder locked: the error shows before Excel is attempted.'],
+  code:'{"title":"Data Scientist","company":"...","methods":["search","tag"],"posted_at":"2026-10-05T13:28+05:30",...}'},
+
+ {id:'excel', x:X[0], y:R2, kind:'store', g:'X', title:'Merge into Excel: Hirist.xlsx', sub:'openpyxl, keyed by job link', items:'417 rows',
+  what:'Adds new jobs to the workbook and refreshes known ones, without touching what you typed. This is the output.',
+  tech:[
+   'Existing rows are read back by column header and keyed by the hyperlink target of the Link cell.',
+   'New link: added with Status "New" and First seen = today. Known link: details refreshed; <b>Role, Status, Notes and First seen are kept</b>.',
+   'Tab "Hirist", 25 columns (listed in the output card). Numbers (experience, applicants, views, rating) are real numbers for sorting. Newest first, clickable Open link, Status dropdown, frozen panes, auto-filter.',
+   'After a clean run the latest posted date is saved to <code>state.json</code> for the next automatic window (capped at 7 days). A run that stopped with an error does not move it.',
+   'If Excel has the file open, a timestamped copy is written and the screen says so.'],
+  io:['kept jobs + existing workbook','hirist/output/Hirist.xlsx'], file:'hirist/excel.py : save(), merge(), _write(); common/window.py',
+  settings:['EXCEL_PATH = hirist/output/Hirist.xlsx','STATUSES = New, Interested, Applied, Not relevant'],
+  fails:['File open in Excel: timestamped copy; close Excel and rerun.'],
+  code:'rows, n_new, n_upd = merge(existing, jobs, today)\ntry:\n    _write(rows, path)\nexcept PermissionError:\n    _write(rows, timestamped_copy)'}
+];
+
+const EDGES = [
+ ['start','input','r','l','',false,'--trigger'],
+ ['input','plan','r','l','',false,'--trigger'],
+ ['plan','pool','r','l','',false,'--logic'],
+ ['pool','load','r','l','shared page queue',false,'--browser'],
+ ['load','check','r','l','',false,'--browser'],
+ ['check','stop','r','l','yes: stop all Chromes',true,'--safety'],
+ ['check','read','b','t','no',false,'--parse'],
+ ['read','more','l','r','',false,'--parse'],
+ ['more','load','t','b','next page',true,'--logic'],
+ ['more','filter','l','r','queue empty',false,'--logic'],
+ ['filter','merge','l','r','',false,'--parse'],
+ ['merge','backup','l','r','',false,'--store'],
+ ['backup','excel','l','r','',false,'--store']
+];
+
+const ORDER = ['start','input','plan','pool','load','check','read','more','filter','merge','backup','excel'];
+
+const cv = document.getElementById('canvas');
+const byId = {};
+NODES.forEach(n => { byId[n.id] = n; });
+
+function css(v){ return `var(${v})`; }
+
+// nodes
+NODES.forEach(n => {
+  const d = document.createElement('div');
+  d.className = 'node' + (n.stopnode ? ' stopnode' : '');
+  d.id = 'n_' + n.id;
+  d.style.cssText = `left:${n.x}px;top:${n.y}px;--c:${css('--' + n.kind)}`;
+  d.innerHTML = `<div class="t"><span class="g">${n.g}</span>${n.title}</div><div class="s">${n.sub}</div><div class="badge">${n.items}</div>`;
+  d.addEventListener('click', () => select(n.id));
+  cv.appendChild(d);
+});
+
+// edges
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('class', 'edges');
+svg.innerHTML = '<defs></defs>';
+cv.insertBefore(svg, cv.firstChild);
+
+function port(n, p){
+  if (p === 'r') return [n.x + W, n.y + H/2, 1, 0];
+  if (p === 'l') return [n.x, n.y + H/2, -1, 0];
+  if (p === 't') return [n.x + W/2, n.y, 0, -1];
+  return [n.x + W/2, n.y + H, 0, 1];
+}
+EDGES.forEach((e, i) => {
+  const [a, b, pa, pb, label, dash, col] = e;
+  const [x1, y1, dx1, dy1] = port(byId[a], pa);
+  const [x2, y2, dx2, dy2] = port(byId[b], pb);
+  const k = (pa === pb) ? 90 : Math.max(60, Math.hypot(x2 - x1, y2 - y1) / 3);
+  const d = `M${x1},${y1} C${x1 + dx1*k},${y1 + dy1*k} ${x2 + dx2*k},${y2 + dy2*k} ${x2},${y2}`;
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', d); p.setAttribute('id', 'e' + i);
+  p.setAttribute('class', 'edge' + (dash ? ' dash' : ''));
+  p.setAttribute('stroke', css(col)); p.setAttribute('marker-end', `url(#ar${i})`);
+  const m = document.createElementNS(NS, 'marker');
+  m.setAttribute('id', 'ar' + i); m.setAttribute('viewBox', '0 0 10 10'); m.setAttribute('refX', '9'); m.setAttribute('refY', '5');
+  m.setAttribute('markerWidth', '7'); m.setAttribute('markerHeight', '7'); m.setAttribute('orient', 'auto-start-reverse');
+  m.innerHTML = `<path d="M0,0 L10,5 L0,10 z" fill="${css(col)}"/>`;
+  svg.firstChild.appendChild(m);
+  svg.appendChild(p);
+  const dot = document.createElementNS(NS, 'circle');
+  dot.setAttribute('r', '4'); dot.setAttribute('fill', css(col));
+  dot.innerHTML = `<animateMotion dur="${3 + (i % 3)}s" repeatCount="indefinite"><mpath href="#e${i}"/></animateMotion>`;
+  svg.appendChild(dot);
+  if (label) {
+    const mid = (t) => { // point on the cubic at t
+      const c = [[x1,y1],[x1+dx1*k,y1+dy1*k],[x2+dx2*k,y2+dy2*k],[x2,y2]], u = 1 - t;
+      return [0,1].map(j => u*u*u*c[0][j] + 3*u*u*t*c[1][j] + 3*u*t*t*c[2][j] + t*t*t*c[3][j]);
+    };
+    const [mx, my] = mid(0.5);
+    const l = document.createElement('div');
+    l.className = 'elabel'; l.style.left = mx + 'px'; l.style.top = my + 'px'; l.textContent = label;
+    cv.appendChild(l);
+  }
+});
+
+// panel
+const panel = document.getElementById('panel');
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function overview(){
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--browser)">Overview</span>
+   <h2>How it works, in one paragraph</h2>
+   <p>The workflow takes the tech roles from input.csv and reads Hirist twice for each keyword: through Hirist's free-text search (read from the JSON the page loads) and through its own tag pages (HTML cards). Both URLs carry Hirist's date filter, so Hirist itself returns only the last week. A pool of Chromes with a fresh browser state shares one page queue. Jobs are filtered by exact posting time and exact experience, merged by Hirist job id with a "Found by" column, compared per role, backed up and added to an Excel file that keeps your Status and Notes.</p>
+   <h3>Why this design</h3>
+   <ul>
+    <li>Hirist filters by date on its server, so the lists are short (1 to 12 pages) and the run takes about 6 minutes.</li>
+    <li>The two methods are complementary: tag pages are precise for tagged roles, search covers every keyword. The union keeps the most relevant jobs.</li>
+    <li>Fresh browser state each run, because Hirist remembers filters between visits.</li>
+    <li>No login, no stealth, no proxy, no recruiter personal data: if a check appears, everything stops and tells you.</li>
+   </ul>
+   <h3>Click a node</h3>
+   <p>Each node explains its job, the file and function behind it, its settings and what happens if it fails. Press "Run the workflow" to watch the order.</p>`;
+}
+
+function select(id){
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('sel'));
+  document.getElementById('n_' + id).classList.add('sel');
+  const n = byId[id];
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--${n.kind})">${{trigger:'Trigger / input',browser:'Browser',logic:'Logic',parse:'Parse',store:'Storage',safety:'Safety'}[n.kind]}</span>
+   <h2>${n.title}</h2>
+   <p style="margin:4px 0 0">${n.what}</p>
+   <h3>Input and output</h3>
+   <div class="io"><div><b>In</b>${n.io[0]}</div><div><b>Out</b>${n.io[1]}</div></div>
+   <h3>Technical detail</h3><ul>${n.tech.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>File and function</h3><p style="margin:0"><code>${n.file}</code></p>
+   <h3>Settings</h3><ul>${n.settings.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>If it fails</h3>${n.fails.map(t => `<div class="fail">${t}</div>`).join('')}
+   ${n.code ? `<h3>Code / sample</h3><pre>${esc(n.code)}</pre>` : ''}`;
+  panel.scrollTop = 0;
+}
+overview();
+
+// run animation
+let timers = [];
+function reset(){
+  timers.forEach(clearTimeout); timers = [];
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('done', 'run', 'sel'));
+  overview();
+}
+function play(){
+  reset();
+  ORDER.forEach((id, i) => {
+    timers.push(setTimeout(() => {
+      document.querySelectorAll('.node.run').forEach(x => x.classList.remove('run'));
+      const el = document.getElementById('n_' + id);
+      el.classList.add('run');
+      el.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'});
+      timers.push(setTimeout(() => { el.classList.remove('run'); el.classList.add('done'); }, 650));
+    }, i * 800));
+  });
+}
+document.getElementById('play').addEventListener('click', play);
+document.getElementById('reset').addEventListener('click', reset);
+</script>
+</body>
+</html>

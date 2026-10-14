@@ -1,0 +1,173 @@
+{
+ "jobs": [
+  {
+   "absolute_url": "https://job-boards.greenhouse.io/xai/jobs/5231352007",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "internal_job_id": 4677880007,
+   "location": {
+    "name": "Austin, TX; New York, NY"
+   },
+   "metadata": [
+    {
+     "id": 16340689007,
+     "name": "Featured Role",
+     "value": null,
+     "value_type": "yes_no"
+    }
+   ],
+   "id": 5231352007,
+   "updated_at": "2026-10-12T19:53:00-04:00",
+   "requisition_id": "1227",
+   "title": "Agency Development Manager",
+   "company_name": "SpaceXSI",
+   "first_published": "2026-09-04T14:31:41-04:00",
+   "language": "en",
+   "application_deadline": null
+  },
+  {
+   "absolute_url": "https://job-boards.greenhouse.io/xai/jobs/5090180007",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "internal_job_id": 4609960007,
+   "location": {
+    "name": "Remote US"
+   },
+   "metadata": [
+    {
+     "id": 16340689007,
+     "name": "Featured Role",
+     "value": null,
+     "value_type": "yes_no"
+    }
+   ],
+   "id": 5090180007,
+   "updated_at": "2026-10-12T19:35:19-04:00",
+   "requisition_id": "869",
+   "title": "AI Tutor - Chinese",
+   "company_name": "SpaceXSI",
+   "first_published": "2026-04-01T00:37:56-04:00",
+   "language": "en",
+   "application_deadline": null
+  },
+  {
+   "absolute_url": "https://job-boards.greenhouse.io/xai/jobs/5207340007",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "internal_job_id": 4609960007,
+   "location": {
+    "name": "Remote International"
+   },
+   "metadata": [
+    {
+     "id": 16340689007,
+     "name": "Featured Role",
+     "value": null,
+     "value_type": "yes_no"
+    }
+   ],
+   "id": 5207340007,
+   "updated_at": "2026-10-12T19:35:19-04:00",
+   "requisition_id": "869",
+   "title": "AI Tutor - Croatian",
+   "company_name": "SpaceXSI",
+   "first_published": "2026-08-07T19:17:17-04:00",
+   "language": "en",
+   "application_deadline": null
+  },
+  {
+   "absolute_url": "https://job-boards.greenhouse.io/xai/jobs/5227940007",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "education": "education_optional",
+   "internal_job_id": 4676184007,
+   "location": {
+    "name": "Remote International"
+   },
+   "metadata": [
+    {
+     "id": 16340689007,
+     "name": "Featured Role",
+     "value": null,
+     "value_type": "yes_no"
+    }
+   ],
+   "id": 5227940007,
+   "updated_at": "2026-10-12T19:51:00-04:00",
+   "requisition_id": "1213",
+   "title": "AI Tutor - Design",
+   "company_name": "SpaceXSI",
+   "first_published": "2026-09-03T17:07:35-04:00",
+   "language": "en",
+   "application_deadline": null
+  },
+  {
+   "absolute_url": "https://job-boards.greenhouse.io/xai/jobs/5090199007",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "internal_job_id": 4609960007,
+   "location": {
+    "name": "Remote International"
+   },
+   "metadata": [
+    {
+     "id": 16340689007,
+     "name": "Featured Role",
+     "value": null,
+     "value_type": "yes_no"
+    }
+   ],
+   "id": 5090199007,
+   "updated_at": "2026-10-12T19:35:19-04:00",
+   "requisition_id": "869",
+   "title": "AI Tutor - Finnish",
+   "company_name": "SpaceXSI",
+   "first_published": "2026-04-01T00:38:02-04:00",
+   "language": "en",
+   "application_deadline": null
+  }
+ ],
+ "meta": {
+  "total": 307
+ }
+}

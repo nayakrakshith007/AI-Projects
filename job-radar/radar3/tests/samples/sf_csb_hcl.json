@@ -1,0 +1,64 @@
+{
+ "jobSearchResult": [
+  {
+   "response": {
+    "unifiedStandardEnd": "11/30/26",
+    "supportedLocales": [
+     "en_US"
+    ],
+    "custprimecity": "Bangalore",
+    "unifiedUrlTitle": "Data-Architect",
+    "unifiedStandardStart": "8/26/26",
+    "currency": [
+     "INR"
+    ],
+    "id": "156364",
+    "unifiedStandardTitle": "Data Architect",
+    "custCountryRegion": [
+     "India"
+    ],
+    "urlTitle": "Data-Architect"
+   }
+  },
+  {
+   "response": {
+    "supportedLocales": [
+     "en_US"
+    ],
+    "custprimecity": "City Of London",
+    "unifiedUrlTitle": "Data-Architect",
+    "unifiedStandardStart": "9/16/26",
+    "currency": [
+     "GBP"
+    ],
+    "id": "153049",
+    "unifiedStandardTitle": "Data Architect",
+    "custCountryRegion": [
+     "United Kingdom"
+    ],
+    "urlTitle": "Data-Architect"
+   }
+  },
+  {
+   "response": {
+    "unifiedStandardEnd": "12/17/26",
+    "supportedLocales": [
+     "en_US"
+    ],
+    "custprimecity": "Chennai",
+    "unifiedUrlTitle": "Data-Consultant",
+    "unifiedStandardStart": "9/18/26",
+    "currency": [
+     "INR"
+    ],
+    "id": "168338",
+    "unifiedStandardTitle": "Data Consultant",
+    "custCountryRegion": [
+     "India"
+    ],
+    "urlTitle": "Data-Consultant"
+   }
+  }
+ ],
+ "totalJobs": 5301
+}

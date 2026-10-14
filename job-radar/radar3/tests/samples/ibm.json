@@ -1,0 +1,67 @@
+{
+ "hits": {
+  "total": {
+   "value": 562,
+   "relation": "eq"
+  },
+  "hits": [
+   {
+    "_index": "genesis-prod-1788036777996",
+    "_id": "3188a2c8f4da9be461b2f888b6e816c41fbd46397133817316d97370e15e167d",
+    "_score": 24.512655,
+    "_source": {
+     "language": "en",
+     "url": "https://careers.ibm.com/careers/JobDetail?jobId=131926",
+     "title": "Legal Data Specialist",
+     "entitled": "",
+     "field_keyword_08": "Enterprise Operations",
+     "field_keyword_17": "Hybrid",
+     "field_keyword_18": "Professional",
+     "field_keyword_19": "Bangalore, IN"
+    },
+    "sort": [
+     24.512655,
+     0
+    ]
+   },
+   {
+    "_index": "genesis-prod-1788036777996",
+    "_id": "89805b1dda80541467359272a71ab0a2d183f82b026785e13c8491c80663ebef",
+    "_score": 23.882385,
+    "_source": {
+     "language": "en",
+     "url": "https://careers.ibm.com/careers/JobDetail?jobId=131928",
+     "title": "Legal Data Technical Specialist",
+     "entitled": "",
+     "field_keyword_08": "Enterprise Operations",
+     "field_keyword_17": "Hybrid",
+     "field_keyword_18": "Professional",
+     "field_keyword_19": "Bangalore, IN"
+    },
+    "sort": [
+     23.882385,
+     0
+    ]
+   },
+   {
+    "_index": "genesis-prod-1788036777996",
+    "_id": "45f756167a66ff27a0c0a90190386585c265be2cda2d5cdaf762fc4fa95bdf6c",
+    "_score": 21.463427,
+    "_source": {
+     "language": "en",
+     "url": "https://careers.ibm.com/careers/JobDetail?jobId=131919",
+     "title": "Legal Data Program Manager",
+     "entitled": "",
+     "field_keyword_08": "Enterprise Operations",
+     "field_keyword_17": "Hybrid",
+     "field_keyword_18": "Professional",
+     "field_keyword_19": "Bangalore, IN"
+    },
+    "sort": [
+     21.463427,
+     0
+    ]
+   }
+  ]
+ }
+}

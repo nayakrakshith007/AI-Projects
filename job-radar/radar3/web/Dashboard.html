@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Job Radar Dashboard</title>
+<style>
+:root{--bg:#f7f7f4;--panel:#fff;--ink:#1c1c1a;--mute:#6a6964;--line:#e2e0d8;--acc:#2f5fd0;--acc2:#e8eefc;--ok:#1a7f4b;--warn:#a86400;--bad:#b3261e;--t0:#1a7f4b;--t1:#a86400;--t2:#2f5fd0;--t3:#7a4fc7;--t4:#8a8a85}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141413;--panel:#1e1e1c;--ink:#ecebe6;--mute:#9a9892;--line:#33322f;--acc:#7da2ff;--acc2:#202b45;--ok:#5fcf8f;--warn:#e6a93b;--bad:#ff7b72;--t0:#5fcf8f;--t1:#e6a93b;--t2:#7da2ff;--t3:#b79cf0;--t4:#9a9892}}
+:root[data-theme=dark]{--bg:#141413;--panel:#1e1e1c;--ink:#ecebe6;--mute:#9a9892;--line:#33322f;--acc:#7da2ff;--acc2:#202b45;--ok:#5fcf8f;--warn:#e6a93b;--bad:#ff7b72;--t0:#5fcf8f;--t1:#e6a93b;--t2:#7da2ff;--t3:#b79cf0;--t4:#9a9892}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,Segoe UI,sans-serif}
+header{padding:14px 24px;border-bottom:1px solid var(--line);background:var(--panel);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+h1{font-size:19px;margin:0}.sub{color:var(--mute);font-size:13px}
+button,select,input{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 11px}button{cursor:pointer}
+button.on,.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.bar{position:sticky;top:0;z-index:4;background:var(--bg);padding:10px 24px;border-bottom:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:4px 0}.lab{color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+.chip{border-radius:99px;padding:2px 11px;font-size:13px}
+main{max-width:1280px;margin:auto;padding:16px 24px 80px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 15px}
+.card b{display:block;font-size:26px}.card span{color:var(--mute);font-size:13px}
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:12px;margin:12px 0}
+.charts h3{margin:0 0 8px;font-size:14px}.bars .b{display:grid;grid-template-columns:150px 1fr 44px;gap:8px;align-items:center;font-size:13px;padding:2px 0;cursor:pointer;border-radius:6px}.bars .b:hover{background:var(--acc2)}
+.bars .b.sel{outline:2px solid var(--acc)}.bars .b span.n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bars .b i{display:block;height:12px;border-radius:3px;background:var(--acc)}.bars .b em{font-style:normal;text-align:right;color:var(--mute)}
+.days{display:flex;align-items:flex-end;gap:2px;height:120px}.days i{display:block;flex:1;background:var(--acc);border-radius:2px 2px 0 0;min-width:4px}.axis{display:flex;justify-content:space-between;color:var(--mute);font-size:12px}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{position:sticky;top:0;background:var(--panel);color:var(--mute);cursor:pointer;white-space:nowrap}
+tr.j{cursor:pointer}tr.j:hover{background:var(--acc2)}.t{font-weight:600;white-space:nowrap}.t0{color:var(--t0)}.t1{color:var(--t1)}.t2{color:var(--t2)}.t3{color:var(--t3)}.t4{color:var(--t4)}
+.mute{color:var(--mute)}.star{cursor:pointer;color:var(--mute);user-select:none}.star.on{color:#e0a800}
+.pager{display:flex;gap:8px;align-items:center;margin:10px 0}
+#drawer{position:fixed;top:0;right:0;width:min(480px,100vw);height:100vh;background:var(--panel);border-left:1px solid var(--line);box-shadow:-6px 0 20px rgba(0,0,0,.14);transform:translateX(105%);transition:transform .2s;overflow:auto;padding:18px 20px;z-index:6}
+#drawer.open{transform:none}#drawer h2{margin:0 0 4px;font-size:18px}#drawer h4{margin:14px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}#drawer a{color:var(--acc);word-break:break-all}
+.flag{color:var(--warn);font-size:12px}
+@media(max-width:700px){header,.bar,main{padding-left:14px;padding-right:14px}.bars .b{grid-template-columns:100px 1fr 40px}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Job Radar V3 <span class="sub">dashboard</span></h1><div class="sub" id="gen"></div></div>
+  <div class="row"><button id="bExport">Export view (CSV)</button><button id="bTheme">Theme</button><a class="sub" id="progLink" href="/" style="display:none">Progress page</a></div>
+</header>
+<div class="bar">
+  <div class="row">
+    <input id="q" type="search" placeholder="Search title, company, skill" style="min-width:240px">
+    <select id="fPosted"><option value="">Any date</option><option value="today">New today</option><option value="7">First seen last 7 days</option><option value="30">First seen last 30 days</option></select>
+    <select id="fSource"><option value="">All sources</option></select>
+    <select id="fMode"><option value="">Any work mode</option><option>Remote</option><option>Hybrid</option><option>Onsite</option></select>
+    <select id="fStatus"><option value="">Any status</option><option>New</option><option>Interested</option><option>Applied</option><option>Not relevant</option></select>
+    <button id="bStar">Starred only</button><button id="bReset">Reset filters</button>
+  </div>
+  <div class="row"><span class="lab">Where</span><span id="tierChips"></span></div>
+  <div class="row"><span class="lab">Role</span><span id="roleChips"></span></div>
+  <div class="row" id="active"></div>
+</div>
+<main>
+  <div class="cards" id="cards"></div>
+  <div class="charts">
+    <div class="card bars" id="cRole"><h3>Jobs per role</h3></div>
+    <div class="card bars" id="cTier"><h3>Jobs by location priority</h3></div>
+    <div class="card bars" id="cSource"><h3>Jobs per source</h3></div>
+    <div class="card bars" id="cCompany"><h3>Companies hiring most</h3></div>
+    <div class="card bars" id="cSkill"><h3>Skills asked (where the source lists them)</h3></div>
+    <div class="card"><h3>First seen per day (last 30 days)</h3><div class="days" id="cDays"></div><div class="axis"><span id="d0"></span><span id="d1"></span></div></div>
+  </div>
+  <div class="pager"><b id="count"></b><span class="mute">Click a column to sort. Click a bar or chip to filter. Click a row for details.</span></div>
+  <div class="tablewrap"><table><thead><tr><th data-k="star"></th><th data-k="tier">Priority</th><th data-k="title">Title</th><th data-k="company">Company</th><th data-k="location">Location</th><th data-k="roles">Roles</th><th data-k="work_mode">Mode</th><th data-k="first_seen">First seen</th><th data-k="sites">Source</th><th data-k="status">Status</th></tr></thead><tbody id="rows"></tbody></table></div>
+  <div class="pager"><button id="prev">Previous</button><span id="pg"></span><button id="next">Next</button></div>
+</main>
+<aside id="drawer"></aside>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent), JOBS=D.jobs||[];
+const $=s=>document.querySelector(s), esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const TIERS=['Remote, open to India','Remote, check eligibility','Bengaluru','Hyderabad / Chennai','Rest of India'];
+const PAGE=50; let page=0, sortK='tier', sortDir=1;
+const F={q:'',posted:'',source:'',mode:'',status:'',star:false,tiers:new Set(),roles:new Set(),company:'',skill:''};
+let LS={}; try{LS=JSON.parse(localStorage.getItem('radar3.state')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('radar3.state',JSON.stringify(LS))}catch(e){}}
+function st(j){return (LS[j.url]&&LS[j.url].status)||j.status||'New'}
+function starred(j){return !!(LS[j.url]&&LS[j.url].star)}
+JOBS.forEach(j=>{j._skills=(j.skills||'').split(',').map(x=>x.trim()).filter(Boolean);j._text=(j.title+' '+j.company+' '+(j.skills||'')+' '+j.location).toLowerCase();j._src=(j.sites||[]).join(', ')});
+const today=(D.generated||new Date().toISOString()).slice(0,10);
+function daysAgo(d){return d?Math.floor((new Date(today)-new Date(d))/864e5):9999}
+function view(){
+  const q=F.q.toLowerCase();
+  return JOBS.filter(j=>(!q||j._text.includes(q))&&(!F.tiers.size||F.tiers.has(j.tier))&&(!F.roles.size||j.roles.some(r=>F.roles.has(r)))
+    &&(!F.source||j._src.includes(F.source))&&(!F.mode||j.work_mode===F.mode)&&(!F.status||st(j)===F.status)&&(!F.star||starred(j))
+    &&(!F.company||j.company===F.company)&&(!F.skill||j._skills.includes(F.skill))
+    &&(!F.posted||(F.posted==='today'?j.first_seen===today:daysAgo(j.first_seen)<=+F.posted)));
+}
+function count(arr,fn){const m=new Map();arr.forEach(j=>{[].concat(fn(j)).forEach(k=>{if(k!==''&&k!=null)m.set(k,(m.get(k)||0)+1)})});return [...m.entries()].sort((a,b)=>b[1]-a[1])}
+function bars(el,title,data,sel,onClick,max=10,names){
+  const mx=Math.max(1,...data.map(d=>d[1]));
+  $(el).innerHTML='<h3>'+title+'</h3>'+data.slice(0,max).map(d=>'<div class="b'+(sel===d[0]?' sel':'')+'" data-k="'+esc(d[0])+'"><span class="n" title="'+esc(names?names(d[0]):d[0])+'">'+esc(names?names(d[0]):d[0])+'</span><span><i style="width:'+(100*d[1]/mx)+'%"></i></span><em>'+d[1]+'</em></div>').join('')||'<div class="mute">nothing in view</div>';
+  $(el).querySelectorAll('.b').forEach(b=>b.onclick=()=>onClick(b.dataset.k));
+}
+function render(){
+  const v=view(); window._v=v;
+  const comp=new Set(v.map(j=>j.company)).size, rem=v.filter(j=>j.tier<=1).length, newT=v.filter(j=>j.first_seen===today).length, ben=v.filter(j=>j.tier===2).length;
+  $('#cards').innerHTML=[['Jobs in view',v.length],['New today',newT],['Companies hiring',comp],['Remote share',v.length?Math.round(100*rem/v.length)+'%':'-'],['Bengaluru share',v.length?Math.round(100*ben/v.length)+'%':'-'],['Starred',JOBS.filter(starred).length]].map(c=>'<div class="card"><b>'+c[1]+'</b><span>'+c[0]+'</span></div>').join('');
+  bars('#cRole','Jobs per role',count(v,j=>j.roles),[...F.roles][0],k=>toggleRole(k),10);
+  bars('#cTier','Jobs by location priority',count(v,j=>j.tier).sort((a,b)=>a[0]-b[0]),null,k=>toggleTier(+k),5,k=>TIERS[k]);
+  bars('#cSource','Jobs per source',count(v,j=>j.sites),F.source,k=>{F.source=F.source===k?'':k;$('#fSource').value=F.source;go()},10);
+  bars('#cCompany','Companies hiring most',count(v,j=>j.company),F.company,k=>{F.company=F.company===k?'':k;go()},10);
+  bars('#cSkill','Skills asked',count(v,j=>j._skills),F.skill,k=>{F.skill=F.skill===k?'':k;go()},10);
+  const days=[];for(let i=29;i>=0;i--){const d=new Date(new Date(today)-i*864e5).toISOString().slice(0,10);days.push([d,0])}
+  const idx=new Map(days.map((d,i)=>[d[0],i]));v.forEach(j=>{if(idx.has(j.first_seen))days[idx.get(j.first_seen)][1]++});const mx=Math.max(1,...days.map(d=>d[1]));
+  $('#cDays').innerHTML=days.map(d=>'<i title="'+d[0]+': '+d[1]+'" style="height:'+Math.max(2,Math.round(120*d[1]/mx))+'px"></i>').join('');$('#d0').textContent=days[0][0];$('#d1').textContent=days[29][0];
+  tierChips();roleChips();activeChips();table(v);
+}
+function tierChips(){$('#tierChips').innerHTML=TIERS.map((t,i)=>'<button class="chip'+(F.tiers.has(i)?' on':'')+'" data-i="'+i+'">'+t+'</button>').join('');$('#tierChips').querySelectorAll('button').forEach(b=>b.onclick=()=>toggleTier(+b.dataset.i))}
+function roleChips(){const roles=count(JOBS,j=>j.roles).map(x=>x[0]);$('#roleChips').innerHTML=roles.map(r=>'<button class="chip'+(F.roles.has(r)?' on':'')+'" data-r="'+esc(r)+'">'+esc(r)+'</button>').join('');$('#roleChips').querySelectorAll('button').forEach(b=>b.onclick=()=>toggleRole(b.dataset.r))}
+function toggleTier(i){F.tiers.has(i)?F.tiers.delete(i):F.tiers.add(i);go()}
+function toggleRole(r){F.roles.has(r)?F.roles.delete(r):F.roles.add(r);go()}
+function activeChips(){const a=[];if(F.company)a.push(['company: '+F.company,()=>F.company='']);if(F.skill)a.push(['skill: '+F.skill,()=>F.skill='']);
+  $('#active').innerHTML=a.map((x,i)=>'<button class="chip on" data-i="'+i+'">'+esc(x[0])+' &times;</button>').join('');$('#active').querySelectorAll('button').forEach((b,i)=>b.onclick=()=>{a[i][1]();go()})}
+function go(){page=0;render()}
+function cmp(a,b){let x,y;switch(sortK){case 'star':x=starred(a)?0:1;y=starred(b)?0:1;break;case 'roles':x=a.roles.join();y=b.roles.join();break;case 'sites':x=a._src;y=b._src;break;case 'status':x=st(a);y=st(b);break;default:x=a[sortK];y=b[sortK]}
+  if(x==null)x='';if(y==null)y='';if(sortK==='first_seen'){return (x<y?1:x>y?-1:0)*sortDir}return (x<y?-1:x>y?1:0)*sortDir}
+function table(v){
+  const arr=v.slice().sort((a,b)=>sortK==='tier'?(a.tier-b.tier||(b.posted||'').localeCompare(a.posted||'')):cmp(a,b)*1);
+  if(sortK==='tier'&&sortDir<0)arr.reverse();
+  const pages=Math.max(1,Math.ceil(arr.length/PAGE));page=Math.min(page,pages-1);
+  $('#count').textContent=arr.length+' jobs';$('#pg').textContent='Page '+(page+1)+' of '+pages;$('#prev').disabled=page===0;$('#next').disabled=page>=pages-1;
+  $('#rows').innerHTML=arr.slice(page*PAGE,page*PAGE+PAGE).map(j=>'<tr class="j" data-u="'+esc(j.url)+'"><td><span class="star'+(starred(j)?' on':'')+'" data-s="'+esc(j.url)+'">&#9733;</span></td><td class="t t'+j.tier+'">'+esc(TIERS[j.tier])+(j.eligibility==='unclear'?'<div class="flag">check eligibility</div>':'')+'</td><td>'+esc(j.title)+'</td><td>'+esc(j.company)+'</td><td class="mute">'+esc(j.location)+'</td><td class="mute">'+esc(j.roles.join('; '))+'</td><td class="mute">'+esc(j.work_mode)+'</td><td class="mute">'+esc(j.first_seen)+'</td><td class="mute">'+esc(j._src)+'</td><td>'+esc(st(j))+'</td></tr>').join('');
+  document.querySelectorAll('tr.j').forEach(tr=>tr.onclick=e=>{if(e.target.dataset.s){const u=e.target.dataset.s;LS[u]=Object.assign(LS[u]||{},{star:!starred({url:u})});save();render();return}drawer(tr.dataset.u)});
+}
+function drawer(url){
+  const j=JOBS.find(x=>x.url===url);if(!j)return;
+  const note=(LS[url]&&LS[url].note)||'';
+  $('#drawer').innerHTML='<button onclick="closeD()" style="float:right">Close</button><h2>'+esc(j.title)+'</h2><div class="mute">'+esc(j.company)+'</div>'
+   +'<h4>Priority</h4><div class="t t'+j.tier+'">'+esc(TIERS[j.tier])+'</div>'+(j.eligibility==='unclear'?'<div class="flag">The location does not say whether India is allowed. Check the posting.</div>':'')
+   +'<h4>Where</h4><div>'+esc(j.location)+(j.more_locations?'<div class="mute">'+esc(j.more_locations)+'</div>':'')+'</div>'
+   +'<h4>Roles</h4><div>'+esc(j.roles.join('; '))+'</div><h4>Work mode</h4><div>'+esc(j.work_mode||'not stated')+'</div>'
+   +(j.salary?'<h4>Pay</h4><div>'+esc(j.salary)+'</div>':'')+(j.skills?'<h4>Skills</h4><div>'+esc(j.skills)+'</div>':'')
+   +'<h4>Posted / first seen</h4><div>'+esc(j.posted||'not stated')+' / '+esc(j.first_seen)+'</div><h4>Source</h4><div>'+esc(j._src)+' ('+esc((j.source_types||[]).join(', '))+')</div>'
+   +'<h4>Apply</h4><div><a href="'+esc(j.url)+'" target="_blank" rel="noopener">'+esc(j.url)+'</a></div>'+((j.other_links||[]).length?'<div class="mute">Also: '+j.other_links.map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(u.slice(0,60))+'</a>').join(', ')+'</div>':'')
+   +'<h4>My status (saved in this browser)</h4><select id="dSt">'+['New','Interested','Applied','Not relevant'].map(s=>'<option'+(st(j)===s?' selected':'')+'>'+s+'</option>').join('')+'</select> <button id="dStar">'+(starred(j)?'Remove star':'Star')+'</button>'
+   +'<h4>My note</h4><textarea id="dNote" rows="3" style="width:100%;font:inherit;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px">'+esc(note)+'</textarea>';
+  $('#drawer').classList.add('open');
+  $('#dSt').onchange=e=>{LS[url]=Object.assign(LS[url]||{},{status:e.target.value});save();render()};
+  $('#dStar').onclick=()=>{LS[url]=Object.assign(LS[url]||{},{star:!starred(j)});save();render();drawer(url)};
+  $('#dNote').oninput=e=>{LS[url]=Object.assign(LS[url]||{},{note:e.target.value});save()};
+}
+function closeD(){$('#drawer').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeD()});
+document.querySelectorAll('th[data-k]').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(sortK===k)sortDir*=-1;else{sortK=k;sortDir=1}page=0;render()});
+$('#q').oninput=e=>{F.q=e.target.value;go()};
+$('#fPosted').onchange=e=>{F.posted=e.target.value;go()};$('#fSource').onchange=e=>{F.source=e.target.value;go()};$('#fMode').onchange=e=>{F.mode=e.target.value;go()};$('#fStatus').onchange=e=>{F.status=e.target.value;go()};
+$('#bStar').onclick=e=>{F.star=!F.star;e.target.classList.toggle('on',F.star);go()};
+$('#bReset').onclick=()=>{Object.assign(F,{q:'',posted:'',source:'',mode:'',status:'',star:false,company:'',skill:''});F.tiers.clear();F.roles.clear();['#q','#fPosted','#fSource','#fMode','#fStatus'].forEach(s=>$(s).value='');$('#bStar').classList.remove('on');go()};
+$('#prev').onclick=()=>{page--;render()};$('#next').onclick=()=>{page++;render()};
+$('#bTheme').onclick=()=>{const r=document.documentElement;const dark=getComputedStyle(r).getPropertyValue('--bg').trim()==='#141413';r.dataset.theme=dark?'light':'dark'};
+$('#bExport').onclick=()=>{const cols=['title','company','location','roles','work_mode','posted','first_seen','sites','url'];const rows=[cols.join(',')].concat((window._v||[]).map(j=>cols.map(c=>'"'+String([].concat(j[c]==null?'':j[c]).join('; ')).replace(/"/g,'""')+'"').join(',')));
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'}));a.download='job_radar_view.csv';a.click()};
+(function init(){
+  const srcs=[...new Set(JOBS.flatMap(j=>j.sites||[]))].sort();$('#fSource').innerHTML+=srcs.map(s=>'<option>'+esc(s)+'</option>').join('');
+  const st0=D.stats||{};$('#gen').textContent='Built '+(D.generated||'').replace('T',' ')+' | '+JOBS.length+' matched jobs | '+(st0.remote_open_to_india||0)+' remote open to India';
+  if(location.protocol.startsWith('http'))$('#progLink').style.display='inline';
+  render();
+})();
+</script>
+</body>
+</html>

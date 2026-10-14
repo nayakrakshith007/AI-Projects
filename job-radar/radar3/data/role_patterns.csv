@@ -1,0 +1,11 @@
+role,title_pattern
+AI Engineer,"\b(ai|artificial intelligence|gen[\s-]*ai|generative ai|agentic|ai/ml|ai\s*&\s*ml)\b.{0,25}(engineer|developer|specialist)|forward[\s-]*deployed|\bfde\b|applied ai|(engineer|developer).{0,12}\b(ai|artificial intelligence|genai|llm)\b|build ai agents"
+ML Engineer,"\b(ml|machine[\s-]*learning)\b.{0,25}(engineer|developer|scientist|researcher)|(engineer|developer|scientist).{0,15}\b(ml|machine[\s-]*learning)\b|engineering manager.{0,10}\b(ml|machine[\s-]*learning)\b"
+GenAI / LLM Engineer,"\b(llm|large language|gen[\s-]*ai|generative|rag|agents?|foundation model|nlp|natural language|prompt)\b.{0,30}(engineer|developer|scientist|researcher)"
+Data Scientist,"data[\s-]*scien|decision scien"
+Applied Scientist / Research Engineer,"applied (scientist|researcher)|research (engineer|scientist)|ai research|member of technical staff.{0,25}(ml|ai|machine learning)"
+MLOps / ML Platform Engineer,"\bml[\s-]*ops\b|\bllm[\s-]*ops\b|\b(ml|machine learning|ai)\b.{0,12}(platform|infrastructure|infra)\b|(platform|infrastructure|infra)\b.{0,12}\b(ml|machine learning|ai)\b"
+Data Engineer,"data[\s-]*engineer|analytics engineer|\betl\b|big data|data platform|data pipeline|data[\s-]*infra"
+Data Analyst / BI Analyst,"data[\s-]*analy|\bbi\b.{0,15}(analyst|developer|engineer)|business intelligence|analytics (analyst|specialist|consultant)"
+AI Architect / Solutions Architect,"\b(ai|ml|data|genai|gen\s*ai|machine learning|solutions?|analytics)\b.{0,20}\barchitect\b|\barchitect\b.{0,15}\b(ai|ml|data|genai)\b"
+Prompt Engineer / AI Product,"prompt engineer|ai product (manager|owner|lead)|product manager.{0,25}\b(ai|ml|llm|genai|machine learning)\b|\b(ai|ml|llm|genai)\b.{0,15}product manager"

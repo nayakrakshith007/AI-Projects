@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Radar Pipeline</title>
+<style>
+:root{
+  --bg:#14151c; --panel:#1c1e28; --panel2:#232634; --line:#2f3345; --text:#e8eaf2; --muted:#9aa0b8;
+  --trigger:#ff6d5a; --browser:#4c8dff; --logic:#a06bff; --parse:#2fbf71; --store:#19b5c4; --safety:#ff4d6d; --warn:#f5a524;
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#eef0f6;--panel:#ffffff;--panel2:#f4f5fa;--line:#d5d9e6;--text:#1c2030;--muted:#5d6580}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",Calibri,system-ui,sans-serif}
+header{padding:20px 24px 8px}
+h1{margin:0 0 4px;font-size:24px}
+header p{margin:0;color:var(--muted);max-width:900px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+.toolbar{display:flex;gap:10px;align-items:center;padding:10px 24px;flex-wrap:wrap}
+button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer}
+button:hover{border-color:var(--browser)}
+button.primary{background:var(--trigger);border-color:var(--trigger);color:#fff;font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:16px;padding:0 24px 24px}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}}
+.canvas-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:auto;position:relative;max-height:720px}
+.canvas{position:relative;width:2130px;height:640px;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:20px 20px}
+svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.edge{fill:none;stroke-width:2}
+.edge.dash{stroke-dasharray:6 6}
+.elabel{position:absolute;transform:translate(-50%,-50%);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:11px;color:var(--muted);white-space:nowrap}
+.node{position:absolute;width:250px;height:96px;background:var(--panel2);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px 10px 16px;cursor:pointer;transition:.15s;overflow:hidden}
+.node:hover{transform:translateY(-2px);border-color:var(--c)}
+.node.sel{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
+.node::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.node .t{font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center}
+.node .g{display:inline-flex;width:22px;height:22px;border-radius:6px;background:var(--c);color:#fff;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.node .s{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.35}
+.node .badge{position:absolute;right:8px;bottom:6px;font-size:11px;font-weight:700;color:var(--c);opacity:0}
+.node.done{border-color:var(--parse)}
+.node.done .badge{opacity:1}
+.node.run{box-shadow:0 0 0 4px color-mix(in srgb,var(--warn) 45%,transparent);border-color:var(--warn)}
+.node.stopnode{border-style:dashed}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;max-height:720px;overflow:auto}
+.panel h2{margin:0 0 2px;font-size:19px}
+.panel .kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-radius:5px;padding:1px 8px;margin-bottom:8px}
+.panel h3{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.panel ul{margin:0;padding-left:18px}
+.panel li{margin:3px 0}
+.panel code,.panel pre{font-family:Consolas,"Cascadia Mono",monospace;font-size:12px}
+.panel code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.panel pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;margin:6px 0 0}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.io div{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px}
+.io b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fail{border-left:3px solid var(--safety);padding:2px 0 2px 10px;margin:6px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;padding:0 24px 32px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{margin:0 0 8px;font-size:15px}
+.card pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;font:12px/1.5 Consolas,monospace;margin:6px 0}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:3px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+th{color:var(--muted);font-weight:600}
+@media (prefers-reduced-motion:reduce){.node{transition:none}}
+/* LIVE TRACKER START (added to the pipeline visual; reads the local tracker server) */
+.tabs{display:flex;gap:6px;padding:0 24px;margin-top:4px;border-bottom:1px solid var(--line)}
+.tab{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:9px 16px;color:var(--muted);font-weight:600}
+.tab:hover{color:var(--text);border-color:transparent;border-bottom-color:var(--line)}
+.tab.on{color:var(--text);border-bottom-color:var(--trigger)}
+.livebar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.livebar label{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:12px;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.danger{color:var(--safety);border-color:var(--safety)}
+.tk{--ok:var(--parse);--run:var(--browser);--bad:var(--safety);--wait:var(--muted);--wait-bg:var(--panel2);--ink:var(--text);--accent:var(--browser);
+  --ok-bg:color-mix(in srgb,var(--parse) 18%,var(--panel));--run-bg:color-mix(in srgb,var(--browser) 20%,var(--panel));
+  --warn-bg:color-mix(in srgb,var(--warn) 18%,var(--panel));--bad-bg:color-mix(in srgb,var(--safety) 18%,var(--panel));
+  padding:16px 24px 32px}
+.tk .banner{display:none;margin-bottom:14px;padding:10px 14px;border-radius:10px;background:var(--bad-bg);color:var(--bad);font-size:13px}
+.tk .banner.show{display:block}
+.tk .card{padding:0;border-radius:12px}
+.tk .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.tk .stat{padding:12px 16px}
+.tk .stat .k{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.tk .stat .v{font-size:23px;font-weight:650;margin-top:2px;font-variant-numeric:tabular-nums}
+.tk .pill{display:inline-flex;align-items:center;gap:7px;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--wait-bg);color:var(--wait)}
+.tk .pill.running,.tk .pill.building{background:var(--run-bg);color:var(--run)}
+.tk .pill.ok,.tk .pill.finished{background:var(--ok-bg);color:var(--ok)}
+.tk .pill.warn{background:var(--warn-bg);color:var(--warn)}
+.tk .pill.bad{background:var(--bad-bg);color:var(--bad)}
+.tk .dot,.livepill .dot{width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block}
+.tk .pulse .dot,.livepill.pulse .dot{animation:tkpulse 1.2s ease-in-out infinite}
+@keyframes tkpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+.livepill{display:inline-flex;align-items:center;gap:7px;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:600;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.livepill.running,.livepill.building,.livepill.stopping{color:var(--browser);border-color:var(--browser)}
+.livepill.finished{color:var(--parse);border-color:var(--parse)}
+.livepill.bad{color:var(--safety);border-color:var(--safety)}
+.tk .overall{padding:14px 16px;margin-bottom:6px}
+.tk .bar{height:10px;border-radius:999px;background:var(--wait-bg);overflow:hidden}
+.tk .bar>i{display:block;height:100%;width:0;background:var(--browser);border-radius:999px;transition:width .6s ease}
+.tk .bar.indet>i{width:40%!important;animation:tkslide 1.4s ease-in-out infinite;background:linear-gradient(90deg,transparent,var(--run),transparent)}
+@keyframes tkslide{0%{transform:translateX(-120%)}100%{transform:translateX(280%)}}
+.tk .sec{font-size:12px;margin:20px 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.tk .sub{color:var(--muted);font-size:12px}
+.tk .lane{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin-bottom:12px}
+.tk .lane-label{flex:0 0 100%;font-size:12px;color:var(--muted)}
+.tk .arrow{align-self:center;color:var(--muted)}
+.tk .site{flex:1 1 230px;min-width:0;overflow:hidden;max-width:360px;font:inherit;padding:14px 15px;cursor:pointer;text-align:left;border-radius:12px;transition:border-color .2s,transform .15s}
+.tk .site:hover{transform:translateY(-1px)}
+.tk .site .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tk .site .name{font-weight:650;font-size:15px}
+.tk .site .metrics{display:flex;gap:14px;margin:10px 0 6px;font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted)}
+.tk .site .metrics b{color:var(--text);font-size:14px}
+.tk .site .last{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:17px;font-family:Consolas,monospace}
+.tk .site .note{font-size:12px;margin-top:6px;color:var(--warn)}
+.tk .site.running{border-color:var(--run)}
+.tk .site.ok{border-color:color-mix(in srgb,var(--ok) 55%,var(--line))}
+.tk .site.bad,.tk .site.warn{border-color:var(--bad)}
+.tk .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:820px){.tk .grid2{grid-template-columns:1fr}.tk .site{max-width:none;flex-basis:100%}.tk .arrow{flex:0 0 100%;text-align:center;font-size:0;line-height:1}.tk .arrow::after{content:'↓';font-size:16px}}
+.tk .box{padding:14px 16px}
+.tk .events{max-height:300px;overflow:auto;font-size:13px}
+.tk .events div{padding:5px 0;border-bottom:1px solid var(--line);display:flex;gap:10px}
+.tk .events time{color:var(--muted);font-variant-numeric:tabular-nums;flex:0 0 66px}
+.tk .errors div{font-family:Consolas,monospace;font-size:12px;padding:5px 0;border-bottom:1px solid var(--line);word-break:break-word}
+.tk .empty{color:var(--muted);font-size:13px}
+.tk .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:10px}
+.tk .kv div{background:var(--panel2);border-radius:10px;padding:8px 12px}
+.tk .kv span{display:block;color:var(--muted);font-size:12px}
+.tk .kv b{font-size:17px;font-variant-numeric:tabular-nums}
+.tk .mach{display:flex;flex-wrap:wrap;gap:8px 22px;padding:11px 16px;font-size:12px;color:var(--muted);margin-bottom:12px}
+.tk .mach b{color:var(--text);font-size:14px}
+.tk .filters{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:14px}
+.tk .filters label{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:12px}
+.tk .filters select{font:inherit;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+.tk table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.tk th,.tk td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+.tk th:first-child,.tk td:first-child{text-align:left}
+.tk th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.tk tbody tr.pick{cursor:pointer}
+.tk tbody tr.pick:hover{background:var(--panel2)}
+.tk tbody tr.sel{background:var(--run-bg)}
+.tk .scroll{overflow-x:auto}
+.tk .mbar{display:inline-block;height:8px;border-radius:99px;background:var(--browser);vertical-align:middle;min-width:2px}
+.tk .spark{vertical-align:middle}
+.tk .insights li{margin:6px 0}
+.tk .gantt .row{display:flex;align-items:center;gap:10px;margin:7px 0}
+.tk .gantt .lab{flex:0 0 84px;font-weight:600;font-size:12px}
+.tk .gantt .track{position:relative;flex:1;height:22px;background:var(--panel2);border-radius:6px}
+.tk .gantt .bar2{position:absolute;top:2px;bottom:2px;border-radius:5px;background:var(--parse);min-width:3px}
+.tk .gantt .bar2.warn{background:var(--warn)}.tk .gantt .bar2.bad{background:var(--safety)}.tk .gantt .bar2.running{background:var(--browser)}
+.tk .gantt .bar2 span{position:absolute;left:6px;top:0;font-size:11px;line-height:18px;color:#fff;white-space:nowrap}
+.tk .gantt .axis{display:flex;justify-content:space-between;margin:2px 0 0 94px;font-size:11px;color:var(--muted)}
+.tk .note2{color:var(--muted);font-size:12px;margin:8px 0 0}
+#exp td:nth-child(2),#exp th:nth-child(2){text-align:left}
+.node.lv-run{border-color:var(--browser);box-shadow:0 0 0 4px color-mix(in srgb,var(--browser) 40%,transparent);animation:nodepulse 1.6s ease-in-out infinite}
+.node.lv-run .badge,.node.lv-bad .badge{opacity:1}
+.node.lv-done{border-color:var(--parse)}
+.node.lv-done .badge{opacity:1;color:var(--parse)}
+.node.lv-bad{border-color:var(--safety);box-shadow:0 0 0 3px color-mix(in srgb,var(--safety) 35%,transparent)}
+@keyframes nodepulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--browser) 45%,transparent)}50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--browser) 15%,transparent)}}
+dialog.tklog{border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);width:min(860px,94vw);padding:0}
+dialog.tklog::backdrop{background:rgba(0,0,0,.55)}
+dialog.tklog header{margin:0;padding:12px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+dialog.tklog pre{margin:0;padding:14px 16px;max-height:60vh;overflow:auto;font:12px/1.5 Consolas,monospace;white-space:pre-wrap;word-break:break-word;background:var(--bg)}
+.tk .actions{display:flex;gap:8px;margin-top:10px}
+.tk .act{padding:4px 10px;font-size:12px;border-radius:7px}
+.tk .act:disabled{opacity:.4;cursor:not-allowed}
+.tk .site:focus-visible{outline:2px solid var(--browser);outline-offset:2px}
+.tk #tkToast{min-height:18px;font-size:12px;color:var(--warn);margin:-4px 0 8px}
+/* LIVE TRACKER END */
+
+</style>
+</head>
+<body>
+<header>
+  <h1>Job Radar V2: the daily pipeline</h1>
+  <p>Every day at 09:00 Windows starts one command. It runs the seven site workflows in four lanes (about 8 Chromes open at once, not 100), restarts any that go quiet, waits for them, then builds one Excel file: jobs filtered by title, routed to your roles, de-duplicated across sites and ranked with Bengaluru first. Click any node for the technical detail.</p>
+  <div class="chips">
+    <span class="chip"><b>Windows Task Scheduler</b> daily 09:00, catch-up if the PC was off</span>
+    <span class="chip"><b>7 sites</b> in 4 lanes, one log and one report each</span>
+    <span class="chip"><b>Tech roles</b> only for now (8 roles)</span>
+    <span class="chip"><b>Python</b> 3.12 + openpyxl</span>
+    <span class="chip"><b>0</b> Claude tokens</span>
+    <span class="chip"><b>$0</b> no logins</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="livebar" id="livebar">
+    <button class="primary" id="tkStart" title="Runs python -m pipeline run in the background (needs the tracker server)">▶ Start workflow</button>
+    <button class="danger" id="tkStop" hidden>■ Stop</button>
+    <label><input type="checkbox" id="tkTech" checked> Tech roles only</label>
+    <label><input type="checkbox" id="tkSeries"> One site at a time</label>
+    <span class="livepill" id="tkPill"><span class="dot"></span><span id="tkPillText">Connecting…</span></span>
+  </div>
+  <button id="play">Preview animation</button>
+  <button id="reset">Reset</button>
+  <div class="legend">
+    <span><i style="background:var(--trigger)"></i>Trigger / input</span>
+    <span><i style="background:var(--browser)"></i>Browser</span>
+    <span><i style="background:var(--logic)"></i>Logic</span>
+    <span><i style="background:var(--parse)"></i>Parse</span>
+    <span><i style="background:var(--store)"></i>Storage</span>
+    <span><i style="background:var(--safety)"></i>Safety</span>
+  </div>
+</div>
+
+<nav class="tabs"><button class="tab on" id="tabFlow">Workflow</button><button class="tab" id="tabLive">Live run</button><button class="tab" id="tabPerf">Performance</button></nav>
+
+<div id="viewFlow">
+<div class="layout">
+  <div class="canvas-wrap"><div class="canvas" id="canvas"></div></div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<div class="cards">
+  <div class="card"><h3>1. What you get every morning</h3>
+    <ul>
+      <li><b><code>pipeline/output/Job_Radar.xlsx</code></b>: tab <b>New today</b>, tab <b>All</b>, one tab per tech role (8), tab <b>Unmatched</b>.</li>
+      <li>Per site, in <code>pipeline/output/logs/&lt;run&gt;/</code>: <code>&lt;site&gt;_report.md</code> (status, jobs added, problems), <code>run_report.md</code> and <code>errors.log</code>.</li>
+      <li>A message box when the run ends: new jobs today (and in Bengaluru), which sites need you, the file name.</li>
+      <li>Your <b>Status</b> and <b>Notes</b> are never overwritten: they follow each job from day to day, in any tab.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>2. How to use it</h3>
+<pre>Run now:        .venv\Scripts\python -m pipeline run
+Some sites:     ... run --only hirist iimjobs cutshort
+One at a time:  ... run --series      (a report after each site)
+All 15 roles:   ... run --roles all   (default: tech only)
+Rebuild only:   ... pipeline build
+Schedule:       ... pipeline schedule [--time 08:30]
+Show / remove:  ... schedule --show   |   schedule --remove</pre>
+    <p style="margin:0;color:var(--muted)">Close <code>Job_Radar.xlsx</code> in Excel before 09:00, otherwise a timestamped copy is written.</p>
+  </div>
+  <div class="card"><h3>3. The seven sites</h3>
+<table>
+<tr><th>Site</th><th>How it reads</th></tr>
+<tr><td>Hirist, IIMJobs</td><td>Real Chrome, the site's own date filter, search + tag pages</td></tr>
+<tr><td>Cutshort</td><td>Real Chrome, public data science lists</td></tr>
+<tr><td>Wellfound</td><td>Chrome pool, one shared page queue</td></tr>
+<tr><td>Indeed, LinkedIn</td><td>JobSpy, paced and parallel</td></tr>
+<tr><td>Naukri</td><td>Real Chrome, 3 tabs, saves after every search; a human check is passed by hand</td></tr>
+</table>
+  </div>
+  <div class="card"><h3>4. Latest combined build (2026-10-12, tech roles only)</h3>
+    <ul>
+      <li>Site runs that day: Cutshort 0.8 min, Hirist 1.8, IIMJobs 2.4, Wellfound 14.6, Indeed 3.5, Naukri 22.1 (3 tabs), LinkedIn 115 (all 15 roles, before the tech-only scope).</li>
+      <li><b>619 duplicates</b> removed; <b>1,379</b> jobs match a tech role, 520 of them in Bengaluru; <b>657</b> first seen that day; 3,520 fit no role (Unmatched tab); 5,133 jobs from the parked Ayurveda, clinical and drug searches left out.</li>
+      <li>By role: AI Engineer 522, Architect 291, Data Scientist 231, Business Analyst 201, ML Engineer 150, Data Analyst 127, AI Scientist 34, Forward Deployed Engineer 33.</li>
+      <li>Expected full tech-only run: about 45 to 60 minutes, set by LinkedIn.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>5. When something goes wrong</h3>
+    <ul>
+      <li><b>A human check</b> on a site: that site keeps what it read, shows a pop-up, and is marked "needs you". Run its <code>check_&lt;site&gt;.bat</code>, pass the check by hand, rerun the site. The other sites carry on. Nothing is ever solved or hidden by code.</li>
+      <li><b>A site goes quiet for 2 minutes</b>: it is stopped and started again at once (up to 2 times), then marked stalled and tried once more, alone, at the end.</li>
+      <li><b>Memory low</b> (under 1 GB free): a site waits up to 20 minutes before it starts; then it is skipped and retried at the end.</li>
+      <li><b>A site crashes or runs over its time limit</b> (90 min; Naukri 4 h): it is marked failed or timed out. Naukri and LinkedIn save after every search, so what they read stays; the build still runs.</li>
+      <li><b>PC off at 09:00</b>: the run starts as soon as the PC is on. Each site's window starts at its latest posted date, so no day is lost.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>6. Not in the pipeline yet</h3>
+    <ul>
+      <li>The Ayurveda, clinical and drug roles are <b>parked</b> (<code>--roles all</code> brings them back), and so are the government-site readers (CCRAS, AIIA, NIA, UPSC, state commissions).</li>
+      <li>Glassdoor, company career pages, remote-job feeds.</li>
+      <li>Full job descriptions in the combined file (they stay in the site workbooks).</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="tk" id="viewLive" hidden>
+  <div class="banner" id="tkBanner"></div>
+  <div class="card mach" id="tkMachine" hidden></div>
+  <div class="summary" id="tkSummary"></div>
+  <div class="card overall">
+    <div style="display:flex;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap"><strong id="tkOverallTitle">Idle</strong><span class="sub" id="tkOverallSub"></span></div>
+    <div class="bar" id="tkBar"><i></i></div>
+  </div>
+  <div class="sec">Sites</div>
+  <div id="tkToast"></div>
+  <div id="tkLanes"></div>
+  <div class="sec">Combine and build</div>
+  <div class="card box" id="tkBuild"></div>
+  <div class="grid2">
+    <div><div class="sec">Timeline</div><div class="card box"><div class="events" id="tkEvents"><span class="empty">Nothing yet.</span></div></div></div>
+    <div><div class="sec">Problems</div><div class="card box"><div class="errors" id="tkErrors"><span class="empty">No problems recorded.</span></div></div></div>
+  </div>
+</div>
+
+<div class="tk" id="viewPerf" hidden>
+  <div class="banner" id="tkBanner2"></div>
+  <div class="filters">
+    <label>Role scope <select id="fScope"><option value="any">Any</option><option value="tech" selected>Tech roles</option><option value="all">All 15 roles</option></select></label>
+    <label>How it was run <select id="fMode"><option value="any" selected>Any</option><option value="lanes">Lanes (current design)</option><option value="series">One at a time</option><option value="parallel">All at once (old design)</option></select></label>
+    <label><input type="checkbox" id="fOk"> Only clean runs in the timing</label>
+  </div>
+  <div class="summary" id="pKpis"></div>
+  <div class="sec">What the numbers say</div>
+  <div class="card box"><ul class="insights" id="pInsights" style="margin:0;padding-left:18px"></ul></div>
+  <div class="sec">Each site over time</div>
+  <div class="card box scroll"><table id="pSites"></table>
+    <p class="note2">Minutes are per run. A run's length depends on the time window (24 h of postings reads far less than 7 days) and on the role scope (8 tech roles or all 15), so compare runs with the same scope. Runs stopped by hand are kept in the history but left out of timing and reliability.</p></div>
+  <div class="sec">One run in detail</div>
+  <div class="card box"><div id="pGanttTitle" class="sub" style="margin-bottom:8px"></div><div class="gantt" id="pGantt"></div></div>
+  <div class="sec">Run history <span style="text-transform:none;letter-spacing:0;font-weight:400">(click a row for its chart)</span></div>
+  <div class="card box scroll"><table id="pRuns"></table></div>
+  <div class="sec">Experiments</div>
+  <div class="card box scroll"><table id="exp"></table>
+    <p class="note2">Hand-run timing tests, kept in pipeline/experiments.json. Tabs and workers cut the time only when there are enough searches to share.</p></div>
+</div>
+
+<dialog class="tklog" id="tkLog">
+  <header><strong id="tkLogTitle">Log</strong><button id="tkLogClose">Close</button></header>
+  <pre id="tkLogBody"></pre>
+</dialog>
+
+<script>
+const W = 250, H = 96;
+const X = [30, 330, 630, 930, 1230, 1530, 1830];
+const R1 = 90, R2 = 380;
+
+const NODES = [
+ {id:'sched', x:X[1], y:R1, kind:'trigger', g:'⏰', title:'Windows Task Scheduler', sub:'daily 09:00, catch-up', items:'1 task',
+  what:'Starts the pipeline every day at 09:00 as you, on your desktop.',
+  tech:[
+   'Task "Job Radar V2 Daily", created with <code>python -m pipeline schedule</code> (PowerShell <code>Register-ScheduledTask</code>). It runs <code>python -m pipeline run</code> from the project folder.',
+   '<b>Runs as the signed-in user</b> (interactive) so the Chrome windows and the pop-ups can show. <code>StartWhenAvailable</code>: if the PC was off or asleep at 09:00 the task runs as soon as it is available. Starting a second copy while one is running is ignored. It may run on battery. Time limit 4 hours.',
+   'Change the time with <code>schedule --time 08:30</code>, look with <code>schedule --show</code>, delete with <code>schedule --remove</code>.'],
+  io:['the clock','python -m pipeline run'], file:'pipeline/schedule.py : register(), show(), remove()',
+  settings:['TASK_NAME = "Job Radar V2 Daily"','RUN_TIME = "09:00"'],
+  fails:['Signed out at 09:00: the task waits and runs at the next sign-in.'],
+  code:'Register-ScheduledTask -TaskName "Job Radar V2 Daily" -Action python -m pipeline run -Trigger Daily 09:00 (StartWhenAvailable)'},
+
+ {id:'runall', x:X[2], y:R1, kind:'trigger', g:'▶', title:'pipeline run', sub:'tech roles, 4 lanes', items:'1 run',
+  what:'Writes the tech-only input file, starts the site lanes and keeps Windows from sleeping while they work.',
+  tech:[
+   '<code>pipeline/__main__.py : cmd_run()</code>. Options <code>--only</code>, <code>--skip</code>, <code>--series</code>, <code>--roles tech|all</code>, <code>--no-popup</code>. It first writes <code>pipeline/output/input_tech.csv</code> (input.csv without the parked roles) and hands it to every site with <code>--input</code>.',
+   '<code>SetThreadExecutionState</code> keeps the system awake during the run and lets it sleep again after.',
+   'Chrome counts: Wellfound 4, Hirist 3, IIMJobs 2, Naukri 3 tabs of one Chrome, Indeed 3, LinkedIn 3 workers. The first all-at-once run opened about 100 Chromes and used all 16 GB; the lanes keep it to about 8.'],
+  io:['command line','one process per site'], file:'pipeline/__main__.py; pipeline/config.py : SITES',
+  settings:['SITES: workbook, extra options, priority per site','ROLE_SCOPE = "tech"','LANES'],
+  fails:['No site selected: stops with a message.'],
+  code:'python -m pipeline run --only hirist iimjobs cutshort'},
+
+ {id:'sites', x:X[3], y:R1, kind:'browser', g:'7', title:'Seven site workflows, in 4 lanes', sub:'own process, own log', items:'7 sites',
+  what:'Lanes run side by side; the sites inside a lane run one after another: LinkedIn | Indeed | Naukri | Cutshort, Hirist, IIMJobs, Wellfound.',
+  tech:[
+   'LinkedIn (about 40 to 55 min), Naukri (about 22) and Indeed (about 2) start at once; the short, wider sites take turns in the fourth lane (about 20 min). Whole run: about 45 to 60 minutes.',
+   'Each is started as <code>python -m &lt;site&gt; search</code> in its own process, output into <code>pipeline/output/logs/&lt;date_time&gt;/&lt;site&gt;.log</code>.',
+   '<b>Each site picks its own window</b> from its saved latest posted date (<code>&lt;site&gt;/output/state.json</code>): from midnight of that date to now, at least 24 h, at most 7 days for Wellfound, Hirist and IIMJobs, 30 days for the others. A site that stopped with an error does not move its date, so a bad day is read again.',
+   'Each site writes its own workbook (Excel) and a raw JSONL backup. A site that stops keeps everything it already read.'],
+  io:['site command lines','7 workbooks + 7 logs'], file:'pipeline/runner.py : start(), run_sites()',
+  settings:['LANES','SITE_TIMEOUT_MIN = 90','SITE_TIMEOUTS = {naukri: 240}'],
+  fails:['Two sites writing the same file: they cannot, each has its own folder.'],
+  code:'subprocess.Popen([python, "-m", "hirist", "search", "--workers", "3"], stdout=log)'},
+
+ {id:'watch', x:X[4], y:R1, kind:'logic', g:'W', title:'Watch each site', sub:'stuck? restart. low memory? wait.', items:'7 results',
+  what:'Waits for every site and decides how each one ended, from its exit code and its log.',
+  tech:[
+   'Status: <b>ok</b>; <b>needs you</b> (the log has a "!!" line about a human check); <b>finished with errors</b>; <b>failed</b> (non-zero exit); <b>timed out</b> (over its time limit: stopped with its Chromes, saved results stay); <b>stalled</b> (log silent for 2 minutes, restarted twice, still silent); <b>skipped</b> (no memory for 20 minutes).',
+   '<b>Stuck sites are restarted at once</b> (2-minute silence, up to 2 times, <code>&lt;site&gt;_rerun1.log</code>). A site starts only when 1 GB of RAM is free. A stalled, failed or skipped site gets one more try, alone, at the end; "needs you" and "timed out" are not retried. Chromes left behind by the workflows are stopped at the end (your own Chrome is never touched).',
+   'The "N new, M already known. T in file.xlsx" line of each site is read for the summary.',
+   'The next step does not wait for problems: whatever each site saved is used.'],
+  io:['7 processes','7 status records'], file:'pipeline/runner.py : _run_lanes(), SiteRun.result(), kill_tree(), free_mb()',
+  settings:['STALL_SEC = 120','MAX_RERUNS = 2','MIN_FREE_MB = 1000','MEMORY_WAIT_MIN = 20','RETRY_FAILED = True'],
+  fails:['A log line is reworded: the status falls back to the exit code.'],
+  code:'{"site": "naukri", "status": "needs you", "minutes": 21.4, "new": 14, "total": 611}'},
+
+ {id:'needsyou', x:X[5], y:R1, kind:'safety', g:'!', title:'Needs you: human check', sub:'pop-up + check_<site>.bat', items:'only if needed', stopnode:true,
+  what:'A site met a human check. It stopped on its own; the others carry on.',
+  tech:[
+   'The site keeps what it read and shows its own Windows pop-up. The final message also lists it.',
+   'Double-click the site\'s <code>check_&lt;site&gt;.bat</code> in the project folder: a visible Chrome opens, you pass the check by hand (never signing in), then rerun that site: <code>python -m &lt;site&gt; search</code>, then <code>python -m pipeline build</code>.',
+   '<b>The code never solves, hides or works around a check.</b>'],
+  io:['a "needs you" status','pop-up; partial results saved'], file:'<site>/notify.py, <site>/session.py : wait_for_human()',
+  settings:['one check_*.bat per site'],
+  fails:['You are away: the site simply waits for the next day\'s run, with its window covering the gap.'],
+  code:'check_naukri.bat  ->  .venv\\Scripts\\python -m naukri check'},
+
+ {id:'load', x:X[4], y:R2, kind:'parse', g:'R', title:'Read the 7 workbooks', sub:'by column header', items:'all site rows',
+  what:'Loads every job of every site workbook into one common format.',
+  tech:[
+   'Columns are found by header name, so a site may add or move columns. The job link comes from the hyperlink in the Link cell.',
+   'Common fields: title, company, location, experience, salary, work mode, skills, posted date, first seen, site, link. Bengaluru and remote flags are worked out from the place and work mode.',
+   'Whole workbooks are read, not just today\'s jobs: the combined file always reflects everything the sites hold.'],
+  io:['7 .xlsx files','one list of jobs'], file:'pipeline/load.py : read_site(), read_all()',
+  settings:['SITES in config.py'],
+  fails:['A workbook is missing (a site never ran): it counts as empty.'],
+  code:'{"site": "hirist", "title": "Lead Data Scientist", "company": "Tredence ...", "location": "Bangalore", ...}'},
+
+ {id:'route', x:X[3], y:R2, kind:'logic', g:'T', title:'Title filter + role routing', sub:'validated role patterns', items:'1,379 matched',
+  what:'Decides which of your 8 tech roles a job title belongs to (the 7 parked roles are skipped).',
+  tech:[
+   'Each title is tested against the old project\'s validated role patterns (<code>role_patterns.csv</code>), for example Data Scientist = <code>data[\\s-]*scien</code>. A job can belong to more than one role (an AI Architect is an Architect and an AI Engineer).',
+   'Titles that fit no role go to the <b>Unmatched</b> tab instead of being deleted: 3,520 in the latest build. Jobs found only by a parked (Ayurveda, clinical, drug) search and fitting no tech role are left out (5,133 in the latest build) so they do not flood that tab.',
+   'The patterns can be edited in one CSV file.'],
+  io:['jobs','jobs with roles; unmatched list'], file:'pipeline/route.py : route(), roles_for(); pipeline/role_patterns.csv',
+  settings:['role_patterns.csv: role, pattern, tech yes/no','ROLE_SCOPE = "tech"'],
+  fails:['A relevant title is missed: it sits in Unmatched; add or widen a pattern.'],
+  code:'roles_for("AI Architect")  ->  ["AI Engineer", "Architect"]'},
+
+ {id:'dedupe', x:X[2], y:R2, kind:'logic', g:'D', title:'Remove duplicates across sites', sub:'same title + company + place', items:'619 removed',
+  what:'The same opening on Naukri, LinkedIn and Hirist becomes one row that lists every site.',
+  tech:[
+   'Same when the link matches, or the normalised title matches at the same company at an overlapping place. Company names are compared without legal suffixes; a whole-word prefix counts as the same ("Tredence" = "Tredence Analytics Solutions Private Limited"). A job with no company is never merged by title.',
+   'Places overlap when they share a city ("Bengaluru, Karnataka, India" = "Bangalore"); "India" or "Remote" overlaps with anything; two different cities stay separate.',
+   'Each field of the merged row comes from the richest site that has it (Hirist, IIMJobs, Cutshort, Wellfound, Indeed, Naukri, LinkedIn); all sites and the other links are kept; the earliest posted date and first seen date win.',
+   'Latest build: 619 duplicates removed. Known limit: several identical openings of one company in one city show as one row.'],
+  io:['jobs','unique jobs'], file:'pipeline/dedupe.py : group(), merge_group(), same_company(), cities()',
+  settings:['PRIORITY from config.SITES'],
+  fails:['Two sites word a title very differently: both rows stay (a duplicate, never a lost job).'],
+  code:'same_company(("tredence",), ("tredence","analytics","solutions"))  ->  True'},
+
+ {id:'build', x:X[1], y:R2, kind:'store', g:'X', title:'Rank + build Job_Radar.xlsx', sub:'Bengaluru first; your edits kept', items:'11 tabs',
+  what:'Ranks the jobs and writes the combined workbook without touching what you typed.',
+  tech:[
+   '<b>Ranking:</b> Bengaluru first, then remote, then the rest of India; newest first inside each.',
+   '<b>Tabs:</b> New today (first seen today, as recorded by the sites), All, one per tech role (8), Unmatched. Clickable Open link, the other sites\' links, Status dropdown, frozen panes, filters.',
+   '<b>Your edits survive:</b> Status, Notes and First seen are read back from the previous workbook (any tab, the All tab wins) and matched by any of a job\'s links, so they follow a job even if a different site now carries it. First seen is never reset.',
+   'If Excel has the file open, a timestamped copy is written and the screen says so.'],
+  io:['unique jobs + the previous workbook','Job_Radar.xlsx'], file:'pipeline/build.py : build(), _read_previous(), _write_sheet()',
+  settings:['EXCEL_PATH = pipeline/output/Job_Radar.xlsx','STATUSES = New, Interested, Applied, Not relevant'],
+  fails:['File open in Excel: timestamped copy; close Excel and run <code>pipeline build</code>.'],
+  code:'sorted(jobs, key=rank_key)   # Bengaluru, remote, rest; newest first'},
+
+ {id:'popup', x:X[0], y:R2, kind:'trigger', g:'✓', title:'Message box + run summary', sub:'new today, sites needing you', items:'1 message',
+  what:'Tells you the result and saves the details and one report per site.',
+  tech:[
+   'A Windows message box (stays until clicked): new jobs today and in Bengaluru, total matched jobs, duplicates removed, any site that needs you, the file name.',
+   '<code>pipeline/output/last_run.json</code> keeps the per-site status, minutes, new counts and the build statistics; the logs of the run are in <code>output/logs/&lt;date_time&gt;/</code>, with <code>&lt;site&gt;_report.md</code> (status, jobs added, problems), <code>run_report.md</code> and <code>errors.log</code>.'],
+  io:['statistics','message box + last_run.json'], file:'pipeline/__main__.py : _summary_text(); pipeline/notify.py',
+  settings:['POPUP_AT_END = True (--no-popup to turn off)'],
+  fails:['None.'],
+  code:'657 new jobs today (281 in Bengaluru). 1,379 matched jobs in all, 619 duplicates removed.\n- naukri: needs you (...)\nFile: Job_Radar.xlsx'}
+];
+
+const EDGES = [
+ ['sched','runall','r','l','09:00 daily',false,'--trigger'],
+ ['runall','sites','r','l','all at once',false,'--trigger'],
+ ['sites','watch','r','l','',false,'--browser'],
+ ['watch','needsyou','r','l','human check',true,'--safety'],
+ ['watch','load','b','t','all done',false,'--logic'],
+ ['load','route','l','r','',false,'--parse'],
+ ['route','dedupe','l','r','',false,'--logic'],
+ ['dedupe','build','l','r','',false,'--logic'],
+ ['build','popup','l','r','',false,'--store']
+];
+
+const ORDER = ['sched','runall','sites','watch','load','route','dedupe','build','popup'];
+
+const cv = document.getElementById('canvas');
+const byId = {};
+NODES.forEach(n => { byId[n.id] = n; });
+
+function css(v){ return `var(${v})`; }
+
+// nodes
+NODES.forEach(n => {
+  const d = document.createElement('div');
+  d.className = 'node' + (n.stopnode ? ' stopnode' : '');
+  d.id = 'n_' + n.id;
+  d.style.cssText = `left:${n.x}px;top:${n.y}px;--c:${css('--' + n.kind)}`;
+  d.innerHTML = `<div class="t"><span class="g">${n.g}</span>${n.title}</div><div class="s">${n.sub}</div><div class="badge">${n.items}</div>`;
+  d.addEventListener('click', () => select(n.id));
+  cv.appendChild(d);
+});
+
+// edges
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('class', 'edges');
+svg.innerHTML = '<defs></defs>';
+cv.insertBefore(svg, cv.firstChild);
+
+function port(n, p){
+  if (p === 'r') return [n.x + W, n.y + H/2, 1, 0];
+  if (p === 'l') return [n.x, n.y + H/2, -1, 0];
+  if (p === 't') return [n.x + W/2, n.y, 0, -1];
+  return [n.x + W/2, n.y + H, 0, 1];
+}
+EDGES.forEach((e, i) => {
+  const [a, b, pa, pb, label, dash, col] = e;
+  const [x1, y1, dx1, dy1] = port(byId[a], pa);
+  const [x2, y2, dx2, dy2] = port(byId[b], pb);
+  const k = (pa === pb) ? 90 : Math.max(60, Math.hypot(x2 - x1, y2 - y1) / 3);
+  const d = `M${x1},${y1} C${x1 + dx1*k},${y1 + dy1*k} ${x2 + dx2*k},${y2 + dy2*k} ${x2},${y2}`;
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', d); p.setAttribute('id', 'e' + i);
+  p.setAttribute('class', 'edge' + (dash ? ' dash' : ''));
+  p.setAttribute('stroke', css(col)); p.setAttribute('marker-end', `url(#ar${i})`);
+  const m = document.createElementNS(NS, 'marker');
+  m.setAttribute('id', 'ar' + i); m.setAttribute('viewBox', '0 0 10 10'); m.setAttribute('refX', '9'); m.setAttribute('refY', '5');
+  m.setAttribute('markerWidth', '7'); m.setAttribute('markerHeight', '7'); m.setAttribute('orient', 'auto-start-reverse');
+  m.innerHTML = `<path d="M0,0 L10,5 L0,10 z" fill="${css(col)}"/>`;
+  svg.firstChild.appendChild(m);
+  svg.appendChild(p);
+  const dot = document.createElementNS(NS, 'circle');
+  dot.setAttribute('r', '4'); dot.setAttribute('fill', css(col));
+  dot.innerHTML = `<animateMotion dur="${3 + (i % 3)}s" repeatCount="indefinite"><mpath href="#e${i}"/></animateMotion>`;
+  svg.appendChild(dot);
+  if (label) {
+    const mid = (t) => { // point on the cubic at t
+      const c = [[x1,y1],[x1+dx1*k,y1+dy1*k],[x2+dx2*k,y2+dy2*k],[x2,y2]], u = 1 - t;
+      return [0,1].map(j => u*u*u*c[0][j] + 3*u*u*t*c[1][j] + 3*u*t*t*c[2][j] + t*t*t*c[3][j]);
+    };
+    const [mx, my] = mid(0.5);
+    const l = document.createElement('div');
+    l.className = 'elabel'; l.style.left = mx + 'px'; l.style.top = my + 'px'; l.textContent = label;
+    cv.appendChild(l);
+  }
+});
+
+// panel
+const panel = document.getElementById('panel');
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function overview(){
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--browser)">Overview</span>
+   <h2>How it works, in one paragraph</h2>
+   <p>Windows Task Scheduler starts <code>python -m pipeline run</code> at 09:00 (or as soon as the PC is on). The pipeline writes a tech-only input file and starts the seven site workflows in four lanes, each site in its own process with its own log, restarting any that go quiet for two minutes, and each picks its own time window from its latest posted date, so no day is ever lost. When they are all done, the build reads the seven workbooks, routes every title to your roles with the validated patterns, removes duplicates across sites, ranks Bengaluru first and writes one Excel file that keeps your Status and Notes. A message box tells you what came in and which site needs you.</p>
+   <h3>Why this design</h3>
+   <ul>
+    <li>One workflow per site keeps each site's quirks isolated; the pipeline only starts them, watches them and combines the results.</li>
+    <li>A problem on one site (a human check, a crash, a time-out) never stops the others or loses what was read.</li>
+    <li>De-duplication never deletes a job it is unsure about: it keeps both rows.</li>
+    <li>No Claude tokens, no logins, no stealth: human checks are passed by you, by hand.</li>
+   </ul>
+   <h3>Click a node</h3>
+   <p>Each node explains its job, the file and function behind it, its settings and what happens if it fails. Press "Preview animation" to watch the order, or use the Live run tab to see a real run.</p>`;
+}
+
+function select(id){
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('sel'));
+  document.getElementById('n_' + id).classList.add('sel');
+  const n = byId[id];
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--${n.kind})">${{trigger:'Trigger / input',browser:'Browser',logic:'Logic',parse:'Parse',store:'Storage',safety:'Safety'}[n.kind]}</span>
+   <h2>${n.title}</h2>
+   <p style="margin:4px 0 0">${n.what}</p>
+   <h3>Input and output</h3>
+   <div class="io"><div><b>In</b>${n.io[0]}</div><div><b>Out</b>${n.io[1]}</div></div>
+   <h3>Technical detail</h3><ul>${n.tech.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>File and function</h3><p style="margin:0"><code>${n.file}</code></p>
+   <h3>Settings</h3><ul>${n.settings.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>If it fails</h3>${n.fails.map(t => `<div class="fail">${t}</div>`).join('')}
+   ${n.code ? `<h3>Code / sample</h3><pre>${esc(n.code)}</pre>` : ''}`;
+  panel.scrollTop = 0;
+}
+overview();
+
+// run animation
+let timers = [];
+function reset(){
+  timers.forEach(clearTimeout); timers = [];
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('done', 'run', 'sel'));
+  overview();
+}
+function play(){
+  reset();
+  ORDER.forEach((id, i) => {
+    timers.push(setTimeout(() => {
+      document.querySelectorAll('.node.run').forEach(x => x.classList.remove('run'));
+      const el = document.getElementById('n_' + id);
+      el.classList.add('run');
+      el.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'});
+      timers.push(setTimeout(() => { el.classList.remove('run'); el.classList.add('done'); }, 650));
+    }, i * 800));
+  });
+}
+document.getElementById('play').addEventListener('click', play);
+document.getElementById('reset').addEventListener('click', reset);
+</script>
+<script>
+// LIVE TRACKER START: talks to the local tracker server (python -m pipeline tracker); the page still works as a static diagram without it.
+(function(){
+const $ = id => document.getElementById(id);
+const NAMES = {hirist:'Hirist', iimjobs:'IIMJobs', cutshort:'Cutshort', wellfound:'Wellfound', indeed:'Indeed', naukri:'Naukri', linkedin:'LinkedIn'};
+const STATUS = {
+  waiting:['Waiting','', false], running:['Reading','running', true], restarting:['Restarting','warn', true],
+  'ok':['Done','ok', false], 'needs you':['Needs you','warn', false], 'finished with errors':['Done, with errors','warn', false],
+  failed:['Failed','bad', false], 'timed out':['Timed out','bad', false], stalled:['Stalled','bad', false],
+  skipped:['Skipped','bad', false], stopped:['Stopped','bad', false]
+};
+const PHASES = {
+  idle:['Idle',''], running:['Running','running'], building:['Building the workbook','building'], finished:['Finished','finished'],
+  failed:['Failed','bad'], stopping:['Stopping…','stopping'], stopped:['Stopped','bad'], interrupted:['Interrupted','bad']
+};
+const NOT_DONE = ['waiting', 'running', 'restarting', 'stopped'];
+const PROBLEM = ['needs you','finished with errors','failed','timed out','stalled','skipped'];
+let current = null, openLog = null, perf = null, perfRun = null, view = 'flow', lastPhase = null, online = false;
+const OLD_RUN = 'This run was started before the per-site buttons existed. Stop it with the big Stop button and press Start again to get them.';
+const TOTAL_NODES = ['load', 'route', 'dedupe', 'build'];
+
+function esc(s){ return String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmtDur(sec){
+  sec = Math.max(0, Math.round(sec));
+  const h = Math.floor(sec/3600), m = Math.floor(sec%3600/60), s = sec%60;
+  return h ? `${h}h ${String(m).padStart(2,'0')}m` : m ? `${m}m ${String(s).padStart(2,'0')}s` : `${s}s`;
+}
+function fmtNum(n){ return n == null ? '–' : Number(n).toLocaleString(); }
+function ago(sec){ return sec == null ? '' : sec < 5 ? 'just now' : fmtDur(sec) + ' ago'; }
+function clock(iso){ return iso ? new Date(iso).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false}) : ''; }
+function stamp(iso){ return iso ? iso.replace('T', ' ').slice(5, 16) : ''; }
+
+// ---------- file opened directly: hand over to the server when it is running
+if (location.protocol === 'file:') {
+  const home = 'http://127.0.0.1:8770/' + location.hash;
+  fetch(home, {mode: 'no-cors'}).then(() => location.replace(home)).catch(() => {});
+}
+
+// ---------- tabs
+function setView(v){
+  view = v;
+  $('viewFlow').hidden = v !== 'flow'; $('viewLive').hidden = v !== 'live'; $('viewPerf').hidden = v !== 'perf';
+  $('tabFlow').classList.toggle('on', v === 'flow'); $('tabLive').classList.toggle('on', v === 'live'); $('tabPerf').classList.toggle('on', v === 'perf');
+  try { history.replaceState(null, '', v === 'perf' ? '#performance' : v === 'live' ? '#live' : '#'); } catch (e) {}
+  if (v === 'perf') loadPerf();
+  if (v === 'live' && current) render(current);
+}
+$('tabFlow').onclick = () => setView('flow'); $('tabLive').onclick = () => setView('live'); $('tabPerf').onclick = () => setView('perf');
+
+// ---------- diagram nodes follow the run
+function setNode(id, cls, badge){
+  const el = document.getElementById('n_' + id);
+  if (!el) return;
+  el.classList.remove('lv-run', 'lv-done', 'lv-bad');
+  if (cls) el.classList.add(cls);
+  const b = el.querySelector('.badge');
+  if (b) b.textContent = badge != null ? badge : ((window.byId && byId[id]) ? byId[id].items : b.textContent);
+}
+function paintDiagram(d){
+  const run = d && d.run;
+  const ids = ['sched','runall','sites','watch','needsyou','load','route','dedupe','build','popup'];
+  if (!run || d.phase === 'idle') { ids.forEach(i => setNode(i, null)); return; }
+  const sites = Object.values(run.sites), total = sites.length;
+  const done = sites.filter(s => !NOT_DONE.includes(s.status)).length;
+  const running = sites.some(s => ['running', 'restarting'].includes(s.status));
+  const restarts = sites.reduce((a, s) => a + (s.reruns || 0), 0);
+  const problems = sites.filter(s => PROBLEM.includes(s.status)).length;
+  const ph = d.phase;
+  setNode('sched', 'lv-done', 'started'); setNode('runall', 'lv-done', run.scope === 'tech' ? 'tech roles' : 'all roles');
+  const bad = ['stopped', 'failed', 'interrupted', 'stopping'].includes(ph);
+  setNode('sites', bad ? 'lv-bad' : (running || done < total) && ph === 'running' ? 'lv-run' : 'lv-done', `${done}/${total} done`);
+  setNode('watch', bad ? 'lv-bad' : ph === 'running' ? 'lv-run' : 'lv-done', restarts ? `${restarts} restart${restarts > 1 ? 's' : ''}` : problems ? `${problems} problem${problems > 1 ? 's' : ''}` : 'no problems');
+  setNode('needsyou', sites.some(s => s.status === 'needs you') ? 'lv-bad' : null, 'needs you');
+  TOTAL_NODES.forEach(n => setNode(n, ph === 'building' ? 'lv-run' : ph === 'finished' ? 'lv-done' : null, ph === 'building' ? 'working' : ph === 'finished' ? 'done' : undefined));
+  setNode('popup', ph === 'finished' ? 'lv-done' : null, 'finished');
+}
+
+// ---------- live tab
+function siteCard(name, s, canAct, enabled){
+  const [label, cls] = STATUS[s.status] || [s.status, 'warn'];
+  const running = s.status === 'running' || s.status === 'restarting';
+  let secs = s.minutes != null && !running ? s.minutes * 60 : null;
+  if (running && s.started) secs = (Date.now() - new Date(s.started).getTime()) / 1000;
+  let pct = null, prog = '';
+  if (s.searches_total && s.searches_started != null) { pct = Math.min(100, Math.round(100 * s.searches_started / s.searches_total)); prog = `${s.searches_started} of ${s.searches_total} searches`; }
+  if (s.status === 'ok' || s.status === 'finished with errors') { pct = 100; if (!s.searches_started) prog = 'all lists read'; else if (s.searches_total && s.searches_started < s.searches_total) prog = `${s.searches_total} of ${s.searches_total} searches`; }
+  const bar = s.status === 'waiting' ? '' : `<div class="bar ${running && pct == null ? 'indet' : ''}"><i style="width:${pct ?? 0}%"></i></div>`;
+  const newTxt = s.new != null ? `+${fmtNum(s.new)}` : running && s.lines ? '…' : '–';
+  const quiet = running && s.quiet_seconds != null ? `last activity ${ago(s.quiet_seconds)}` : '';
+  let note = '';
+  if (s.status === 'needs you') note = `Human check: run check_${name}.bat and pass it by hand, then start again.`;
+  else if (s.reruns) note = `Restarted ${s.reruns}×`;
+  else if ((s.problems || []).length) note = s.problems[0].slice(0, 110);
+  const canStop = canAct && ['waiting', 'running', 'restarting'].includes(s.status), canRestart = canAct && s.status !== 'waiting';
+  const actions = (canStop || canRestart) ? `<div class="actions">${canRestart ? `<button class="act" data-act="restart" data-site="${esc(name)}" ${enabled ? '' : 'disabled'} title="${enabled ? 'Stop this site and start it again now' : OLD_RUN}">↻ Restart</button>` : ''}${canStop ? `<button class="act danger" data-act="stop" data-site="${esc(name)}" ${enabled ? '' : 'disabled'} title="${enabled ? 'Stop this site; what it saved stays and the other sites go on' : OLD_RUN}">■ Stop</button>` : ''}</div>` : '';
+  return `<div class="card site ${cls}" data-site="${esc(name)}" role="button" tabindex="0">
+    <div class="top"><span class="name">${esc(NAMES[name] || name)}</span><span class="pill ${cls}${running ? ' pulse' : ''}"><span class="dot"></span>${esc(label)}</span></div>
+    <div class="metrics"><span><b>${newTxt}</b> new</span><span><b>${fmtNum(s.total)}</b> in workbook</span><span><b>${secs == null ? '–' : fmtDur(secs)}</b></span></div>
+    ${bar}
+    <div class="sub" style="margin-top:6px;display:flex;justify-content:space-between;gap:8px"><span>${esc(prog)}</span><span>${esc(quiet)}</span></div>
+    <div class="last" title="${esc(s.last_line || '')}">${esc(s.last_line || (s.status === 'waiting' ? 'waiting for its turn' : ''))}</div>
+    ${note ? `<div class="note">${esc(note)}</div>` : ''}
+    ${actions}
+  </div>`;
+}
+
+function render(d){
+  current = d;
+  const run = d.run;
+  const [phaseLabel, phaseCls] = PHASES[d.phase] || [d.phase, ''];
+  const active = ['running', 'building', 'stopping'].includes(d.phase);
+  $('tkStart').disabled = active; $('tkStop').hidden = !active; $('tkTech').disabled = $('tkSeries').disabled = active;
+  const pillCls = ['finished'].includes(d.phase) ? 'finished' : ['failed', 'stopped', 'interrupted'].includes(d.phase) ? 'bad' : phaseCls;
+  $('tkPill').className = 'livepill ' + pillCls + (active ? ' pulse' : '');
+  $('tkPillText').textContent = phaseLabel + (run && run.started && active ? ' · since ' + clock(run.started) : '');
+  paintDiagram(d);
+  if (view !== 'live') { if (lastPhase && lastPhase !== d.phase && ['finished', 'stopped', 'failed'].includes(d.phase) && view === 'perf') loadPerf(); lastPhase = d.phase; return; }
+
+  const sites = run ? Object.entries(run.sites) : [];
+  const done = sites.filter(([, s]) => !NOT_DONE.includes(s.status)).length, total = sites.length;
+  const newSum = sites.reduce((a, [, s]) => a + (s.new || 0), 0);
+  const problems = sites.filter(([, s]) => PROBLEM.includes(s.status)).length;
+  const stats = run && run.stats;
+  const elapsed = run ? (active ? (Date.now() - new Date(run.started).getTime()) / 1000 : run.elapsed_seconds) : 0;
+  $('tkSummary').innerHTML = [
+    ['Elapsed', run ? fmtDur(elapsed) : '–'], ['Sites finished', run ? `${done} / ${total}` : '–'], ['New jobs read', run ? fmtNum(newSum) : '–'],
+    ['Sites with problems', run ? problems : '–'], ['New today (combined)', stats ? fmtNum(stats.new_today) : '–'],
+  ].map(([k, v]) => `<div class="card stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+
+  const oldMsg = 'Per-site Restart and Stop are greyed out: this run started before they existed. Press the big Stop, then Start, to get them.';
+  if (d.phase === 'running' && run && !run.control) $('tkToast').textContent = oldMsg;
+  else if ($('tkToast').textContent === oldMsg) $('tkToast').textContent = '';
+  const parts = total + 1;
+  let frac = 0;
+  if (run) {
+    frac = sites.reduce((a, [, s]) => a + (s.status === 'waiting' ? 0 : ['running', 'restarting'].includes(s.status) ? Math.min(.95, (s.searches_total ? s.searches_started / s.searches_total : .3)) : 1), 0);
+    if (d.phase === 'finished') frac = parts; else if (d.phase === 'building') frac = total + .5;
+  }
+  const pct = run ? Math.round(100 * frac / parts) : 0;
+  $('tkBar').firstElementChild.style.width = pct + '%';
+  $('tkOverallTitle').textContent = !run ? 'Ready. Press Start workflow.' : active ? `${pct}% of the run` : phaseLabel;
+  $('tkOverallSub').textContent = run ? (d.phase === 'finished' ? 'Job_Radar.xlsx is ready' : active ? 'estimate, updated every 2 seconds' : '') : '';
+
+  const rs = run && run.resources;
+  $('tkMachine').hidden = !rs;
+  if (rs) $('tkMachine').innerHTML = `<span>Free memory <b>${(rs.free_mb / 1024).toFixed(1)} GB</b></span><span>lowest <b>${(rs.min_free_mb / 1024).toFixed(1)} GB</b></span>
+    <span>Chrome processes started by the run <b>${Math.max(0, rs.chrome_now - rs.chrome_baseline)}</b></span><span>peak <b>${Math.max(0, rs.chrome_peak - rs.chrome_baseline)}</b></span><span>samples <b>${rs.samples}</b></span>`;
+
+  if (!run) {
+    const last = d.last_run;
+    $('tkLanes').innerHTML = last
+      ? `<div class="card box"><strong>Last run</strong> <span class="sub">finished ${esc((last.finished || '').replace('T', ' '))}</span><div class="kv">${last.sites.map(s => `<div><span>${esc(NAMES[s.site] || s.site)} · ${esc(s.status)}</span><b>${s.new != null ? '+' + fmtNum(s.new) : '–'}</b></div>`).join('')}</div></div>`
+      : '<div class="card box empty">No run yet. Press Start workflow to begin.</div>';
+  } else {
+    if (document.querySelector('#tkLanes .act:hover')) { /* keep the DOM still so a click on a button is not lost */ }
+    else $('tkLanes').innerHTML = run.lanes.map((lane, i) =>
+      `<div class="lane"><div class="lane-label">${run.lanes.length > 1 ? `Lane ${i + 1}${lane.length > 1 ? ' (one after another)' : ''}` : 'One after another'}</div>`
+      + lane.map((n, k) => (k ? '<span class="arrow">→</span>' : '') + siteCard(n, run.sites[n] || {status: 'waiting'}, d.phase === 'running', !!run.control)).join('') + '</div>').join('');
+  }
+
+  let bhtml;
+  if (!run) bhtml = '<span class="empty">Runs after every site has finished: reads the site workbooks, routes titles to roles, removes duplicates, ranks Bengaluru first, writes Job_Radar.xlsx.</span>';
+  else if (d.phase === 'finished' && stats) {
+    bhtml = `<span class="pill ok"><span class="dot"></span>Job_Radar.xlsx written</span><div class="kv">
+      <div><span>New today</span><b>${fmtNum(stats.new_today)}</b></div><div><span>… in Bengaluru</span><b>${fmtNum(stats.new_today_bengaluru)}</b></div>
+      <div><span>Matched jobs</span><b>${fmtNum(stats.matched)}</b></div><div><span>Matched in Bengaluru</span><b>${fmtNum(stats.bengaluru)}</b></div>
+      <div><span>Duplicates removed</span><b>${fmtNum(stats.duplicates_removed)}</b></div><div><span>Unmatched titles</span><b>${fmtNum(stats.unmatched)}</b></div>
+      ${stats.parked_non_tech ? `<div><span>Parked (non-tech)</span><b>${fmtNum(stats.parked_non_tech)}</b></div>` : ''}</div>`
+      + (stats.by_role ? `<div class="kv">${Object.entries(stats.by_role).filter(([, n]) => n).map(([r, n]) => `<div><span>${esc(r)}</span><b>${fmtNum(n)}</b></div>`).join('')}</div>` : '');
+  } else if (d.phase === 'building') bhtml = '<span class="pill building pulse"><span class="dot"></span>Building the workbook…</span>';
+  else if (['failed', 'stopped', 'interrupted'].includes(d.phase)) bhtml = `<span class="pill bad"><span class="dot"></span>${esc(phaseLabel)}</span> <span class="sub">${esc(run.error || '')}</span>`;
+  else bhtml = '<span class="pill"><span class="dot"></span>Waiting for the sites</span>';
+  if (d.workbook) bhtml += `<div class="sub" style="margin-top:10px">${esc(d.workbook.name)}: ${d.workbook.size_kb} KB, last written ${esc(d.workbook.modified.replace('T', ' '))}</div>`;
+  $('tkBuild').innerHTML = bhtml;
+
+  const ev = run ? run.events.slice().reverse() : [];
+  $('tkEvents').innerHTML = ev.length ? ev.map(e => `<div><time>${clock(e.t)}</time><span>${esc(e.text)}</span></div>`).join('') : '<span class="empty">Nothing yet.</span>';
+  $('tkErrors').innerHTML = d.errors.length ? d.errors.slice().reverse().map(l => `<div>${esc(l)}</div>`).join('') : '<span class="empty">No problems recorded.</span>';
+  if (lastPhase && lastPhase !== d.phase && ['finished', 'stopped', 'failed'].includes(d.phase)) loadPerf();
+  lastPhase = d.phase;
+  if (openLog) refreshLog();
+}
+
+async function poll(){
+  try {
+    const r = await fetch('/api/status', {cache: 'no-store'});
+    if (!r.ok) throw new Error(r.status);
+    online = true;
+    $('tkBanner').classList.remove('show'); $('tkBanner2').classList.remove('show');
+    render(await r.json());
+  } catch (e) {
+    online = false;
+    const msg = (location.protocol === 'file:' ? 'This file cannot start anything by itself. ' : '') + 'The tracker server is not running, so Start and the live view are off. Double-click start_tracker.bat (or run: python -m pipeline tracker), then reload this page. A run that was already started keeps going.';
+    $('tkBanner').textContent = $('tkBanner2').textContent = msg;
+    $('tkBanner').classList.add('show'); $('tkBanner2').classList.add('show');
+    $('tkPill').className = 'livepill'; $('tkPillText').textContent = 'Tracker offline';
+    $('tkStart').disabled = true;
+  }
+}
+setInterval(poll, 2000); poll();
+setInterval(() => { if (current && ['running', 'building'].includes(current.phase) && view === 'live') render(current); }, 1000);
+
+async function post(path, body){
+  const r = await fetch(path, {method: 'POST', headers: {'Content-Type': 'application/json', 'X-Tracker': '1'}, body: JSON.stringify(body || {})});
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || r.status);
+  return j;
+}
+function warn(t){ $('tkBanner').textContent = $('tkBanner2').textContent = t; $('tkBanner').classList.add('show'); $('tkBanner2').classList.add('show'); }
+$('tkStart').onclick = async () => {
+  $('tkStart').disabled = true;
+  try { await post('/api/start', {roles: $('tkTech').checked ? 'tech' : 'all', series: $('tkSeries').checked}); setView('live'); setTimeout(poll, 1200); }
+  catch (e) { warn('Could not start: ' + e.message); $('tkStart').disabled = false; }
+};
+$('tkStop').onclick = async () => {
+  if (!confirm('Stop the run now? What each site already saved stays; the combined workbook will not be rebuilt.')) return;
+  try { await post('/api/stop'); setTimeout(poll, 800); } catch (e) { warn('Could not stop: ' + e.message); }
+};
+
+async function refreshLog(){
+  if (!openLog) return;
+  try {
+    const t = await (await fetch('/api/log?site=' + encodeURIComponent(openLog), {cache: 'no-store'})).text();
+    const pre = $('tkLogBody'), atEnd = pre.scrollTop + pre.clientHeight >= pre.scrollHeight - 30;
+    pre.textContent = t || '(no log lines yet)';
+    if (atEnd) pre.scrollTop = pre.scrollHeight;
+  } catch (e) {}
+}
+function showLog(site){ openLog = site; $('tkLogTitle').textContent = (NAMES[site] || site) + ': last log lines'; $('tkLogBody').textContent = 'Loading…'; $('tkLog').showModal(); refreshLog(); }
+$('tkLogClose').onclick = () => $('tkLog').close();
+$('tkLog').addEventListener('close', () => { openLog = null; });
+
+// one listener on the lanes box (the cards are redrawn all the time): a button stops or restarts that site, anywhere else on a card opens its log
+let toastTimer = null;
+function toast(t){ $('tkToast').textContent = t; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('tkToast').textContent = ''; }, 8000); }
+$('tkLanes').addEventListener('click', async ev => {
+  const btn = ev.target.closest('[data-act]');
+  if (btn) {
+    ev.stopPropagation();
+    const site = btn.dataset.site, act = btn.dataset.act, name = NAMES[site] || site;
+    if (act === 'stop' && !confirm(`Stop ${name}? What it already saved stays, and the other sites carry on.`)) return;
+    try { await post('/api/site/' + act, {site}); toast(`${act === 'stop' ? 'Stop' : 'Restart'} requested for ${name}. It takes effect within a few seconds.`); setTimeout(poll, 2500); }
+    catch (e) { warn(`Could not ${act} ${name}: ` + e.message); }
+    return;
+  }
+  const card = ev.target.closest('.site');
+  if (card) showLog(card.dataset.site);
+});
+$('tkLanes').addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target.classList && ev.target.classList.contains('site')) showLog(ev.target.dataset.site); });
+
+// ---------- performance tab
+function sparkline(vals){
+  if (!vals || vals.length < 2) return '<span class="sub">–</span>';
+  const w = 70, h = 20, max = Math.max(...vals), min = Math.min(...vals), span = (max - min) || 1;
+  const pts = vals.map((v, i) => `${(i * w / (vals.length - 1)).toFixed(1)},${(h - 2 - (v - min) / span * (h - 4)).toFixed(1)}`).join(' ');
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline fill="none" stroke="var(--browser)" stroke-width="1.6" points="${pts}"/></svg>`;
+}
+function barCls(st){ return st === 'ok' ? '' : st === 'running' ? 'running' : ['finished with errors', 'needs you'].includes(st) ? 'warn' : 'bad'; }
+function gantt(run){
+  if (!run) { $('pGanttTitle').textContent = 'No run selected.'; $('pGantt').innerHTML = ''; return; }
+  const rows = run.site_rows.filter(r => r.started && r.finished);
+  if (!rows.length) { $('pGanttTitle').textContent = 'No finished sites in this run.'; $('pGantt').innerHTML = ''; return; }
+  const t0 = Math.min(...rows.map(r => new Date(r.started).getTime())), t1 = Math.max(...rows.map(r => new Date(r.finished).getTime()));
+  const total = Math.max(1, (t1 - t0) / 60000);
+  $('pGanttTitle').textContent = `${stamp(run.started)} · ${run.mode} · ${run.scope} roles · wall time ${run.wall_minutes ?? '–'} min, site work ${run.busy_minutes} min` + (run.parallel_efficiency ? ` · parallelism ${run.parallel_efficiency}x` : '');
+  $('pGantt').innerHTML = rows.map(r => {
+    const left = (new Date(r.started).getTime() - t0) / 60000 / total * 100, width = Math.max(.6, (r.minutes || 0) / total * 100);
+    return `<div class="row"><div class="lab">${esc(NAMES[r.site] || r.site)}</div><div class="track"><div class="bar2 ${barCls(r.status)}" style="left:${left}%;width:${width}%" title="${esc(r.status)}, ${r.minutes} min, ${r.new ?? '–'} new"><span>${r.minutes}m${r.new != null ? ' · +' + r.new : ''}</span></div></div></div>`;
+  }).join('') + `<div class="axis"><span>0</span><span>${Math.round(total / 4)} min</span><span>${Math.round(total / 2)} min</span><span>${Math.round(total * .75)} min</span><span>${Math.round(total)} min</span></div>`;
+}
+function renderPerf(h){
+  perf = h;
+  const t = h.totals, sites = Object.entries(h.per_site);
+  const okAll = sites.reduce((a, [, s]) => a + s.ok, 0), runsAll = sites.reduce((a, [, s]) => a + s.runs, 0);
+  $('pKpis').innerHTML = [
+    ['Runs recorded', `${t.runs} <span class="sub">(${t.complete_runs} complete)</span>`], ['Site runs counted', t.site_runs],
+    ['Clean site runs', runsAll ? Math.round(100 * okAll / runsAll) + '%' : '–'], ['Median run time', t.median_wall_min != null ? fmtDur(t.median_wall_min * 60) : '–'],
+    ['New jobs recorded', fmtNum(t.new_jobs)],
+  ].map(([k, v]) => `<div class="card stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+  $('pInsights').innerHTML = h.insights.map(i => `<li>${esc(i)}</li>`).join('');
+  const maxMed = Math.max(1, ...sites.map(([, s]) => s.median_min || 0));
+  $('pSites').innerHTML = `<thead><tr><th>Site</th><th>Runs</th><th>Clean</th><th>Median min</th><th></th><th>Fastest</th><th>Slowest</th><th>p90</th><th>Last</th><th>Avg new / run</th><th>New / min</th><th>Restarts</th><th>Trend</th></tr></thead><tbody>`
+    + (sites.length ? sites.map(([n, s]) => `<tr><td><b>${esc(NAMES[n] || n)}</b></td><td>${s.runs}</td><td>${s.success_rate ?? '–'}%</td><td>${s.median_min ?? '–'}</td>
+      <td style="text-align:left"><span class="mbar" style="width:${Math.round(110 * (s.median_min || 0) / maxMed)}px"></span></td><td>${s.fastest_min ?? '–'}</td><td>${s.slowest_min ?? '–'}</td><td>${s.p90_min ?? '–'}</td>
+      <td>${s.last_min ?? '–'}</td><td>${s.avg_new ?? '–'}</td><td>${s.new_per_min ?? '–'}</td><td>${s.restarts}</td><td>${sparkline(s.trend)}</td></tr>`).join('')
+      : '<tr><td colspan="13" class="empty" style="text-align:left">No runs match these filters yet.</td></tr>') + '</tbody>';
+  if (!perfRun || !h.runs.find(r => r.run_id === perfRun)) perfRun = (h.runs[0] || {}).run_id;
+  const MODE = {lanes: 'lanes', series: 'one at a time', parallel: 'all at once'};
+  $('pRuns').innerHTML = `<thead><tr><th>Started</th><th>How</th><th>Roles</th><th>Result</th><th>Wall min</th><th>Site min</th><th>Parallelism</th><th>New jobs</th><th>New today</th><th>Slowest</th><th>Peak Chromes</th><th>Lowest free GB</th></tr></thead><tbody>`
+    + (h.runs.length ? h.runs.map(r => { const res = r.resources || {};
+      return `<tr class="pick ${r.run_id === perfRun ? 'sel' : ''}" data-run="${esc(r.run_id)}"><td>${stamp(r.started)}</td><td>${MODE[r.mode] || r.mode}</td><td>${r.scope}</td>
+        <td>${r.phase === 'finished' ? `${r.sites_ok}/${r.sites} ok` : esc(r.phase)}</td><td>${r.wall_minutes ?? '–'}</td><td>${r.busy_minutes}</td><td>${r.parallel_efficiency ? r.parallel_efficiency + 'x' : '–'}</td>
+        <td>${fmtNum(r.new_sum)}</td><td>${r.stats ? fmtNum(r.stats.new_today) : '–'}</td><td>${esc(NAMES[r.slowest_site] || r.slowest_site || '–')}</td>
+        <td>${res.chrome_peak != null ? Math.max(0, res.chrome_peak - res.chrome_baseline) : '–'}</td><td>${res.min_free_mb != null ? (res.min_free_mb / 1024).toFixed(1) : '–'}</td></tr>`; }).join('')
+      : '<tr><td colspan="12" class="empty" style="text-align:left">No runs match these filters yet.</td></tr>') + '</tbody>';
+  document.querySelectorAll('#pRuns tr.pick').forEach(tr => tr.onclick = () => { perfRun = tr.dataset.run; renderPerf(perf); });
+  gantt(h.runs.find(r => r.run_id === perfRun));
+  $('exp').innerHTML = `<thead><tr><th>Date</th><th>Test</th><th>Workers</th><th>Searches</th><th>Minutes</th><th>Jobs</th><th>Jobs / min</th><th>Note</th></tr></thead><tbody>`
+    + h.experiments.map(e => `<tr><td>${esc(e.date)}</td><td>${esc(e.label)}</td><td>${e.workers}</td><td>${e.searches}</td><td>${e.minutes}</td><td>${fmtNum(e.jobs)}</td><td>${(e.jobs / e.minutes).toFixed(0)}</td><td style="text-align:left;white-space:normal">${esc(e.note || '')}</td></tr>`).join('') + '</tbody>';
+}
+async function loadPerf(){
+  const q = new URLSearchParams({scope: $('fScope').value, mode: $('fMode').value, only_ok: $('fOk').checked ? '1' : '0'});
+  try { renderPerf(await (await fetch('/api/history?' + q, {cache: 'no-store'})).json()); } catch (e) {}
+}
+['fScope', 'fMode', 'fOk'].forEach(id => $(id).onchange = loadPerf);
+setInterval(() => { if (view === 'perf' && online) loadPerf(); }, 20000);
+
+if (location.hash === '#performance') setView('perf'); else if (location.hash === '#live') setView('live');
+})();
+// LIVE TRACKER END
+</script>
+</body>
+</html>

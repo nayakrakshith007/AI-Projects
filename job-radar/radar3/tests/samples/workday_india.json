@@ -1,0 +1,44 @@
+{
+ "total": 2,
+ "facets": [
+  {
+   "facetParameter": "locationMainGroup",
+   "values": [
+    {
+     "facetParameter": "locationCountry",
+     "descriptor": "Country",
+     "values": [
+      {
+       "descriptor": "India",
+       "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+      },
+      {
+       "descriptor": "United States",
+       "id": "x1"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "jobPostings": [
+  {
+   "title": "Data Architect",
+   "externalPath": "/job/Chennai/Data-Architect_ATCI-5479486-S1999863-1",
+   "postedOn": "Posted 30+ Days Ago",
+   "bulletFields": [
+    "ATCI-5479486-S1999863",
+    "Chennai"
+   ]
+  },
+  {
+   "title": "Data Scientist",
+   "externalPath": "/job/Bengaluru/Data-Scientist_ATCI-5479513-S1999864-1",
+   "postedOn": "Posted 21 Days Ago",
+   "bulletFields": [
+    "ATCI-5479513-S1999864",
+    "Bengaluru"
+   ]
+  }
+ ]
+}

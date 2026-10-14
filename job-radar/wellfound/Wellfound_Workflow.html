@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wellfound Workflow</title>
+<style>
+:root{
+  --bg:#14151c; --panel:#1c1e28; --panel2:#232634; --line:#2f3345; --text:#e8eaf2; --muted:#9aa0b8;
+  --trigger:#ff6d5a; --browser:#4c8dff; --logic:#a06bff; --parse:#2fbf71; --store:#19b5c4; --safety:#ff4d6d; --warn:#f5a524;
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#eef0f6;--panel:#ffffff;--panel2:#f4f5fa;--line:#d5d9e6;--text:#1c2030;--muted:#5d6580}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",Calibri,system-ui,sans-serif}
+header{padding:20px 24px 8px}
+h1{margin:0 0 4px;font-size:24px}
+header p{margin:0;color:var(--muted);max-width:900px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+.toolbar{display:flex;gap:10px;align-items:center;padding:10px 24px;flex-wrap:wrap}
+button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font:inherit;cursor:pointer}
+button:hover{border-color:var(--browser)}
+button.primary{background:var(--trigger);border-color:var(--trigger);color:#fff;font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:16px;padding:0 24px 24px}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}}
+.canvas-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:auto;position:relative;max-height:720px}
+.canvas{position:relative;width:2130px;height:640px;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:20px 20px}
+svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.edge{fill:none;stroke-width:2}
+.edge.dash{stroke-dasharray:6 6}
+.elabel{position:absolute;transform:translate(-50%,-50%);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:11px;color:var(--muted);white-space:nowrap}
+.node{position:absolute;width:250px;height:96px;background:var(--panel2);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px 10px 16px;cursor:pointer;transition:.15s;overflow:hidden}
+.node:hover{transform:translateY(-2px);border-color:var(--c)}
+.node.sel{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
+.node::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.node .t{font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center}
+.node .g{display:inline-flex;width:22px;height:22px;border-radius:6px;background:var(--c);color:#fff;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.node .s{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.35}
+.node .badge{position:absolute;right:8px;bottom:6px;font-size:11px;font-weight:700;color:var(--c);opacity:0}
+.node.done{border-color:var(--parse)}
+.node.done .badge{opacity:1}
+.node.run{box-shadow:0 0 0 4px color-mix(in srgb,var(--warn) 45%,transparent);border-color:var(--warn)}
+.node.stopnode{border-style:dashed}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;max-height:720px;overflow:auto}
+.panel h2{margin:0 0 2px;font-size:19px}
+.panel .kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-radius:5px;padding:1px 8px;margin-bottom:8px}
+.panel h3{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.panel ul{margin:0;padding-left:18px}
+.panel li{margin:3px 0}
+.panel code,.panel pre{font-family:Consolas,"Cascadia Mono",monospace;font-size:12px}
+.panel code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.panel pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;margin:6px 0 0}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.io div{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px}
+.io b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fail{border-left:3px solid var(--safety);padding:2px 0 2px 10px;margin:6px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;padding:0 24px 32px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{margin:0 0 8px;font-size:15px}
+.card pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow:auto;font:12px/1.5 Consolas,monospace;margin:6px 0}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:3px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+th{color:var(--muted);font-weight:600}
+@media (prefers-reduced-motion:reduce){.node{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Wellfound workflow (tech roles)</h1>
+  <p>Reads Wellfound's public role pages with a pool of real Chromes that share one queue of pages. Wellfound has no date filter and no date sort, so every page is read; then the one-week window, the India location rule and the experience rule are applied, and the jobs go into an Excel file. Click any node for the technical detail.</p>
+  <div class="chips">
+    <span class="chip"><b>Python</b> 3.12</span>
+    <span class="chip"><b>Playwright</b> + installed Chrome, 8 sharing a page queue</span>
+    <span class="chip"><b>ThreadPoolExecutor</b> up to 8 Chromes</span>
+    <span class="chip"><b>BeautifulSoup</b> html.parser</span>
+    <span class="chip"><b>openpyxl</b> Excel</span>
+    <span class="chip"><b>0</b> Claude tokens</span>
+    <span class="chip"><b>$0</b> no login, no Docker, no Firecrawl</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="primary" id="play">Run the workflow (animation)</button>
+  <button id="reset">Reset</button>
+  <div class="legend">
+    <span><i style="background:var(--trigger)"></i>Trigger / input</span>
+    <span><i style="background:var(--browser)"></i>Browser</span>
+    <span><i style="background:var(--logic)"></i>Logic</span>
+    <span><i style="background:var(--parse)"></i>Parse</span>
+    <span><i style="background:var(--store)"></i>Storage</span>
+    <span><i style="background:var(--safety)"></i>Safety</span>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="canvas-wrap"><div class="canvas" id="canvas"></div></div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<div class="cards">
+  <div class="card"><h3>1. The input you give it</h3>
+    <p style="margin:0 0 6px">The shared file <code>job-radar-V3/input.csv</code>. Only <b>tech roles</b> run (Experience above 0).</p>
+<pre>Role,Keywords,Experience,Location
+AI Engineer,"AI Engineer;LLM Engineer",5,India</pre>
+    <ul>
+      <li><b>Keywords</b> become Wellfound role pages through <code>wellfound/slugs.csv</code> (keyword to role slug; <code>-</code> = no page). Several keywords can share one page.</li>
+      <li><b>Experience</b>: Wellfound shows a minimum ("5 years of exp"), kept as "5+ years", which always passes the rule.</li>
+      <li>Command line: <code>--role</code>, <code>--hours N</code> (default automatic, at most 168 h = 7 days; <code>0</code> = no window), <code>--workers N</code> (Chromes, max 8), <code>--keep-all-locations</code>, <code>--include-non-tech</code>.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>2. The output (all inside <code>wellfound/output/</code>)</h3>
+<table>
+<tr><th>File</th><th>What</th></tr>
+<tr><td><code>Wellfound.xlsx</code></td><td>The result. Tab "Wellfound", one row per job, your Status and Notes kept.</td></tr>
+<tr><td><code>runs/wellfound_*.jsonl</code></td><td>Raw backup of each run, written before Excel.</td></tr>
+<tr><td><code>last_run.log</code></td><td>Progress log of the last run.</td></tr>
+</table>
+    <p style="margin:8px 0 0;color:var(--muted)">Columns: Title, Company, Role, Experience, Location, More locations, Bengaluru, Work mode, Job type, Salary, Equity, Posted, Posted date, Eligibility, Company size, Company tags, Actively hiring, Company about, Search term, First seen, Link, Status, Notes, Company page.</p>
+  </div>
+  <div class="card"><h3>3. Commands (from <code>job-radar-V3</code>)</h3>
+<pre>.venv\Scripts\python -m wellfound search
+.venv\Scripts\python -m wellfound search --hours 168
+.venv\Scripts\python -m wellfound search --role "AI Engineer" --workers 1
+.venv\Scripts\python -m wellfound check
+.venv\Scripts\python -m pytest wellfound/tests</pre>
+    <p style="margin:0;color:var(--muted)">Close <code>Wellfound.xlsx</code> in Excel before a run. If it is open, a timestamped copy is written instead.</p>
+  </div>
+  <div class="card"><h3>4. The location rule</h3>
+    <ul>
+      <li><b>Kept:</b> India (a city or the India list), Remote - India, Remote - anywhere, and Remote - location not stated (a remote job with no place shown).</li>
+      <li><b>Dropped:</b> remote jobs that name a place outside India (United States, Toronto, Tel Aviv ...). <code>--keep-all-locations</code> keeps them, marked "Outside India: place".</li>
+      <li>A Bengaluru column marks Bengaluru and Bangalore jobs so they can be ranked first later.</li>
+      <li>Matching uses <code>common/geo.py</code>: India, Indian states and about 80 city names.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>5. What a real run gave (2026-10-11, 7-day window)</h3>
+    <ul>
+      <li>8 tech roles, 14 keywords, 16 page lists (Forward Deployed Engineer and AI Architect have no Wellfound page). <b>8 Chromes sharing the page queue read 178 pages and 4,668 jobs in 7.9 minutes</b> (the first version, one Chrome per role, took 18.9 minutes). Pages per Chrome: 20 to 24, evenly shared.</li>
+      <li><b>220 unique jobs kept</b>: India 127, Remote - anywhere 48, Remote - location not stated 25, Remote - India 20. Bengaluru: 62.</li>
+      <li>Dropped: 3,928 outside the week, 351 outside India (remote jobs naming another country), 0 by the experience rule.</li>
+      <li>Kept by role: AI Engineer 129, Data Analyst 37, Data Scientist 17, Architect 16, ML Engineer 14, Business Analyst 7 (the AI Engineer page also carries the LLM and Generative AI keywords and is broad).</li>
+      <li>To know: 92 of the 220 are labelled "1 week ago", which on Wellfound can mean 7 to 13 days. The ai-engineer remote list has 51 pages; the first version's 30-page ceiling had cut it off, so the ceiling is now Wellfound's own 100.</li>
+      <li>No human check appeared on any of the 178 pages.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>6. Not in this workflow (done later, in the combined pipeline)</h3>
+    <ul>
+      <li>Full job descriptions (Wellfound job pages).</li>
+      <li>Title filtering and role routing, India and Bengaluru ranking, and removing duplicates across all sites.</li>
+      <li>The daily 9 AM schedule.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const W = 250, H = 96;
+const X = [30, 330, 630, 930, 1230, 1530, 1830];
+const R1 = 90, R2 = 380;
+
+const NODES = [
+ {id:'start', x:X[0], y:R1, kind:'trigger', g:'▶', title:'Start (command line)', sub:'python -m wellfound search', items:'1 run',
+  what:'You start a run from a terminal. It reads the shared input.csv; you can pick roles, the window, the number of Chromes and the location rule.',
+  tech:[
+   'Entry point is <code>wellfound/__main__.py</code> (<code>argparse</code>, sub-commands <code>search</code> and <code>check</code>).',
+   'Options: <code>--role</code> (repeatable), <code>--hours</code>, <code>--input</code>, <code>--workers</code>, <code>--keep-all-locations</code>, <code>--include-non-tech</code>.',
+   'Only public pages are read. No login, no account.'],
+  io:['Command line + input.csv','Roles, window, workers'], file:'wellfound/__main__.py : main()',
+  settings:['Window: automatic, at most 168 h; --hours overrides'],
+  fails:['No tech role matches: stops with "No matching roles (Wellfound searches tech roles only ...)".'],
+  code:'python -m wellfound search\npython -m wellfound search --hours 168 --workers 4'},
+
+ {id:'input', x:X[1], y:R1, kind:'trigger', g:'{}', title:'Read input.csv, tech roles only', sub:'experience above 0', items:'8 roles',
+  what:'Loads the shared input file and keeps the tech roles.',
+  tech:[
+   '<code>common/inputs.py : load_input()</code> reads the CSV; roles with Experience of at least 1 (<code>TECH_ONLY_MIN_EXPERIENCE</code>) are kept. Wellfound has almost no pages for the Ayurveda, clinical and drug roles.',
+   '<code>--include-non-tech</code> overrides this.'],
+  io:['input.csv','tech roles'], file:'common/inputs.py : load_input(); wellfound/__main__.py',
+  settings:['TECH_ONLY_MIN_EXPERIENCE = 1'],
+  fails:['Bad file: the run stops before opening Chrome and names the line.'],
+  code:'roles = [r for r in roles if r.min_experience >= 1]'},
+
+ {id:'plan', x:X[2], y:R1, kind:'logic', g:'P', title:'Plan the page lists', sub:'keyword to slug; India + remote list', items:'16 lists',
+  what:'Turns keywords into Wellfound role pages and decides what to read.',
+  tech:[
+   '<code>search.py : plan()</code> looks each keyword up in <code>slugs.csv</code> (Machine Learning Engineer and ML Engineer both read <code>machine-learning-engineer</code>; LLM Engineer reads <code>ai-engineer</code>). Unknown keywords fall back to their own slug; <code>-</code> marks keywords with no page, which are skipped and reported.',
+   'For every distinct slug: the India list <code>/role/l/&lt;slug&gt;/india</code> and the remote list <code>/role/r/&lt;slug&gt;</code>. Duplicate slugs are read once.',
+   'Every list becomes a queue task; the Chromes share them (next nodes).',
+   'A probe on 2026-10-11 found real pages for data-scientist, data-analyst, business-analyst, machine-learning-engineer, ai-engineer, data-architect, solutions-architect and machine-learning-scientist; and none for ml-engineer, llm-engineer, generative-ai-engineer, ai-scientist, applied-scientist, research-scientist, forward-deployed-engineer and ai-architect.'],
+  io:['Query list','Targets (slug, India or remote)'], file:'wellfound/search.py : plan(); wellfound/slugs.csv',
+  settings:['slugs.csv: keyword to slug'],
+  fails:['Wellfound adds or renames a role page: edit slugs.csv.'],
+  code:'Target(role="AI Engineer", keyword="LLM Engineer", slug="ai-engineer", kind="remote")'},
+
+ {id:'pool', x:X[3], y:R1, kind:'browser', g:'C', title:'Chrome pool, shared page queue', sub:'8 Chromes, own profile each, staggered', items:'8 Chromes',
+  what:'Starts up to eight real, visible Chromes. They pull pages from one shared queue, so long lists are split between them.',
+  tech:[
+   'Page 1 of every list is queued first. When a Chrome reads page 1 it learns the page count ("Page 1 of 24") and puts pages 2..24 into the queue; any free Chrome takes the next page. A list is therefore spread over all Chromes instead of making one Chrome the slowest. Real run: 20 to 24 pages per Chrome.',
+   'Each Chrome is a thread that starts its own Playwright and <code>launch_persistent_context(profile, channel="chrome", headless=False, args=["--start-minimized"])</code>.',
+   'Chrome allows only one process per profile folder, so every Chrome has its own: <code>data/wellfound_profiles/w0</code>, <code>w1</code> ... handed out from a queue of free slots.',
+   'The Chromes start staggered by a random 4 to 10 seconds each, not all in the same second.',
+   'A shared stop flag (<code>threading.Event</code>) lets a human check in one Chrome stop all the others. If every Chrome fails, the run ends instead of waiting forever.',
+   'Each Chrome pauses 7 to 15 s before each page, so the load on Wellfound is roughly the number of Chromes times one slow reader. Use <code>--workers 2</code> or <code>1</code> to be gentler.'],
+  io:['Page lists','page queue read by 8 Chromes'], file:'wellfound/search.py : search(), _worker(), _Pool; wellfound/session.py',
+  settings:['WORKERS_MAX = 8 (--workers N)','START_STAGGER = (4, 10) s','config.worker_profile(slot)'],
+  fails:['A Chrome window closed by hand: that role stops with an error message; the other roles carry on.'],
+  code:'tasks = queue.Queue()                      # (list, page) pairs\nfor t in targets: tasks.put((t, 1))\n# each Chrome: item = tasks.get(); read it; page 1 enqueues pages 2..N'},
+
+ {id:'load', x:X[4], y:R1, kind:'browser', g:'L', title:'Load page N and wait', sub:'?page=N, pause, wait for job links', items:'~24 jobs/page',
+  what:'Opens one page of a role list, waits for the jobs to appear and scrolls a little.',
+  tech:[
+   '<code>page.goto(url)</code> with <code>?page=2</code>, <code>?page=3</code> ... then a random 3 to 6 s pause and <code>wait_for_selector("a[href*=\'/jobs/\']", 15 s)</code>. Then 2 to 4 gentle scrolls.',
+   'A page holds about 20 company blocks and 20 to 30 jobs.',
+   'Between pages a random 7 to 15 s pause.'],
+  io:['Target + page number','page HTML'], file:'wellfound/search.py : _load(), read_target()',
+  settings:['PAUSE_AFTER_LOAD = (3, 6) s','PAUSE_BETWEEN_PAGES = (7, 15) s','CARDS_TIMEOUT_MS = 15000'],
+  fails:['No job links within 15 s: treated as the end of the list, unless it is a human check (next node).'],
+  code:'pg.goto(url + "?page=3", wait_until="domcontentloaded")\npg.wait_for_selector("a[href*=\'/jobs/\']", timeout=15000)'},
+
+ {id:'check', x:X[5], y:R1, kind:'safety', g:'?', title:'Human check showing?', sub:'no jobs + warning words', items:'0 in 171 pages',
+  what:'Decides whether an empty page means "no more jobs" or "Wellfound wants proof you are human".',
+  tech:[
+   'Only when no job links appeared: the page text is searched for "verify you are human", "captcha", "access denied", "checking your browser", "press & hold" or "unusual traffic".',
+   'Found: <code>HumanCheckPending</code> is raised, the shared stop flag is set and every Chrome stops after its current page. Not found: the list simply ended.',
+   'The code never clicks, solves or hides the check. It did not appear on any of the 171 pages of the real run.'],
+  io:['page with no jobs','continue, or stop'], file:'wellfound/search.py : _load(); wellfound/session.py : HumanCheckPending',
+  settings:['CHECK_MARKERS in config.py'],
+  fails:['Wellfound reworded the check: the list would look "ended" and yield far fewer jobs than usual.'],
+  code:'if any(m in body for m in CHECK_MARKERS):\n    raise HumanCheckPending(...)'},
+
+ {id:'stop', x:X[6], y:R1, kind:'safety', g:'!', title:'Stop, keep results, notify you', sub:'pop-up + check_wellfound.bat', items:'only if needed', stopnode:true,
+  what:'Ends the run safely. Everything already read is kept and saved.',
+  tech:[
+   'The error is reported with the role it happened in; jobs read so far are backed up and added to Excel.',
+   '<code>notify.popup()</code> shows a Windows message box without blocking the run.',
+   '<code>check_wellfound.bat</code> opens a visible Chrome on a role page and waits up to 10 minutes while you pass the check by hand (do not sign in). Then rerun.',
+   'The latest-posted-date state is not moved after an error, so no day is skipped.'],
+  io:['HumanCheckPending','pop-up, partial results saved'], file:'wellfound/notify.py, wellfound/session.py : wait_for_human()',
+  settings:['check timeout: 600 s'],
+  fails:['You close the window without passing it: "No jobs seen. Run it again."'],
+  code:'check_wellfound.bat\n  -> .venv\\Scripts\\python -m wellfound check'},
+
+ {id:'generic', x:X[5], y:R2, kind:'safety', g:'G', title:'Real role page?', sub:'title must contain the role words', items:'2 keywords skipped',
+  what:'Skips lists where Wellfound silently showed its generic page instead of the role.',
+  tech:[
+   'Wellfound answers an unknown role name with its generic "India Jobs - Tech and Startup Jobs" page: 5,504 jobs of every kind, status 200, no error.',
+   'On page 1 of each list the page title must contain every word of the slug (<code>is_generic_page()</code>). If not, the list is skipped and reported.',
+   'The old Firecrawl pipeline never detected this: its Forward Deployed Engineer and AI Scientist slugs silently read the generic page.'],
+  io:['page 1 HTML','real page, or skip this list'], file:'wellfound/parse.py : is_generic_page(), page_title()',
+  settings:['Unit-tested with the real generic title'],
+  fails:['Wellfound retitles role pages: lists would be skipped; the report names the slug.'],
+  code:'is_generic_page("India Jobs - Tech & Startup Jobs | Wellfound", "ml-engineer")  # True'},
+
+ {id:'parse', x:X[4], y:R2, kind:'parse', g:'P', title:'Parse company blocks and jobs', sub:'BeautifulSoup, pure functions', items:'~24 jobs/page',
+  what:'Reads every company block and every job row on the page.',
+  tech:[
+   'A company block holds the company details and one or more job rows. Company: name, page, tagline, size, stage tags, actively hiring. Job row: title, link, job type, salary, equity, work mode, location (and "+N more"), experience, posted label.',
+   'Row spans are recognised by content, not position: "5 years of exp" is experience, text with a currency sign or "equity" is salary and equity, the rest is work mode and place ("Onsite or remote", "In office", "Remote only", "Remote", "Hybrid" followed by the city).',
+   'The posted label is turned into an estimated date: "6 days ago" is six days back, "3 weeks ago" 21 days, "1 month ago" 30 days. Labels are coarse, so dates are estimates.',
+   'Tested on a saved real page (<code>tests/fixtures/page.html</code>) including a company with two jobs and extra locations.'],
+  io:['page HTML','list of job dicts'], file:'wellfound/parse.py : parse_page(), _company(), _job(), posted_to_date()',
+  settings:['CARD_CLASSES with a fallback that climbs from the company header'],
+  fails:['Wellfound changes its CSS classes: cards stop parsing; the fixture and tests make it a small fix.'],
+  code:'{"title": "Senior Data Scientist", "company": "AuxoAI", "salary": "₹20L – ₹45L",\n "location": "Hyderabad", "more_locations": 3, "experience": "5+ years",\n "posted_text": "1 month ago", "posted_date": ...}'},
+
+ {id:'more', x:X[3], y:R2, kind:'logic', g:'?', title:'Queue empty? Next page or done', sub:'pages 2..N come from page 1', items:'178 pages',
+  what:'Adds the new jobs to the pool and decides whether to read the next page, move to the next list or finish.',
+  tech:[
+   'Jobs are keyed by link, so a job is counted once. A Chrome that finishes a page takes the next page in the queue (loop arrow), after a random 7 to 15 s pause. A list that does not say its page count is read page by page until a page adds nothing new.',
+   'Wellfound is not sorted by date, so reading cannot stop early: every page is read. The only ceiling is 100 pages per list, which is Wellfound&#39;s own maximum. (The first version used 30 and cut ai-engineer remote, which has 51 pages, so the ceiling was raised.)',
+   'When all lists of all roles are done, the flow continues to the filter.'],
+  io:['page jobs','next queued page, or done'], file:'wellfound/search.py : _worker(), search()',
+  settings:['MAX_PAGES = 100','PAUSE_BETWEEN_PAGES = (7, 15) s'],
+  fails:['A page that fails to load is reported; three failures in a row take that Chrome out, the others carry on.'],
+  code:'before = len(jobs)\nfor j in parse_page(html): jobs.setdefault(j["url"], j)\nif len(jobs) == before: break   # list ran out'},
+
+ {id:'filter', x:X[2], y:R2, kind:'logic', g:'F', title:'Window, location, experience', sub:'7 days; India or remote-anywhere', items:'220 kept',
+  what:'Keeps only what you want: posted within the window, in India or remote-anywhere, and passing the experience rule.',
+  tech:[
+   '<b>Window</b> (<code>in_window()</code>): the estimated posted date must be on or after midnight of (now minus the window). The window is automatic (since the latest posted date already read, at least 24 h) and capped at 168 h = 7 days; <code>--hours N</code> overrides, 0 means none. Real run: 3,928 of 4,668 jobs were outside the week.',
+   '<b>Location</b> (<code>classify_location()</code>): India or Indian city (list or place text) = India; Remote with an Indian place = Remote - India; a place saying anywhere or worldwide = Remote - anywhere; a remote-list job with no place = Remote - location not stated. Anything else is "Outside India" and dropped (351 in the real run).',
+   '<b>Experience</b> (<code>experience_ok()</code>): Wellfound shows minimums, kept as "N+ years", which always pass; 0 dropped.',
+   'Each kept job is stamped with role, keyword, slug, which list found it, eligibility and a Bengaluru flag. The first role to find a job keeps it.',
+   'Caveat: Wellfound labels 7 to 13 days old jobs "1 week ago", and the estimate puts them exactly 7 days back, so they sit on the window edge (92 of the 220).'],
+  io:['all jobs read','kept, stamped jobs'], file:'wellfound/search.py : _keep(), in_window(); wellfound/parse.py : classify_location(); common/geo.py',
+  settings:['MAX_WINDOW_HOURS = 168','KEEP_LOCATIONS = India, Remote - India, Remote - anywhere, Remote - location not stated'],
+  fails:['Place text Wellfound formats differently: it would be classed Outside India; --keep-all-locations shows what was dropped.'],
+  code:'if eligibility not in KEEP_LOCATIONS and not keep_all:\n    dropped_location += 1'},
+
+ {id:'backup', x:X[1], y:R2, kind:'store', g:'B', title:'Raw backup (JSONL)', sub:'saved before Excel is touched', items:'1 file/run',
+  what:'Writes every kept job to a plain text file first, so a failure while writing Excel can never lose the run.',
+  tech:[
+   'One JSON object per line, UTF-8, in <code>wellfound/output/runs/wellfound_YYYYMMDD_HHMMSS.jsonl</code>. Dates are written in ISO format.',
+   'The same safeguard as the other site workflows.'],
+  io:['kept jobs','.jsonl file'], file:'wellfound/__main__.py',
+  settings:['RUNS_DIR = wellfound/output/runs'],
+  fails:['Disk full or folder locked: the error shows before Excel is attempted.'],
+  code:'{"title":"Data Analyst","company":"...","eligibility":"India","bengaluru":"Yes","url":"https://wellfound.com/jobs/..."}'},
+
+ {id:'excel', x:X[0], y:R2, kind:'store', g:'X', title:'Merge into Excel: Wellfound.xlsx', sub:'openpyxl, keyed by job link', items:'220 rows',
+  what:'Adds new jobs to the workbook and refreshes known ones, without touching what you typed. This is the output.',
+  tech:[
+   'Existing rows are read back by column header and keyed by the hyperlink target of the Link cell; dates are converted from Excel datetimes.',
+   'New link: added with Status "New" and First seen = today. Known link: details refreshed; <b>Role, Status, Notes and First seen are kept</b>.',
+   'Tab "Wellfound", 24 columns (listed in the output card). Newest first, clickable Open links for the job and the company page, Status dropdown, frozen panes, auto-filter.',
+   'After a clean run the latest posted date is saved to <code>state.json</code>, which sets the next automatic window (capped at 7 days). A run that stopped with an error does not move it.',
+   'If Excel has the file open, a timestamped copy is written and the screen says so.'],
+  io:['kept jobs + existing workbook','wellfound/output/Wellfound.xlsx'], file:'wellfound/excel.py : save(), merge(), _write(); common/window.py',
+  settings:['EXCEL_PATH = wellfound/output/Wellfound.xlsx','STATUSES = New, Interested, Applied, Not relevant'],
+  fails:['File open in Excel: timestamped copy; close Excel and rerun.'],
+  code:'rows, n_new, n_upd = merge(existing, jobs, today)\ntry:\n    _write(rows, path)\nexcept PermissionError:\n    _write(rows, timestamped_copy)'}
+];
+
+const EDGES = [
+ ['start','input','r','l','',false,'--trigger'],
+ ['input','plan','r','l','',false,'--trigger'],
+ ['plan','pool','r','l','',false,'--logic'],
+ ['pool','load','r','l','1 per role, parallel',false,'--browser'],
+ ['load','check','r','l','',false,'--browser'],
+ ['check','stop','r','l','yes: stop all Chromes',true,'--safety'],
+ ['check','generic','b','t','no',false,'--parse'],
+ ['generic','parse','l','r','real role page',false,'--parse'],
+ ['parse','more','l','r','',false,'--parse'],
+ ['more','load','t','b','next page / next list',true,'--logic'],
+ ['more','filter','l','r','all lists done',false,'--logic'],
+ ['filter','backup','l','r','',false,'--store'],
+ ['backup','excel','l','r','',false,'--store']
+];
+
+const ORDER = ['start','input','plan','pool','load','check','generic','parse','more','filter','backup','excel'];
+
+const cv = document.getElementById('canvas');
+const byId = {};
+NODES.forEach(n => { byId[n.id] = n; });
+
+function css(v){ return `var(${v})`; }
+
+// nodes
+NODES.forEach(n => {
+  const d = document.createElement('div');
+  d.className = 'node' + (n.stopnode ? ' stopnode' : '');
+  d.id = 'n_' + n.id;
+  d.style.cssText = `left:${n.x}px;top:${n.y}px;--c:${css('--' + n.kind)}`;
+  d.innerHTML = `<div class="t"><span class="g">${n.g}</span>${n.title}</div><div class="s">${n.sub}</div><div class="badge">${n.items}</div>`;
+  d.addEventListener('click', () => select(n.id));
+  cv.appendChild(d);
+});
+
+// edges
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('class', 'edges');
+svg.innerHTML = '<defs></defs>';
+cv.insertBefore(svg, cv.firstChild);
+
+function port(n, p){
+  if (p === 'r') return [n.x + W, n.y + H/2, 1, 0];
+  if (p === 'l') return [n.x, n.y + H/2, -1, 0];
+  if (p === 't') return [n.x + W/2, n.y, 0, -1];
+  return [n.x + W/2, n.y + H, 0, 1];
+}
+EDGES.forEach((e, i) => {
+  const [a, b, pa, pb, label, dash, col] = e;
+  const [x1, y1, dx1, dy1] = port(byId[a], pa);
+  const [x2, y2, dx2, dy2] = port(byId[b], pb);
+  const k = (pa === pb) ? 90 : Math.max(60, Math.hypot(x2 - x1, y2 - y1) / 3);
+  const d = `M${x1},${y1} C${x1 + dx1*k},${y1 + dy1*k} ${x2 + dx2*k},${y2 + dy2*k} ${x2},${y2}`;
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', d); p.setAttribute('id', 'e' + i);
+  p.setAttribute('class', 'edge' + (dash ? ' dash' : ''));
+  p.setAttribute('stroke', css(col)); p.setAttribute('marker-end', `url(#ar${i})`);
+  const m = document.createElementNS(NS, 'marker');
+  m.setAttribute('id', 'ar' + i); m.setAttribute('viewBox', '0 0 10 10'); m.setAttribute('refX', '9'); m.setAttribute('refY', '5');
+  m.setAttribute('markerWidth', '7'); m.setAttribute('markerHeight', '7'); m.setAttribute('orient', 'auto-start-reverse');
+  m.innerHTML = `<path d="M0,0 L10,5 L0,10 z" fill="${css(col)}"/>`;
+  svg.firstChild.appendChild(m);
+  svg.appendChild(p);
+  const dot = document.createElementNS(NS, 'circle');
+  dot.setAttribute('r', '4'); dot.setAttribute('fill', css(col));
+  dot.innerHTML = `<animateMotion dur="${3 + (i % 3)}s" repeatCount="indefinite"><mpath href="#e${i}"/></animateMotion>`;
+  svg.appendChild(dot);
+  if (label) {
+    const mid = (t) => { // point on the cubic at t
+      const c = [[x1,y1],[x1+dx1*k,y1+dy1*k],[x2+dx2*k,y2+dy2*k],[x2,y2]], u = 1 - t;
+      return [0,1].map(j => u*u*u*c[0][j] + 3*u*u*t*c[1][j] + 3*u*t*t*c[2][j] + t*t*t*c[3][j]);
+    };
+    const [mx, my] = mid(0.5);
+    const l = document.createElement('div');
+    l.className = 'elabel'; l.style.left = mx + 'px'; l.style.top = my + 'px'; l.textContent = label;
+    cv.appendChild(l);
+  }
+});
+
+// panel
+const panel = document.getElementById('panel');
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function overview(){
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--browser)">Overview</span>
+   <h2>How it works, in one paragraph</h2>
+   <p>The workflow takes the tech roles from input.csv, turns their keywords into Wellfound role pages (an India list and a remote list each), and starts a pool of real Chromes that share one queue of pages. They read every page slowly, because Wellfound has no date filter and no date sort. Jobs are parsed from the pages, then filtered: posted within the last week, in India or remote-anywhere, and passing the experience rule. The survivors are backed up and added to an Excel file that keeps your Status and Notes.</p>
+   <h3>Why this design</h3>
+   <ul>
+    <li>A real Chrome loads Wellfound's public pages with no human check (178 pages in the latest real run), so the old Docker and Firecrawl method was not needed.</li>
+    <li>Reading everything is the only way to find the newest jobs, so the pages are shared by up to 8 Chromes: about 8 minutes instead of over an hour with one.</li>
+    <li>Wellfound's generic page for unknown role names is detected and skipped, which the old method never did.</li>
+    <li>No login, no stealth, no proxy: if a check appears, everything stops and tells you.</li>
+   </ul>
+   <h3>Click a node</h3>
+   <p>Each node explains its job, the file and function behind it, its settings and what happens if it fails. Press "Run the workflow" to watch the order.</p>`;
+}
+
+function select(id){
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('sel'));
+  document.getElementById('n_' + id).classList.add('sel');
+  const n = byId[id];
+  panel.innerHTML = `
+   <span class="kind" style="background:var(--${n.kind})">${{trigger:'Trigger / input',browser:'Browser',logic:'Logic',parse:'Parse',store:'Storage',safety:'Safety'}[n.kind]}</span>
+   <h2>${n.title}</h2>
+   <p style="margin:4px 0 0">${n.what}</p>
+   <h3>Input and output</h3>
+   <div class="io"><div><b>In</b>${n.io[0]}</div><div><b>Out</b>${n.io[1]}</div></div>
+   <h3>Technical detail</h3><ul>${n.tech.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>File and function</h3><p style="margin:0"><code>${n.file}</code></p>
+   <h3>Settings</h3><ul>${n.settings.map(t => `<li>${t}</li>`).join('')}</ul>
+   <h3>If it fails</h3>${n.fails.map(t => `<div class="fail">${t}</div>`).join('')}
+   ${n.code ? `<h3>Code / sample</h3><pre>${esc(n.code)}</pre>` : ''}`;
+  panel.scrollTop = 0;
+}
+overview();
+
+// run animation
+let timers = [];
+function reset(){
+  timers.forEach(clearTimeout); timers = [];
+  document.querySelectorAll('.node').forEach(x => x.classList.remove('done', 'run', 'sel'));
+  overview();
+}
+function play(){
+  reset();
+  ORDER.forEach((id, i) => {
+    timers.push(setTimeout(() => {
+      document.querySelectorAll('.node.run').forEach(x => x.classList.remove('run'));
+      const el = document.getElementById('n_' + id);
+      el.classList.add('run');
+      el.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'});
+      timers.push(setTimeout(() => { el.classList.remove('run'); el.classList.add('done'); }, 650));
+    }, i * 800));
+  });
+}
+document.getElementById('play').addEventListener('click', play);
+document.getElementById('reset').addEventListener('click', reset);
+</script>
+</body>
+</html>

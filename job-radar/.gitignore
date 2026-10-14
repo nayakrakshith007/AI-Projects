@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+*.out
+logs/
+
+# run output and personal data: never committed
+**/output/
+radar3/data/v2_history.json
+*.xlsx
+
+# browser profiles, tokens and tool caches
+**/profile/
+**/user_data/
+tools/node_modules/
+tools/.playwright-cli/
+discovery/cli_*.txt
+discovery/*.log

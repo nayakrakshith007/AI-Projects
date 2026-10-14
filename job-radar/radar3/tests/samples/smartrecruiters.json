@@ -1,0 +1,99 @@
+{
+ "offset": 0,
+ "limit": 4,
+ "totalFound": 185,
+ "content": [
+  {
+   "id": "6000000001484333",
+   "name": "Sales Manager II",
+   "company": {
+    "identifier": "SWIGGY",
+    "name": "SWIGGY"
+   },
+   "releasedDate": "2026-10-13T07:26:25.209Z",
+   "location": {
+    "city": "Faridkot",
+    "region": "PB",
+    "country": "in",
+    "remote": false,
+    "hybrid": false,
+    "latitude": "30.6774058",
+    "longitude": "74.7539266",
+    "fullLocation": "Faridkot, PB, India"
+   },
+   "typeOfEmployment": {
+    "id": "permanent",
+    "label": "Full-time"
+   }
+  },
+  {
+   "id": "6000000001484326",
+   "name": "Software Development Engineer II",
+   "company": {
+    "identifier": "SWIGGY",
+    "name": "SWIGGY"
+   },
+   "releasedDate": "2026-10-13T07:09:32.529Z",
+   "location": {
+    "city": "Bengaluru",
+    "region": "KA",
+    "country": "in",
+    "remote": false,
+    "hybrid": true,
+    "latitude": "12.9628957",
+    "longitude": "77.57754",
+    "fullLocation": "Bengaluru, KA, India"
+   },
+   "typeOfEmployment": {
+    "id": "permanent",
+    "label": "Full-time"
+   }
+  },
+  {
+   "id": "6000000001484277",
+   "name": "Senior Manager - Planning",
+   "company": {
+    "identifier": "SWIGGY",
+    "name": "SWIGGY"
+   },
+   "releasedDate": "2026-10-13T06:42:21.762Z",
+   "location": {
+    "city": "Bengaluru",
+    "region": "KA",
+    "country": "in",
+    "remote": false,
+    "hybrid": false,
+    "latitude": "12.9628957",
+    "longitude": "77.57754",
+    "fullLocation": "Bengaluru, KA, India"
+   },
+   "typeOfEmployment": {
+    "id": "permanent",
+    "label": "Full-time"
+   }
+  },
+  {
+   "id": "6000000001483641",
+   "name": "Sales Manager",
+   "company": {
+    "identifier": "SWIGGY",
+    "name": "SWIGGY"
+   },
+   "releasedDate": "2026-10-13T05:21:58.631Z",
+   "location": {
+    "city": "Tiruppur",
+    "region": "TN",
+    "country": "in",
+    "remote": false,
+    "hybrid": false,
+    "latitude": "11.1083318",
+    "longitude": "77.3419126",
+    "fullLocation": "Tiruppur, TN, India"
+   },
+   "typeOfEmployment": {
+    "id": "permanent",
+    "label": "Full-time"
+   }
+  }
+ ]
+}

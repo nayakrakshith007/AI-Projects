@@ -1,0 +1,382 @@
+<?xml version="1.0"?><rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><item>
+      <title>Prove: Senior Software Engineer, Identity Platform</title>
+      <region>Anywhere in the World</region>
+      <country></country>
+      <state></state>
+      <skills></skills>
+      <category>All Other Remote</category>
+      <type/>
+      <description>
+
+&lt;p&gt;
+  &lt;strong&gt;Headquarters:&lt;/strong&gt; United States (Remote)
+&lt;/p&gt;
+
+&lt;div class="content-intro"&gt;&lt;h1&gt;&lt;img src="https://i.imgur.com/gwyI98w.png" alt="We're Hiring!" width="100%"&gt;&lt;/h1&gt;
+&lt;h1&gt;About Prove&amp;nbsp;&lt;/h1&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;span&gt;As the world moves to a mobile-first economy, businesses need to modernize how they acquire, engage with and enable consumers. Prove’s phone-centric identity tokenization and passive cryptographic authentication solutions reduce friction, enhance security and privacy across all digital channels, and accelerate revenues while reducing operating expenses and fraud losses. Over 1,000 enterprise customers use Prove’s platform to process 20 billion customer requests annually across industries, including banking, lending, healthcare, gaming, crypto, e-commerce, marketplaces, and payments. For the latest updates from Prove, &lt;/span&gt;&lt;a href="https://www.linkedin.com/company/proveidentity/"&gt;&lt;span&gt;follow us on LinkedIn.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Prove is driving the future of digital identity. We are looking for Provers who know how to make an impact. We’re talking self-starting professionals who thrive in a fast-paced environment, process information quickly, and make intelligent decisions. The work is challenging and requires not only smart but natural curiosity and tenacity. Teamwork is also important to us – we work together and play together.&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Prove has big plans, and we’re excited about the future. If this sounds like the place for you – come join our team!&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Title:&amp;nbsp;&lt;/strong&gt;Senior Software Engineer&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Department: &lt;/strong&gt;Engineering&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reports To: &lt;/strong&gt;Manager, Engineering&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;FLSA Status: &lt;/strong&gt;Exempt&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; US Remote&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;Job Summary&lt;/h3&gt;
+&lt;p&gt;As a Senior Software Engineer at Prove, you will play a critical role in building, maintaining, and scaling the technology that powers the next generation of identity verification. Whether working on consumer and business identity services or developing low-level phone intelligence data signals, you will design and implement robust, high-performance solutions. You will collaborate with cross-functional teams to solve complex technical challenges, improve system architecture, and contribute to the mission-critical infrastructure that helps institutions solve fraud and verify digital identity worldwide.&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;Team Focus Areas&lt;/h3&gt;
+&lt;p&gt;We are currently hiring for two engineering teams, each solving unique challenges in the identity space:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data Engineering Team:&lt;/strong&gt; Join our team to design and build the fault-tolerant, scalable platforms powering our core identity services (Verified Users, Prefill, and KYB/KYC). You’ll work hands-on with senior engineers and product leaders to tackle complex, high-scale architectural challenges and directly influence our identity verification roadmap.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Phone Number Intelligence:&lt;/strong&gt; Our team focuses on phone intelligence and generating low-level data signals used by various internal services. This work is foundational to our fraud detection capabilities, providing specialized knowledge of mobile carrier data and fraud patterns. We are currently migrating data and migrating to an event-driven architecture, offering an exciting opportunity for someone to shape our infrastructure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;Responsibilities&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Engineering Excellence:&lt;/strong&gt; Write high-quality, maintainable code, develop detailed technical documentation, and champion strong engineering principles within the team.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System Development:&lt;/strong&gt; Design and develop microservices within a cloud-native, distributed architecture.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Problem Solving:&lt;/strong&gt; Analyze, debug, and resolve production issues. Proactively engage in technical design discussions, including writing and reviewing RFCs for new solutions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Technical Leadership:&lt;/strong&gt; Mentor team members, participate in code reviews, and drive technical decisions. Own end-to-end features—from initial design and RFC creation to implementation and maintenance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Collaborative development: &lt;/strong&gt;Participate in the "Owner/Helper" project model; contribute as a lead owner for major milestones and actively support team members on their own initiatives.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;Your First Three Months&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;30 Days (Onboarding):&lt;/strong&gt; Gain a high-level understanding of our architecture, team goals, and existing services. Make your first code contributions by resolving bugs or tackling small tasks within the codebase.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;60 Days (Contribution):&lt;/strong&gt; Integrate into the design process by reviewing RFCs and providing technical feedback. Contribute significantly as an active team member to one of our milestones.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;90 Days (Ownership):&lt;/strong&gt; Develop a deep grasp of our product and migration strategies. Take ownership of a minor or major milestone, or lead the drafting of an RFC for a new initiative.&lt;/p&gt;
+&lt;h3&gt;Qualifications&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Software Development:&lt;/strong&gt; 6+ years of professional software development experience, with a deep understanding of object-oriented programming (Java highly preferred).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System Design:&lt;/strong&gt; Experience designing event-driven, robust, and scalable solutions for complex technical problems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cloud Proficiency:&lt;/strong&gt; Hands-on experience with public cloud platforms (AWS, GCP, or Azure).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data &amp;amp; Database Expertise:&lt;/strong&gt; Proficiency in SQL (Oracle) and NoSQL (DynamoDB) with strong knowledge of design principles for both.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Education:&lt;/strong&gt; Bachelor’s degree in Computer Science, a quantitative field, or equivalent practical experience.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Preferred Qualifications&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Full-Stack Development:&lt;/strong&gt; Experience with TypeScript and React.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CI/CD &amp;amp; Testing:&lt;/strong&gt; Ability to build automated test frameworks and CI/CD pipelines.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Streaming Technologies:&lt;/strong&gt; Practical experience with Kafka and Flink.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern Tech:&lt;/strong&gt; Familiarity with AI and machine learning integrations.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Technical Leadership:&lt;/strong&gt; Proven ability to influence team direction and long-term architectural decisions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;This position description should not be considered the final description of the position. The position description is not intended to be an all-inclusive list of duties and standards of the positions. It should be assumed that we would, to some extent, structure responsibilities in accordance with the successful candidate’s capabilities and changing business conditions. Incumbents will follow any other instructions, and perform any other related duties, as assigned by their supervisor.&lt;/p&gt;
+&lt;p&gt;The anticipated salary range for this role is&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Metro 2: 190,000 - 210,000&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Metro 3: 170,000 - 190,000&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Plus variable commission / company bonus. Offered salary will be determined by the applicant’s education, experience, knowledge, skills, geo-location and abilities, as well as internal equity and alignment with market data.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;div class="content-conclusion"&gt;&lt;p&gt;Prove follows a market driven compensation philosophy based on geographic location and respective market rates. Job offers will be aligned to location. Please speak with your recruiter if you have questions. Prove defines:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Metro 2 - NYC metro area, Seattle metro area, Los Angeles metro area, and the Miami metro area.&lt;/li&gt;
+&lt;li&gt;Metro 3 - all other cities across the domestic United States, with the exception of the San Francisco Bay Area.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;&lt;strong&gt;Benefits &amp;amp; Perks for FTE Provers:&lt;br&gt;&lt;/strong&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Competitive salaries &amp;amp; Bonus Plan (for eligible roles) and Equity Plan&lt;/li&gt;
+&lt;li&gt;Modern Health for financial, mental, and physical wellness&lt;/li&gt;
+&lt;li&gt;401(k) Retirement Plan &amp;amp; Match (US Offices) and Local Country Pension (International Offices)&lt;/li&gt;
+&lt;li&gt;Unlimited Vacation and Flexible hours&lt;/li&gt;
+&lt;li&gt;Comprehensive medical benefits for you and your family ️&lt;/li&gt;
+&lt;li&gt;Emotional &amp;amp; Physical Wellness – Access to wellness services (EAP &amp;amp; Prove Well-Being Reimbursement)&lt;/li&gt;
+&lt;li&gt;Bottomless snacks &amp;amp; beverages for certain office locations&lt;/li&gt;
+&lt;li&gt;Daily GrubHub stipend for lunch if coming into the office (US Offices)&lt;/li&gt;
+&lt;li&gt;A great place to work and connect with other talented Provers like yourself!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+&lt;p&gt;Don’t meet every single requirement? Studies have shown that women and people of color are less likely to apply to jobs unless they meet every single qualification. At Prove we are dedicated to building a diverse, inclusive and authentic workplace, so if you’re excited about this role but your past experience doesn’t align perfectly with every qualification in the job description, we encourage you to apply anyways. You may be just the right candidate for this or other roles.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Equal Opportunity Employment:&lt;/strong&gt;&lt;br&gt;&lt;br&gt;Prove is an equal opportunity employer committed to providing equal employment opportunity for all people regardless of race, color, religion, gender or sexual orientation, age, marital status, national origin, citizenship status, disability, veteran status or other personal characteristics&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Privacy &amp;amp; Data Protection:&lt;/strong&gt;&lt;br&gt;&lt;br&gt;When you are applying for a job at Prove, we collect and use your personal information in the job application process. To understand more about how Prove uses your personal information, please see our &lt;a href="https://www.prove.com/legal/recruitment-privacy-notice"&gt;Recruitment Privacy Policy&lt;/a&gt; on our website.&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;To apply:&lt;/strong&gt; &lt;a href="https://weworkremotely.com/remote-jobs/prove-senior-software-engineer-identity-platform"&gt;https://weworkremotely.com/remote-jobs/prove-senior-software-engineer-identity-platform&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Tue, 13 Oct 2026 07:31:00 +0000</pubDate>
+      <expires_at>Thu, 12 Nov 2026 07:31:00 +0000</expires_at>
+      <guid>https://weworkremotely.com/remote-jobs/prove-senior-software-engineer-identity-platform</guid>
+      <link>https://weworkremotely.com/remote-jobs/prove-senior-software-engineer-identity-platform</link>
+    </item><item>
+      <title>Oportun: Principal Product Manager, Savings (R13997)</title>
+      <region>Anywhere in the World</region>
+      <country></country>
+      <state></state>
+      <skills></skills>
+      <category>Product</category>
+      <type/>
+      <description>
+
+&lt;p&gt;
+  &lt;strong&gt;Headquarters:&lt;/strong&gt; Remote - US
+&lt;/p&gt;
+
+&lt;div class="content-intro"&gt;&lt;h2&gt;&lt;span&gt;Who We Are&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span&gt;Oportun (Nasdaq: OPRT) is a mission-driven financial services company that puts its members' financial goals within reach. With intelligent borrowing, savings, and budgeting capabilities, Oportun empowers members with the confidence to build a better financial future. Since inception, Oportun has provided more than $22.7 billion in responsible and affordable credit, saved its members more than $2.5 billion in interest and fees, and helped its members set aside an average of more than $1,800 annually.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;h2&gt;&lt;span&gt;The Opportunity&amp;nbsp;&lt;/span&gt;&lt;/h2&gt;
+&lt;p class="isSelectedEnd"&gt;&lt;span&gt;We’re looking for a Principal Product Manager to lead the strategy, roadmap, and execution for Oportun’s flagship, AI-powered Savings product. Savings is an important driver of member growth and retention, giving this role significant influence over the future of our financial health platform and how we help members build stronger financial futures.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;You’ll lead the ideation, development, launch, and scaling of new products and features while partnering closely with Engineering, Design, Data, Marketing, Legal, and Customer Support. This role reports to the Vice President &amp;amp; General Manager for Savings and Mobile. Candidates located in Central or Eastern time zones are strongly preferred to support team and stakeholder collaboration.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;At Oportun, we move fast and we hold each other to a high bar. If you care about doing your best work while actually moving the needle for real people, you'll fit right in.&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span&gt;&lt;span&gt;What You'll Do&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;Your day-to-day&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;You’ll lead the long-term product strategy and roadmap for Oportun’s Savings product in partnership with leadership and cross-functional stakeholders.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;You’ll scope and lead the development of new products and features designed to improve members’ financial health and strengthen growth and retention.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;You’ll use customer research, experimentation, data, and product metrics to build a deep understanding of member needs and behaviors and translate those insights into product decisions.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;You’ll lead a high-performing cross-functional product team across Engineering, Design, Data, Marketing, Legal, and Customer Support to bring new capabilities to market.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;You’ll drive alignment across teams and leadership through clear communication, thoughtful documentation, and strong product judgment.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;You’ll navigate complex legal and regulatory considerations while keeping the team focused on member outcomes and execution.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;You’ll bring ideas for how we can do things better, proactively, not just when asked.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;You’ll look for ways to use AI tools thoughtfully to accelerate product discovery, improve decision-making, reduce manual work, and create stronger member experiences.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span&gt;&lt;span&gt;Who You Are&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;The right fit looks like this&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p class="isSelectedEnd"&gt;&lt;span&gt;You’re a curious and creative product leader who enjoys solving ambiguous problems and turning customer needs into clear product strategies. You combine strong product judgment with data, move comfortably between strategy and execution, and build trust across a wide range of partners.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;You’re customer-focused, solution-oriented, and comfortable navigating complexity without waiting for perfect information. You communicate clearly, build alignment, and keep teams moving toward meaningful outcomes.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span&gt;&lt;span&gt;What You Bring&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span&gt;Skills &amp;amp; experience&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p class="isSelectedEnd"&gt;&lt;strong&gt;&lt;span&gt;Required&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;7+ years of product management experience, including experience building and scaling products in high-growth environments.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;A strong track record of defining product strategy, building roadmaps, and shipping products that deliver measurable customer and business outcomes.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Strong customer orientation and a passion for building products that improve financial health.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Strong analytical and problem-solving skills, including experience with experimentation, product metrics, data analysis, and data-informed decision-making.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Demonstrated success leading cross-functional product teams and building alignment across Engineering, Design, Data, Marketing, Legal, Customer Support, and senior leadership.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Strong written and verbal communication skills, including the ability to communicate complex product decisions clearly and concisely.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Experience navigating ambiguity, removing blockers, and driving execution across complex product initiatives.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;&lt;span&gt;Nice to Have&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Experience in financial services, fintech, digital banking, or another highly regulated industry.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Experience launching products within complex legal or regulatory frameworks.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Experience using SQL or similar tools to support product analysis and decision-making.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Experience working with globally distributed or multinational teams.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Experience using AI tools such as ChatGPT, Copilot, or similar tools to improve product discovery, analysis, or productivity.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span&gt;Our AI Mindset&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span&gt;We build with AI. We lead with judgment.&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;AI isn't a feature here. It's how we work.&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;We're excited about what AI makes possible, and we're looking for people who share that curiosity. You don't need to be an expert. You need to be &lt;span&gt;&lt;strong&gt;open to experimenting&lt;/strong&gt;&lt;/span&gt;, willing to learn, and able to apply new tools in ways that actually move the needle.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;In this role, you'll be encouraged to explore AI tools, find practical use cases for your function, and bring ideas for working smarter. We believe the best outcomes come when &lt;span&gt;&lt;strong&gt;human judgment and AI capability work together.&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span&gt;&lt;span&gt;Why Oportun&lt;/span&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;&lt;span&gt;&lt;span class="TextRun SCXW50467585 BCX0" lang="EN-US"&gt;&lt;span class="NormalTextRun SCXW50467585 BCX0"&gt;What's&lt;/span&gt;&lt;span class="NormalTextRun SCXW50467585 BCX0"&gt; in it for you&lt;/span&gt;&lt;/span&gt;&lt;span class="EOP Selected SCXW50467585 BCX0"&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;span&gt;Oportun offers a competitive compensation and benefits package designed to support your physical, financial, and professional well-being. Benefits vary by country of employment.&lt;/span&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;span&gt;Some of the benefits available to eligible employees include:&lt;/span&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;strong&gt;&lt;span&gt;US Benefits:&lt;/span&gt;&lt;/strong&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span&gt;Medical, Dental &amp;amp; Vision Insurance&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;401(k) including company match&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Flexible PTO and Parental Leave&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Company-paid Life &amp;amp; Disability Insurance&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;span&gt;&lt;span&gt;Eligibility and plan details vary by location and employment status. To learn more about Oportun and our benefits, visit&amp;nbsp;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;&lt;span&gt;oportun.com/careers&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;The US salary range for this full-time position is $ 148,100 - $ 237,000&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Our salary ranges are determined by role, level, and location. The range displayed on each job posting reflects a national minimum and maximum range for new hire salaries for this position.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Within this range, individual pay is determined by work location and additional factors, such as job-related skills, experience, and relevant education or training. Your recruiter can share more about the specific salary range that meets your criteria during the hiring process.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Please note that the compensation range listed in this posting reflects only the base salary for this position and does not include other compensation elements or benefits. &lt;span&gt;R1 #LI-REMOTE #LI-R&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;div class="content-conclusion"&gt;&lt;p&gt;&lt;em&gt;&lt;span&gt;We are proud to be an Equal Opportunity Employer and consider all qualified applicants for employment opportunities without regard to race, age, color, religion, gender, national origin, disability, sexual orientation, veteran status or any other category protected by the laws or regulations in the locations where we operate.&lt;/span&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;span&gt;California applicants can find a copy of Oportun's CCPA Notice here:&amp;nbsp; &lt;a href="https://oportun.com/privacy/california-privacy-notice/"&gt;https://oportun.com/privacy/california-privacy-notice/&lt;/a&gt;.&lt;/span&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;span&gt;We will never request personal identifiable information (bank, credit card, etc.) before you are hired. We do not charge you for pre-employment fees such as background checks, training, or equipment. If you think you have been a victim of fraud by someone posing as us, please report your experience to the FBI’s Internet Crime Complaint Center (IC3).&lt;/span&gt;&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;To apply:&lt;/strong&gt; &lt;a href="https://weworkremotely.com/remote-jobs/oportun-principal-product-manager-savings-r13997"&gt;https://weworkremotely.com/remote-jobs/oportun-principal-product-manager-savings-r13997&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Tue, 13 Oct 2026 07:31:00 +0000</pubDate>
+      <expires_at>Thu, 12 Nov 2026 07:31:00 +0000</expires_at>
+      <guid>https://weworkremotely.com/remote-jobs/oportun-principal-product-manager-savings-r13997</guid>
+      <link>https://weworkremotely.com/remote-jobs/oportun-principal-product-manager-savings-r13997</link>
+    </item><item>
+      <title>Elation Health: Case Resolution Engineer</title>
+      <region>Anywhere in the World</region>
+      <country></country>
+      <state></state>
+      <skills></skills>
+      <category>Customer Support</category>
+      <type/>
+      <description>
+
+&lt;p&gt;
+  &lt;strong&gt;Headquarters:&lt;/strong&gt; Canada - Remote
+&lt;/p&gt;
+
+&lt;p&gt;Our team is committed to enhancing physician and patient quality of life through Elation, a SaaS cloud-based clinical platform. Since inception, we've been focused on building a delightful, world-class experience that empowers physicians to deliver phenomenal care to patients.&lt;/p&gt;
+&lt;p&gt;Customer support has been the same job for twenty years: a queue, a ticket, an SLA, a closed case. That's ending, fast. Over the next 6–9 months, AI will take on more of the routine, repetitive cases at Elation. That doesn't shrink the human role — it builds on it. The work becomes product intelligence: shaping how AI handles conversations, holding the customer-trust moments that need real judgment, and turning patterns into priorities Engineering delivers.&lt;/p&gt;
+&lt;p&gt;We're hiring Support Engineers to anchor that shift: people who don't just close tickets, but trace them back to the line of product code causing them, ship the fix that resolves the customer's problem immediately, and partner with senior engineers on the cases complex enough to need them.&lt;/p&gt;
+&lt;p&gt;You might be the recent engineering grad who spent a summer at a busy front desk, in a popular restaurant, or on a support line because you like people as much as you like problems, and who's been quietly automating things nobody asked you to fix since your first CS class. Or, you might be the person who leads team projects, tinkers with the dashboards, automations, or workflows so automatically that colleagues assume you are an engineer even if you aren’t. If that sounds like you, this role turns that problem-solving instinct into your core responsibility.&lt;/p&gt;
+&lt;p&gt;As a Support Engineer, you'll bring empathy and judgment to the cases that need it most, own the quality of AI-driven solutions in your domain, and synthesize patterns that influence Product and Engineering roadmaps. We hire for judgment, taste, and curiosity, not process adherence. The bar isn't how many cases you closed; it's how much you reshaped the conditions under which cases happen.&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;Role and Responsibilities&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Synthesize and share customer insights.&lt;/strong&gt; Surface patterns from your cases in weekly and monthly reports, participate in Product and Engineering discussions with what you're learning, and mentor Support Team members on AI workflows, scripting, and SQL queries.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use Good Judgment to Solve Cases.&lt;/strong&gt; Own customer escalations with cases that genuinely require seasoned judgment, the ones AI can't safely close. Build and protect customer trust in moments that matter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Build and own AI quality.&lt;/strong&gt; Configure AI within Elation's stack (intents, knowledge sources, escalation rules), build lightweight external automations and scripts, and own the quality of AI outputs in your domain.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong&gt;What success looks like in your first 6 months&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Delivered solutions that reduced case volume by 10% or eliminated recurring issue categories, with measurable customer impact (e.g., CSAT, reduction in case reopens)&lt;/li&gt;
+&lt;li&gt;A monthly drumbeat of synthesized insights that Product and Engineering act on, with visible impact on customer experience or a measurable drop in case volume&lt;/li&gt;
+&lt;li&gt;Owns a measurable case-volume reduction in your domain by making cases not happen, not by closing them faster&lt;/li&gt;
+&lt;li&gt;You question default workflows instead of just executing them, and you ship more by removing work, not just doing more of it&lt;/li&gt;
+&lt;li&gt;You build with AI to make yourself and the teammates around you faster — automating triage, drafting responses, prototyping internal tools, and turning one-off builds into reusable patterns Support can run with&lt;/li&gt;
+&lt;li&gt;You've picked up or sharpened a technical skill — SQL, Python, an API, a scripting language — specifically because a customer problem needed it, not because a course assigned it&lt;/li&gt;
+&lt;li&gt;Mentors Associate teammates on AI builds and pattern synthesis&lt;/li&gt;
+&lt;li&gt;Identified and closed gaps across internal and customer-facing documentation, improving accuracy and reducing repeat questions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong&gt;Professional Qualifications&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;1–5+ years of experience in Engineering, data analytics, or AI/automation tinkering in any field — OR a degree in Computer Science, Engineering, or a related technical field, plus real experience talking to people under pressure (support, hospitality, retail, service, resident advising)&lt;/li&gt;
+&lt;li&gt;Comfortable enough with code to experiment : you've written scripts, touched an API, or built something in Python, SQL, or JavaScript — even if it was just for a class project , team project or yourself&lt;/li&gt;
+&lt;li&gt;A concrete portfolio of things you've built or shipped: prompt-engineered systems, dashboards, automations, class or personal projects — with evidence of outcomes&lt;/li&gt;
+&lt;li&gt;Strong customer-facing communication and trust-building skills&lt;/li&gt;
+&lt;li&gt;Pattern recognition and synthesis muscle&lt;/li&gt;
+&lt;li&gt;AI-native default. Reaches for AI tools first, treats ambiguity as the work rather than a blocker, and wants to learn how to configure and supervise these systems — not just use them&lt;/li&gt;
+&lt;li&gt;A deep desire to drive results for our customers, with high ownership over the outcomes you own&lt;/li&gt;
+&lt;li&gt;Curiosity and natural problem-solving instincts&lt;/li&gt;
+&lt;li&gt;An instinct to raise the bar for the teammates around you — teaching others to build and synthesize, not just modeling it yourself&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong&gt;Show us your work&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Along with your application, in a cover letter send us:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;2–3 things you've built or shipped that changed a metric or outcome — a work project, a personal build, or something from school or an internship — what you made, who it was for, why you needed to do it, and what changed.&lt;/li&gt;
+&lt;li&gt;A short story about a time your analysis or insight changed a decision someone else made.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;strong&gt;Salary range&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;$70,000 - $95,000 CAD&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Elation welcomes individuals from all backgrounds and walks of life. Elation is proud to be an Equal Opportunity Employer and is dedicated to creating and maintaining a diverse and inclusive work environment.&lt;/p&gt;
+&lt;p&gt;We are committed to equal opportunity for all employees and applicants, and value individuals with diverse perspectives including, but not limited to: race, color, religion, sex, sexual orientation, socioeconomic status, age, gender identity or gender expression, national origin, disability or veteran status.&lt;/p&gt;
+&lt;p&gt;Elation also complies with all applicable national, state and local laws governing nondiscrimination in employment as well as work authorization and employment eligibility verification requirements of the Immigration and Nationality Act and IRCA. We firmly believe a strong culture that supports a diverse and inclusive workforce allows us to achieve Elation’s mission of helping independent primary care thrive.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;To apply:&lt;/strong&gt; &lt;a href="https://weworkremotely.com/remote-jobs/elation-health-case-resolution-engineer"&gt;https://weworkremotely.com/remote-jobs/elation-health-case-resolution-engineer&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Tue, 13 Oct 2026 07:31:00 +0000</pubDate>
+      <expires_at>Thu, 12 Nov 2026 07:31:00 +0000</expires_at>
+      <guid>https://weworkremotely.com/remote-jobs/elation-health-case-resolution-engineer</guid>
+      <link>https://weworkremotely.com/remote-jobs/elation-health-case-resolution-engineer</link>
+    </item><item>
+      <title>Webflow: Senior Manager, Corporate Sales - West</title>
+      <region>Anywhere in the World</region>
+      <country></country>
+      <state></state>
+      <skills></skills>
+      <category>Sales and Marketing</category>
+      <type/>
+      <description>
+
+&lt;p&gt;
+  &lt;strong&gt;Headquarters:&lt;/strong&gt; CA Remote (BC &amp;amp; ON only); U.S. Remote
+&lt;/p&gt;
+
+&lt;p&gt;Webflow is the agentic web marketing platform for modern marketing teams, helping organizations build, manage, and optimize high-performing web experiences that drive predictable growth and strengthen brand trust. Building at Webflow will need grit, because we move fast, without ever sacrificing craft or quality.&lt;/p&gt;
+&lt;p&gt;We’re looking for a Sr. Manager, Corporate Sales to lead and scale Webflow’s strategic , full-cycle sales motion within our West Coast Corporate segment. In this role, you will drive strategy and execution for a team of Account Executives responsible for prospecting, pipeline generation, and closing new business, while ensuring a seamless, efficient, and high-performing sales process.&lt;/p&gt;
+&lt;p&gt;You will recruit, develop, and coach top-performing AEs, fostering a culture of continuous improvement, accountability, and excellence. You will work closely with key cross-functional partners across Marketing, RevOps, Enablement, and Customer Success to build and refine programs that accelerate revenue growth, optimize funnel efficiency, and deliver exceptional customer experiences.&lt;/p&gt;
+&lt;p&gt;The ideal candidate is both a strategic thinker and a hands-on leader who thrives in fast-paced environments, is passionate about developing talent, and is eager to build a best-in-class Corporate segment that drives meaningful impact for Webflow’s customers and business.&lt;/p&gt;
+&lt;h1&gt;&lt;strong&gt;About the role:&lt;/strong&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Location: Remote-first (United States; BC &amp;amp; ON, Canada)&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;Full-time&lt;/li&gt;
+&lt;li&gt;Permanent&lt;/li&gt;
+&lt;li&gt;Exempt&lt;/li&gt;
+&lt;li&gt;Our cash compensation amount for this role ranges depending on the cost of labor of the geographic area. The ranges shared below may change if you are hired in another geographic location.&amp;nbsp;
+&lt;ul&gt;
+&lt;li&gt;United States (all figures cited below in USD and pertain to workers in the United States)
+&lt;ul&gt;
+&lt;li&gt;Zone A: $297,000 - $350,000&lt;/li&gt;
+&lt;li&gt;Zone B: $276,000 - $325,000&lt;/li&gt;
+&lt;li&gt;Zone C: $255,000 - $300,000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Canada (figures cited below are in CAD and pertain to workers in ON &amp;amp; BC, Canada)
+&lt;ul&gt;
+&lt;li&gt;319,000 - 375,000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For sales roles, the ranges provided are the role’s On Target Earnings (“OTE”) ranges, meaning that the ranges include both the sales commissions target and annual base salary for the role. This salary range may be inclusive of several career levels at Webflow and will be narrowed during the interview process based on a number of factors, including the candidate’s&lt;strong&gt; &lt;/strong&gt;market location, job related experience, knowledge, qualifications, and skills. Benefits/additional compensation for this role may include: equity, company bonus or sales commissions/bonuses; retirement plans; health benefits; and wellness stipends&lt;em&gt;&lt;br&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Please visit our &lt;a href="https://webflow.com/careers#pay-zones"&gt;Careers page&lt;/a&gt; for more information on which locations are included in each of our geographic pay zones. However, please confirm the zone for your specific location with your recruiter.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Application Information:
+&lt;ul&gt;
+&lt;li&gt;Application deadline: applications accepted on an ongoing basis until position is closed and filled&lt;/li&gt;
+&lt;li&gt;This posting is for an existing vacancy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reporting to the Director, Corporate Sales&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As a Sr. Manager, Corporate Sales you’ll …&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lead a team of Corporate Account Executives and oversee recruiting, interviewing, coaching, and mentoring to ensure the team exceeds goals and targets.&lt;/li&gt;
+&lt;li&gt;Provide hands-on support by joining client meetings, leading key conversations, and coordinating internal resources to remove obstacles.&lt;/li&gt;
+&lt;li&gt;Host regular team meetings to review the sales pipeline, forecast performance, discuss strategy, and deliver sales and product training.&lt;/li&gt;
+&lt;li&gt;Offer consistent coaching for early-career Account Executives, focusing on prospecting, pipeline generation, sales calls, deal navigation, and closing strategies.&lt;/li&gt;
+&lt;li&gt;Foster a collaborative, energetic team culture that encourages high performance, learning, and shared success.&lt;/li&gt;
+&lt;li&gt;Maintain a feedback loop between Sales and Engineering, Marketing, Post-Sales, and Support teams to drive continuous improvement.&lt;/li&gt;
+&lt;li&gt;Partner with Solutions Engineering, Customer Success, and Partnerships teams to align on sales strategies and operational processes.&lt;/li&gt;
+&lt;li&gt;Collaborate with Customer Success to ensure a seamless handoff and exceptional customer experience between pre-sales and post-sales stages.&lt;/li&gt;
+&lt;li&gt;Identify product and technology gaps through customer interactions and communicate insights to Webflow’s Product and Leadership teams.&lt;/li&gt;
+&lt;li&gt;Regularly report on team performance, key metrics, customer insights, challenges, and sales forecasts.&lt;/li&gt;
+&lt;li&gt;Travel up to 25% - primarily for onboarding, industry events, and internal offsites&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;&lt;strong&gt;About you:&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;Requirements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5+ years of experience in B2B SaaS sales, with at least 2 years in a frontline sales leadership or management role&lt;/li&gt;
+&lt;li&gt;Background in managing mid-market sales motions with measurable impact on new logo acquisition &amp;amp; ARR growth&lt;/li&gt;
+&lt;li&gt;Proven track record of leading Account Executive teams to consistently exceed pipeline and revenue targets&lt;/li&gt;
+&lt;li&gt;Demonstrated success in hiring, onboarding, and developing high-performing sales talent&lt;/li&gt;
+&lt;li&gt;Experience working with cross-functional teams such as Marketing, Customer Success, Product, and Engineering&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You’ll thrive as a Sr. Manager, Corporate Sales if you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Have strong coaching and mentoring skills, with a passion for developing early-career sales professionals&lt;/li&gt;
+&lt;li&gt;Communicate clearly and confidently in both internal and external settings&lt;/li&gt;
+&lt;li&gt;Understand the full sales cycle, from prospecting and discovery through negotiation and closing&lt;/li&gt;
+&lt;li&gt;Are proficient in CRM systems (such as Salesforce), forecasting tools, and sales analytics&lt;/li&gt;
+&lt;li&gt;Know how to analyze team performance metrics and turn insights into actionable strategies&lt;/li&gt;
+&lt;li&gt;Can navigate complex deals and align multiple stakeholders to drive outcomes&lt;/li&gt;
+&lt;li&gt;Lead with empathy and collaboration, building trust and empowering your team to succeed&lt;/li&gt;
+&lt;li&gt;Bring strong business acumen and a strategic, data-driven mindset to decision-making&lt;/li&gt;
+&lt;li&gt;Take ownership and demonstrate accountability while maintaining a bias for action&lt;/li&gt;
+&lt;li&gt;Foster a positive, inclusive team culture centered on learning, growth, and shared success&lt;/li&gt;
+&lt;li&gt;Stay curious and open to growth — demonstrating a proactive embrace of AI, and actively building and applying fluency in emerging technologies to elevate how we work, drive faster outcomes, and expand collective impact.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong&gt;Our Core Behaviors:&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Build lasting customer trust.&lt;/strong&gt; We build trust by taking action that puts customer trust first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Win together.&lt;/strong&gt; We play to win, and we win as one team. Success at Webflow isn't a solo act.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reinvent ourselves. &lt;/strong&gt;We don't just improve what exists, we imagine what's possible.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Own it all the way. &lt;/strong&gt;We move fast because the moment demands it, and we hold ourselves accountable to deliver outcomes — for each other, and for customers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;strong&gt;Benefits&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ownership in what you help build.&lt;/strong&gt; Every permanent Webflower receives equity (RSUs) in our growing, privately held company.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Health coverage that actually covers you.&lt;/strong&gt; Comprehensive medical, dental, and vision plans for full-time employees and their dependents, with Webflow covering most premiums.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Support for every stage of family life&lt;/strong&gt;. 12 weeks of paid parental leave for all parents and 6+ weeks of additional paid leave for birthing parents. Plus inclusive care for family planning, menopause, and midlife transitions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Time off that’s actually off. &lt;/strong&gt;Flexible vacation, paid holidays, and a sabbatical program to help you recharge and come back inspired.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wellness for the whole you. &lt;/strong&gt;Access to mental health resources, therapy and coaching.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Invest in your future. &lt;/strong&gt;A 401(k) with 100% employer match (up to $6,000/year) in the U.S., and support for retirement savings globally.&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monthly stipends that flex with your life.&lt;/strong&gt; Localized support for work and wellness expenses — from Wi-Fi to workouts.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bonus for building together. &lt;/strong&gt;All full-time, permanent, non-commission employees are eligible for our annual WIN bonus program.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Temporary employees may be eligible for paid holiday and time off, statutory leaves of absence, and company-sponsored medical benefits depending on their Fixed Term Contract and their country/state of employment.&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;Remote, together&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;At Webflow, equality is a core tenet of our culture. We are an Equal Opportunity (EEO)/Veterans/Disabled Employer and are &lt;a href="https://webflow.com/diversity-equity-inclusion"&gt;committed&lt;/a&gt; to building an inclusive global team that represents a variety of backgrounds, perspectives, beliefs, and experiences. Employment decisions are made on the basis of job-related criteria without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, veteran status, or any other classification protected by applicable law. Pursuant to the San Francisco Fair Chance Ordinance, Webflow will consider for employment qualified applicants with arrest and conviction records.&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;Stay connected&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Not ready to apply, but want to be part of the Webflow community? Consider following our story on our &lt;a href="https://webflow.com/blog"&gt;Webflow Blog&lt;/a&gt;, &lt;a href="https://www.linkedin.com/company/webflow-inc-/"&gt;LinkedIn&lt;/a&gt;, &lt;a href="https://twitter.com/webflow"&gt;X (Twitter)&lt;/a&gt;, and/or &lt;a href="https://www.glassdoor.com/Reviews/Webflow-Reviews-E890506.htm"&gt;Glassdoor&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;Please note:&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;We will ensure that individuals with disabilities are provided reasonable accommodation to participate in the job application or interview process, to perform essential job functions, and to receive other benefits and privileges of employment. Upon interview scheduling, instructions for confidential accommodation requests will be administered.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;To join Webflow, you'll need a valid right to work authorization depending on the country of employment.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;If you are extended an offer, that offer may be contingent upon your successful completion of a background check, which will be conducted in accordance with applicable laws. We may obtain one or more background screening reports about you, solely for employment purposes.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;For information about how Webflow processes your personal information, please review &lt;/em&gt;&lt;a href="https://webflow.com/legal/applicant-privacy-notice"&gt;&lt;em&gt;Webflow’s Applicant Privacy Notice&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&amp;nbsp;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;To apply:&lt;/strong&gt; &lt;a href="https://weworkremotely.com/remote-jobs/webflow-senior-manager-corporate-sales-west"&gt;https://weworkremotely.com/remote-jobs/webflow-senior-manager-corporate-sales-west&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Tue, 13 Oct 2026 07:31:00 +0000</pubDate>
+      <expires_at>Thu, 12 Nov 2026 07:31:00 +0000</expires_at>
+      <guid>https://weworkremotely.com/remote-jobs/webflow-senior-manager-corporate-sales-west</guid>
+      <link>https://weworkremotely.com/remote-jobs/webflow-senior-manager-corporate-sales-west</link>
+    </item></channel></rss>

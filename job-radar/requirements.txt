@@ -1,0 +1,7 @@
+playwright
+beautifulsoup4
+openpyxl
+pytest
+python-jobspy==1.3.0
+pandas
+requests
