@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="880" height="340" role="img" aria-label="Frame 3: The morning run">
+<rect width="880" height="340" rx="16" fill="#f4f6fb"/>
+<rect x="14" y="14" width="852" height="312" rx="12" fill="#ffffff" stroke="#d9dfec" stroke-width="1.5"/>
+<circle cx="52" cy="52" r="20" fill="#2f5bea"/>
+<text x="52" y="59" font-size="20" fill="#fff" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">3</text>
+<text x="84" y="50" font-size="12" fill="#5b6478" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">FRAME 3  ·  THE AUTOMATION</text>
+<text x="84" y="74" font-size="24" fill="#14213d" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">The morning run</text>
+<text x="500" y="130" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">At 08:30 the runner wakes up by</text>
+<text x="500" y="158" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">itself and reads every source,</text>
+<text x="500" y="186" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">politely and in parallel.</text>
+<text x="500" y="214" font-size="16" fill="#2f5bea" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">→ No tokens, no logins, no stealth.</text>
+<rect x="40" y="120" width="100" height="56" rx="8" fill="#fff" stroke="#2f5bea" stroke-width="2"/>
+<text x="90" y="144" font-size="20" fill="#2f5bea" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">08:30</text>
+<text x="90" y="164" font-size="12" fill="#5b6478" font-weight="400" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">scheduler</text>
+<path d="M142 148 H190" stroke="#2f5bea" stroke-width="2.5" marker-end="url(#ar)"/>
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#2f5bea"/></marker></defs>
+<rect x="194" y="100" width="130" height="96" rx="8" fill="#fff" stroke="#2f5bea" stroke-width="2"/>
+<text x="259" y="130" font-size="17" fill="#14213d" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">Runner</text>
+<text x="259" y="154" font-size="13" fill="#5b6478" font-weight="400" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">8 workers</text>
+<text x="259" y="174" font-size="12" fill="#5b6478" font-weight="400" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">1 request / host / s</text>
+<rect x="350" y="104" width="32" height="26" rx="5" fill="#1a9d6a" opacity="0.9"/>
+<path d="M326 148 L348 117" stroke="#d9dfec" stroke-width="1.5"/>
+<rect x="390" y="104" width="32" height="26" rx="5" fill="#1a9d6a" opacity="0.9"/>
+<path d="M326 148 L388 117" stroke="#d9dfec" stroke-width="1.5"/>
+<rect x="350" y="138" width="32" height="26" rx="5" fill="#1a9d6a" opacity="0.9"/>
+<path d="M326 148 L348 151" stroke="#d9dfec" stroke-width="1.5"/>
+<rect x="390" y="138" width="32" height="26" rx="5" fill="#1a9d6a" opacity="0.9"/>
+<path d="M326 148 L388 151" stroke="#d9dfec" stroke-width="1.5"/>
+<rect x="350" y="172" width="32" height="26" rx="5" fill="#e59b1b" opacity="0.9"/>
+<path d="M326 148 L348 185" stroke="#d9dfec" stroke-width="1.5"/>
+<rect x="390" y="172" width="32" height="26" rx="5" fill="#1a9d6a" opacity="0.9"/>
+<path d="M326 148 L388 185" stroke="#d9dfec" stroke-width="1.5"/>
+<text x="240" y="250" font-size="14" fill="#5b6478" font-weight="400" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">~200 sources, no LLM, no logins</text>
+</svg>

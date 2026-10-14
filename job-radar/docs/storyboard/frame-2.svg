@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="880" height="340" role="img" aria-label="Frame 2: The idea">
+<rect width="880" height="340" rx="16" fill="#f4f6fb"/>
+<rect x="14" y="14" width="852" height="312" rx="12" fill="#ffffff" stroke="#d9dfec" stroke-width="1.5"/>
+<circle cx="52" cy="52" r="20" fill="#2f5bea"/>
+<text x="52" y="59" font-size="20" fill="#fff" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">2</text>
+<text x="84" y="50" font-size="12" fill="#5b6478" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">FRAME 2  ·  THE APPROACH</text>
+<text x="84" y="74" font-size="24" fill="#14213d" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">The idea</text>
+<text x="500" y="130" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">Read every site with the cheapest</text>
+<text x="500" y="158" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">method that works, in this order.</text>
+<text x="500" y="186" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">One reader per platform, not one</text>
+<text x="500" y="214" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">scraper per site.</text>
+<rect x="40" y="108" width="380" height="40" rx="8" fill="#fff" stroke="#1a9d6a" stroke-width="2"/>
+<rect x="40" y="108" width="10" height="40" rx="4" fill="#1a9d6a"/>
+<text x="62" y="134" font-size="15" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">1  Public feed or API</text>
+<rect x="40" y="158" width="380" height="40" rx="8" fill="#fff" stroke="#1a9d6a" stroke-width="2"/>
+<rect x="40" y="158" width="10" height="40" rx="4" fill="#1a9d6a"/>
+<text x="62" y="184" font-size="15" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">2  Platform API (Greenhouse, Workday…)</text>
+<rect x="40" y="208" width="380" height="40" rx="8" fill="#fff" stroke="#e59b1b" stroke-width="2"/>
+<rect x="40" y="208" width="10" height="40" rx="4" fill="#e59b1b"/>
+<text x="62" y="234" font-size="15" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">3  The page's own JSON, found once</text>
+<rect x="40" y="258" width="380" height="40" rx="8" fill="#fff" stroke="#d64545" stroke-width="2"/>
+<rect x="40" y="258" width="10" height="40" rx="4" fill="#d64545"/>
+<text x="62" y="284" font-size="15" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">4  Real browser, only if nothing else works</text>
+<text x="230" y="318" font-size="13" fill="#5b6478" font-weight="400" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">cheapest first, memory stays low</text>
+</svg>

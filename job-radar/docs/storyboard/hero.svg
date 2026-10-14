@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 220" width="880" height="220" role="img" aria-label="Job Radar">
+<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#2f5bea"/><stop offset="1" stop-color="#7a4de0"/></linearGradient></defs>
+<rect width="880" height="220" rx="16" fill="url(#g)"/>
+<circle cx="720" cy="110" r="40" fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="2"/>
+<circle cx="720" cy="110" r="70" fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="2"/>
+<circle cx="720" cy="110" r="100" fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="2"/>
+<path d="M720 110 L790 55" stroke="#fff" stroke-width="3" stroke-opacity="0.8"/>
+<circle cx="720" cy="110" r="6" fill="#fff"/>
+<circle cx="770" cy="80" r="6" fill="#7dffc4"/>
+<circle cx="676" cy="150" r="5" fill="#ffd36b"/>
+<circle cx="745" cy="150" r="5" fill="#7dffc4"/>
+<text x="48" y="98" font-size="54" fill="#fff" font-weight="800" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">Job Radar</text>
+<text x="50" y="140" font-size="19" fill="#e8ecff" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">A free, no-LLM pipeline that reads ~200 job sources every morning.</text>
+<text x="50" y="172" font-size="14" fill="#cdd6ff" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">Python  ·  Playwright  ·  JobSpy  ·  354 offline tests</text>
+</svg>

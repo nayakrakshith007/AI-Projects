@@ -1,3 +1,7 @@
+<img src="docs/storyboard/hero.svg" alt="Job Radar" width="100%">
+
+**New here?** Start with the [six-frame storyboard](docs/STORYBOARD.md), a two-minute tour of the project.
+
 # Job Radar V3
 
 A free, no-LLM data pipeline that reads about 200 job sources every morning, keeps the roles that match, and shows the result on a live progress page, an HTML analytics dashboard and one Excel workbook.
