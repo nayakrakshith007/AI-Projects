@@ -10,6 +10,10 @@ A free, no-LLM data pipeline that reads about 200 job sources every morning, kee
 
 ![Analytics dashboard built from invented demo data](docs/images/dashboard.png)
 
+![Filtering the dashboard, then opening a job's details and link in the side panel](docs/images/dashboard-tour.gif)
+
+*Filters stack (search, place, role, work mode); a click on any row opens its details and the apply link on the right.*
+
 *The analytics dashboard, built from invented demo data. Try it yourself: `python demo/make_demo.py`, then open `demo/output/Dashboard.html`.*
 
 ## The problem

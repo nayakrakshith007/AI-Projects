@@ -29,6 +29,12 @@ Hands-on AI and data projects, built end to end: design decisions written down, 
 
 <img src="job-radar/docs/images/dashboard.png" alt="Analytics dashboard built from invented demo data" width="100%">
 
+### Filter, then click a row
+
+<img src="job-radar/docs/images/dashboard-tour.gif" alt="Filtering the dashboard by search, place, role and work mode, then opening a job's details and link in the side panel" width="100%">
+
+*Filters stack: search, place, role and work mode take 420 jobs down to 6. A click on any row opens its details and the apply link on the right.*
+
 *Try it: `python job-radar/demo/make_demo.py`, then open `job-radar/demo/output/Dashboard.html`. The repository ships no scraped data.*
 
 ### Where to go next
