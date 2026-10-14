@@ -1,43 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="880" height="340" role="img" aria-label="Frame 5: The payoff">
-<rect width="880" height="340" rx="16" fill="#f4f6fb"/>
-<rect x="14" y="14" width="852" height="312" rx="12" fill="#ffffff" stroke="#d9dfec" stroke-width="1.5"/>
-<circle cx="52" cy="52" r="20" fill="#2f5bea"/>
+<rect width="880" height="340" rx="16" fill="#0d1117"/>
+<rect x="14" y="14" width="852" height="312" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+<circle cx="52" cy="52" r="20" fill="#1f6feb"/>
 <text x="52" y="59" font-size="20" fill="#fff" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">5</text>
-<text x="84" y="50" font-size="12" fill="#5b6478" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">FRAME 5  ·  THE RESULT</text>
-<text x="84" y="74" font-size="24" fill="#14213d" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">The payoff</text>
-<text x="500" y="130" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">One progress page for the live run,</text>
-<text x="500" y="158" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">an analytics dashboard, and one</text>
-<text x="500" y="186" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">Excel workbook with your notes.</text>
-<text x="500" y="214" font-size="16" fill="#2f5bea" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">→ Open it, pick jobs, done.</text>
-<rect x="36" y="104" width="130" height="150" rx="8" fill="#fff" stroke="#2f5bea" stroke-width="2"/>
-<text x="101" y="130" font-size="15" fill="#14213d" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">Progress</text>
-<rect x="50" y="144" width="100" height="9" rx="4" fill="#1a9d6a" opacity="0.9"/>
-<rect x="50" y="166" width="86" height="9" rx="4" fill="#1a9d6a" opacity="0.75"/>
-<rect x="50" y="188" width="72" height="9" rx="4" fill="#1a9d6a" opacity="0.6000000000000001"/>
-<rect x="50" y="210" width="58" height="9" rx="4" fill="#1a9d6a" opacity="0.45000000000000007"/>
-<rect x="180" y="104" width="130" height="150" rx="8" fill="#fff" stroke="#7a4de0" stroke-width="2"/>
-<text x="245" y="130" font-size="15" fill="#14213d" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">Dashboard</text>
-<rect x="194" y="200" width="14" height="40" rx="3" fill="#7a4de0" opacity="0.8"/>
-<rect x="216" y="170" width="14" height="70" rx="3" fill="#7a4de0" opacity="0.8"/>
-<rect x="238" y="185" width="14" height="55" rx="3" fill="#7a4de0" opacity="0.8"/>
-<rect x="260" y="150" width="14" height="90" rx="3" fill="#7a4de0" opacity="0.8"/>
-<rect x="282" y="210" width="14" height="30" rx="3" fill="#7a4de0" opacity="0.8"/>
-<rect x="324" y="104" width="130" height="150" rx="8" fill="#fff" stroke="#1a9d6a" stroke-width="2"/>
-<text x="389" y="130" font-size="15" fill="#14213d" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">Workbook</text>
-<rect x="338" y="146" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="374" y="146" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="410" y="146" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="338" y="166" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="374" y="166" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="410" y="166" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="338" y="186" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="374" y="186" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="410" y="186" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="338" y="206" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="374" y="206" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="410" y="206" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="338" y="226" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="374" y="226" width="30" height="13" rx="2" fill="#d9dfec"/>
-<rect x="410" y="226" width="30" height="13" rx="2" fill="#d9dfec"/>
-<text x="245" y="292" font-size="13" fill="#5b6478" font-weight="400" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">status and notes survive every rebuild</text>
+<text x="84" y="50" font-size="12" fill="#8b949e" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">FRAME 5  ·  THE RESULT</text>
+<text x="84" y="74" font-size="24" fill="#e6edf3" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">The payoff</text>
+<text x="500" y="130" font-size="16" fill="#e6edf3" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">One progress page for the live run,</text>
+<text x="500" y="158" font-size="16" fill="#e6edf3" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">an analytics dashboard, and one</text>
+<text x="500" y="186" font-size="16" fill="#e6edf3" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">Excel workbook with your notes.</text>
+<text x="500" y="214" font-size="16" fill="#58a6ff" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">→ Open it, pick jobs, done.</text>
+<rect x="36" y="104" width="130" height="150" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2"/>
+<text x="101" y="130" font-size="15" fill="#e6edf3" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">Progress</text>
+<rect x="50" y="144" width="100" height="9" rx="4" fill="#3fb950" opacity="0.9"/>
+<rect x="50" y="166" width="86" height="9" rx="4" fill="#3fb950" opacity="0.75"/>
+<rect x="50" y="188" width="72" height="9" rx="4" fill="#3fb950" opacity="0.6000000000000001"/>
+<rect x="50" y="210" width="58" height="9" rx="4" fill="#3fb950" opacity="0.45000000000000007"/>
+<rect x="180" y="104" width="130" height="150" rx="8" fill="#0d1117" stroke="#a371f7" stroke-width="2"/>
+<text x="245" y="130" font-size="15" fill="#e6edf3" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">Dashboard</text>
+<rect x="194" y="200" width="14" height="40" rx="3" fill="#a371f7" opacity="0.8"/>
+<rect x="216" y="170" width="14" height="70" rx="3" fill="#a371f7" opacity="0.8"/>
+<rect x="238" y="185" width="14" height="55" rx="3" fill="#a371f7" opacity="0.8"/>
+<rect x="260" y="150" width="14" height="90" rx="3" fill="#a371f7" opacity="0.8"/>
+<rect x="282" y="210" width="14" height="30" rx="3" fill="#a371f7" opacity="0.8"/>
+<rect x="324" y="104" width="130" height="150" rx="8" fill="#0d1117" stroke="#3fb950" stroke-width="2"/>
+<text x="389" y="130" font-size="15" fill="#e6edf3" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">Workbook</text>
+<rect x="338" y="146" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="374" y="146" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="410" y="146" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="338" y="166" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="374" y="166" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="410" y="166" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="338" y="186" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="374" y="186" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="410" y="186" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="338" y="206" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="374" y="206" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="410" y="206" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="338" y="226" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="374" y="226" width="30" height="13" rx="2" fill="#30363d"/>
+<rect x="410" y="226" width="30" height="13" rx="2" fill="#30363d"/>
+<text x="245" y="292" font-size="13" fill="#8b949e" font-weight="400" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">status and notes survive every rebuild</text>
 </svg>

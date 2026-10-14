@@ -1,28 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="880" height="340" role="img" aria-label="Frame 4: Trust">
-<rect width="880" height="340" rx="16" fill="#f4f6fb"/>
-<rect x="14" y="14" width="852" height="312" rx="12" fill="#ffffff" stroke="#d9dfec" stroke-width="1.5"/>
-<circle cx="52" cy="52" r="20" fill="#2f5bea"/>
+<rect width="880" height="340" rx="16" fill="#0d1117"/>
+<rect x="14" y="14" width="852" height="312" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+<circle cx="52" cy="52" r="20" fill="#1f6feb"/>
 <text x="52" y="59" font-size="20" fill="#fff" font-weight="700" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif">4</text>
-<text x="84" y="50" font-size="12" fill="#5b6478" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">FRAME 4  ·  THE SAFETY NET</text>
-<text x="84" y="74" font-size="24" fill="#14213d" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">Trust</text>
-<text x="500" y="130" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">Every source ends as done, empty,</text>
-<text x="500" y="158" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">broken, failed or needs you.</text>
-<text x="500" y="186" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">A human check is never solved,</text>
-<text x="500" y="214" font-size="16" fill="#14213d" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">only flagged for you.</text>
-<circle cx="60" cy="120" r="9" fill="#1a9d6a"/>
-<text x="80" y="126" font-size="16" fill="#14213d" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">done</text>
-<rect x="190" y="114" width="200" height="12" rx="6" fill="#1a9d6a" opacity="0.35"/>
-<circle cx="60" cy="160" r="9" fill="#e59b1b"/>
-<text x="80" y="166" font-size="16" fill="#14213d" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">empty</text>
-<rect x="190" y="154" width="70" height="12" rx="6" fill="#e59b1b" opacity="0.35"/>
-<circle cx="60" cy="200" r="9" fill="#d64545"/>
-<text x="80" y="206" font-size="16" fill="#14213d" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">broken</text>
-<rect x="190" y="194" width="40" height="12" rx="6" fill="#d64545" opacity="0.35"/>
-<circle cx="60" cy="240" r="9" fill="#d64545"/>
-<text x="80" y="246" font-size="16" fill="#14213d" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">failed</text>
-<rect x="190" y="234" width="30" height="12" rx="6" fill="#d64545" opacity="0.35"/>
-<circle cx="60" cy="280" r="9" fill="#7a4de0"/>
-<text x="80" y="286" font-size="16" fill="#14213d" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">needs you</text>
-<rect x="190" y="274" width="55" height="12" rx="6" fill="#7a4de0" opacity="0.35"/>
-<text x="40" y="318" font-size="13" fill="#5b6478" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">scanned 0 items = broken page, not a quiet day</text>
+<text x="84" y="50" font-size="12" fill="#8b949e" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">FRAME 4  ·  THE SAFETY NET</text>
+<text x="84" y="74" font-size="24" fill="#e6edf3" font-weight="700" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">Trust</text>
+<text x="500" y="130" font-size="16" fill="#e6edf3" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">Every source ends as done, empty,</text>
+<text x="500" y="158" font-size="16" fill="#e6edf3" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">broken, failed or needs you.</text>
+<text x="500" y="186" font-size="16" fill="#e6edf3" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">A human check is never solved,</text>
+<text x="500" y="214" font-size="16" fill="#e6edf3" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">only flagged for you.</text>
+<circle cx="60" cy="120" r="9" fill="#3fb950"/>
+<text x="80" y="126" font-size="16" fill="#e6edf3" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">done</text>
+<rect x="190" y="114" width="200" height="12" rx="6" fill="#3fb950" opacity="0.35"/>
+<circle cx="60" cy="160" r="9" fill="#d29922"/>
+<text x="80" y="166" font-size="16" fill="#e6edf3" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">empty</text>
+<rect x="190" y="154" width="70" height="12" rx="6" fill="#d29922" opacity="0.35"/>
+<circle cx="60" cy="200" r="9" fill="#f85149"/>
+<text x="80" y="206" font-size="16" fill="#e6edf3" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">broken</text>
+<rect x="190" y="194" width="40" height="12" rx="6" fill="#f85149" opacity="0.35"/>
+<circle cx="60" cy="240" r="9" fill="#f85149"/>
+<text x="80" y="246" font-size="16" fill="#e6edf3" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">failed</text>
+<rect x="190" y="234" width="30" height="12" rx="6" fill="#f85149" opacity="0.35"/>
+<circle cx="60" cy="280" r="9" fill="#a371f7"/>
+<text x="80" y="286" font-size="16" fill="#e6edf3" font-weight="600" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">needs you</text>
+<rect x="190" y="274" width="55" height="12" rx="6" fill="#a371f7" opacity="0.35"/>
+<text x="40" y="318" font-size="13" fill="#8b949e" font-weight="400" text-anchor="start" font-family="Segoe UI, Helvetica, Arial, sans-serif">scanned 0 items = broken page, not a quiet day</text>
 </svg>

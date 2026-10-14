@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 220" width="880" height="220" role="img" aria-label="Job Radar">
-<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#2f5bea"/><stop offset="1" stop-color="#7a4de0"/></linearGradient></defs>
+<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#58a6ff"/><stop offset="1" stop-color="#a371f7"/></linearGradient></defs>
 <rect width="880" height="220" rx="16" fill="url(#g)"/>
 <circle cx="720" cy="110" r="40" fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="2"/>
 <circle cx="720" cy="110" r="70" fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="2"/>
